@@ -3,12 +3,13 @@ import Service from '../../../../../Milestone 11/zap-shift-client/src/pages/Home
 import TopDecorators from './TopDecorators';
 import ServiceMap from './ServiceMap';
 import Hero from './Hero';
+import TopServices from './TopServices';
 
 const Home = () => {
     return (
         <div>
             <Hero></Hero>
-            <Service></Service>
+            <TopServices></TopServices>
             <TopDecorators></TopDecorators>
             {/* <ServiceMap></ServiceMap> */}
 
