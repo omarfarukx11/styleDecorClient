@@ -5,6 +5,8 @@ import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import Services from "../Pages/Services/Services";
 import AuthLayout from "../Layout/AuthLayout";
+import DashboardLayout from "../Layout/DashboardLayout";
+import PrivetRoute from "./PrivetRoute";
 
 export const router = createBrowserRouter([
     {
@@ -34,5 +36,9 @@ export const router = createBrowserRouter([
             Component:Register
             }
         ]
+    },
+    {
+        path:"dashboard",
+        element:<PrivetRoute><DashboardLayout></DashboardLayout></PrivetRoute>
     }
 ])

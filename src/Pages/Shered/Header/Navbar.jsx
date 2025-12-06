@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+
   const navigate = useNavigate()
   const handleLogout = () => {
     Swal.fire({

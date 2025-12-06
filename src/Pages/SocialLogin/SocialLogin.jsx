@@ -1,12 +1,13 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 
 const SocialLogin = () => {
   const { socialSignIn } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation()
 
   const handleGoogleSignIn = () => {
     socialSignIn()
@@ -16,7 +17,7 @@ const SocialLogin = () => {
           icon: "success",
           draggable: true,
         });
-        navigate("/");
+        navigate( location?.state || "/");
       })
       .catch((error) => {
         console.error("Google Login Error:", error);
