@@ -1,39 +1,169 @@
-import React, { useEffect, useState } from 'react';
+import React from "react";
+import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 
 const Services = () => {
-    const [services, setServices] = useState([]);
-  
-    useEffect(() => {
-      fetch("/services.json")
-        .then(res => res.json())
-        .then(data => setServices(data))
-        .catch(err => console.error(err));
-    }, []);
-  
-    return (
-      <section className="max-w-7xl mx-auto px-4 py-10">
-        <h2 className="text-3xl font-bold mb-6">Our Decoration Packages</h2>
-  
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map(service => (
-            <div key={service.id} className="card bg-base-100 shadow-xl">
-              <figure>
-                <img src={service.image} alt={service.name} className="h-56 w-full object-cover" />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">{service.name}</h2>
-                <p>{service.description.slice(0, 60)}...</p>
-                <p className="font-bold text-primary text-lg">
-                  BDT {service.cost} / {service.unit}
-                </p>
-                <div className="card-actions">
-                  <button className="btn btn-primary">View Details</button>
-                </div>
-              </div>
-            </div>
-          ))}
+  const axiosSecure = useAxiosSecure();
+
+  const { register, watch, handleSubmit } = useForm({
+      defaultValues: {
+      search: "",
+      type: "All",
+      minPrice: "",
+      maxPrice: "",
+    },
+  });
+
+  // Watch all fields for real-time changes
+  const search = watch("search");
+  const type = watch("type");
+  const minPrice = watch("minPrice");
+  const maxPrice = watch("maxPrice");
+
+  // Build URL dynamically
+  const queryParams = new URLSearchParams();
+  if (search) queryParams.append("search", search);
+  if (type && type !== "All") queryParams.append("type", type);
+  if (minPrice) queryParams.append("minPrice", minPrice);
+  if (maxPrice) queryParams.append("maxPrice", maxPrice);
+
+  const url = `/allServices?${queryParams.toString()}`;
+
+  const { data: services = [], isLoading } = useQuery({
+    queryKey: ["services", search, type, minPrice, maxPrice],
+    queryFn: async () => {
+      const res = await axiosSecure.get(url);
+      return res.data;
+    },
+  });
+
+  return (
+    <section className="min-h-screen bg-[#f8f8f8]  lg:p-20">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Header */}
+        <div className="text-center my-10 py-16 px-6 bg-primary rounded-3xl shadow-2xl">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white">
+            Our Decoration Packages
+          </h2>
+          <p className="max-w-4xl mx-auto text-sm md:text-base lg:text-lg text-gray-100 leading-relaxed">
+            Explore our range of flexible and innovative services designed to meet your unique needs.
+          </p>
         </div>
-      </section>
-    );
-  };
+
+        {/* Search + Filter Bar - React Hook Form */}
+        <form className="my-12 bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            {/* Search */}
+            <input
+              {...register("search")}
+              type="text"
+              placeholder="Search by package name..."
+              className="w-full px-6 py-4 text-lg border border-gray-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-primary/20 focus:border-primary transition"
+            />
+
+            {/* Type Filter */}
+            <select
+              {...register("type")}
+              className="w-full px-6 py-4 text-lg border border-gray-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-primary/20 focus:border-primary transition"
+            >
+              <option value="All">All Service Types</option>
+              <option value="Wedding">Wedding</option>
+              <option value="Birthday">Birthday</option>
+              <option value="Corporate">Corporate</option>
+              <option value="Anniversary">Anniversary</option>
+            </select>
+
+            {/* Budget Range */}
+            <div className="flex items-center gap-4">
+              <input
+                {...register("minPrice")}
+                type="number"
+                placeholder="Min Price"
+                className="w-full px-6 py-4 text-lg border border-gray-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-primary/20"
+              />
+              <span className="text-gray-500 text-xl">—</span>
+              <input
+                {...register("maxPrice")}
+                type="number"
+                placeholder="Max Price"
+                className="w-full px-6 py-4 text-lg border border-gray-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-primary/20"
+              />
+            </div>
+          </div>
+        </form>
+
+        {/* Results Count */}
+        <p className="text-right text-gray-600 mb-6">
+          Found <span className="font-bold text-primary">{services.length}</span> packages
+        </p>
+
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+          {isLoading ? (
+            <div className="col-span-full text-center py-20">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent"></div>
+              <p className="mt-4 text-xl text-gray-600">Loading packages...</p>
+            </div>
+          ) : services.length === 0 ? (
+            <div className="col-span-full text-center py-20">
+              <p className="text-2xl text-gray-500">No packages found.</p>
+            </div>
+          ) : (
+            services.map((service, index) => (
+              <motion.div
+                key={service._id}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -12 }}
+                className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-500 border border-gray-100"
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.name}
+                    className="h-64 w-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                    <p className="text-3xl font-bold text-white">
+                      ৳{service.price?.toLocaleString()}
+                    </p>
+                  </div>
+                  {service.popular && (
+                    <div className="absolute top-4 right-4 bg-yellow-500 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse">
+                      MOST POPULAR
+                    </div>
+                  )}
+                </div>
+
+                <div className="p-7">
+                  <h3 className="text-2xl font-extrabold text-gray-800 group-hover:text-primary transition-colors">
+                    {service.name}
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-500 font-medium uppercase tracking-wider">
+                    {service.type}
+                  </p>
+                  <div className="mt-5">
+                    <span className="text-3xl font-bold text-primary">
+                      ৳{service.price?.toLocaleString()}
+                    </span>
+                    <span className="text-gray-500 ml-1">/ package</span>
+                  </div>
+                  <button className="mt-6 w-full py-4 bg-primary text-white font-bold rounded-xl hover:bg-transparent hover:text-primary hover:border-2 hover:border-primary transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    View Details
+                  </button>
+                </div>
+              </motion.div>
+            ))
+          )}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default Services;
