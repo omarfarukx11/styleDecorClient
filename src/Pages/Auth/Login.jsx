@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import Logo from "../../Components/Logo";
+import { Link } from "react-router";
 
 
 const Login = () => {
@@ -13,10 +15,11 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-200">
-      <div className="card w-full max-w-md shadow-xl bg-base-100">
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="card w-full max-w-md ">
         <div className="card-body">
-          <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
+          <p className="text-center text-5xl"><Logo></Logo></p>
+          <h2 className="font-bold text-center mt-5 mb-10 text-5xl text-primary">Login to start </h2>
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label className="label">
@@ -45,7 +48,7 @@ const Login = () => {
                 required
               />
             </div>
-              <button><SocialLogin></SocialLogin></button>
+            <button className="w-full"><SocialLogin></SocialLogin></button>
             <button type="submit" className="btn btn-primary w-full">
               Login
             </button>
@@ -53,10 +56,10 @@ const Login = () => {
 
           <p className="text-center mt-4">
             Don’t have an account?{" "}
-            <a href="/register" className="text-primary font-semibold">
-              Register
-            </a>
           </p>
+          <p className="text-center font-bold  text-primary"><Link to={'/register'} className="text-primary font-semibold">
+              Register
+            </Link></p>
         </div>
       </div>
     </div>

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -14,8 +16,8 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-200">
-      <div className="card w-full max-w-md shadow-xl bg-base-100">
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="card w-full max-w-md">
         <div className="card-body">
           <h2 className="text-2xl font-bold text-center mb-4">Register</h2>
           <form onSubmit={handleRegister} className="space-y-4">
@@ -61,6 +63,9 @@ const Register = () => {
               />
             </div>
 
+            <button type="submit" className="w-full">
+              <SocialLogin></SocialLogin>
+            </button>
             <button type="submit" className="btn btn-primary w-full">
               Register
             </button>
@@ -68,10 +73,11 @@ const Register = () => {
 
           <p className="text-center mt-4">
             Already have an account?{" "}
-            <a href="/login" className="text-primary font-semibold">
-              Login
-            </a>
           </p>
+          <p className="text-center text-primary">
+            <Link to={"/login"} className="text-primary font-semibold">
+              Login
+            </Link></p>
         </div>
       </div>
     </div>

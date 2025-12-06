@@ -47,7 +47,7 @@ const SocialLogin = () => {
   return (
     <div
       onClick={handleGoogleSingIn}
-      className="btn bg-base-200 text-black border-[#e5e5e5]"
+      className="btn bg-base-200 text-black w-full border-[#e5e5e5]"
     >
       <FcGoogle />
       Login with Google
