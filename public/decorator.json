@@ -1,0 +1,142 @@
+[
+  {
+    "name": "Elegant Events",
+    "specialties": ["Wedding Decoration", "Corporate Events", "Floral Arrangements"],
+    "rating": 4.9,
+    "image": "https://i.postimg.cc/TPyC5PMJ/wedding-stage.jpg",
+    "description": "Professional decorators specializing in luxurious weddings and high-profile events."
+  },
+  {
+    "name": "Stylish Spaces",
+    "specialties": ["Birthday Parties", "Themed Events", "Lighting Design"],
+    "rating": 4.8,
+    "image": "https://i.postimg.cc/XqVtD3Yq/birthday-decor.jpg",
+    "description": "Creative team focused on vibrant and memorable celebrations."
+  },
+  {
+    "name": "Grand Designs",
+    "specialties": ["Wedding Stages", "Corporate Galas", "Event Planning"],
+    "rating": 4.7,
+    "image": "https://i.postimg.cc/NFK5fR6D/corporate-event.jpg",
+    "description": "Experts in designing grand setups for weddings and corporate events."
+  },
+  {
+    "name": "Luxury Touch",
+    "specialties": ["Floral Installations", "Luxury Parties", "Lighting & Decor"],
+    "rating": 4.9,
+    "image": "https://i.postimg.cc/8CCxvQX7/luxury-event.jpg",
+    "description": "Bringing elegance and sophistication to every event with luxury decorations."
+  },
+  {
+    "name": "Creative Vibes",
+    "specialties": ["Kids Parties", "Theme Decor", "Interactive Installations"],
+    "rating": 4.6,
+    "image": "https://i.postimg.cc/7Z2j6s3L/kids-party.jpg",
+    "description": "Fun and imaginative decor services for kids and themed events."
+  },
+  {
+    "name": "Premium Decor Co.",
+    "specialties": ["Wedding Decor", "Luxury Corporate Events", "Custom Floral"],
+    "rating": 4.8,
+    "image": "https://i.postimg.cc/qvYVj2ZD/premium-event.jpg",
+    "description": "Delivering high-end decor solutions with a focus on luxury and detail."
+  },
+  {
+    "name": "Festive Flair",
+    "specialties": ["Birthday Parties", "Festivals", "Seasonal Decor"],
+    "rating": 4.5,
+    "image": "https://i.postimg.cc/4xPpFt5b/festival-decor.jpg",
+    "description": "Adding flair and excitement to every celebration with vibrant decorations."
+  },
+  {
+    "name": "Chic Celebrations",
+    "specialties": ["Wedding Planning", "Anniversary Decor", "Corporate Events"],
+    "rating": 4.7,
+    "image": "https://i.postimg.cc/3JfYv3Rk/chic-celebration.jpg",
+    "description": "Stylish decorators making every event chic and unforgettable."
+  },
+  {
+    "name": "Floral Dreams",
+    "specialties": ["Floral Installations", "Wedding Bouquets", "Event Styling"],
+    "rating": 4.9,
+    "image": "https://i.postimg.cc/XJ6Qs2s2/floral-dreams.jpg",
+    "description": "Specializing in floral artistry to make your events bloom beautifully."
+  },
+  {
+    "name": "Golden Moments",
+    "specialties": ["Luxury Weddings", "Corporate Galas", "Custom Themes"],
+    "rating": 4.8,
+    "image": "https://i.postimg.cc/8Cn9sHqz/golden-event.jpg",
+    "description": "Creating golden moments with sophisticated and personalized decor."
+  },
+  {
+    "name": "Vibrant Visions",
+    "specialties": ["Birthday Parties", "Themed Decor", "Interactive Events"],
+    "rating": 4.6,
+    "image": "https://i.postimg.cc/3R2M3t7Z/vibrant-event.jpg",
+    "description": "Bringing energetic and colorful visions to life for all occasions."
+  },
+  {
+    "name": "Opulent Occasions",
+    "specialties": ["Luxury Weddings", "Exclusive Parties", "Event Design"],
+    "rating": 4.9,
+    "image": "https://i.postimg.cc/dQkHjWfF/opulent-event.jpg",
+    "description": "Opulent designs and high-class decoration for unforgettable events."
+  },
+  {
+    "name": "Sparkle & Shine",
+    "specialties": ["Party Decor", "Lighting Installations", "Wedding Stages"],
+    "rating": 4.7,
+    "image": "https://i.postimg.cc/c1p2d5cV/sparkle-shine.jpg",
+    "description": "Adding sparkle and shine to events with stunning lighting and decor."
+  },
+  {
+    "name": "Majestic Moments",
+    "specialties": ["Luxury Weddings", "Corporate Events", "Event Styling"],
+    "rating": 4.8,
+    "image": "https://i.postimg.cc/Kz7Z8Zk1/majestic-event.jpg",
+    "description": "Transforming events into majestic experiences with elegant decor."
+  },
+  {
+    "name": "Creative Horizons",
+    "specialties": ["Theme Parties", "Interactive Decor", "Custom Designs"],
+    "rating": 4.6,
+    "image": "https://i.postimg.cc/1XvQv6B1/creative-event.jpg",
+    "description": "Pushing creative horizons to make events unique and unforgettable."
+  },
+  {
+    "name": "Blissful Designs",
+    "specialties": ["Wedding Decoration", "Corporate Events", "Floral Installations"],
+    "rating": 4.9,
+    "image": "https://i.postimg.cc/6p9y5bDc/blissful-event.jpg",
+    "description": "Creating blissful designs that leave lasting impressions on guests."
+  },
+  {
+    "name": "Radiant Celebrations",
+    "specialties": ["Birthday Parties", "Themed Decor", "Lighting"],
+    "rating": 4.7,
+    "image": "https://i.postimg.cc/2y6ZrGfD/radiant-event.jpg",
+    "description": "Radiant setups that bring warmth, light, and joy to every occasion."
+  },
+  {
+    "name": "Timeless Elegance",
+    "specialties": ["Weddings", "Anniversaries", "Corporate Events"],
+    "rating": 4.8,
+    "image": "https://i.postimg.cc/5yB0x4wG/timeless-event.jpg",
+    "description": "Delivering timeless elegance with meticulous attention to decor details."
+  },
+  {
+    "name": "Fantasy Decor",
+    "specialties": ["Kids Parties", "Theme Decor", "Interactive Installations"],
+    "rating": 4.6,
+    "image": "https://i.postimg.cc/xCz7mR9J/fantasy-event.jpg",
+    "description": "Creating magical and fantastical decorations for unforgettable experiences."
+  },
+  {
+    "name": "Luxe Ambience",
+    "specialties": ["Luxury Events", "Weddings", "Corporate Parties"],
+    "rating": 4.9,
+    "image": "https://i.postimg.cc/3R7YkV9G/luxe-event.jpg",
+    "description": "Setting the perfect luxe ambience for sophisticated and memorable events."
+  }
+]

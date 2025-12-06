@@ -27,31 +27,67 @@ const TopServices = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {service.map((service) => (
-          <div key={service.id} className="card bg-base-100 shadow-xl">
-            <figure>
-              <img
-                src={service.image}
-                alt={service.name}
-                className="h-56 w-full object-cover"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{service.name}</h2>
-              <p>{service.type}</p>
-              <p className="font-bold text-primary text-lg">
-                BDT {service.price}
-              </p>
-              <div className="card-actions">
-                <button className="btn btn-primary hover:bg-white hover:text-primary hover:border-primary">
-                  View Details
-                </button>
-              </div>
-            </div>
+   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+  {service.map((service) => (
+    <div
+      key={service.id}
+      className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 border border-gray-100"
+    >
+      {/* Image with overlay */}
+      <div className="relative overflow-hidden">
+        <img
+          src={service.image}
+          alt={service.name}
+          className="h-64 w-full object-cover group-hover:scale-110 transition-transform duration-700"
+        />
+        {/* Dark overlay on hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
+          <div className="p-6 text-white transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
+            <p className="text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity delay-200">
+              Starting from
+            </p>
+            <p className="text-3xl font-bold opacity-0 group-hover:opacity-100 transition-opacity delay-300">
+              ৳{service.price}
+            </p>
           </div>
-        ))}
+        </div>
       </div>
+
+      {/* Card Body */}
+      <div className="p-7">
+        <h2 className="text-2xl font-extrabold text-gray-800 group-hover:text-primary transition-colors duration-300">
+          {service.name}
+        </h2>
+
+        <p className="mt-2 text-sm text-gray-500 font-medium uppercase tracking-wider">
+          {service.type}
+        </p>
+
+        {/* Price - Normal state */}
+        <div className="mt-5">
+          <span className="text-3xl font-bold text-primary">
+            ৳{service.price}
+          </span>
+          <span className="text-gray-500 ml-1">/ package</span>
+        </div>
+
+        {/* Button */}
+        <div className="mt-6">
+          <button className="w-full py-4 bg-primary text-white font-bold rounded-xl hover:bg-transparent hover:text-primary hover:border-2 hover:border-primary transition-all duration-300 transform hover:scale-105">
+            View Details
+          </button>
+        </div>
+      </div>
+
+      {/* Optional Ribbon for Popular */}
+      {service.popular && (
+        <div className="absolute top-4 right-4 bg-yellow-500 text-white px-4 py-1 rounded-full text-xs font-bold shadow-lg animate-pulse">
+          MOST POPULAR
+        </div>
+      )}
+    </div>
+  ))}
+</div>
     </section>
   );
 };
