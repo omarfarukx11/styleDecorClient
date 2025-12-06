@@ -1,55 +1,39 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
-
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
-// import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const SocialLogin = () => {
-  const { socialSignIn , setUser} = useAuth()
-  const navigate = useNavigate()
-//   const location = useLocation()
-//   const axiosSecure = useAxiosSecure()
+  const { socialSignIn } = useAuth();
+  const navigate = useNavigate();
 
-  const handleGoogleSingIn = () => {
+  const handleGoogleSignIn = () => {
     socialSignIn()
-      .then((result) => {
-        setUser(result.user)
-        navigate('/')
-        .catch(error => console.log(error))
-        
-    //     const userProfile = {
-    //         email: result.user.email,
-    //         displayName: result.user.displayName,
-    //         photoURL: result.user.PhotoURL,
-    //       };
+      .then(() => {
+        Swal.fire({
+          title: "Login Success!",
+          icon: "success",
+          draggable: true,
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Google Login Error:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: error.message || "Please try again later.",
+        });
+      });
+  };
 
-    //       axiosSecure.post('/users' , userProfile) 
-    //       .then(res => {
-    //         console.log(res.data)
-    //         navigate(location?.state || '/')
-    //       })
-
-
-    //     //  Swal.fire({
-    //     //   position: "top-center",
-    //     //   icon: "success",
-    //     //   title: "login Success",
-    //     //   showConfirmButton: false,
-    //     //   timer: 1500,
-    //     // });
-
-    //   })
-    //   .catch((error) => console.log(error));
-  })
-}
   return (
     <div
-      onClick={handleGoogleSingIn}
-      className="btn bg-base-200 text-black w-full border-[#e5e5e5]"
+      onClick={handleGoogleSignIn}
+      className="btn bg-base-200 hover:bg-base-300 text-black w-full border border-gray-300 flex items-center justify-center gap-3 text-lg font-medium transition-all cursor-pointer"
     >
-      <FcGoogle />
+      <FcGoogle className="text-2xl" />
       Login with Google
     </div>
   );

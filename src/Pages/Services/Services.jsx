@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const Services = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { register, watch, handleSubmit } = useForm({
+  const { register, watch, } = useForm({
       defaultValues: {
       search: "",
       type: "All",
@@ -153,7 +153,7 @@ const Services = () => {
                     </span>
                     <span className="text-gray-500 ml-1">/ package</span>
                   </div>
-                  <button className="mt-6 w-full py-4 bg-primary text-white font-bold rounded-xl hover:bg-transparent hover:text-primary hover:border-2 hover:border-primary transition-all duration-300 transform hover:scale-105 shadow-lg">
+                  <button className="mt-6 w-full py-4 bg-primary cursor-pointer text-white font-bold rounded-xl hover:bg-transparent hover:text-primary hover:border-2 hover:border-primary transition-all duration-300 transform hover:scale-105 shadow-lg">
                     View Details
                   </button>
                 </div>

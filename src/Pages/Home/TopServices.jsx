@@ -41,7 +41,7 @@ const TopServices = () => {
           className="h-64 w-full object-cover group-hover:scale-110 transition-transform duration-700"
         />
         {/* Dark overlay on hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
+        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
           <div className="p-6 text-white transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
             <p className="text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity delay-200">
               Starting from
@@ -73,7 +73,7 @@ const TopServices = () => {
 
         {/* Button */}
         <div className="mt-6">
-          <button className="w-full py-4 bg-primary text-white font-bold rounded-xl hover:bg-transparent hover:text-primary hover:border-2 hover:border-primary transition-all duration-300 transform hover:scale-105">
+          <button className="w-full py-4 bg-primary cursor-pointer text-white font-bold rounded-xl hover:bg-transparent hover:text-primary hover:border-2 hover:border-primary transition-all duration-300 transform hover:scale-105">
             View Details
           </button>
         </div>

@@ -1,67 +1,119 @@
-import React, { useState } from "react";
-import { Link } from "react-router";
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import Logo from "../../Components/Logo";
+import useAuth from "../../Hooks/useAuth";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { updataUserProfile, registerUser } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    // TODO: Connect with backend
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Password:", password);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const handleRegister = (data) => {
+    const profileImage = data.photo[0];
+    registerUser(data.email, data.password)
+      .then(() => {
+        const formData = new FormData();
+        const image_API_URL = `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_image_host_key
+        }`;
+        formData.append("image", profileImage);
+        axios.post(image_API_URL, formData).then((res) => {
+          const updateProfile = {
+            displayName: data.name,
+            photoURL: res.data.data.display_url,
+          };
+          updataUserProfile(updateProfile);
+        });
+        Swal.fire({
+          title: "Login Success!",
+          icon: "success",
+          draggable: true,
+        });
+        navigate(location?.state || "/");
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: error.message || "Please try again later.",
+        });
+      });
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="card w-full max-w-md">
         <div className="card-body">
-          <h2 className="text-2xl font-bold text-center mb-4">Register</h2>
-          <form onSubmit={handleRegister} className="space-y-4">
-            <div>
-              <label className="label">
-                <span className="label-text">Full Name</span>
-              </label>
-              <input
-                type="text"
-                placeholder="John Doe"
-                className="input input-bordered w-full"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </div>
+          <p className="text-center text-5xl">
+            <Logo></Logo>
+          </p>
+          <h2 className="font-bold text-center mt-5 mb-10 text-5xl text-primary">
+            Sing up to start{" "}
+          </h2>
+          <form onSubmit={handleSubmit(handleRegister)} className="space-y-4">
+            <label className="font-bold">Name</label>
+            <input
+              type="name"
+              placeholder="Type Your Name"
+              className="input input-bordered w-full outline-none"
+              {...register("name", { required: true })}
+            />
+            {errors.name?.type === "required" && (
+              <p className="text-red-600">Name Required</p>
+            )}
 
-            <div>
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="email"
-                placeholder="email@example.com"
-                className="input input-bordered w-full"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
+            <label className="font-bold">Photo</label>
+            <input
+              type="file"
+              {...register("photo", { required: true })}
+              className="file-input outline-none w-full"
+              placeholder="Photo"
+            />
+            {errors.photo?.type === "required" && (
+              <p className="text-red-600">Photo Required</p>
+            )}
 
-            <div>
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type="password"
-                placeholder="********"
-                className="input input-bordered w-full"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
+            <label className="font-bold">Email</label>
+            <input
+              type="email"
+              placeholder="type your email"
+              className="input input-bordered w-full outline-none"
+              {...register("email", { required: true })}
+            />
+            {errors.email?.type === "required" && (
+              <p className="text-red-600">email Required</p>
+            )}
+
+            <label className="font-bold">Password</label>
+            <input
+              type="password"
+              placeholder="type your password"
+              className="input input-bordered w-full outline-none"
+              {...register("password", {
+                required: true,
+                pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[^A-Za-z0-9]).{6,}$/,
+              })}
+            />
+            {errors.password?.type === "required" && (
+              <p className="text-red-500">Password required</p>
+            )}
+            {errors.password?.type === "pattern" && (
+              <p className="text-red-500">
+                Password must contain at least 1 uppercase letter, <br /> 1
+                lowercase letter, 1 special character, <br /> and be at least 6
+                characters long.
+              </p>
+            )}
 
             <button type="submit" className="w-full">
               <SocialLogin></SocialLogin>
@@ -73,11 +125,14 @@ const Register = () => {
 
           <p className="text-center mt-4">
             Already have an account?{" "}
-          </p>
-          <p className="text-center text-primary">
-            <Link to={"/login"} className="text-primary font-semibold">
+            <Link
+              state={location.state}
+              to={"/login"}
+              className="text-primary font-semibold"
+            >
               Login
-            </Link></p>
+            </Link>{" "}
+          </p>
         </div>
       </div>
     </div>

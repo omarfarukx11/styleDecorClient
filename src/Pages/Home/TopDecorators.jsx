@@ -48,7 +48,7 @@ const TopDecorators = () => {
               />
               {/* Overlay on hover */}
               <div className="absolute inset-0 
-              bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
 
             {/* Card Content */}
@@ -84,7 +84,7 @@ const TopDecorators = () => {
                 className="mt-6 w-full py-4 bg-primary text-white font-bold rounded-xl 
                    hover:bg-transparent hover:text-primary hover:border-2 hover:border-primary 
                    transition-all duration-300 transform hover:scale-105 
-                   shadow-lg hover:shadow-xl"
+                   shadow-lg hover:shadow-xl cursor-pointer"
               >
                 View Profile
               </button>
