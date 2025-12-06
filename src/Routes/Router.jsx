@@ -7,11 +7,13 @@ import Services from "../Pages/Services/Services";
 import AuthLayout from "../Layout/AuthLayout";
 import DashboardLayout from "../Layout/DashboardLayout";
 import PrivetRoute from "./PrivetRoute";
+import NotFound from "../Components/NotFound";
 
 export const router = createBrowserRouter([
     {
         path:"/",
         Component:RootLayout,
+        errorElement:<NotFound></NotFound>,
         children:[
             {
             index: true,
@@ -40,5 +42,6 @@ export const router = createBrowserRouter([
     {
         path:"dashboard",
         element:<PrivetRoute><DashboardLayout></DashboardLayout></PrivetRoute>
-    }
+    },
+
 ])

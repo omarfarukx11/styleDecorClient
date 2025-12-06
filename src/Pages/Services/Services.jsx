@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
+import Loader from "../../Components/Loader";
 
 const Services = () => {
   const axiosSecure = useAxiosSecure();
@@ -104,10 +105,7 @@ const Services = () => {
         {/* Services Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {isLoading ? (
-            <div className="col-span-full text-center py-20">
-              <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent"></div>
-              <p className="mt-4 text-xl text-gray-600">Loading packages...</p>
-            </div>
+              <Loader></Loader>
           ) : services.length === 0 ? (
             <div className="col-span-full text-center py-20">
               <p className="text-2xl text-gray-500">No packages found.</p>
