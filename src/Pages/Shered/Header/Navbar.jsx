@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router";
+import Logo from "../../../Components/Logo";
 // import useAuth from "../Hooks/useAuth"; // if you are using auth
 
 const Navbar = () => {
@@ -48,7 +49,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 shadow">
+    <div className="navbar bg-base-100 shadow py-5">
       {/* START */}
       <div className="navbar-start">
         {/* Mobile Menu */}
@@ -75,7 +76,7 @@ const Navbar = () => {
 
         {/* Logo */}
         <NavLink to="/" className="btn btn-ghost text-2xl font-bold">
-          StyleDecor
+          <Logo></Logo>
         </NavLink>
       </div>
 
@@ -98,7 +99,7 @@ const Navbar = () => {
 
         {/* Login OR Profile Dropdown */}
         {!user ? (
-          <NavLink to="/login" className="btn btn-primary">
+          <NavLink to="/login" className="btn btn-primary hover:bg-white hover:text-primary hover:border-primary">
             Login
           </NavLink>
         ) : (

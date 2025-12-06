@@ -5,7 +5,7 @@ import Footer from '../Pages/Shered/Footer/Footer';
 
 const RootLayout = () => {
     return (
-        <div className='bg-gray-400 w-[1500px] mx-auto'>
+        <div className='w-[1500px] mx-auto'>
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>
