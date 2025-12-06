@@ -1,11 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router";
 import Logo from "../../../Components/Logo";
+import useAuth from "../../../Hooks/useAuth";
 // import useAuth from "../Hooks/useAuth"; // if you are using auth
 
 const Navbar = () => {
 
-  const user = null; // or { name: "Faruk" }
+  const {user} = useAuth()
 
   const activeLink =
     "text-primary font-semibold border-b-2 border-primary pb-1";

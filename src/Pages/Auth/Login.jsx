@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import SocialLogin from "../SocialLogin/SocialLogin";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -43,7 +45,7 @@ const Login = () => {
                 required
               />
             </div>
-
+              <button><SocialLogin></SocialLogin></button>
             <button type="submit" className="btn btn-primary w-full">
               Login
             </button>
