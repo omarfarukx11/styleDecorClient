@@ -11,7 +11,7 @@ const Home = () => {
             <Hero></Hero>
             <TopServices></TopServices>
             <TopDecorators></TopDecorators>
-            {/* <ServiceMap></ServiceMap> */}
+            <ServiceMap></ServiceMap>
 
         </div>
     );

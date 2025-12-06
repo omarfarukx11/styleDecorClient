@@ -49,7 +49,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 shadow py-5">
+    <div className="navbar py-5 ">
       {/* START */}
       <div className="navbar-start">
         {/* Mobile Menu */}
