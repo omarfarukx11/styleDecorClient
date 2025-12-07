@@ -13,6 +13,7 @@ import AllServices from "../Pages/Services/allServices";
 import ServiceDetails from "../Pages/Services/ServiceDetails";
 
 
+
 export const router = createBrowserRouter([
     {
         path:"/",
@@ -39,6 +40,8 @@ export const router = createBrowserRouter([
             path:'/serviceDetails/:id',
             Component:ServiceDetails,
             },
+
+
           
         ]
     },

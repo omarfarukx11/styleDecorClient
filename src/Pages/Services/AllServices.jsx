@@ -36,8 +36,8 @@ const AllServices = () => {
   });
 
   return (
-    <section className="min-h-screen bg-[#f8f8f8]  lg:p-20">
-      <div className="max-w-7xl mx-auto">
+    <section className="min-h-screen bg-[#f8f8f8] lg:p-20">
+      <div className="mx-auto">
         {/* Header */}
         <div className="text-center my-10 py-16 px-6 bg-primary rounded-3xl shadow-2xl">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white">
