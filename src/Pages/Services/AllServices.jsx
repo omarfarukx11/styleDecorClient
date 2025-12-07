@@ -4,12 +4,13 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import Loader from "../../Components/Loader";
+import { Link } from "react-router";
 
-const Services = () => {
+const AllServices = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { register, watch, } = useForm({
-      defaultValues: {
+  const { register, watch } = useForm({
+    defaultValues: {
       search: "",
       type: "All",
       minPrice: "",
@@ -18,24 +19,18 @@ const Services = () => {
   });
 
   // Watch all fields for real-time changes
-  const search = watch("search");
-  const type = watch("type");
-  const minPrice = watch("minPrice");
-  const maxPrice = watch("maxPrice");
-
-  // Build URL dynamically
-  const queryParams = new URLSearchParams();
-  if (search) queryParams.append("search", search);
-  if (type && type !== "All") queryParams.append("type", type);
-  if (minPrice) queryParams.append("minPrice", minPrice);
-  if (maxPrice) queryParams.append("maxPrice", maxPrice);
-
-  const url = `/allServices?${queryParams.toString()}`;
-
+  const filters = watch();
   const { data: services = [], isLoading } = useQuery({
-    queryKey: ["services", search, type, minPrice, maxPrice],
+    queryKey: ["services", filters], 
     queryFn: async () => {
-      const res = await axiosSecure.get(url);
+      const params = new URLSearchParams();
+
+      if (filters.search) params.append("search", filters.search);
+      if (filters.type && filters.type !== "All") params.append("type", filters.type);
+      if (filters.minPrice) params.append("minPrice", filters.minPrice);
+      if (filters.maxPrice) params.append("maxPrice", filters.maxPrice);
+
+      const res = await axiosSecure.get(`/allServices?${params.toString()}`);
       return res.data;
     },
   });
@@ -43,21 +38,20 @@ const Services = () => {
   return (
     <section className="min-h-screen bg-[#f8f8f8]  lg:p-20">
       <div className="max-w-7xl mx-auto">
-
         {/* Header */}
         <div className="text-center my-10 py-16 px-6 bg-primary rounded-3xl shadow-2xl">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white">
             Our Decoration Packages
           </h2>
           <p className="max-w-4xl mx-auto text-sm md:text-base lg:text-lg text-gray-100 leading-relaxed">
-            Explore our range of flexible and innovative services designed to meet your unique needs.
+            Explore our range of flexible and innovative services designed to
+            meet your unique needs.
           </p>
         </div>
 
         {/* Search + Filter Bar - React Hook Form */}
         <form className="my-12 bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-
             {/* Search */}
             <input
               {...register("search")}
@@ -99,13 +93,15 @@ const Services = () => {
 
         {/* Results Count */}
         <p className="text-right text-gray-600 mb-6">
-          Found <span className="font-bold text-primary">{services.length}</span> packages
+          Found{" "}
+          <span className="font-bold text-primary">{services.length}</span>{" "}
+          packages
         </p>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {isLoading ? (
-              <Loader></Loader>
+            <Loader></Loader>
           ) : services.length === 0 ? (
             <div className="col-span-full text-center py-20">
               <p className="text-2xl text-gray-500">No packages found.</p>
@@ -126,7 +122,7 @@ const Services = () => {
                     alt={service.name}
                     className="h-64 w-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                  <div className="absolute inset-0 bg-linear-to-t from-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
                     <p className="text-3xl font-bold text-white">
                       ৳{service.price?.toLocaleString()}
                     </p>
@@ -151,9 +147,12 @@ const Services = () => {
                     </span>
                     <span className="text-gray-500 ml-1">/ package</span>
                   </div>
-                  <button className="mt-6 w-full py-4 bg-primary cursor-pointer text-white font-bold rounded-xl hover:bg-transparent hover:text-primary hover:border-2 hover:border-primary transition-all duration-300 transform hover:scale-105 shadow-lg">
+                  <Link
+                    to={`/serviceDetails/${service._id}`}
+                    className="mt-6 w-full btn py-6 bg-primary cursor-pointer text-white font-bold rounded-xl hover:bg-transparent hover:text-primary hover:border-2 hover:border-primary transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  >
                     View Details
-                  </button>
+                  </Link>
                 </div>
               </motion.div>
             ))
@@ -164,4 +163,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default AllServices;

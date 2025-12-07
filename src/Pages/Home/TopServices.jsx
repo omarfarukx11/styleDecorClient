@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { Link } from "react-router";
 const TopServices = () => {
   const axiosSecure = useAxiosSecure();
 
@@ -17,7 +18,7 @@ const TopServices = () => {
       <div className="text-center my-10  py-10 px-4 bg-primary  rounded-2xl">
         <h2 className="text-5xl font-extrabold mb-4 text-white ">
            Our Decoration Packages
-          </h2>
+        </h2>
 
         <p className=" max-w-xl mx-auto text-xs text-gray-100">
           Explore our range of flexible and innovative services designed to meet
@@ -30,7 +31,7 @@ const TopServices = () => {
    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
   {service.map((service) => (
     <div
-      key={service.id}
+      key={service._id}
       className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 border border-gray-100"
     >
       {/* Image with overlay */}
@@ -73,18 +74,13 @@ const TopServices = () => {
 
         {/* Button */}
         <div className="mt-6">
-          <button className="w-full py-4 bg-primary cursor-pointer text-white font-bold rounded-xl hover:bg-transparent hover:text-primary hover:border-2 hover:border-primary transition-all duration-300 transform hover:scale-105">
-            View Details
-          </button>
+          <Link to={`/serviceDetails/${service._id}`} className="mt-6 w-full btn py-6 bg-primary cursor-pointer text-white font-bold rounded-xl hover:bg-transparent hover:text-primary hover:border-2 hover:border-primary transition-all duration-300 transform hover:scale-105 shadow-lg">
+           View Details
+          </Link>
         </div>
       </div>
 
-      {/* Optional Ribbon for Popular */}
-      {service.popular && (
-        <div className="absolute top-4 right-4 bg-yellow-500 text-white px-4 py-1 rounded-full text-xs font-bold shadow-lg animate-pulse">
-          MOST POPULAR
-        </div>
-      )}
+
     </div>
   ))}
 </div>

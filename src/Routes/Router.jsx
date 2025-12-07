@@ -3,11 +3,15 @@ import RootLayout from "../Layout/RootLayout";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
-import Services from "../Pages/Services/Services";
 import AuthLayout from "../Layout/AuthLayout";
 import DashboardLayout from "../Layout/DashboardLayout";
 import PrivetRoute from "./PrivetRoute";
 import NotFound from "../Components/NotFound";
+import About from "../Pages/About/About";
+import Contact from "../Pages/Contract/Contract";
+import AllServices from "../Pages/Services/allServices";
+import ServiceDetails from "../Pages/Services/ServiceDetails";
+
 
 export const router = createBrowserRouter([
     {
@@ -21,8 +25,21 @@ export const router = createBrowserRouter([
             },
             {
             path:'/services',
-            Component:Services,
+            Component:AllServices,
             },
+            {
+            path:'/about',
+            Component:About,
+            },
+            {
+            path:'/contact',
+            Component:Contact,
+            },
+            {
+            path:'/serviceDetails/:id',
+            Component:ServiceDetails,
+            },
+          
         ]
     },
     {

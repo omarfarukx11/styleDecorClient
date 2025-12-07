@@ -3,8 +3,8 @@ import { Link } from "react-router";
 
 const Hero = () => {
   return (
-    <section className="hero min-h-screen bg-base-200">
-      <div className="flex items-center justify-between flex-col lg:flex-row-reverse p-20 gap-10">
+    <section className="hero  bg-base-200 p-20">
+      <div className="flex items-center w-full justify-between flex-col lg:flex-row-reverse gap-10">
 
         {/* BIGGER RESPONSIVE IMAGE */}
         <motion.img
@@ -17,14 +17,14 @@ const Hero = () => {
           "
           initial={{ opacity: 0, x: 200 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: .5 }}
+          transition={{ duration: 1 }}
         />
 
         {/* TEXT SECTION */}
         <motion.div
           initial={{ opacity: 0, x: -200 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: .5 }}
+          transition={{ duration: 1 }}
           className="lg:w-[50%] text-center lg:text-left"
         >
           <h1 className="text-5xl font-bold">
