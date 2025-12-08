@@ -10,8 +10,8 @@ const SocialLogin = () => {
   const navigate = useNavigate();
   const location = useLocation()
   const axiosSecure = useAxiosSecure()
-
   const handleGoogleSignIn = () => {
+
     socialSignIn()
       .then((result) => {
           const userProfile = {

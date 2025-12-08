@@ -3,6 +3,7 @@ import React from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const MyBookings = () => {
 
@@ -11,7 +12,7 @@ const {user} = useAuth()
 
 
 
-const {data : book = []  } = useQuery({
+const {data : book = [],refetch} = useQuery({
     queryKey: ["booking" , user?.email],
     queryFn : async () => { 
         const res = await axiosSecure.get(`/booking?email=${user?.email}`)
@@ -20,6 +21,32 @@ const {data : book = []  } = useQuery({
 })
 
 
+
+  const handleDeleteBooking = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/booking/${id}`)
+        .then((res) => {
+          if (res.data.deletedCount) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your Parcel request has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
 
 
 
@@ -47,10 +74,10 @@ const {data : book = []  } = useQuery({
               <th className="py-5">#</th>
               <th>Service Name</th>
               <th>Category</th>
-              <th>Date</th>
+              <th className="pl-20">Date</th>
               <th>Amount</th>
-              <th>Status</th>
-              <th>Payment</th>
+              <th>Booking Status</th>
+              <th>Payment Status</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -62,12 +89,18 @@ const {data : book = []  } = useQuery({
              <tr key={b._id} className="hover:bg-base-200 transition-all">
               <td className="text-center font-bold">{i + 1}</td>
               <td className="font-semibold text-lg">{b.serviceName}</td>
-              <td><div className="badge badge-outline badge badge-lg">{b.serviceType}</div></td>
+              <td>{b.serviceType} </td>
               <td className="text-center">{b.bookingDate}</td>
               <td className="font-bold text-primary text-lg">৳{b.serviceCost}</td>
-              <td><span className="badge badge-success badge-lg font-bold">Paid</span></td>
-              <td className="text-center"><span className="text-success font-bold">Paid</span></td>
-              <td className="text-center"><span className="text-success font-medium">Confirmed</span></td>
+              <td>{b.bookingStatus}</td>
+              <td className="text-center">{b.paymentStatus}</td>
+              <td className="text-center">
+                <div className="space-x-5">
+                  <button className="btn bg-primary text-white">Pay</button>
+                  <button className="btn bg-yellow-500 text-white">Update</button>
+                  <button onClick={( ) => { handleDeleteBooking(b._id)}} className="btn bg-red-900 text-white">Delete</button>
+                </div>
+              </td>
             </tr>
             )
            }

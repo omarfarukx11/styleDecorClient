@@ -7,8 +7,8 @@ import { auth } from '../Firebase/firebase.init';
 const googleProvider = new GoogleAuthProvider()
 
 const AuthProvider = ({children}) => {
-    const [user , serUser] = useState(null)
-    const [loading , setLoading] = useState(null)
+    const [user , setUser] = useState(null)
+    const [loading , setLoading] = useState(true)
 
     const socialSignIn = () => { 
         return signInWithPopup(auth , googleProvider)
@@ -39,7 +39,7 @@ const AuthProvider = ({children}) => {
 
         useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth ,(currentUser) => {
-          serUser(currentUser)
+          setUser(currentUser)
           setLoading(false)
         })
         return () => {
@@ -52,7 +52,7 @@ const AuthProvider = ({children}) => {
     const authInfo = {
         socialSignIn,
         user,
-        serUser,
+        setUser,
         loading, 
         setLoading,
         logOut,
