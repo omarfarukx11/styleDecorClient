@@ -11,6 +11,8 @@ import About from "../Pages/About/About";
 import Contact from "../Pages/Contract/Contract";
 import AllServices from "../Pages/Services/allServices";
 import ServiceDetails from "../Pages/Services/ServiceDetails";
+import MyBookings from "../Pages/Dashboard/MyBookings/MyBookings";
+import PaymentHistory from "../Pages/Dashboard/PyamentHistory/PaymentHistory";
 
 
 
@@ -60,8 +62,18 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path:"dashboard",
-        element:<PrivetRoute><DashboardLayout></DashboardLayout></PrivetRoute>
+        path:"/dashboard",
+        element:<PrivetRoute><DashboardLayout></DashboardLayout></PrivetRoute>,
+        children: [
+            {
+                path:'/dashboard/my-bookings',
+                Component:MyBookings
+            },
+            {
+                path:'/dashboard/payment-history',
+                Component:PaymentHistory
+            }
+        ]
     },
 
 ])

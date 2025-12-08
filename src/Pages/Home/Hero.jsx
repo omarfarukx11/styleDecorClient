@@ -15,14 +15,14 @@ const Hero = () => {
             lg:w-[550px] lg:h-[550px] 
             object-cover rounded-lg shadow-2xl
           "
-          initial={{ opacity: 0, x: 200 }}
+          initial={{ opacity: 0, x: 400 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
         />
 
         {/* TEXT SECTION */}
         <motion.div
-          initial={{ opacity: 0, x: -200 }}
+          initial={{ opacity: 0, x: -400 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
           className="lg:w-[50%] text-center lg:text-left"

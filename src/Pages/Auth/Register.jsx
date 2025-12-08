@@ -6,11 +6,13 @@ import useAuth from "../../Hooks/useAuth";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Register = () => {
   const { updataUserProfile, registerUser } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosSecure = useAxiosSecure()
 
   const {
     register,
@@ -20,6 +22,7 @@ const Register = () => {
 
   const handleRegister = (data) => {
     const profileImage = data.photo[0];
+
     registerUser(data.email, data.password)
       .then(() => {
         const formData = new FormData();
@@ -28,11 +31,14 @@ const Register = () => {
         }`;
         formData.append("image", profileImage);
         axios.post(image_API_URL, formData).then((res) => {
-          const updateProfile = {
+          axiosSecure.post('/users' ,
+          {
             displayName: data.name,
             photoURL: res.data.data.display_url,
-          };
-          updataUserProfile(updateProfile);
+            email : data.email
+          }).then()
+          updataUserProfile({displayName: data.name, photoURL: res.data.data.display_url,});
+
         });
         Swal.fire({
           title: "Login Success!",

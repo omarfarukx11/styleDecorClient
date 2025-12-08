@@ -1,10 +1,10 @@
 import React, { useRef, useEffect } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { FaStar } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm} from "react-hook-form";
 import Swal from "sweetalert2";
 
 const ServiceDetails = () => {
@@ -12,6 +12,7 @@ const ServiceDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const dialogRef = useRef();
+  const navigate = useNavigate()
 
   const { data: service = {} } = useQuery({
     queryKey: ["service", id],
@@ -39,7 +40,7 @@ const ServiceDetails = () => {
     ? centers.filter((c) => c.region === selectedRegion).map((c) => c.district)
     : [];
 
-  // Auto-fill form when service & user loads
+ 
   useEffect(() => {
     if (service && user) {
       reset({
@@ -52,23 +53,21 @@ const ServiceDetails = () => {
         BookingDistrict: "",
         bookingDate: "",
         location: "",
-        notes: "",
       });
     }
   }, [service, user, reset]);
 
-  // এই পুরো ফাংশনটা রিমুভ করা হয়েছে
+
   const onSubmit = async (data) => {
     try {
-      await axiosSecure.post("/booking", {data});
-
+      await axiosSecure.post("/booking", data);
+        navigate('/dashboard/my-bookings')
       Swal.fire({
         icon: "success",
         title: "Booking Confirmed!",
         text: "Your service has been booked successfully.",
         timer: 2000,
       });
-
       dialogRef.current.close();
     } catch (err) {
       Swal.fire({
@@ -79,14 +78,9 @@ const ServiceDetails = () => {
     }
   };
 
-  // এই ফাংশনটাও রিমুভ করা হয়েছে
   const handleBookNow = () => {
     if (!user) {
-      Swal.fire({
-        icon: "warning",
-        title: "Login Required",
-        text: "Please login to book this service.",
-      });
+        navigate('/login')
       return;
     }
     dialogRef.current.showModal();
@@ -180,7 +174,7 @@ const ServiceDetails = () => {
                 <input
                   {...register("serviceName")}
                   readOnly
-                  className="input input-bordered w-full"
+                  className="input input-bordered outline-none w-full"
                 />
               </div>
               <div>
@@ -188,7 +182,7 @@ const ServiceDetails = () => {
                 <input
                   {...register("serviceCost")}
                   readOnly
-                  className="input input-bordered w-full"
+                  className="input input-bordered outline-none w-full"
                 />
               </div>
               <div>
@@ -196,7 +190,7 @@ const ServiceDetails = () => {
                 <input
                   {...register("userName")}
                   readOnly
-                  className="input input-bordered w-full"
+                  className="input input-bordered outline-none w-full"
                 />
               </div>
               <div>
@@ -204,7 +198,7 @@ const ServiceDetails = () => {
                 <input
                   {...register("userEmail")}
                   readOnly
-                  className="input input-bordered w-full"
+                  className="input input-bordered outline-none w-full"
                 />
               </div>
             </div>
@@ -217,7 +211,7 @@ const ServiceDetails = () => {
                 type="date"
                 {...register("bookingDate", { required: true })}
                 min={new Date().toISOString().split("T")[0]}
-                className="input input-bordered w-full"
+                className="input input-bordered outline-none w-full"
               />
             </div>
 
@@ -265,19 +259,7 @@ const ServiceDetails = () => {
               <input
                 {...register("location", { required: true })}
                 placeholder="House, Road, Area, City"
-                className="input input-bordered w-full"
-              />
-            </div>
-
-            <div>
-              <label className="font-semibold">
-                Additional Notes (Optional)
-              </label>
-              <textarea
-                {...register("notes")}
-                rows={3}
-                className="textarea textarea-bordered w-full"
-                placeholder="Any special request?"
+                className="input input-bordered outline-none w-full"
               />
             </div>
 
