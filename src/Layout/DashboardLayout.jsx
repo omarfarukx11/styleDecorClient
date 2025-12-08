@@ -32,7 +32,7 @@ const DashboardLayout = () => {
   const commonMenu = (
     <>
       <li>
-        <NavLink to="/dashboard/profile" className="mb-2">
+        <NavLink to="/my-profile" className="mb-2">
           <FaUser className="text-xl" />
           <span>My Profile</span>
         </NavLink>

@@ -12,7 +12,8 @@ import Contact from "../Pages/Contract/Contract";
 import AllServices from "../Pages/Services/allServices";
 import ServiceDetails from "../Pages/Services/ServiceDetails";
 import MyBookings from "../Pages/Dashboard/MyBookings/MyBookings";
-import PaymentHistory from "../Pages/Dashboard/PyamentHistory/PaymentHistory";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import MyProfile from "../Pages/MyProfile/MyProfile";
 
 
 
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
             {
             path:'/serviceDetails/:id',
             Component:ServiceDetails,
+            },
+            {
+            path:'/my-profile',
+            Component:MyProfile,
             },
 
 

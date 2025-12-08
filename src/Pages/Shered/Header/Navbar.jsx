@@ -166,7 +166,7 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <NavLink to="/profile">Profile</NavLink>
+                <NavLink to="/my-profile">Profile</NavLink>
               </li>
               <li>
                 <NavLink to="/settings">Settings</NavLink>
