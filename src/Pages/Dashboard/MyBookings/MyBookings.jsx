@@ -15,7 +15,7 @@ const MyBookings = () => {
   const [bookingData , setBookingData] = useState(null)
   const { register, handleSubmit , watch } = useForm();
 
-  const { data: book = [], refetch } = useQuery({
+  const { data: book = [] , refetch } = useQuery({
     queryKey: ["booking", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/booking?email=${user?.email}`);
@@ -23,9 +23,6 @@ const MyBookings = () => {
     },
   });
 
-
-
-  
   // ----------regions api -----------
     const { data: centers = [] } = useQuery({
       queryKey: ["serviceCenters"],
@@ -91,13 +88,26 @@ const handleUpdateBooking = (data) => {
     });
   };
 
+
+
+  const handlePayment = async (bookingData) => { 
+      const paymentInfo = {
+        cost : bookingData.serviceCost ,
+        userId : bookingData._id,
+        serviceName : bookingData.serviceName,
+        userEmail : bookingData.userEmail
+      }
+      const res = await axiosSecure.post('/create-checkout-session' , paymentInfo)
+      window.location.assign(res.data.url)
+
+   }
+
   const handleModal = () => {
     updateRef.current.showModal();
   };
   const handlePayModal = () => {
     payRef.current.showModal();
   };
-
 
 
   return (
@@ -290,7 +300,7 @@ const handleUpdateBooking = (data) => {
               <p className="text-lg">Booker Address : {bookingData?.location} {bookingData?.BookingDistrict} {bookingData?.BookingRegion}</p>
           </div>
            <div className="flex gap-3 mt-6">
-              <button type="submit" className="btn btn-primary flex-1">
+              <button onClick={() => { handlePayment(bookingData)}} type="submit" className="btn btn-primary flex-1">
                 Pay For Service
               </button>
               <button
