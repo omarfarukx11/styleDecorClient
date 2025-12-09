@@ -95,7 +95,8 @@ const handleUpdateBooking = (data) => {
         cost : bookingData.serviceCost ,
         userId : bookingData._id,
         serviceName : bookingData.serviceName,
-        userEmail : bookingData.userEmail
+        userEmail : bookingData.userEmail,
+        userName : bookingData.userName
       }
       const res = await axiosSecure.post('/create-checkout-session' , paymentInfo)
       window.location.assign(res.data.url)
