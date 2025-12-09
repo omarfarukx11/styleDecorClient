@@ -30,7 +30,7 @@ const ServiceDetails = () => {
     },
   });
 
-  const { register, handleSubmit, control, reset, watch } = useForm();
+  const { register, handleSubmit, reset, watch } = useForm();
 
   const selectedRegion = watch("BookingRegion");
 
@@ -60,7 +60,7 @@ const ServiceDetails = () => {
   }, [service, user, reset]);
 
 
-  const onSubmit = async (data) => {
+  const handleBooking  = async (data) => {
     try {
       await axiosSecure.post("/booking", data);
         navigate('/dashboard/my-bookings')
@@ -80,7 +80,7 @@ const ServiceDetails = () => {
     }
   };
 
-  const handleBookNow = () => {
+  const handleModal = () => {
     if (!user) {
         navigate('/login')
       return;
@@ -98,7 +98,7 @@ const ServiceDetails = () => {
               alt={service.name}
               className="w-full h-96 lg:h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+            <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
               <div className="text-white">
                 <p className="text-5xl font-bold">৳{service.price}</p>
                 <p className="text-lg opacity-90">Starting Price</p>
@@ -152,7 +152,7 @@ const ServiceDetails = () => {
             </div>
 
             <button
-              onClick={handleBookNow}
+              onClick={handleModal}
               className="btn btn-primary btn-lg rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
             >
               Book Now
@@ -161,6 +161,7 @@ const ServiceDetails = () => {
         </div>
       </div>
 
+
       {/* Booking Modal */}
       <dialog ref={dialogRef} className="modal">
         <div className="modal-box w-11/12 max-w-2xl bg-base-100 p-8">
@@ -168,7 +169,7 @@ const ServiceDetails = () => {
             Confirm Your Booking
           </h3>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          <form onSubmit={handleSubmit(handleBooking)} className="space-y-5">
             {/* Read-only fields */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>

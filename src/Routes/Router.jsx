@@ -17,6 +17,7 @@ import MyProfile from "../Pages/MyProfile/MyProfile";
 
 
 
+
 export const router = createBrowserRouter([
     {
         path:"/",
@@ -77,7 +78,8 @@ export const router = createBrowserRouter([
             {
                 path:'/dashboard/payment-history',
                 Component:PaymentHistory
-            }
+            },
+            
         ]
     },
 
