@@ -14,7 +14,7 @@ const MyBookings = () => {
   const updateRef = useRef();
   const payRef = useRef();
   const [bookingData, setBookingData] = useState(null);
-  const { register, handleSubmit, watch } = useForm();
+  const { register, handleSubmit, watch , reset } = useForm();
 
   const { data: book = [], refetch } = useQuery({
     queryKey: ["booking", user?.email],
@@ -25,7 +25,7 @@ const MyBookings = () => {
   });
 
   // ----------regions api -----------
-  const { data: centers = [] } = useQuery({
+  const { data: centers = []  } = useQuery({
     queryKey: ["serviceCenters"],
     queryFn: async () => {
       const res = await axiosSecure.get("/serviceCenter");
@@ -44,6 +44,7 @@ const MyBookings = () => {
       .then((res) => {
         if (res.data.modifiedCount) {
           refetch();
+          reset()
           updateRef.current.close();
           Swal.fire({
             icon: "success",
@@ -291,7 +292,8 @@ const MyBookings = () => {
 
       <dialog ref={payRef} className="modal">
         <div className="modal-box w-11/12 max-w-2xl bg-base-100 p-8">
-          <h1 className="text-center font-extrabold text-3xl py-5">
+         <form >
+           <h1 className="text-center font-extrabold text-3xl py-5">
             Complete the payment for the services booked by{" "}
             {bookingData?.userName}
           </h1>
@@ -325,6 +327,7 @@ const MyBookings = () => {
               Cancel
             </button>
           </div>
+         </form>
         </div>
       </dialog>
     </div>
