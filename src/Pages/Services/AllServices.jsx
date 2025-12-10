@@ -10,7 +10,7 @@ const AllServices = () => {
   const axiosSecure = useAxiosSecure();
 
   const [page, setPage] = useState(1);
-  const limit = 10;
+  const limit = 20;
 
   const { register, watch } = useForm({
     defaultValues: {
