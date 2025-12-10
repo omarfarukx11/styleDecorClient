@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const PaymentHistory = () => {
   const [searchParams] = useSearchParams();
@@ -10,7 +11,7 @@ const PaymentHistory = () => {
   const sessionId = searchParams.get("session_id");
   const { user } = useAuth();
 
-    const { data: history = [] , refetch } = useQuery({
+  const { data: history = [], refetch } = useQuery({
     queryKey: ["payment-history", user.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/payment-history?email=${user.email}`);
@@ -19,21 +20,22 @@ const PaymentHistory = () => {
   });
   useEffect(() => {
     if (sessionId) {
-      axiosSecure
-        .patch(`/payment-success?session_id=${sessionId}`)
-        .then(() => {
-          refetch()
+      axiosSecure.patch(`/payment-success?session_id=${sessionId}`).then(() => {
+        Swal.fire({
+          title: "Your Payment is success!",
+          text: "Your Booking is conformed",
+          icon: "success",
         });
+        refetch();
+      });
     }
-  }, [sessionId, axiosSecure , refetch]);
-
-
+  }, [sessionId, axiosSecure, refetch]);
 
   return (
     <div className="overflow-x-auto rounded-2xl shadow-2xl border border-base-300">
-        <h1 className="text-center font-extrabold text-5xl my-20">Your Payment History</h1>
-
-
+      <h1 className="text-center font-extrabold text-5xl my-20">
+        Your Payment History
+      </h1>
 
       <table className="table table-zebra w-full text-base">
         <thead className="bg-linear-to-r from-primary to-secondary text-white text-sm uppercase">

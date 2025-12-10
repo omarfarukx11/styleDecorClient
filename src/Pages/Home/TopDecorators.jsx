@@ -43,7 +43,6 @@ const TopDecorators = () => {
             <div className="relative overflow-hidden rounded-t-2xl">
               <img
                 src={d.image}
-                alt={d.name}
                 className="h-72 w-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
               {/* Overlay on hover */}
@@ -75,7 +74,7 @@ const TopDecorators = () => {
                   Specialties
                 </p>
                 <p className="mt-2 text-base text-gray-700 font-medium leading-relaxed">
-                  {d.specialties.join(" • ")}
+                  {d.specialties}
                 </p>
               </div>
 
