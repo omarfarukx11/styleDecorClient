@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useSearchParams } from "react-router";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../Hooks/useAuth";
+import useAuth from "../../../../Hooks/useAuth";
 
 const PaymentHistory = () => {
   const [searchParams] = useSearchParams();
@@ -31,6 +31,10 @@ const PaymentHistory = () => {
 
   return (
     <div className="overflow-x-auto rounded-2xl shadow-2xl border border-base-300">
+        <h1 className="text-center font-extrabold text-5xl my-20">Your Payment History</h1>
+
+
+
       <table className="table table-zebra w-full text-base">
         <thead className="bg-linear-to-r from-primary to-secondary text-white text-sm uppercase">
           <tr>
@@ -52,7 +56,7 @@ const PaymentHistory = () => {
               <td className="font-semibold text-lg">{b.serviceName}</td>
               <td className="text-center">{b.userName}</td>
               <td className="text-center">{b.userEmail}</td>
-              <td>{b.paidAt} </td>
+              <td>{new Date(b.paidAt).toLocaleString()}</td>
               <td className="font-bold text-primary text-lg">৳{b.amount}</td>
               <td>{b.transactionId}</td>
             </tr>

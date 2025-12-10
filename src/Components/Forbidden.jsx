@@ -13,7 +13,7 @@ const Forbidden = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-950 via-black to-purple-950 flex items-center justify-center px-6">
+    <div className="min-h-screen flex items-center justify-center px-6">
       <div className="max-w-2xl w-full text-center">
 
         <div className="mb-10">
@@ -37,7 +37,7 @@ const Forbidden = () => {
           Access Forbidden
         </h1>
 
-        <p className="text-xl text-gray-300 mb-12 max-w-lg mx-auto leading-relaxed">
+        <p className="text-xl text-gray-600 mb-12 max-w-lg mx-auto leading-relaxed">
           You don't have permission to view this page. <br />
           If you think this is a mistake, please contact the administrator.
         </p>

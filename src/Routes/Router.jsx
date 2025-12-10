@@ -11,9 +11,20 @@ import About from "../Pages/About/About";
 import Contact from "../Pages/Contract/Contract";
 import AllServices from "../Pages/Services/allServices";
 import ServiceDetails from "../Pages/Services/ServiceDetails";
-import MyBookings from "../Pages/Dashboard/MyBookings/MyBookings";
-import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import PaymentHistory from "../Pages/Dashboard/User/PaymentHistory/PaymentHistory";
 import MyProfile from "../Pages/MyProfile/MyProfile";
+import AdminRoute from "./AdminRoute";
+import ManageDecorators from "../Pages/Dashboard/Admin/MangeDecorators/ManageDecorators";
+import ManageServices from "../Pages/Dashboard/Admin/ManageServices/ManageServices";
+import AllBookings from "../Pages/Dashboard/Admin/AllBookings/AllBookings";
+import Revenue from "../Pages/Dashboard/Admin/Revenue/Revenue";
+import Analytics from "../Pages/Dashboard/Admin/Analytics/Analytics";
+import UserRoute from "./UserRoute";
+import DecoratorRoute from "./DecoratorRoute";
+import MyProject from "../Pages/Dashboard/Decorators/MyProject/MyProject";
+import MyBookings from "../Pages/Dashboard/User/MyBookings/MyBookings";
+import TodaySchedule from "../Pages/Dashboard/Decorators/TodaySchedule/TodaySchedule";
+import MyEarnings from "../Pages/Dashboard/Decorators/MyEarnings/MyEarnings";
 
 
 
@@ -58,8 +69,8 @@ export const router = createBrowserRouter([
         Component: AuthLayout,
         children: [
             {
-                path:'/login',
-                Component:Login,
+            path:'/login',
+            Component:Login,
             },
             {
             path:'/register',
@@ -73,12 +84,50 @@ export const router = createBrowserRouter([
         children: [
             {
                 path:'/dashboard/my-bookings',
-                Component:MyBookings
+                element:<UserRoute><MyBookings></MyBookings></UserRoute>
             },
             {
                 path:'/dashboard/payment-history',
-                Component:PaymentHistory
+                element:<UserRoute><PaymentHistory></PaymentHistory></UserRoute>
             },
+
+
+            {
+                path:"/dashboard/my-projects",
+                element:<DecoratorRoute><MyProject></MyProject></DecoratorRoute>
+            },
+            {
+                path:"/dashboard/today-schedule",
+                element:<DecoratorRoute><TodaySchedule></TodaySchedule></DecoratorRoute>
+            },
+            {
+                path:"/dashboard/my-earnings",
+                element:<DecoratorRoute><MyEarnings></MyEarnings></DecoratorRoute>
+            },
+
+
+
+            {
+                path:"/dashboard/manage-decorators",
+                element:<AdminRoute><ManageDecorators></ManageDecorators></AdminRoute>
+            },
+            {
+                path:"/dashboard/manage-services",
+                element:<AdminRoute><ManageServices></ManageServices></AdminRoute>
+            },
+            {
+                path:"/dashboard/all-bookings",
+                element:<AdminRoute><AllBookings></AllBookings></AdminRoute>
+            },
+            {
+                path:"/dashboard/revenue",
+                element:<AdminRoute><Revenue></Revenue></AdminRoute>
+            },
+            {
+                path:"/dashboard/analytics",
+                element:<AdminRoute><Analytics></Analytics></AdminRoute>
+            },
+
             
         ]
     },
