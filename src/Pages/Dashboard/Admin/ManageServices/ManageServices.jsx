@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 const ManageServices = () => {
   const axiosSecure = useAxiosSecure();
-
   const [page, setPage] = useState(1);
-  const limit = 20; // per page
+  const limit = 20;
+  const AddRef = useRef();
 
   const { register, watch } = useForm({
     defaultValues: {
@@ -21,13 +23,14 @@ const ManageServices = () => {
   const filters = watch();
 
   // Fetch services with filters + pagination
-  const { data = {}, isLoading } = useQuery({
+  const { data = {}, isLoading , refetch} = useQuery({
     queryKey: ["manage-services", page, filters],
     queryFn: async () => {
       const params = new URLSearchParams();
 
       if (filters.search) params.append("search", filters.search);
-      if (filters.type && filters.type !== "All") params.append("type", filters.type);
+      if (filters.type && filters.type !== "All")
+        params.append("type", filters.type);
       if (filters.minPrice) params.append("minPrice", filters.minPrice);
       if (filters.maxPrice) params.append("maxPrice", filters.maxPrice);
 
@@ -38,16 +41,19 @@ const ManageServices = () => {
       return res.data; // { result, total }
     },
   });
-
   const services = data.result || [];
   const total = data.total || 0;
   const totalPages = Math.ceil(total / limit);
+
+
 
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
         <h2 className="text-2xl font-bold">Manage Decoration Services</h2>
-        <button className="btn btn-primary">+ Add New Service</button>
+        <Link to={'/dashboard/add-new-service'} className="btn btn-primary">
+          + Add New Service
+        </Link>
       </div>
 
       {/* Search + Filter */}
@@ -135,7 +141,9 @@ const ManageServices = () => {
                   </td>
 
                   <td>
-                    <button className="btn btn-sm btn-outline mr-2">Edit</button>
+                    <button className="btn btn-sm btn-outline mr-2">
+                      Edit
+                    </button>
                     <button className="btn btn-sm btn-error">Delete</button>
                   </td>
                 </tr>
@@ -175,6 +183,8 @@ const ManageServices = () => {
           Next
         </button>
       </div>
+
+
     </div>
   );
 };

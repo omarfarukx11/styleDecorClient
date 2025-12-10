@@ -12,11 +12,11 @@ const MyBookings = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const updateRef = useRef();
-  const payRef = useRef()
-  const [bookingData , setBookingData] = useState(null)
-  const { register, handleSubmit , watch } = useForm();
+  const payRef = useRef();
+  const [bookingData, setBookingData] = useState(null);
+  const { register, handleSubmit, watch } = useForm();
 
-  const { data: book = [] , refetch } = useQuery({
+  const { data: book = [], refetch } = useQuery({
     queryKey: ["booking", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/booking?email=${user?.email}`);
@@ -25,44 +25,41 @@ const MyBookings = () => {
   });
 
   // ----------regions api -----------
-    const { data: centers = [] } = useQuery({
-      queryKey: ["serviceCenters"],
-      queryFn: async () => {
-        const res = await axiosSecure.get("/serviceCenter");
-        return res.data;
-      },
-    });
-    const selectedRegion = watch("BookingRegion");
-    const regions = [...new Set(centers.map((c) => c.region))];
-    const districts = selectedRegion
-      ? centers.filter((c) => c.region === selectedRegion).map((c) => c.district)
-      : [];
+  const { data: centers = [] } = useQuery({
+    queryKey: ["serviceCenters"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/serviceCenter");
+      return res.data;
+    },
+  });
+  const selectedRegion = watch("BookingRegion");
+  const regions = [...new Set(centers.map((c) => c.region))];
+  const districts = selectedRegion
+    ? centers.filter((c) => c.region === selectedRegion).map((c) => c.district)
+    : [];
 
-
-
-const handleUpdateBooking = (data) => {
-  axiosSecure
-    .patch(`/booking/${bookingData._id}`, data)
-    .then((res) => {
-      if (res.data.modifiedCount) {
-        refetch(); 
-        updateRef.current.close(); 
+  const handleUpdateBooking = (data) => {
+    axiosSecure
+      .patch(`/booking/${bookingData._id}`, data)
+      .then((res) => {
+        if (res.data.modifiedCount) {
+          refetch();
+          updateRef.current.close();
+          Swal.fire({
+            icon: "success",
+            title: "Booking Updated!",
+            text: "Your booking has been successfully updated.",
+          });
+        }
+      })
+      .catch((err) => {
         Swal.fire({
-          icon: "success",
-          title: "Booking Updated!",
-          text: "Your booking has been successfully updated.",
+          icon: "error",
+          title: err,
+          text: "Something went wrong. Please try again.",
         });
-      }
-    })
-    .catch((err) => {
-      Swal.fire({
-        icon: "error",
-        title:err,
-        text: "Something went wrong. Please try again.",
       });
-    });
-};
-
+  };
 
   const handleDeleteBooking = (id) => {
     Swal.fire({
@@ -89,20 +86,17 @@ const handleUpdateBooking = (data) => {
     });
   };
 
-
-
-  const handlePayment = async (bookingData) => { 
-      const paymentInfo = {
-        cost : bookingData.serviceCost ,
-        userId : bookingData._id,
-        serviceName : bookingData.serviceName,
-        userEmail : bookingData.userEmail,
-        userName : bookingData.userName
-      }
-      const res = await axiosSecure.post('/create-checkout-session' , paymentInfo)
-      window.location.assign(res.data.url)
-
-   }
+  const handlePayment = async (bookingData) => {
+    const paymentInfo = {
+      cost: bookingData.serviceCost,
+      userId: bookingData._id,
+      serviceName: bookingData.serviceName,
+      userEmail: bookingData.userEmail,
+      userName: bookingData.userName,
+    };
+    const res = await axiosSecure.post("/create-checkout-session", paymentInfo);
+    window.location.assign(res.data.url);
+  };
 
   const handleModal = () => {
     updateRef.current.showModal();
@@ -110,7 +104,6 @@ const handleUpdateBooking = (data) => {
   const handlePayModal = () => {
     payRef.current.showModal();
   };
-
 
   return (
     <div className="p-6 lg:p-10">
@@ -150,22 +143,25 @@ const handleUpdateBooking = (data) => {
                 <td className="text-center">{b.paymentStatus}</td>
                 <td className="text-center">
                   <div className="space-x-5">
-                    {
-                      b.paymentStatus === "unpaid" ? 
-                      <button 
-                      onClick={() => {
-                        handlePayModal();
-                        setBookingData(b)
-                      }}
-                      className="btn bg-primary text-white">
-                      Pay
-                    </button> : 
-                    <button className="btn bg-green-500 text-white">Paid</button>
-                    }
+                    {b.paymentStatus === "unpaid" ? (
+                      <button
+                        onClick={() => {
+                          handlePayModal();
+                          setBookingData(b);
+                        }}
+                        className="btn bg-primary text-white"
+                      >
+                        Pay
+                      </button>
+                    ) : (
+                      <button className="btn bg-green-500 text-white">
+                        Paid
+                      </button>
+                    )}
                     <button
                       onClick={() => {
                         handleModal();
-                        setBookingData(b)
+                        setBookingData(b);
                       }}
                       className="btn bg-yellow-500 text-white"
                     >
@@ -174,7 +170,6 @@ const handleUpdateBooking = (data) => {
                     <button
                       onClick={() => {
                         handleDeleteBooking(b._id);
-      
                       }}
                       className="btn bg-red-900 text-white"
                     >
@@ -188,17 +183,20 @@ const handleUpdateBooking = (data) => {
         </table>
       </div>
 
-
-{/*------------------- modal section ----------------- */}
+      {/*------------------- modal section ----------------- */}
 
       <dialog ref={updateRef} className="modal">
         <div className="modal-box w-11/12 max-w-2xl bg-base-100 p-8">
-            <h1 className="text-5xl text-center font-bold mb-3">Booking Information</h1>
+          <h1 className="text-5xl text-center font-bold mb-3">
+            Booking Information
+          </h1>
           <div className="bg-base-200 p-4 rounded-xl mb-5">
-              <p className="text-lg">Service Name : {bookingData?.serviceName}</p>
-              <p className="text-lg">Service Cost : ৳{bookingData?.serviceCost}</p>
-              <p className="text-lg">Booker Name :  {bookingData?.userName}</p>
-              <p className="text-lg">Booker Email : {bookingData?.userEmail}</p>
+            <p className="text-lg">Service Name : {bookingData?.serviceName}</p>
+            <p className="text-lg">
+              Service Cost : ৳{bookingData?.serviceCost}
+            </p>
+            <p className="text-lg">Booker Name : {bookingData?.userName}</p>
+            <p className="text-lg">Booker Email : {bookingData?.userEmail}</p>
           </div>
 
           <h1 className="text-4xl font-bold text-center text-primary mb-6">
@@ -291,32 +289,44 @@ const handleUpdateBooking = (data) => {
         </form>
       </dialog>
 
-    <dialog ref={payRef} className="modal">
-     <div className="modal-box w-11/12 max-w-2xl bg-base-100 p-8">
-              <h1 className="text-center font-extrabold text-3xl py-5">Complete the payment for the services booked by {bookingData?.userName}</h1>
-       <div className="bg-base-200 p-8 rounded-xl mb-5">
-              <p className="text-lg">Service Name : {bookingData?.serviceName}</p>
-              <p className="text-lg">Service Cost : ৳{bookingData?.serviceCost}</p>
-              <p className="text-lg">Booker Name :  {bookingData?.userName}</p>
-              <p className="text-lg">Booker Email : {bookingData?.userEmail}</p>
-              <p className="text-lg">Booker Address : {bookingData?.location} {bookingData?.BookingDistrict} {bookingData?.BookingRegion}</p>
+      <dialog ref={payRef} className="modal">
+        <div className="modal-box w-11/12 max-w-2xl bg-base-100 p-8">
+          <h1 className="text-center font-extrabold text-3xl py-5">
+            Complete the payment for the services booked by{" "}
+            {bookingData?.userName}
+          </h1>
+          <div className="bg-base-200 p-8 rounded-xl mb-5">
+            <p className="text-lg">Service Name : {bookingData?.serviceName}</p>
+            <p className="text-lg">
+              Service Cost : ৳{bookingData?.serviceCost}
+            </p>
+            <p className="text-lg">Booker Name : {bookingData?.userName}</p>
+            <p className="text-lg">Booker Email : {bookingData?.userEmail}</p>
+            <p className="text-lg">
+              Booker Address : {bookingData?.location}{" "}
+              {bookingData?.BookingDistrict} {bookingData?.BookingRegion}
+            </p>
           </div>
-           <div className="flex gap-3 mt-6">
-              <button onClick={() => { handlePayment(bookingData)}} type="submit" className="btn btn-primary flex-1">
-                Pay For Service
-              </button>
-              <button
-                type="button"
-                className="btn btn-ghost flex-1"
-                onClick={() => payRef.current.close()}
-              >
-                Cancel
-              </button>
-            </div>
-     </div>
-    </dialog>
-
-
+          <div className="flex gap-3 mt-6">
+            <button
+              onClick={() => {
+                handlePayment(bookingData);
+              }}
+              type="submit"
+              className="btn btn-primary flex-1"
+            >
+              Pay For Service
+            </button>
+            <button
+              type="button"
+              className="btn btn-ghost flex-1"
+              onClick={() => payRef.current.close()}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };

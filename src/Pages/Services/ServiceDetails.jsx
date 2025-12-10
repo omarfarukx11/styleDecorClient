@@ -64,7 +64,7 @@ const ServiceDetails = () => {
     try {
       await axiosSecure.post("/booking", data);
         navigate('/dashboard/my-bookings')
-      Swal.fire({
+       Swal.fire({
         icon: "success",
         title: "Booking Confirmed!",
         text: "Your service has been booked successfully.",
