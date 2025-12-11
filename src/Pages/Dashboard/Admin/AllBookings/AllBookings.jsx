@@ -148,7 +148,12 @@ const AllBookings = () => {
                     <td>{d.status}</td>
                     <td>
                       <button
-                        onClick={() => handleAssignDecorators(d)}
+                        onClick={() => 
+                        {
+                          handleAssignDecorators(d)
+                        AssignRef.current.close()
+                        }
+                      }
                         className="btn btn-primary"
                       >
                         Assign
