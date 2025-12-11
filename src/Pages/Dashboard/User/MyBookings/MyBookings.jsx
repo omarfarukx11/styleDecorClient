@@ -114,8 +114,9 @@ const MyBookings = () => {
               <th className="pl-20">Date</th>
               <th>Amount</th>
               <th>Booking Status</th>
+              <th>Decorator Status</th>
               <th>Payment Status</th>
-              <th>Action</th>
+              <th className="pl-40">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -127,6 +128,7 @@ const MyBookings = () => {
                 <td className="text-center">{b.bookingDate}</td>
                 <td className="font-bold text-primary text-lg">৳{b.serviceCost}</td>
                 <td>{b.bookingStatus}</td>
+                <td>{b.decoratorStatus}</td>
                 <td className="text-center">{b.paymentStatus}</td>
                 <td className="text-center">
                   <div className="space-x-5">

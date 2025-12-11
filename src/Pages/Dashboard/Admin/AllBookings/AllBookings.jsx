@@ -7,7 +7,7 @@ const AllBookings = () => {
   const [selectedService, setSelectedService] = useState(null);
   const AssignRef = useRef();
 
-  const { data: allBooking = [], isLoading } = useQuery({
+  const { data: allBooking = [] } = useQuery({
     queryKey: ["allBooking"],
     queryFn: async () => {
       const res = await axiosSecure.get("/allBooking");
@@ -15,40 +15,34 @@ const AllBookings = () => {
     },
   });
 
-  const decoratorsQuery = useQuery({
-    queryKey: [
-      "decorators", 
-      selectedService?._id, 
-      selectedService?.BookingDistrict, 
-      "available"
-    ],
-    enabled: !!selectedService?._id,
-    queryFn: async () => {
-      const res = await axiosSecure.get(
-        `/decorators?status=available&district=${selectedService?.BookingDistrict}`
-      );
-      return res.data;
-    },
-  });
+const { data: decorators = []} = useQuery({
+  queryKey: ["decorators", selectedService?.bookingDistrict],
+  enabled: !!selectedService,
+  queryFn: async () => {
+    const res = await axiosSecure.get(
+      `/assignDecorators?district=${selectedService?.bookingDistrict}&status=available`);
+    return res.data;
+  },
+});
+
+const handleAssignDecorators = (decorator) => {  
+    const decoratorAssignInfo = {
+      decoratorName : decorator.name,
+      decoratorEmail : decorator.email,
+      decoratorId : decorator._id,
+      serviceId : decorator.selectedService._id,
+    }
+    axiosSecure.patch('' , decoratorAssignInfo)
+
+}
+
+
 
   const handleModal = (booking) => {
     setSelectedService(booking);
     AssignRef.current?.showModal();
   };
 
-  const handleAssign = async (decoratorId) => {
-    try {
-      await axiosSecure.patch(`/assign-decorator/${selectedService._id}`, {
-        decoratorId,
-      });
-      AssignRef.current?.close();
-      setSelectedService(null);
-    } catch (error) {
-      console.error("Assignment failed:", error);
-    }
-  };
-
-  if (isLoading) return <div className="text-center py-10">Loading...</div>;
 
   return (
     <div className="p-6">
@@ -74,7 +68,7 @@ const AllBookings = () => {
                 <td>{i + 1}</td>
                 <td>{booking.userName}</td>
                 <td>{booking.serviceName}</td>
-                <td>{booking.BookingDistrict}</td>
+                <td>{booking.bookingDistrict}</td>
                 <td>{booking.bookingDate}</td>
                 <td>
                   <span className={`badge ${booking.bookingStatus === 'confirmed' ? 'badge-success' : 'badge-warning'}`}>
@@ -92,12 +86,12 @@ const AllBookings = () => {
                       onClick={() => handleModal(booking)} 
                       className="btn btn-primary btn-sm"
                     >
-                      Assign Decorator
+                      Find Decorator
                     </button>
                   ) : booking.decoratorId ? (
                     <span className="badge badge-info">Assigned</span>
                   ) : (
-                    <span className="badge badge-disabled">Pending Payment</span>
+                    <span className="badge badge-disabled">Not pay</span>
                   )}
                 </td>
               </tr>
@@ -107,81 +101,41 @@ const AllBookings = () => {
       </div>
 
       <dialog ref={AssignRef} className="modal">
-        <div className="modal-box w-11/12 max-w-2xl max-h-[80vh] overflow-y-auto">
-          <h3 className="font-bold text-xl mb-4">
-            Assign Decorator for: {selectedService?.serviceName}
-          </h3>
-          
-          <div className="mb-6 p-4 bg-base-200 rounded-lg">
-            <p><strong>District:</strong> {selectedService?.BookingDistrict}</p>
-            <p><strong>Date:</strong> {selectedService?.bookingDate}</p>
-            <p><strong>Client:</strong> {selectedService?.userName}</p>
-          </div>
-
-          {decoratorsQuery.isLoading ? (
-            <div className="text-center py-8">Loading decorators...</div>
-          ) : decoratorsQuery.data?.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 max-h-96 overflow-y-auto">
-              {decoratorsQuery.data.map((decorator) => (
-                <div key={decorator._id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all">
-                  <div className="card-body p-4">
-                    <div className="flex items-center gap-3 mb-2">
-                      <img 
-                        src={decorator.image} 
-                        alt={decorator.name}
-                        className="w-12 h-12 rounded-full object-cover"
-                      />
-                      <div>
-                        <h4 className="font-semibold">{decorator.name}</h4>
-                        <p className="text-sm text-gray-500">{decorator.district}</p>
-                      </div>
-                    </div>
-                    <p className="text-sm mb-3">{decorator.description}</p>
-                    <div className="flex justify-between items-center text-sm mb-3">
-                      <span>Rating: {decorator.rating}</span>
-                      <span>৳{decorator.hourlyRate}/hr</span>
-                    </div>
-                    <div className="badge badge-outline w-full justify-center">
-                      {decorator.specialties}
-                    </div>
-                    <div className="card-actions justify-end mt-3">
-                      <button
-                        onClick={() => handleAssign(decorator._id)}
-                        className="btn btn-primary btn-sm"
-                      >
-                        Assign
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-12">
-              <p className="text-xl text-warning mb-4">
-                No available decorators in {selectedService?.BookingDistrict}
-              </p>
-              <p className="text-sm text-gray-500">
-                Add decorators for this district or check availability
-              </p>
-            </div>
-          )}
-
-          <div className="modal-action">
-            <button 
-              onClick={() => {
-                AssignRef.current?.close();
-                setSelectedService(null);
-              }}
-              className="btn"
-            >
-              Cancel
-            </button>
-          </div>
+        <div className="modal-box w-11/12 max-w-4xl max-h-[80vh] overflow-y-auto p-10 ">
+          <table className="table w-full ">
+          <thead className="text-xl">
+            <tr className="bg-primary text-primary-content">
+              <th>SL</th>
+              <th>Decorator</th>
+              <th>Service</th>
+              <th>District</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody className="bg-base-300 border-2 text-xl">
+            {decorators.map((d, i) => (
+              <tr key={d._id} className="hover">
+                <td>{i + 1}</td>
+                <td>{d.name}</td>
+                <td>{d.specialties}</td>
+                <td>{d.district}</td>
+                <td>{d.status}</td>
+                <td>
+                  <button onClick={() => 
+                    {handleAssignDecorators(d)}} className="btn btn-primary">Assign</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className="flex justify-end  pt-10">
+          <button onClick={() => { AssignRef.current.close() }} className="btn px-8 py-6" >Close</button>
+        </div>
         </div>
       </dialog>
     </div>
   );
-};
 
+}
 export default AllBookings;

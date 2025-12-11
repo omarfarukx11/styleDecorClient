@@ -4,7 +4,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { FaStar } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
-import { useForm} from "react-hook-form";
+import { useForm, useWatch} from "react-hook-form";
 import Swal from "sweetalert2";
 
 const ServiceDetails = () => {
@@ -22,7 +22,7 @@ const ServiceDetails = () => {
     },
   });
 
-  const { data: centers = [] } = useQuery({
+  const { data: regionData = [] } = useQuery({
     queryKey: ["serviceCenters"],
     queryFn: async () => {
       const res = await axiosSecure.get("/serviceCenter");
@@ -30,15 +30,20 @@ const ServiceDetails = () => {
     },
   });
 
-  const { register, handleSubmit, reset, watch } = useForm();
+  
 
-  const selectedRegion = watch("BookingRegion");
+  const { register, handleSubmit, reset, control} = useForm();
 
-  const regions = [...new Set(centers.map((c) => c.region))];
+  const selectedRegion = useWatch({control , name: "bookingRegion"});
 
-  const districts = selectedRegion
-    ? centers.filter((c) => c.region === selectedRegion).map((c) => c.district)
-    : [];
+  const regionsDuplicate = regionData.map((r) => r.region);
+  const regions = [...new Set(regionsDuplicate)];
+
+  const districtByRegion = (region) => {
+    const regionDistrict = regionData.filter((r) => r.region === region);
+    const districts = regionDistrict.map((d) => d.district);
+    return districts;
+  };
 
  
   useEffect(() => {
@@ -224,8 +229,8 @@ const ServiceDetails = () => {
                   Region <span className="text-error">*</span>
                 </label>
                 <select
-                  {...register("BookingRegion", { required: true })}
-                  className="select select-bordered w-full"
+                  {...register("bookingRegion", { required: true })}
+                  className="select select-bordered w-full outline-none"
                 >
                   <option value="">Select Region</option>
                   {regions.map((region) => (
@@ -241,12 +246,10 @@ const ServiceDetails = () => {
                   District <span className="text-error">*</span>
                 </label>
                 <select
-                  {...register("BookingDistrict", { required: true })}
-                  className="select select-bordered w-full"
-                  disabled={!selectedRegion}
+                  {...register("bookingDistrict", { required: true })}
+                  className="select select-bordered w-full outline-none"
                 >
-                  <option value="">Select District</option>
-                  {districts.map((district) => (
+                  {districtByRegion(selectedRegion).map((district) => (
                     <option key={district} value={district}>
                       {district}
                     </option>
