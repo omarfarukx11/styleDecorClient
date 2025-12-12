@@ -9,16 +9,6 @@ const MyProject = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
-
-
-  // const { data } = useQuery({
-  //   queryKey: ["user", user],
-  //   queryFn: async () => {
-  //     const res = await axiosSecure.get(`/user/${user.email}`);
-  //     return res.data;
-  //   },
-  // });
-
   const {data : decorators } = useQuery({
     queryKey : ['decorators' , user?.email] ,
     queryFn : async () => {
@@ -51,6 +41,13 @@ const handleDecoratorStatus = (status, id) => {
         }
       });
   };
+
+  
+const handleDecoratorWordStatus = () => { 
+  console.log('hello world')
+    axiosSecure.patch(`/updateDecoratorsWorkStatus/${decorators?._id}` , {status : "available"})
+    .then(res => console.log(res.data))
+ }
 
   if(isLoading) {
     return <Loader></Loader>
@@ -127,21 +124,20 @@ const handleDecoratorStatus = (status, id) => {
                   {d.decoratorStatus === "Decorator Reached" && (
                     <button
                       onClick={() =>
-                        handleDecoratorStatus("Decoration Completed", d._id)
+                      {
+                        handleDecoratorStatus("completed", d._id),
+                        handleDecoratorWordStatus()
+                      }
+
                       }
                       className="btn btn-primary text-white"
                     >
-                      Decoration Completed
+                      Complete
                     </button>
                   )}
-                  {d.decoratorStatus === "Decoration Completed" && (
-                    <button
-                      onClick={() =>
-                        handleDecoratorStatus("Decoration Completed", d._id)
-                      }
-                      className="btn btn-primary text-white"
-                    >
-                      Delivered
+                  {d.decoratorStatus === "completed" && (
+                    <button className="btn btn-primary cursor-not-allowed text-white">
+                      completed
                     </button>
                   )}
                 </td>
