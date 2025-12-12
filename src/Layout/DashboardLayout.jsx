@@ -79,12 +79,6 @@ const DashboardLayout = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/update-status">
-          <FaTools className="text-xl" />
-          <span>Update Project Status</span>
-        </NavLink>
-      </li>
-      <li>
         <NavLink to="/dashboard/my-earnings">
           <FaMoneyBillWave className="text-xl" />
           <span>Earnings Summary</span>

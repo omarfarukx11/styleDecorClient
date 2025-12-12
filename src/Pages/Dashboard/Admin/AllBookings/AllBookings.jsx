@@ -41,7 +41,7 @@ const AllBookings = () => {
     const decoratorAssignInfo = {
       decoratorName: decorator.name,
       decoratorEmail: decorator.email,
-      decoratorId: decorator._id,
+      decoratorId: decorator.userId,
       decoratorStatus: decorator.status,
       serviceId: selectedService._id,
       bookingRegion : selectedService.bookingRegion,
