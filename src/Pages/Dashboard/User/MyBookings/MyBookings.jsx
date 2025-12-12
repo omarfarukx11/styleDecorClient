@@ -114,7 +114,7 @@ const MyBookings = () => {
               <th className="pl-20">Date</th>
               <th>Amount</th>
               <th>Booking Status</th>
-              <th>Decorator Status</th>
+              <th>Service Status</th>
               <th>Payment Status</th>
               <th className="pl-40">Action</th>
             </tr>

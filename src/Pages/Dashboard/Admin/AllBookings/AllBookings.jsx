@@ -11,7 +11,7 @@ const AllBookings = () => {
   const [page, setPage] = useState(1);
   const limit = 20;
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading , refetch } = useQuery({
     queryKey: ["allBooking", page],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -26,7 +26,7 @@ const AllBookings = () => {
   const totalPages = Math.ceil(total / limit);
 
 
-  const { data: decorators = [] , refetch } = useQuery({
+  const { data: decorators = [] } = useQuery({
     queryKey: ["decorators", selectedService?.bookingDistrict],
     enabled: !!selectedService,
     queryFn: async () => {
@@ -42,11 +42,14 @@ const AllBookings = () => {
       decoratorName: decorator.name,
       decoratorEmail: decorator.email,
       decoratorId: decorator.userId,
+      decoratorID: decorator._id,
       decoratorStatus: decorator.status,
       serviceId: selectedService._id,
       bookingRegion : selectedService.bookingRegion,
       bookingDistrict : selectedService.bookingDistrict,
     };
+    console.log(decorator.userId)
+    console.log(decorator._id)
     axiosSecure
       .patch(`/afterAssign/${selectedService._id}`, decoratorAssignInfo)
       .then((res) => {
@@ -66,8 +69,6 @@ const AllBookings = () => {
 
   const handleModal = (booking) => {
     setSelectedService(booking);
-    console.log(selectedService.bookingDistrict)
-  console.log(selectedService.bookingRegion)
     AssignRef.current?.showModal();
   };
 
@@ -133,7 +134,7 @@ const AllBookings = () => {
                       Find Decorator
                     </button>
                   ) : booking.decoratorId ? (
-                    <span className="badge badge-info">Assigned</span>
+                    <span className="badge badge-info">{booking.decoratorStatus}</span>
                   ) : (
                     <span className="badge badge-disabled">Not pay</span>
                   )}
@@ -172,7 +173,7 @@ const AllBookings = () => {
                       <button
                         onClick={() => {
                           handleAssignDecorators(d);
-                          AssignRef.current.close();
+
                         }}
                         className="btn btn-primary"
                       >

@@ -1,44 +1,64 @@
-import React, { useState } from "react";
+
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../Hooks/useAuth";
-
+import Swal from "sweetalert2";
+import Loader from "../../../../Components/Loader";
 
 const MyProject = () => {
   const axiosSecure = useAxiosSecure();
-  const {user} = useAuth()
-  const [status , setStatus] = useState('')
+  const { user } = useAuth();
 
-    const {data} = useQuery({
-        queryKey: ['user' , user],
-        queryFn : async () => { 
-            const res = await axiosSecure.get(`/user/${user.email}`)
-            return res.data
-         }
-    })
-  
-  const { data : decoratorProject =  [] , refetch } = useQuery({
-    queryKey: ["bookings", data?._id],
-    queryFn: async () => {
-      const res = await axiosSecure.get(
-        `/decorator/bookings?decoratorId=${data?._id}`
-      )
+
+
+  // const { data } = useQuery({
+  //   queryKey: ["user", user],
+  //   queryFn: async () => {
+  //     const res = await axiosSecure.get(`/user/${user.email}`);
+  //     return res.data;
+  //   },
+  // });
+
+  const {data : decorators } = useQuery({
+    queryKey : ['decorators' , user?.email] ,
+    queryFn : async () => {
+      const res = await axiosSecure.get(`/decorator/${user?.email}`)
+      return res.data
+    }
+
+  })
+const { data: booking = [], isLoading , refetch } = useQuery({
+  queryKey: ["booking", decorators?.email],
+  enabled: !!decorators?.email,
+  queryFn: async () => {
+    const res = await axiosSecure.get(`/booking/${decorators?.email}`);
     return res.data;
-    },
-  });
+  },
+});
 
-  const handleDecoratorStatus = (status , id) => { 
-    axiosSecure.patch(`/booking/${id}` ,{decoratorStatus  : status} )
-    .then(res => {
-        refetch()
-        console.log(res.data)
-    })
-   }
+const handleDecoratorStatus = (status, id) => {
+    axiosSecure
+      .patch(`/booking/${id}/status`, { decoratorStatus: status })
+      .then((res) => {
+        if (res.data.modifiedCount) {
+          refetch();
+          Swal.fire({
+            icon: "success",
+            title: "Booking Confirmed!",
+            text: "Your service has been booked successfully.",
+            timer: 2000,
+          });
+        }
+      });
+  };
 
+  if(isLoading) {
+    return <Loader></Loader>
+  }
 
   return (
     <div>
-        <table className="table w-full ">
+      <table className="table w-full ">
         <thead className="text-xl">
           <tr className="bg-primary text-primary-content">
             <th>SL</th>
@@ -51,46 +71,90 @@ const MyProject = () => {
           </tr>
         </thead>
         <tbody className="bg-base-300 border-2 text-xl">
-          {decoratorProject.length === 0 ? (
-            <p>No Decorators Available</p>
-          ) : (
-            decoratorProject.map((d, i) => (
+          {
+            booking.map((d, i) => (
               <tr key={d._id} className="hover">
                 <td>{i + 1}</td>
                 <td>{d.serviceName}</td>
                 <td>{d.userName}</td>
                 <td>{d.userEmail}</td>
-                <td>{d.location}{' '}{d.bookingDistrict}</td>
+                <td>
+                  {d.location} {d.bookingDistrict}
+                </td>
                 <td>{d.bookingDate}</td>
                 <td>
-                  {
-                    d.decoratorStatus === "decorator Assigned" && 
-                    <button onClick={() => {
-                    handleDecoratorStatus(status , d._id) ,
-                    setStatus('In Progress') }}
-                    className="btn btn-primary text-white"
-                  >
-                    Accept
-                  </button>
-                  }
-                  {
-                      d.decoratorStatus === "In Progress" && 
-                    <button onClick={() => {
-                    handleDecoratorStatus(status , d._id) ,
-                    setStatus('Materials Purchased') }}
-                    className="btn btn-primary text-white"
-                  >
-                    In Progress
-                  </button>
-                  }
+                  {d.decoratorStatus === "decorator Assigned" && (
+                    <button
+                      onClick={() =>
+                        handleDecoratorStatus("In Progress", d._id)
+                      }
+                      className="btn btn-primary text-white"
+                    >
+                      Accept
+                    </button>
+                  )}
+
+                  {d.decoratorStatus === "In Progress" && (
+                    <button
+                      onClick={() =>
+                        handleDecoratorStatus("Materials Purchased", d._id)
+                      }
+                      className="btn btn-primary text-white"
+                    >
+                      Materials Purchased
+                    </button>
+                  )}
+                  {d.decoratorStatus === "Materials Purchased" && (
+                    <button
+                      onClick={() =>
+                        handleDecoratorStatus("Rider On The Way", d._id)
+                      }
+                      className="btn btn-primary text-white"
+                    >
+                      Rider On The Way
+                    </button>
+                  )}
+                  {d.decoratorStatus === "Rider On The Way" && (
+                    <button
+                      onClick={() =>
+                        handleDecoratorStatus("Decorator Reached", d._id)
+                      }
+                      className="btn btn-primary text-white"
+                    >
+                      Decorator Reached
+                    </button>
+                  )}
+                  {d.decoratorStatus === "Decorator Reached" && (
+                    <button
+                      onClick={() =>
+                        handleDecoratorStatus("Decoration Completed", d._id)
+                      }
+                      className="btn btn-primary text-white"
+                    >
+                      Decoration Completed
+                    </button>
+                  )}
+                  {d.decoratorStatus === "Decoration Completed" && (
+                    <button
+                      onClick={() =>
+                        handleDecoratorStatus("Decoration Completed", d._id)
+                      }
+                      className="btn btn-primary text-white"
+                    >
+                      Delivered
+                    </button>
+                  )}
                 </td>
               </tr>
             ))
-          )}
+          }
         </tbody>
       </table>
+
+
     </div>
   );
 };
 
 export default MyProject;
+
