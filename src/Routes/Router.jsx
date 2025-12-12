@@ -26,6 +26,7 @@ import MyBookings from "../Pages/Dashboard/User/MyBookings/MyBookings";
 import TodaySchedule from "../Pages/Dashboard/Decorators/TodaySchedule/TodaySchedule";
 import MyEarnings from "../Pages/Dashboard/Decorators/MyEarnings/MyEarnings";
 import AddNewService from "../Pages/Dashboard/Admin/AddNewService/AddNewService";
+import AddNewDecorators from "../Pages/Dashboard/Admin/MangeDecorators/AddNewDecorators";
 
 
 
@@ -131,6 +132,10 @@ export const router = createBrowserRouter([
             {
                 path:"/dashboard/add-new-service",
                 element:<AdminRoute><AddNewService></AddNewService></AdminRoute>
+            },
+            {
+                path:"/dashboard/add-new-decorator",
+                element:<AdminRoute><AddNewDecorators></AddNewDecorators></AdminRoute>
             },
 
             

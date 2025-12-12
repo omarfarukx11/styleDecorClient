@@ -13,8 +13,8 @@ import {
   FaChartBar,
 } from "react-icons/fa";
 import { MdOutlineDesignServices } from "react-icons/md";
-import { GiPartyPopper } from "react-icons/gi";
 import useRole from "../Hooks/useRole";
+import Loader from "../Components/Loader";
 
 
 const DashboardLayout = () => {
@@ -22,9 +22,7 @@ const DashboardLayout = () => {
 
   if (roleLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
+     <Loader></Loader>
     );
   }
 
@@ -118,12 +116,6 @@ const DashboardLayout = () => {
         <NavLink to="/dashboard/all-bookings">
           <FaClipboardList className="text-xl" />
           <span>All Bookings</span>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/assign-decorator">
-          <GiPartyPopper className="text-xl" />
-          <span>Assign Decorator</span>
         </NavLink>
       </li>
 

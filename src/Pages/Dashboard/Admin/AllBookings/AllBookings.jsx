@@ -2,19 +2,29 @@ import React, { useRef, useState } from "react";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import Loader from "../../../../Components/Loader";
 
 const AllBookings = () => {
   const axiosSecure = useAxiosSecure();
   const [selectedService, setSelectedService] = useState(null);
   const AssignRef = useRef();
+  const [page, setPage] = useState(1);
+  const limit = 20;
 
-  const { data: allBooking = [] } = useQuery({
-    queryKey: ["allBooking"],
+  const { data, isLoading } = useQuery({
+    queryKey: ["allBooking", page],
     queryFn: async () => {
-      const res = await axiosSecure.get("/allBooking");
+      const res = await axiosSecure.get(
+        `/allBooking?page=${page}&limit=${limit}`
+      );
       return res.data;
     },
   });
+
+  const allBooking = data?.result || [];
+  const total = data?.total || 0;
+  const totalPages = Math.ceil(total / limit);
+
 
   const { data: decorators = [] } = useQuery({
     queryKey: ["decorators", selectedService?.bookingDistrict],
@@ -54,8 +64,13 @@ const AllBookings = () => {
     AssignRef.current?.showModal();
   };
 
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
+
   return (
-    <div className="p-6">
+    <div>
+      <div className="p-6">
       <h2 className="text-3xl font-bold mb-8 text-primary">All Bookings</h2>
 
       <div className="overflow-x-auto bg-base-200 rounded-lg">
@@ -148,12 +163,10 @@ const AllBookings = () => {
                     <td>{d.status}</td>
                     <td>
                       <button
-                        onClick={() => 
-                        {
-                          handleAssignDecorators(d)
-                        AssignRef.current.close()
-                        }
-                      }
+                        onClick={() => {
+                          handleAssignDecorators(d);
+                          AssignRef.current.close();
+                        }}
                         className="btn btn-primary"
                       >
                         Assign
@@ -176,6 +189,44 @@ const AllBookings = () => {
           </div>
         </div>
       </dialog>
+    </div>
+
+
+        {totalPages > 1 && (
+        <div className="flex justify-center mt-12 gap-2">
+          <button
+            disabled={page === 1}
+            onClick={() => setPage((prev) => prev - 1)}
+            className="btn btn-outline btn-sm disabled:opacity-40"
+          >
+            « Prev
+          </button>
+          {[...Array(Math.min(5, totalPages)).keys()]
+            .map((n) => n + 1)
+            .map((num) => (
+              <button
+                key={num}
+                onClick={() => setPage(num)}
+                className={`btn btn-sm ${
+                  page === num
+                    ? "btn-primary"
+                    : "btn-outline btn-ghost"
+                }`}
+              >
+                {num}
+              </button>
+            ))}
+          <button
+            disabled={page === totalPages}
+            onClick={() => setPage((prev) => prev + 1)}
+            className="btn btn-outline btn-sm disabled:opacity-40"
+          >
+            Next »
+          </button>
+        </div>
+      )}
+
+
     </div>
   );
 };

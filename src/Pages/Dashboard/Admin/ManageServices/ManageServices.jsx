@@ -51,7 +51,7 @@ const ManageServices = () => {
       params.append("limit", limit);
 
       const res = await axiosSecure.get(`/allServices?${params.toString()}`);
-      return res.data; // { result, total }
+      return res.data; 
     },
   });
 
@@ -139,14 +139,18 @@ const ManageServices = () => {
 
   return (
     <div className="p-6">
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-3xl font-bold text-primary">
+        <h2 className="text-5xl font-bold text-center mb-10 text-primary">
           Manage Decoration Services
         </h2>
+      <div className="flex justify-end items-center mb-4">
         <Link to="/dashboard/add-new-service" className="btn btn-primary btn-lg">
           + Add New Service
         </Link>
       </div>
+      <div className='flex justify-end items-center'>
+          <h1 className='text-2xl my-4 font-bold'>{services.length} of {total} Decorators</h1>
+        </div>
+
 
       {/* Search + Filter */}
       <form
