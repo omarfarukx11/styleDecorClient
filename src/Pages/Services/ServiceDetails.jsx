@@ -55,9 +55,9 @@ const ServiceDetails = () => {
         userName: user.displayName || "",
         userEmail: user.email || "",
         bookingStatus : "pending",
-        BookingRegion: "",
+        bookingRegion: "",
         paymentStatus : "unpaid",
-        BookingDistrict: "",
+        bookingDistrict: "",
         bookingDate: "",
         location: "",
       });

@@ -26,7 +26,7 @@ const AllBookings = () => {
   const totalPages = Math.ceil(total / limit);
 
 
-  const { data: decorators = [] } = useQuery({
+  const { data: decorators = [] , refetch } = useQuery({
     queryKey: ["decorators", selectedService?.bookingDistrict],
     enabled: !!selectedService,
     queryFn: async () => {
@@ -44,11 +44,14 @@ const AllBookings = () => {
       decoratorId: decorator._id,
       decoratorStatus: decorator.status,
       serviceId: selectedService._id,
+      bookingRegion : selectedService.bookingRegion,
+      bookingDistrict : selectedService.bookingDistrict,
     };
     axiosSecure
       .patch(`/afterAssign/${selectedService._id}`, decoratorAssignInfo)
       .then((res) => {
         if (res.data.modifiedCount) {
+          refetch()
           Swal.fire({
             icon: "success",
             title: "Assign Decorators Success!",
@@ -59,8 +62,12 @@ const AllBookings = () => {
       });
   };
 
+  
+
   const handleModal = (booking) => {
     setSelectedService(booking);
+    console.log(selectedService.bookingDistrict)
+  console.log(selectedService.bookingRegion)
     AssignRef.current?.showModal();
   };
 
