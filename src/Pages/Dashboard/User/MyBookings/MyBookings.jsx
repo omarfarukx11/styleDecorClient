@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
+import Loader from "../../../../Components/Loader";
 
 const MyBookings = () => {
   const axiosSecure = useAxiosSecure();
@@ -21,7 +22,7 @@ const MyBookings = () => {
     },
   });
 
-  const { data: centers = [] } = useQuery({
+  const { data: centers = [] , isLoading } = useQuery({
     queryKey: ["serviceCenters"],
     queryFn: async () => {
       const res = await axiosSecure.get("/serviceCenter");
@@ -98,6 +99,11 @@ const MyBookings = () => {
 
   const handleModal = () => updateRef.current.showModal();
   const handlePayModal = () => payRef.current.showModal();
+
+
+  if(isLoading) {
+    return <Loader></Loader>
+  }
 
   return (
     <div className="p-6 lg:p-10">

@@ -2,6 +2,7 @@ import React from 'react';
 import useAuth from '../Hooks/useAuth';
 import useRole from '../Hooks/useRole';
 import Forbidden from '../Components/Forbidden';
+import Loader from '../Components/Loader';
 
 
 
@@ -10,7 +11,7 @@ const AdminRoute = ({children}) => {
     const {role , roleLoading} = useRole()
 
     if(loading || roleLoading) {
-        return <p>Loading</p>
+        return <Loader></Loader>
     }
     if(role !== "admin") {
         return <Forbidden></Forbidden>

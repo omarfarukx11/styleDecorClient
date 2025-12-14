@@ -48,6 +48,20 @@ const AuthProvider = ({children}) => {
     }
     ,[])
 
+  //     useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+  //     setUser(currentUser);
+  //     if (currentUser) {
+  //       const token = await currentUser.getIdToken(true);
+  //       localStorage.setItem("accessToken", token);
+  //     } else {
+  //       localStorage.removeItem("accessToken");
+  //     }
+  //     setLoading(false);
+  //   });
+  //   return () => unsubscribe();
+  // }, []);
+
 
     const authInfo = {
         socialSignIn,

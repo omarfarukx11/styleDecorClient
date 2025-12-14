@@ -6,6 +6,7 @@ import { FaStar } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
 import { useForm, useWatch} from "react-hook-form";
 import Swal from "sweetalert2";
+import Loader from "../../Components/Loader";
 
 const ServiceDetails = () => {
   const { user } = useAuth();
@@ -22,7 +23,7 @@ const ServiceDetails = () => {
     },
   });
 
-  const { data: regionData = [] } = useQuery({
+  const { data: regionData = [] , isLoading } = useQuery({
     queryKey: ["serviceCenters"],
     queryFn: async () => {
       const res = await axiosSecure.get("/serviceCenter");
@@ -92,6 +93,12 @@ const ServiceDetails = () => {
     }
     dialogRef.current.showModal();
   };
+
+
+  if(isLoading){
+    return <Loader></Loader>
+  }
+
   return (
     <div className="min-h-screen bg-base-100 py-12 px-6 lg:px-12">
       <div className="max-w-screen-2xl mx-auto w-full">

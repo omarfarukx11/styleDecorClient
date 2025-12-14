@@ -2,9 +2,10 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import useAuth from './useAuth';
 import { useNavigate } from 'react-router';
+import Forbidden from '../Components/Forbidden';
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: 'http://localhost:3000',
 })
 
 const useAxiosSecure = () => {
@@ -26,10 +27,7 @@ const useAxiosSecure = () => {
 
             const statusCode = error.status;
             if (statusCode === 401 || statusCode === 403) {
-                logOut()
-                    .then(() => {
-                        navigate('/login')
-                    })
+                <Forbidden></Forbidden>
             }
 
 
