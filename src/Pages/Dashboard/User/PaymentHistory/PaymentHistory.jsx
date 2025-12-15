@@ -37,20 +37,20 @@ const PaymentHistory = () => {
 
   return (
     <div className="overflow-x-auto rounded-2xl shadow-2xl border border-base-300">
-      <h1 className="text-center font-extrabold text-5xl my-20">
+      <h1 className="text-center font-extrabold lg:text-5xl xl:my-20 my-5 ">
         Your Payment History
       </h1>
 
-      <table className="table table-zebra w-full text-base">
+      <table className="lg:table lg:table-zebra w-full text-base">
         <thead className="bg-linear-to-r from-primary to-secondary text-white text-sm uppercase">
           <tr>
-            <th className="py-5">#</th>
-            <th>Service Name</th>
-            <th>Biller Name</th>
-            <th>User Email</th>
-            <th>Time</th>
-            <th>Amount</th>
-            <th>Transaction ID</th>
+            <th className="md:text-lg px-2 text-[10px]">#</th>
+            <th className="md:text-lg px-2 text-[10px]" >Service Name</th>
+            <th className="md:text-lg px-2 text-[10px] hidden lg:block" >Biller Name</th>
+            <th className="md:text-lg px-2 text-[10px] hidden lg:block" >User Email</th>
+            <th className="md:text-lg px-2 text-[10px]" >Time</th>
+            <th className="md:text-lg px-2 text-[10px]" >Amount</th>
+            <th className="md:text-lg px-2 text-[10px]" >Transaction ID</th>
           </tr>
         </thead>
 
@@ -58,13 +58,13 @@ const PaymentHistory = () => {
           {/* Row 1 */}
           {history.map((b, i) => (
             <tr key={b._id} className="hover:bg-base-200 transition-all">
-              <td className="text-center font-bold">{i + 1}</td>
-              <td className="font-semibold text-lg">{b.serviceName}</td>
-              <td className="text-center">{b.userName}</td>
-              <td className="text-center">{b.userEmail}</td>
-              <td>{new Date(b.paidAt).toLocaleString()}</td>
-              <td className="font-bold text-primary text-lg">৳{b.amount}</td>
-              <td>{b.transactionId}</td>
+              <td className="md:text-lg px-2 text-[10px] text-center font-bold">{i + 1}</td>
+              <td className="md:text-lg px-2 text-[10px] font-semibold text-lg">{b.serviceName}</td>
+              <td className="md:text-lg px-2 text-[10px] text-center hidden lg:block">{b.userName}</td>
+              <td className="md:text-lg px-2 text-[10px] text-center hidden lg:block">{b.userEmail}</td>
+              <td className="md:text-lg px-2 text-[10px]">{new Date(b.paidAt).toLocaleString()}</td>
+              <td className="md:text-lg px-2 text-[10px] font-bold text-primary text-lg">৳{b.amount}</td>
+              <td className="md:text-lg px-2 text-[10px]">{b.transactionId}</td>
             </tr>
           ))}
         </tbody>

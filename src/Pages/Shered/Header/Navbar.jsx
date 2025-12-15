@@ -55,7 +55,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className=" bg-[#B0B0B0] text-white ">
+    <nav className=" bg-[#B0B0B0] text-white  ">
       <div className="navbar py-5 xl:w-[1800px] mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
@@ -83,7 +83,7 @@ const Navbar = () => {
         {user && (
           <NavLink
             to="/dashboard"
-            className="btn btn-secondary hidden sm:inline-flex"
+            className="btn btn-secondary"
           >
             Dashboard
           </NavLink>

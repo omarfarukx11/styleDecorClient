@@ -4,12 +4,6 @@ import useAuth from '../../Hooks/useAuth'; // Adjust the path as needed
 const MyProfile = () => {
   const { user } = useAuth(); // Assuming your auth hook provides the user object
 
-  // You can extend this later with actual update logic
-  const handleEditClick = () => {
-
-    // If you have an update function, prepare form data here
-  };
-
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Gradient Header */}
@@ -115,7 +109,6 @@ const MyProfile = () => {
         {/* Edit Profile Button */}
         <div className="text-center">
           <button
-            onClick={handleEditClick}
             className="bg-purple-600 text-white px-8 py-3 rounded-full font-medium hover:bg-purple-700 transition shadow-lg"
           >
             Edit Profile
