@@ -57,12 +57,6 @@ export const router = createBrowserRouter([
             path:'/serviceDetails/:id',
             Component:ServiceDetails,
             },
-            {
-            path:'/my-profile',
-            Component:MyProfile,
-            },
-
-
           
         ]
     },
@@ -85,6 +79,14 @@ export const router = createBrowserRouter([
         element:<PrivetRoute><DashboardLayout></DashboardLayout></PrivetRoute>,
         children: [
             {
+                index : true ,
+                element:<MyProfile></MyProfile>
+            },
+             {
+                path:"/dashboard/my-profile",
+                element:<MyProfile></MyProfile>
+            },
+            {
                 path:'/dashboard/my-bookings',
                 element:<UserRoute><MyBookings></MyBookings></UserRoute>
             },
@@ -106,6 +108,7 @@ export const router = createBrowserRouter([
                 path:"/dashboard/my-earnings",
                 element:<DecoratorRoute><MyEarnings></MyEarnings></DecoratorRoute>
             },
+           
 
 
 

@@ -8,7 +8,7 @@ const PrivetRoute = ({children}) => {
     const {user , loading } = useAuth()
     const location = useLocation()
     const {roleLoading} = useRole()
-    if(loading || roleLoading) {
+    if(loading || roleLoading ) {
         return <Loader></Loader>
     }
     if(!user) {

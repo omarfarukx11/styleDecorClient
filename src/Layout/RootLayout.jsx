@@ -19,9 +19,11 @@ const RootLayout = () => {
   }
 
   return (
-    <div className="w-[1800px] mx-auto">
+    <div>
       <Navbar />
+      <div className="2xl:w-[1800px] mx-auto">
       <Outlet />
+    </div>
       <Footer />
     </div>
   );

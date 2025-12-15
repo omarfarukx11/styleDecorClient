@@ -35,10 +35,10 @@ const ServiceMap = () => {
 
 
   return (
-    <div className="bg-[#f8f8f8] p-20 rounded-2xl mb-10">
-      <div>
+    <div className="bg-[#f8f8f8] xl:p-20 p-4 rounded-xl mb-10">
+      <div className="bg-primary p-10 text-secondary rounded-xl">
         <h1 className="text-5xl font-bold ">
-          We are available everywhere in Bangladesh
+          We provide services all over Bangladesh
         </h1>
         <div className="my-10">
          <form onSubmit={handleSearch}>

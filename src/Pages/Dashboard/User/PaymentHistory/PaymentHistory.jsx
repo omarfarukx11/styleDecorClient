@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import Loader from "../../../../Components/Loader";
 
 const PaymentHistory = () => {
   const [searchParams] = useSearchParams();
@@ -11,7 +12,7 @@ const PaymentHistory = () => {
   const sessionId = searchParams.get("session_id");
   const { user } = useAuth();
 
-  const { data: history = [], refetch } = useQuery({
+  const { data: history = [], refetch , isLoading } = useQuery({
     queryKey: ["payment-history", user.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/payment-history?email=${user.email}`);
@@ -30,6 +31,9 @@ const PaymentHistory = () => {
       });
     }
   }, [sessionId, axiosSecure, refetch]);
+
+
+  if(isLoading) <Loader></Loader>
 
   return (
     <div className="overflow-x-auto rounded-2xl shadow-2xl border border-base-300">

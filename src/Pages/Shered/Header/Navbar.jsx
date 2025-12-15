@@ -1,16 +1,14 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import Logo from "../../../Components/Logo";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
-// import useAuth from "../Hooks/useAuth"; // if you are using auth
+import { MdMenuBook } from "react-icons/md";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-
-
-  console.log(user)
   const navigate = useNavigate()
+
   const handleLogout = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -46,106 +44,55 @@ const Navbar = () => {
     });
   };
 
-  const activeLink =
-    "text-primary font-semibold border-b-2 border-primary pb-1";
-  const normalLink = "text-base";
 
   const navLinks = (
     <>
-      <li>
-        <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? activeLink : normalLink)}
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/services"
-          className={({ isActive }) => (isActive ? activeLink : normalLink)}
-        >
-          Services
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/about"
-          className={({ isActive }) => (isActive ? activeLink : normalLink)}
-        >
-          About
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/contact"
-          className={({ isActive }) => (isActive ? activeLink : normalLink)}
-        >
-          Contact
-        </NavLink>
-      </li>
+      <li> <NavLink to="/" >Home</NavLink></li>
+      <li> <NavLink to="/services">Services</NavLink></li>
+      <li> <NavLink to="/about" >About</NavLink></li>
+      <li><NavLink to="/contact">Contact</NavLink></li>
     </>
   );
 
   return (
-    <div className="navbar py-5 ">
-      {/* START */}
+    <nav className=" bg-[#B0B0B0] text-white ">
+      <div className="navbar py-5 xl:w-[1800px] mx-auto">
       <div className="navbar-start">
-        {/* Mobile Menu */}
         <div className="dropdown">
           <button tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
+            <MdMenuBook />
           </button>
-
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 text-secondary rounded-box w-52"
           >
             {navLinks}
           </ul>
         </div>
-
-        {/* Logo */}
-        <NavLink to="/" className="btn btn-ghost text-2xl font-bold">
+        <Link to="/" className="btn btn-ghost text-2xl font-bold">
           <Logo></Logo>
-        </NavLink>
+        </Link>
       </div>
 
-      {/* CENTER MENU */}
+
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
 
-      {/* END PROFILE / LOGIN */}
       <div className="navbar-end flex gap-2">
-        {/* Dashboard (if logged in) */}
         {user && (
           <NavLink
             to="/dashboard"
-            className="btn btn-primary hidden sm:inline-flex"
+            className="btn btn-secondary hidden sm:inline-flex"
           >
             Dashboard
           </NavLink>
         )}
 
-        {/* Login OR Profile Dropdown */}
         {!user ? (
           <NavLink
             to="/login"
-            className="btn btn-primary hover:bg-white hover:text-primary hover:border-primary"
+            className="btn btn-secondary hover:bg-white hover:text-primary hover:border-primary"
           >
             Login
           </NavLink>
@@ -165,22 +112,23 @@ const Navbar = () => {
 
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content rounded-xl bg-secondary rounded-box z-10 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <NavLink to="/my-profile">Profile</NavLink>
+                <Link className="hover:bg-white hover:text-primary" to="/dashboard/my-profile" >Profile</Link>
               </li>
               <li>
-                <NavLink to="/settings">Settings</NavLink>
-              </li>
-              <li>
-                <button onClick={handleLogout}>Logout</button>
+                <button className="hover:bg-white hover:text-primary" onClick={handleLogout}>Logout</button>
               </li>
             </ul>
           </div>
         )}
       </div>
+
+
+
     </div>
+    </nav>
   );
 };
 

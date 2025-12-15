@@ -3,8 +3,8 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-base-200 text-base-content p-10 mt-10">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+    <footer className="bg-primary text-base-100 p-10 mt-10">
+      <div className="xl:w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 xl:p-20 p-4">
 
         {/* Contact Details */}
         <div>
@@ -14,7 +14,6 @@ const Footer = () => {
           <p>📍 Address: Dhaka, Bangladesh</p>
         </div>
 
-        {/* Social Media Links */}
         <div>
           <h2 className="footer-title">Follow Us</h2>
           <div className="flex items-center gap-4 mt-3">
@@ -30,7 +29,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Business Hours */}
         <div>
           <h2 className="footer-title">Business Hours</h2>
           <p className="mt-2">🕒 Mon–Fri: 9:00 AM – 8:00 PM</p>

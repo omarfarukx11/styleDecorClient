@@ -14,8 +14,8 @@ const TopServices = () => {
   });
 
   return (
-    <section className="p-20 bg-[#f8f8f8]">
-      <div className="text-center my-10  py-10 px-4 bg-primary  rounded-2xl">
+    <section className="xl:p-20 p-4 bg-[#f8f8f8]">
+      <div className="text-center my-10  py-10 px-4 bg-primary  rounded-xl">
         <h2 className="text-5xl font-extrabold mb-4 text-white ">
            Our Decoration Packages
         </h2>

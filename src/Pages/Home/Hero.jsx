@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const Hero = () => {
   return (
-    <section className="hero  bg-base-200 p-20">
+    <section className="hero  bg-base-200 xl:p-20 p-4">
       <div className="flex items-center w-full justify-between flex-col lg:flex-row-reverse gap-10">
 
         {/* BIGGER RESPONSIVE IMAGE */}

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 import Forbidden from '../Components/Forbidden';
 
 const axiosSecure = axios.create({
+    // baseURL: 'https://style-decor-server-delta.vercel.app',
     baseURL: 'http://localhost:3000',
 })
 
@@ -27,9 +28,11 @@ const useAxiosSecure = () => {
 
             const statusCode = error.status;
             if (statusCode === 401 || statusCode === 403) {
-                <Forbidden></Forbidden>
+                logOut()
+                .then(() => { 
+                    navigate('/login')
+                 })
             }
-
 
             return Promise.reject(error);
         })

@@ -30,7 +30,7 @@ const DashboardLayout = () => {
   const commonMenu = (
     <>
       <li>
-        <NavLink to="/my-profile" className="mb-2">
+        <NavLink to="/dashboard/my-profile">
           <FaUser className="text-xl" />
           <span>My Profile</span>
         </NavLink>
@@ -136,10 +136,10 @@ const DashboardLayout = () => {
 
   return (
     <div className="flex min-h-screen bg-base-100">
-      {/* ==================== SIDEBAR – ALWAYS VISIBLE & FULL WIDTH ==================== */}
-      <div className="w-72 bg-base-200 border-r border-base-300 flex flex-col">
+
+      <div className="w-72 bg-[#B0B0B0] text-white border-r border-base-300 flex flex-col">
         {/* Logo / Title */}
-        <div className="p-6 border-b border-base-300">
+        <div className="p-8 border-b border-base-300">
           <h2 className="text-2xl font-bold text-center">
             {role === "admin" && "Admin"}
             {role === "decorator" && "Decorator"}
@@ -149,11 +149,10 @@ const DashboardLayout = () => {
 
         {/* Menu */}
         <ul className="menu p-4 flex-1 overflow-y-auto">
-          {commonMenu}
-
           {role === "user" && userMenu}
           {role === "decorator" && decoratorMenu}
           {role === "admin" && adminMenu}
+          {commonMenu}
         </ul>
 
         {/* Optional Footer */}
@@ -165,7 +164,7 @@ const DashboardLayout = () => {
       {/* ==================== MAIN CONTENT ==================== */}
       <div className="flex-1 flex flex-col">
         {/* Top Navbar (optional – you can remove if not needed) */}
-        <div className="bg-base-300 px-8 py-4 shadow-md">
+        <div className="bg-secondary text-white px-8 py-8 shadow-md">
           <h1 className="text-xl font-semibold">
             Welcome, <span className="capitalize">{role}</span>!
           </h1>

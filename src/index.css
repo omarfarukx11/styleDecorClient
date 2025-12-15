@@ -11,6 +11,15 @@
 }
 
 
+a.active {
+  border-bottom: 1px solid blue;
+  font-size: bold;
+  
+  
+  
+}
+/* text-primary font-semibold border-b-2 border-primary pb-1"; */
+
 @plugin "daisyui/theme" {
 name: "bwtheme";
 default: true;
@@ -28,11 +37,11 @@ default: true;
 --color-secondary-hover: oklch(50% 0.1 240);
 --color-secondary-content: oklch(98% 0.01 240);
 
---color-accent: oklch(55% 0.1 240); /* subtle accent */
+--color-accent: oklch(55% 0.1 240);
 --color-accent-hover: oklch(65% 0.15 240);
 --color-accent-content: oklch(10% 0 0);
 
---color-neutral: oklch(40% 0.05 240); /* neutral surfaces */
+--color-neutral: oklch(40% 0.05 240);
 --color-neutral-hover: oklch(50% 0.1 240);
 --color-neutral-content: oklch(10% 0 0);
 
