@@ -111,9 +111,9 @@ const MyBookings = () => {
       </div>
 
       <div className=" bg-base-200 rounded-lg">
-        <table className="xl:table w-full xl:table-auto">
+        <table className="md:table w-full md:table-auto">
           <thead>
-            <tr className="bg-primary text-primary-content text-[8px] uppercase flex py-8 px-6 mx-2 rounded-lg ">
+            <tr className="bg-primary text-primary-content text-[8px] md:text-xl uppercase flex justify-between py-8 md:py-10 px-6  lg:px-10 mx-2 rounded-lg ">
               <th>#</th>
               <th>Service Name</th>
               <th>Category</th>
@@ -130,13 +130,13 @@ const MyBookings = () => {
             {book.map((b, i) => (
               <tr
                 key={b._id}
-                className="hover:bg-base-200 transition-all lg:text-lg text-[8px] flex items-center my-5  py-5 mx-2 rounded-lg bg-base-100 shadow-2xl"
+                className="hover:bg-base-200 transition-all md:text-lg text-[8px] lg:px-8 flex items-center justify-between my-5 py-5 mx-2 rounded-lg bg-base-100 shadow-2xl"
               >
                 <td className="text-center font-bold px-2">{i + 1}</td>
                 <td className="font-semibold">{b.serviceName}</td>
-                <td>{b.serviceType}</td>
-                <td className="text-center px-2">{b.bookingDate}</td>
-                <td className="font-bold text-primary">৳{b.serviceCost}</td>
+                <td className="px-2 md:px-0">{b.serviceType}</td>
+                <td className="text-center ">{b.bookingDate}</td>
+                <td className="font-bold text-primary px-2">৳{b.serviceCost}</td>
 
                 <td className="text-center">
                   <span
@@ -175,7 +175,7 @@ const MyBookings = () => {
                 </td>
 
                 <td className="text-center">
-                  <div className="flex flex-wrap justify-center gap-1">
+                  <div className="flex flex-col md:flex-row justify-center gap-1">
                     <button
                       onClick={() => {
                         if (b.paymentStatus === "unpaid") {
