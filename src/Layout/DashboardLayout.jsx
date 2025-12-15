@@ -166,7 +166,7 @@ const DashboardLayout = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 z-40 w-72 bg-[#B0B0B0] text-white border-r border-base-300 flex flex-col transform transition-transform duration-300 ease-in-out
+        className={`fixed inset-y-0 left-0 z-40 w-72 bg-primary text-white border-r border-base-300 flex flex-col transform transition-transform duration-300 ease-in-out
           ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
           lg:translate-x-0 lg:static lg:inset-0
         `}
@@ -193,7 +193,7 @@ const DashboardLayout = () => {
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
-        <div className="bg-secondary text-white p-8 shadow-md lg:pl-8 pl-20">
+        <div className="bg-primary text-white p-8 shadow-md lg:pl-8 pl-20">
           <h1 className="text-xl font-semibold">
             Welcome, <span className="capitalize">{role}</span>!
           </h1>
