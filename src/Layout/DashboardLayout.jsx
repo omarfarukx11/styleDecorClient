@@ -147,7 +147,7 @@ const DashboardLayout = () => {
   return (
     <div className="flex min-h-screen bg-base-100 max-w-[1800px] mx-auto">
       {/* Mobile Hamburger Button in header */}
-      <div className="absolute top-5 left-4 z-50 lg:hidden">
+      <div className="absolute top-5 left-4 z-50 xl:hidden">
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="bg-[#B0B0B0] text-white p-3 rounded-lg shadow-lg"
@@ -168,7 +168,7 @@ const DashboardLayout = () => {
       <div
         className={`fixed inset-y-0 left-0 z-40 w-72 bg-secondary text-primary border-r border-base-300 flex flex-col transform transition-transform duration-300 ease-in-out
           ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
-          lg:translate-x-0 lg:static lg:inset-0
+          xl:translate-x-0 xl:static xl:inset-0
         `}
       >
         <div className="p-8 border-b border-base-300 sm:pr-2">

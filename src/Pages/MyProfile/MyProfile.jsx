@@ -5,7 +5,11 @@ const MyProfile = () => {
   const { user } = useAuth(); // Assuming your auth hook provides the user object
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-primary text-secondary ">
+      <div className='bg-secondary text-primary py-8 text-3xl text-center'>
+        <p>My Profile</p>
+      </div>
+
       {/* Gradient Header */}
       <div className="h-48 rounded-b-3xl relative">
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2">

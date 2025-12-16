@@ -176,12 +176,12 @@ const ServiceDetails = () => {
 
       {/* Booking Modal */}
       <dialog ref={dialogRef} className="modal">
-        <div className="modal-box w-11/12 max-w-2xl bg-base-100 p-8">
-          <h3 className="text-3xl font-bold text-center text-primary mb-6">
+        <div className="modal-box w-11/12 max-w-2xl bg-primary p-8">
+          <h3 className="text-3xl font-bold text-center text-secondary mb-6">
             Confirm Your Booking
           </h3>
 
-          <form onSubmit={handleSubmit(handleBooking)} className="space-y-5">
+          <form onSubmit={handleSubmit(handleBooking)} className="space-y-5 text-black">
             {/* Read-only fields */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>

@@ -106,156 +106,140 @@ const MyBookings = () => {
 
   return (
     <div>
-      <div className="text-center mb-10">
-        <h1 className="lg:text-4xl font-bold text-primary bg-secondary py-8">
+      <div className="text-center">
+        <h1 className="xl:text-4xl font-bold text-primary bg-secondary py-8">
           My Bookings
         </h1>
       </div>
 
 
 
-      <div className="bg-primary rounded-lg p-3">
-        {/* HEADER */}
-        <div className="hidden md:flex justify-between bg-secondary text-primary rounded-md px-3 py-10 text-sm md:text-lg font-semibold">
-          <div className="w-10 text-center">#</div>
-          <div className="w-[400px] text-center">Service Name</div>
-          <div className="w-[120px] text-center">Category</div>
-          <div className="w-[120px] text-center">Date</div>
-          <div className="w-[100px] text-center">Amount</div>
-          <div className="w-[140px] text-center">Booking Status</div>
-          <div className="w-[140px] text-center">Service Status</div>
-          <div className="w-[140px] text-center">Payment Status</div>
-          <div className="w-[220px] text-center">Action</div>
+<div className="bg-primary  rounded-lg p-10">
+
+  {/* HEADER for XL+ */}
+  <div className="hidden xl:flex bg-secondary xl:justify-between text-primary rounded-md py-4 text-sm xl:text-lg font-semibold">
+    <div className="w-10 text-center xl:pl-12">#</div>
+    <div className="w-[250px] text-center">Service Name</div>
+    <div className="w-[120px] text-center">Category</div>
+    <div className="w-[120px] text-center">Date</div>
+    <div className="w-[100px] text-center">Amount</div>
+    <div className="w-[140px] text-center">Booking Status</div>
+    <div className="w-[140px] text-center">Service Status</div>
+    <div className="w-[140px] text-center">Payment Status</div>
+    <div className="w-[220px] text-center">Action</div>
+  </div>
+
+  {/* BODY */}
+  <div className="space-y-5 xl:space-x-2">
+    {book.map((b, i) => (
+      <div
+        key={b._id}
+        className="flex flex-col xl:flex-row xl:items-center xl:justify-between bg-primary text-secondary rounded-lg shadow-xl p-2"
+      >
+        {/* # */}
+        <div className="flex justify-between xl:w-10 px-2 py-2 xl:ml-10 font-semibold border-b xl:border-b-0">
+          <span className="xl:hidden">#{i + 1}</span>
+          <span className="hidden xl:block text-center">{i + 1}</span>
         </div>
 
-        {/* BODY */}
-         <div className="bg-primary rounded-lg p-3 space-y-2">
+        {/* Service Name */}
+        <div className="flex justify-between xl:w-[250px] px-2 py-2 border-b xl:border-b-0">
+          <span className="xl:hidden font-semibold">Service Status :</span>
+          <span >{b.serviceName}</span>
+        </div>
 
-  {/* BODY ROWS */}
-  {book.map((b, i) => (
-    <div
-      key={b._id}
-      className="
-        rounded-lg p-4
-        flex flex-col md:flex-row
-        gap-2 md:gap-0
-        bg-primary text-secondary hover:bg-gray-600 capitalize shadow-xl py-5
-      "
-    >
-      {/* # */}
-      <div className="flex justify-between md:w-10 md:flex-none">
-        {/* <span className="font-semibold">#</span> */}
-        <span className="md:hidden">{i + 1}</span>
-      </div>
+        {/* Category */}
+        <div className="flex justify-between xl:w-[120px] px-2 py-2 border-b xl:border-b-0">
+          <span className="xl:hidden font-semibold">Category :</span>
+          <span className="text-center">{b.serviceType}</span>
+        </div>
 
-      <div className="hidden md:block w-10 font-semibold">{i + 1}</div>
+        {/* Date */}
+        <div className="flex justify-between xl:w-[120px] px-2 py-2 border-b xl:border-b-0">
+          <span className="xl:hidden font-semibold">Date :</span>
+          <span className="text-center">{b.bookingDate}</span>
+        </div>
 
-      {/* Service Name */}
-      <div className="flex justify-between md:flex-1">
-        <span className="font-semibold md:hidden">Service:</span>
-        <span className="text-center">{b.serviceName}</span>
-      </div>
+        {/* Amount */}
+        <div className="flex justify-between xl:w-[100px] px-2 py-2 border-b xl:border-b-0 font-semibold">
+          <span className="xl:hidden font-semibold">Amount :</span>
+          <span className="text-center">৳{b.serviceCost}</span>
+        </div>
 
-      {/* Category */}
-      <div className="flex justify-between md:w-[120px] md:text-center">
-        <span className="font-semibold md:hidden">Category:</span>
-        <span>{b.serviceType}</span>
-      </div>
-
-      {/* Date */}
-      <div className="flex justify-between md:w-[120px] md:text-center">
-        <span className="font-semibold md:hidden">Date:</span>
-        <span>{b.bookingDate}</span>
-      </div>
-
-      {/* Amount */}
-      <div className="flex justify-between md:w-[100px] md:text-center font-semibold ">
-        <span className="font-semibold md:hidden">Amount:</span>
-        <span>৳{b.serviceCost}</span>
-      </div>
-
-      {/* Booking Status */}
-      <div className="flex justify-between md:w-[140px] md:text-center">
-        <span className="font-semibold md:hidden">Booking:</span>
-        <span
-          className={`px-2 flex items-center rounded-xl  md:mx-2 ${
+        {/* Booking Status */}
+        <div className="flex justify-between xl:w-[140px] px-2 py-1 border-b 2xl:pl-0 xl:pl-10 xl:border-b-0">
+          <span className="xl:hidden font-semibold">Booking Status :</span>
+          <span className={`px-2 py-1 rounded-xl ${
             b.bookingStatus === "Confirmed"
               ? "bg-green-500 text-white"
               : "bg-yellow-500 text-white"
-          }`}
-        >
-          {b.bookingStatus}
-        </span>
-      </div>
+          }`}>
+            {b.bookingStatus}
+          </span>
+        </div>
 
-      {/* Service Status */}
-      <div className="flex justify-between md:w-[140px] md:text-center">
-        <span className="font-semibold md:hidden">Service:</span>
-        <span
-          className={`px-2 flex items-center rounded-xl  md:mx-2 ${
+        {/* Service Status */}
+        <div className="flex justify-between xl:w-[140px] px-2 py-1 border-b xl:border-b-0">
+          <span className="xl:hidden font-semibold">Service Status :</span>
+          <span className={`px-2 py-1 rounded-xl text-sm text-center ${
             b.decoratorStatus === "completed"
               ? "bg-green-500 text-white"
               : "bg-blue-500 text-white"
-          }`}
-        >
-          {b.decoratorStatus}
-        </span>
-      </div>
+          }`}>
+            {b.decoratorStatus}
+          </span>
+        </div>
 
-      {/* Payment Status */}
-      <div className="flex justify-between md:w-[140px] md:text-center">
-        <span className="font-semibold md:hidden">Payment:</span>
-        <span
-          className={`px-2 flex items-center rounded-xl  md:mx-2 ${
+        {/* Payment Status */}
+        <div className="flex justify-between xl:w-[140px] px-2 py-1 xl:pl-10 border-b xl:border-b-0">
+          <span className="xl:hidden font-semibold">Payment :</span>
+          <span className={`px-2 py-1 rounded-xl ${
             b.paymentStatus === "paid"
               ? "bg-green-500 text-white"
               : "bg-red-500 text-white"
-          }`}
-        >
-          {b.paymentStatus}
-        </span>
-      </div>
+          }`}>
+            {b.paymentStatus}
+          </span>
+        </div>
 
-      {/* ACTION */}
-      <div className="flex gap-2 ">
-        <button
-          onClick={() => {
-            if (b.paymentStatus === "unpaid") {
-              handlePayModal();
+        {/* ACTION */}
+        <div className="flex flex-col xl:flex-row gap-2 xl:w-[220px] px-2 py-2 justify-center">
+          <button
+            onClick={() => {
+              if (b.paymentStatus === "unpaid") {
+                handlePayModal();
+                setBookingData(b);
+              }
+            }}
+            disabled={b.paymentStatus === "paid"}
+            className={`btn btn-xs xl:btn-sm text-white ${
+              b.paymentStatus === "paid" ? "btn-success" : "btn-primary"
+            }`}
+          >
+            {b.paymentStatus === "paid" ? "Paid" : "Pay"}
+          </button>
+
+          <button
+            onClick={() => {
+              handleModal();
               setBookingData(b);
-            }
-          }}
-          disabled={b.paymentStatus === "paid"}
-          className={`btn btn-xs md:btn-sm bg-green-600 text-white flex-1 ${
-            b.paymentStatus === "paid" ? "btn-success" : "btn-primary"
-          }`}
-        >
-          {b.paymentStatus === "paid" ? "Paid" : "Pay"}
-        </button>
+            }}
+            className="btn btn-warning btn-xs text-white xl:btn-sm"
+          >
+            Update
+          </button>
 
-        <button
-          onClick={() => {
-            handleModal();
-            setBookingData(b);
-          }}
-          className="btn btn-warning btn-xs md:btn-sm flex-1"
-        >
-          Update
-        </button>
-
-        <button
-          onClick={() => handleDeleteBooking(b._id)}
-          className="btn btn-error btn-xs md:btn-sm flex-1"
-        >
-          Delete
-        </button>
+          <button
+            onClick={() => handleDeleteBooking(b._id)}
+            className="btn btn-error btn-xs text-white xl:btn-sm"
+          >
+            Delete
+          </button>
+        </div>
       </div>
-    </div>
-  ))}
+    ))}
+  </div>
 </div>
-    </div>
-
-
 
 
 
@@ -299,7 +283,7 @@ const MyBookings = () => {
                 className="input input-bordered outline-none w-full"
               />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
               <div>
                 <label className="font-semibold">
                   Region <span className="text-error">*</span>

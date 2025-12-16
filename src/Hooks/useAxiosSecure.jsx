@@ -6,6 +6,8 @@ import Forbidden from '../Components/Forbidden';
 
 const axiosSecure = axios.create({
     baseURL: 'https://style-decor-server-delta.vercel.app',
+    // baseURL: 'http://localhost:3000',
+
 })
 
 const useAxiosSecure = () => {

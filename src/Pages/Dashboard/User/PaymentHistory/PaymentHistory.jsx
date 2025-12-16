@@ -6,6 +6,7 @@ import useAuth from "../../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import Loader from "../../../../Components/Loader";
 
+
 const PaymentHistory = () => {
   const [searchParams] = useSearchParams();
   const axiosSecure = useAxiosSecure();
@@ -29,7 +30,6 @@ const PaymentHistory = () => {
       axiosSecure
         .patch(`/payment-success?session_id=${sessionId}`)
         .then((res) => {
-          console.log(res.data.bookingUpdate.modifiedCount);
           if (res.data.bookingUpdate.modifiedCount) {
             Swal.fire({
               icon: "success",
@@ -43,9 +43,15 @@ const PaymentHistory = () => {
     }
   }, [sessionId, axiosSecure, refetch]);
 
+
+
+
+
   if (isLoading) {
-    <Loader></Loader>
+    return  <Loader></Loader>
   }
+
+ 
 
   return (
     <div>
@@ -55,48 +61,73 @@ const PaymentHistory = () => {
       </h1>
       </div>
 
-      <div className="p-8">
-        <table className="lg:table lg:table-zebra w-full text-base">
-        <thead className="bg-secondary text-primary text-sm uppercase">
-          <tr>
-            <th className="md:text-lg px-2 text-[10px]">#</th>
-            <th className="md:text-lg px-2 text-[10px]">Service Name</th>
-            <th className="md:text-lg px-2 text-[10px] ">Biller Name</th>
-            <th className="md:text-lg px-2 text-[10px] ">User Email</th>
-            <th className="md:text-lg px-2 text-[10px]">Time</th>
-            <th className="md:text-lg px-2 text-[10px]">Amount</th>
-            <th className="md:text-lg px-2 text-[10px]">Transaction ID</th>
-          </tr>
-        </thead>
+<div className="bg-primary rounded-lg p-5">
 
-        <tbody>
-          {/* Row 1 */}
-          {history.map((b, i) => (
-            <tr key={b._id} className="bg-primary text-secondary">
-              <td className="md:text-lg px-2 text-[10px] text-center font-bold">
-                {i + 1}
-              </td>
-              <td className="md:text-lg px-2 text-[10px] font-semibold text-lg">
-                {b.serviceName}
-              </td>
-              <td className="md:text-lg px-2 text-[10px] text-center">
-                {b.userName}
-              </td>
-              <td className="md:text-lg px-2 text-[10px] text-center ">
-                {b.userEmail}
-              </td>
-              <td className="md:text-lg px-2 text-[10px]">
-                {new Date(b.paidAt).toLocaleString()}
-              </td>
-              <td className="md:text-lg px-2 text-[10px] font-bold text-primary text-lg">
-                ৳{b.amount}
-              </td>
-              <td className="md:text-lg px-2 text-[10px]">{b.transactionId}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+  {/* HEADER for XL+ */}
+  <div className="hidden xl:flex bg-secondary justify-between text-primary rounded-md py-8 text-sm xl:text-base font-semibold">
+    <div className="w-8 text-center">#</div>
+    <div className="w-[200px] text-center">Service Name</div>
+    <div className="w-[140px] text-center">Biller Name</div>
+    <div className="w-[180px] text-center">User Email</div>
+    <div className="w-40 text-center">Time</div>
+    <div className="w-[140px] xl:pl-25 text-center">Amount</div>
+    <div className="w-[320px] text-center">Transaction ID</div>
+  </div>
+
+  {/* BODY */}
+  <div className="space-y-6 xl:space-y-4 space-x-5">
+    {history.map((b, i) => (
+      <div
+        key={b._id}
+        className="flex flex-col xl:flex-row xl:items-center xl:justify-between bg-primary py-8 text-sm text-secondary rounded-lg shadow p-3"
+      >
+        {/* # */}
+        <div className="flex justify-between xl:w-8 px-1 py-1 font-semibold border-b xl:border-b-0">
+          <span className="xl:hidden">#{i + 1}</span>
+          <span className="hidden xl:block text-center">{i + 1}</span>
+        </div>
+
+        {/* Service Name */}
+        <div className="flex justify-between xl:w-[200px] px-1 py-1 border-b xl:border-b-0">
+          <span className="xl:hidden font-semibold">Service Name :</span>
+          <span>{b.serviceName}</span>
+        </div>
+
+        {/* Biller Name */}
+        <div className="flex justify-between xl:w-[140px] px-1 py-1 border-b xl:border-b-0">
+          <span className="xl:hidden font-semibold">Biller :</span>
+          <span>{b.userName}</span>
+        </div>
+
+        {/* User Email */}
+        <div className="flex justify-between xl:w-[180px] px-1 py-1 border-b xl:border-b-0">
+          <span className="xl:hidden font-semibold">Email :</span>
+          <span>{b.userEmail}</span>
+        </div>
+
+        {/* Time */}
+        <div className="flex justify-between xl:w-[160px] px-1 py-1 border-b xl:border-b-0">
+          <span className="xl:hidden font-semibold">Time :</span>
+          <span>{new Date(b.paidAt).toLocaleString()}</span>
+        </div>
+
+        {/* Amount */}
+        <div className="flex justify-between xl:w-[100px] px-1 py-1 border-b xl:border-b-0 font-semibold">
+          <span className="xl:hidden font-semibold">Amount :</span>
+          <span>৳{b.amount}</span>
+        </div>
+
+        {/* Transaction ID */}
+        <div className="flex justify-between xl:w-[220px] px-1 py-1 border-b xl:border-b-0">
+          <span className="xl:hidden font-semibold">Txn ID :</span>
+          <span className="-ml-10">{b.transactionId}</span>
+        </div>
       </div>
+    ))}
+  </div>
+</div>
+
+
     </div>
   );
 };
