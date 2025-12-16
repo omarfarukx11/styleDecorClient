@@ -204,7 +204,7 @@ const ManageServices = () => {
           <table className="table w-full">
             {/* ===== HEADER (DESKTOP ONLY) ===== */}
             <thead className="hidden xl:table-header-group">
-              <tr className="bg-primary text-secondary">
+              <tr className="text-primary bg-secondary h-20">
                 <th>Image</th>
                 <th>Service Name</th>
                 <th>Category</th>
@@ -219,7 +219,7 @@ const ManageServices = () => {
             <tbody>
               {isLoading ? (
                 <tr>
-                  <td colSpan="8" className="text-center py-12 text-xl">
+                  <td colSpan="8" className="text-center py-12 text-xl ">
                     <span className="loading loading-spinner loading-lg"></span>
                     Loading services...
                   </td>
@@ -236,10 +236,10 @@ const ManageServices = () => {
                     key={service._id}
                     className="
                 block xl:table-row
-                border border-base-300
                 rounded-xl xl:rounded-none
                 mb-6 xl:mb-0
-                bg-base-100
+                bg-primary text-secondary
+                border-b-2 border-secondary
               "
                   >
                     {/* IMAGE */}
@@ -314,7 +314,7 @@ const ManageServices = () => {
 
                       <button
                         onClick={() => handleModal(service)}
-                        className="btn btn-sm btn-outline btn-info"
+                        className="btn btn-sm btn-outline btn-info mr-5"
                       >
                         Edit
                       </button>
