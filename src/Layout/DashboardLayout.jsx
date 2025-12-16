@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, Outlet, useLocation } from "react-router";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router";
 import {
   FaHome,
   FaUser,
@@ -15,19 +15,35 @@ import {
 import { MdOutlineDesignServices } from "react-icons/md";
 import useRole from "../Hooks/useRole";
 import Loader from "../Components/Loader";
+import useAuth from "../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const DashboardLayout = () => {
   const { role, roleLoading } = useRole();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { logOut } = useAuth();
+  const navigate = useNavigate();
 
   // Close mobile menu on route change
   useEffect(() => {
-    setIsMobileMenuOpen(false);
+    // setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    logOut().then(() => {
+      navigate("/");
+      Swal.fire({
+        title: "Logged Out!",
+        icon: "success",
+        timer: 1800,
+        showConfirmButton: false,
+      });
+    });
   };
 
   if (roleLoading) return <Loader />;
@@ -185,7 +201,9 @@ const DashboardLayout = () => {
           {role === "admin" && adminMenu}
           {commonMenu}
         </ul>
-
+        <div>
+          <button onClick={handleLogout} className="btn btn-primary text-secondary w-full mb-10">Logout</button>
+        </div>
         <div className="p-4 border-t border-base-300 text-center text-sm opacity-70">
           © 2025 StyleDecor
         </div>
@@ -204,8 +222,8 @@ const DashboardLayout = () => {
         </div>
       </div> */}
       <div className="flex-1 bg-base-100 overflow-y-auto">
-          <Outlet />
-        </div>
+        <Outlet />
+      </div>
     </div>
   );
 };

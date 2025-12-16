@@ -55,98 +55,128 @@ const handleDecoratorWordStatus = () => {
 
   return (
     <div>
-      <table className="table w-full ">
-        <thead className="text-xl">
-          <tr className="bg-primary text-primary-content">
-            <th>SL</th>
-            <th>Service Name</th>
-            <th>Client Name</th>
-            <th>Client Email</th>
-            <th>Client Address</th>
-            <th>Booking Date</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody className="bg-base-300 border-2 text-xl">
-          {
-            booking.map((d, i) => (
-              <tr key={d._id} className="hover">
-                <td>{i + 1}</td>
-                <td>{d.serviceName}</td>
-                <td>{d.userName}</td>
-                <td>{d.userEmail}</td>
-                <td>
-                  {d.location} {d.bookingDistrict}
-                </td>
-                <td>{d.bookingDate}</td>
-                <td>
-                  {d.decoratorStatus === "decorator Assigned" && (
-                    <button
-                      onClick={() =>
-                        handleDecoratorStatus("In Progress", d._id)
-                      }
-                      className="btn btn-primary text-white"
-                    >
-                      Accept
-                    </button>
-                  )}
+      <div className="bg-secondary text-primary py-8 text-center text-3xl">
+          <h1>Assign Project</h1>
+      </div>
 
-                  {d.decoratorStatus === "In Progress" && (
-                    <button
-                      onClick={() =>
-                        handleDecoratorStatus("Materials Purchased", d._id)
-                      }
-                      className="btn btn-primary text-white"
-                    >
-                      Materials Purchased
-                    </button>
-                  )}
-                  {d.decoratorStatus === "Materials Purchased" && (
-                    <button
-                      onClick={() =>
-                        handleDecoratorStatus("Rider On The Way", d._id)
-                      }
-                      className="btn btn-primary text-white"
-                    >
-                      Rider On The Way
-                    </button>
-                  )}
-                  {d.decoratorStatus === "Rider On The Way" && (
-                    <button
-                      onClick={() =>
-                        handleDecoratorStatus("Decorator Reached", d._id)
-                      }
-                      className="btn btn-primary text-white"
-                    >
-                      Decorator Reached
-                    </button>
-                  )}
-                  {d.decoratorStatus === "Decorator Reached" && (
-                    <button
-                      onClick={() =>
-                      {
-                        handleDecoratorStatus("completed", d._id),
-                        handleDecoratorWordStatus()
-                      }
+<div className="bg-primary rounded-lg p-5">
 
-                      }
-                      className="btn btn-primary text-white"
-                    >
-                      Complete
-                    </button>
-                  )}
-                  {d.decoratorStatus === "completed" && (
-                    <button className="btn btn-primary cursor-not-allowed text-white">
-                      completed
-                    </button>
-                  )}
-                </td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+  {/* HEADER for XL+ */}
+  <div className="hidden xl:flex bg-secondary justify-between text-primary rounded-md py-3 text-sm xl:text-lg font-semibold">
+    <div className="w-8 text-center">#</div>
+    <div className="w-[220px] text-center">Service Name</div>
+    <div className="w-[180px] text-center">Client Name</div>
+    <div className="w-[220px] text-center">Client Email</div>
+    <div className="w-[200px] text-center">Client Address</div>
+    <div className="w-[140px] text-center">Booking Date</div>
+    <div className="w-[280px] text-center">Action</div>
+  </div>
 
+  {/* BODY */}
+  <div className="space-y-6 xl:space-y-4">
+    {booking.map((d, i) => (
+      <div
+        key={d._id}
+        className="flex flex-col xl:flex-row xl:items-center xl:justify-between bg-primary text-secondary rounded-lg shadow p-3"
+      >
+        {/* # */}
+        <div className="flex justify-between xl:w-8 px-1 py-1 xl:mr-10 font-semibold border-b xl:border-b-0">
+          <span className="xl:hidden">#{i + 1}</span>
+          <span className="hidden xl:block text-center">{i + 1}</span>
+        </div>
+
+        {/* Service Name */}
+        <div className="flex justify-between xl:w-[220px] px-1 py-1 border-b xl:border-b-0">
+          <span className="xl:hidden font-semibold">Service Name :</span>
+          <span>{d.serviceName}</span>
+        </div>
+
+        {/* Client Name */}
+        <div className="flex justify-between xl:w-[180px] px-1 py-1 border-b xl:border-b-0">
+          <span className="xl:hidden font-semibold">Client Name :</span>
+          <span className="xl:pr-20">{d.userName}</span>
+        </div>
+
+        {/* Client Email */}
+        <div className="flex justify-between xl:w-[220px] px-1 py-1 border-b xl:border-b-0">
+          <span className="xl:hidden font-semibold">Client Email :</span>
+          <span>{d.userEmail}</span>
+        </div>
+
+        {/* Client Address */}
+        <div className="flex justify-between xl:w-[200px] px-1 py-1 border-b xl:border-b-0">
+          <span className="xl:hidden font-semibold">Address :</span>
+          <span className="2xl:pl-10">{d.location} {d.bookingDistrict}</span>
+        </div>
+
+        {/* Booking Date */}
+        <div className="flex justify-between xl:w-[140px] px-1 py-1 border-b xl:border-b-0">
+          <span className="xl:hidden font-semibold">Booking Date :</span>
+          <span>{d.bookingDate}</span>
+        </div>
+
+      <div className="flex flex-col xl:flex-row gap-2 py-5 px-1 justify-center">
+  {d.decoratorStatus === "decorator Assigned" && (
+    <button
+      onClick={() => handleDecoratorStatus("In Progress", d._id)}
+      className="btn btn-primary text-white btn-sm xl:btn-sm w-full"
+    >
+      Accept
+    </button>
+  )}
+
+  {d.decoratorStatus === "In Progress" && (
+    <button
+      onClick={() => handleDecoratorStatus("Materials Purchased", d._id)}
+      className="btn btn-primary text-white btn-sm xl:btn-sm w-full"
+    >
+      Materials Purchased
+    </button>
+  )}
+
+  {d.decoratorStatus === "Materials Purchased" && (
+    <button
+      onClick={() => handleDecoratorStatus("Rider On The Way", d._id)}
+      className="btn btn-primary text-white btn-sm xl:btn-sm w-full"
+    >
+      Rider On The Way
+    </button>
+  )}
+
+  {d.decoratorStatus === "Rider On The Way" && (
+    <button
+      onClick={() => handleDecoratorStatus("Decorator Reached", d._id)}
+      className="btn btn-primary text-white btn-sm xl:btn-sm w-full"
+    >
+      Decorator Reached
+    </button>
+  )}
+
+  {d.decoratorStatus === "Decorator Reached" && (
+    <button
+      onClick={() => {
+        handleDecoratorStatus("completed", d._id);
+        handleDecoratorWordStatus();
+      }}
+      className="btn btn-primary text-white btn-sm xl:btn-sm w-full"
+    >
+      Complete
+    </button>
+  )}
+
+  {d.decoratorStatus === "completed" && (
+    <button className="btn btn-success cursor-not-allowed btn-sm xl:btn-sm w-full">
+      Completed
+    </button>
+  )}
+</div>
+
+
+
+      </div>
+    ))}
+  </div>
+</div>
 
     </div>
   );
