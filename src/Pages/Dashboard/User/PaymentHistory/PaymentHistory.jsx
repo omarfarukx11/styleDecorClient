@@ -48,13 +48,16 @@ const PaymentHistory = () => {
   }
 
   return (
-    <div className="overflow-x-auto rounded-2xl shadow-2xl border border-base-300">
-      <h1 className="text-center font-extrabold lg:text-5xl xl:my-20 my-5 ">
+    <div>
+      <div>
+        <h1 className="text-center bg-black font-extrabold text-3xl py-8 ">
         Your Payment History
       </h1>
+      </div>
 
-      <table className="lg:table lg:table-zebra w-full text-base">
-        <thead className="bg-linear-to-r from-primary to-secondary text-white text-sm uppercase">
+      <div className="p-8">
+        <table className="lg:table lg:table-zebra w-full text-base">
+        <thead className="bg-secondary text-primary text-sm uppercase">
           <tr>
             <th className="md:text-lg px-2 text-[10px]">#</th>
             <th className="md:text-lg px-2 text-[10px]">Service Name</th>
@@ -69,7 +72,7 @@ const PaymentHistory = () => {
         <tbody>
           {/* Row 1 */}
           {history.map((b, i) => (
-            <tr key={b._id} className="hover:bg-base-200 transition-all">
+            <tr key={b._id} className="bg-primary text-secondary">
               <td className="md:text-lg px-2 text-[10px] text-center font-bold">
                 {i + 1}
               </td>
@@ -93,6 +96,7 @@ const PaymentHistory = () => {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };

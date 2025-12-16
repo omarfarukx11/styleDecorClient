@@ -105,44 +105,55 @@ const MyBookings = () => {
   }
 
   return (
-    <div className="">
+    <div>
       <div className="text-center mb-10">
-        <h1 className="lg:text-4xl font-bold text-primary bg-secondary py-10 rounded-xl">
+        <h1 className="lg:text-4xl font-bold text-primary bg-secondary py-8">
           My Bookings
         </h1>
       </div>
 
 
 
+      <div className="bg-primary rounded-lg p-3">
+        {/* HEADER */}
+        <div className="hidden md:flex justify-between bg-secondary text-primary rounded-md px-3 py-10 text-sm md:text-lg font-semibold">
+          <div className="w-10 text-center">#</div>
+          <div className="w-[400px] text-center">Service Name</div>
+          <div className="w-[120px] text-center">Category</div>
+          <div className="w-[120px] text-center">Date</div>
+          <div className="w-[100px] text-center">Amount</div>
+          <div className="w-[140px] text-center">Booking Status</div>
+          <div className="w-[140px] text-center">Service Status</div>
+          <div className="w-[140px] text-center">Payment Status</div>
+          <div className="w-[220px] text-center">Action</div>
+        </div>
 
-
-
-
-
- <div className="bg-gray-500 rounded-lg p-3 space-y-2">
+        {/* BODY */}
+         <div className="bg-primary rounded-lg p-3 space-y-2">
 
   {/* BODY ROWS */}
   {book.map((b, i) => (
     <div
       key={b._id}
       className="
-        border border-gray-200 rounded-md p-4
+        rounded-lg p-4
         flex flex-col md:flex-row
         gap-2 md:gap-0
-        bg-gray-500 hover:bg-gray-100
+        bg-primary text-secondary hover:bg-gray-600 capitalize shadow-xl py-5
       "
     >
       {/* # */}
       <div className="flex justify-between md:w-10 md:flex-none">
-        <span className="font-semibold">#</span>
+        {/* <span className="font-semibold">#</span> */}
         <span className="md:hidden">{i + 1}</span>
       </div>
-      <div className="hidden md:block w-10 text-center font-semibold">{i + 1}</div>
+
+      <div className="hidden md:block w-10 font-semibold">{i + 1}</div>
 
       {/* Service Name */}
       <div className="flex justify-between md:flex-1">
         <span className="font-semibold md:hidden">Service:</span>
-        <span>{b.serviceName}</span>
+        <span className="text-center">{b.serviceName}</span>
       </div>
 
       {/* Category */}
@@ -158,7 +169,7 @@ const MyBookings = () => {
       </div>
 
       {/* Amount */}
-      <div className="flex justify-between md:w-[100px] md:text-center font-semibold text-primary">
+      <div className="flex justify-between md:w-[100px] md:text-center font-semibold ">
         <span className="font-semibold md:hidden">Amount:</span>
         <span>৳{b.serviceCost}</span>
       </div>
@@ -167,7 +178,7 @@ const MyBookings = () => {
       <div className="flex justify-between md:w-[140px] md:text-center">
         <span className="font-semibold md:hidden">Booking:</span>
         <span
-          className={`badge badge-sm ${
+          className={`px-2 flex items-center rounded-xl  md:mx-2 ${
             b.bookingStatus === "Confirmed"
               ? "bg-green-500 text-white"
               : "bg-yellow-500 text-white"
@@ -181,7 +192,7 @@ const MyBookings = () => {
       <div className="flex justify-between md:w-[140px] md:text-center">
         <span className="font-semibold md:hidden">Service:</span>
         <span
-          className={`badge badge-sm ${
+          className={`px-2 flex items-center rounded-xl  md:mx-2 ${
             b.decoratorStatus === "completed"
               ? "bg-green-500 text-white"
               : "bg-blue-500 text-white"
@@ -195,7 +206,7 @@ const MyBookings = () => {
       <div className="flex justify-between md:w-[140px] md:text-center">
         <span className="font-semibold md:hidden">Payment:</span>
         <span
-          className={`badge badge-sm ${
+          className={`px-2 flex items-center rounded-xl  md:mx-2 ${
             b.paymentStatus === "paid"
               ? "bg-green-500 text-white"
               : "bg-red-500 text-white"
@@ -206,7 +217,7 @@ const MyBookings = () => {
       </div>
 
       {/* ACTION */}
-      <div className="flex flex-col md:flex-row gap-2 md:w-[220px]">
+      <div className="flex gap-2 ">
         <button
           onClick={() => {
             if (b.paymentStatus === "unpaid") {
@@ -215,7 +226,7 @@ const MyBookings = () => {
             }
           }}
           disabled={b.paymentStatus === "paid"}
-          className={`btn btn-xs md:btn-sm flex-1 ${
+          className={`btn btn-xs md:btn-sm bg-green-600 text-white flex-1 ${
             b.paymentStatus === "paid" ? "btn-success" : "btn-primary"
           }`}
         >
@@ -242,6 +253,7 @@ const MyBookings = () => {
     </div>
   ))}
 </div>
+    </div>
 
 
 

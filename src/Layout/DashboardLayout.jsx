@@ -145,7 +145,7 @@ const DashboardLayout = () => {
   );
 
   return (
-    <div className="flex min-h-screen bg-base-100">
+    <div className="flex min-h-screen bg-base-100 max-w-[1800px] mx-auto">
       {/* Mobile Hamburger Button in header */}
       <div className="absolute top-5 left-4 z-50 lg:hidden">
         <button
@@ -192,7 +192,7 @@ const DashboardLayout = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
+      {/* <div className="flex-1 flex flex-col">
         <div className="bg-secondary text-primary p-8 shadow-md lg:pl-8 pl-20">
           <h1 className="text-xl font-semibold">
             Welcome, <span className="capitalize">{role}</span>!
@@ -202,7 +202,10 @@ const DashboardLayout = () => {
         <div className="flex-1 lg:p-8 bg-base-100 overflow-y-auto">
           <Outlet />
         </div>
-      </div>
+      </div> */}
+      <div className="flex-1 bg-base-100 overflow-y-auto">
+          <Outlet />
+        </div>
     </div>
   );
 };
