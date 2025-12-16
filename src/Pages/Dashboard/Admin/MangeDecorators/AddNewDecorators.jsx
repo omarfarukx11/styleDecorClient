@@ -52,19 +52,22 @@ const AddNewDecorators = () => {
 
   return (
     <div>
-      <h1 className="text-center font-bold text-5xl  my-10">
+      <div className="py-8 text-3xl text-center bg-secondary text-primary">
+        <h1>
         Crete new decorators
       </h1>
-      <table className="table w-full ">
-        <thead className="text-xl">
-          <tr className="bg-primary text-primary-content">
+      </div>
+      <div className="xl:p-8 py-5 px-2 ">
+        <table className="table w-full ">
+        <thead className="xl:text-xl text-[12px] ">
+          <tr className="bg-secondary text-primary rounded-lg">
             <th>SL</th>
             <th>Name</th>
             <th>Email</th>
             <th>Action</th>
           </tr>
         </thead>
-        <tbody className="bg-base-300 border-2 text-xl">
+        <tbody className="bg-primary text-secondary shadow-xl border-2 xl:text-xl text-[12px]">
           {user.length === 0 ? (
             <p>No Decorators Available</p>
           ) : (
@@ -75,7 +78,7 @@ const AddNewDecorators = () => {
                 <td>{u.email}</td>
                 <td>
                   <button
-                    className="btn btn-primary text-white"
+                    className="btn btn-primary text-secondary "
                     onClick={() => handleMakeDecorator(u)}
                   >
                     Make Decorator
@@ -86,6 +89,7 @@ const AddNewDecorators = () => {
           )}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };

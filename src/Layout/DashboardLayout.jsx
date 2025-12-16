@@ -166,7 +166,7 @@ const DashboardLayout = () => {
       <div className="absolute top-5 left-4 z-50 xl:hidden">
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="bg-[#B0B0B0] text-white p-3 rounded-lg shadow-lg"
+          className="relative top-5"
         >
           {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={20} />}
         </button>
@@ -182,7 +182,7 @@ const DashboardLayout = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 z-40 w-72 bg-secondary text-primary border-r border-base-300 flex flex-col transform transition-transform duration-300 ease-in-out
+        className={`fixed inset-y-0 left-0 z-40 w-72 bg-primary text-secondary border-r border-base-300 flex flex-col transform transition-transform duration-300 ease-in-out
           ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
           xl:translate-x-0 xl:static xl:inset-0
         `}
@@ -202,7 +202,7 @@ const DashboardLayout = () => {
           {commonMenu}
         </ul>
         <div>
-          <button onClick={handleLogout} className="btn btn-primary text-secondary w-full mb-10">Logout</button>
+          <button onClick={handleLogout} className="btn btn-primary btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all w-full my-10" >Logout</button>
         </div>
         <div className="p-4 border-t border-base-300 text-center text-sm opacity-70">
           © 2025 StyleDecor

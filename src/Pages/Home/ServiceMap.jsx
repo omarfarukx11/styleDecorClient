@@ -36,16 +36,16 @@ const ServiceMap = () => {
 
   return (
     <div className="xl:p-20 p-4 rounded-xl mb-10">
-      <div className="bg-primary p-10 text-secondary rounded-xl">
+      <div className="bg-secondary p-10 text-primary rounded-xl">
         <h1 className="text-5xl font-bold ">
           We provide services all over Bangladesh
         </h1>
         <div className="my-10">
          <form onSubmit={handleSearch}>
-           <label className="input rounded-4xl outline-none bg-base-200 border-none shadow-2xl  my-5">
-            <IoSearch className="text-4xl text-gray-600" />
+           <label className="input  rounded-4xl outline-none  bg-primary text-secondary border-none shadow-2xl my-5">
+            <IoSearch className="text-4xl text-secondary" />
             <input  name="location" placeholder="Search here" required />
-            <button  className="py-2 px-4 bg-primary text-white rounded-4xl ml-4 relative left-3 font-bold">
+            <button  className="py-2 px-4 bg-secondary text-white rounded-4xl ml-4 relative left-3 font-bold">
               Search
             </button>
           </label>

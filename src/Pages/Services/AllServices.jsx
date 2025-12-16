@@ -51,7 +51,7 @@ const AllServices = () => {
     <section className="min-h-screen bg-[#f8f8f8] lg:p-20">
       <div className="mx-auto">
         {/* Header (unchanged) */}
-        <div className="text-center my-10 py-16 px-6 bg-primary rounded-3xl shadow-2xl">
+        <div className="text-center my-10 py-16 px-6 bg-secondary rounded-3xl shadow-2xl">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white">
             Our Decoration Packages
           </h2>
@@ -62,18 +62,18 @@ const AllServices = () => {
         </div>
 
         {/* Filter Form (unchanged) */}
-        <form className="my-12 bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+        <form className="my-12 bg-primary rounded-3xl shadow-xl p-8 border border-gray-100">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <input
               {...register("search")}
               type="text"
               placeholder="Search by package name..."
-              className="w-full px-6 py-4 text-lg border border-gray-300 rounded-2xl"
+              className="w-full px-6 py-4 text-lg border text-secondary border-gray-300 rounded-2xl"
             />
 
             <select
               {...register("type")}
-              className="w-full px-6 py-4 text-lg border border-gray-300 rounded-2xl"
+              className="w-full px-6 py-4 text-lg border text-secondary border-gray-300 rounded-2xl"
             >
               <option value="All">All Service Types</option>
               <option value="Wedding">Wedding</option>
@@ -87,14 +87,14 @@ const AllServices = () => {
                 {...register("minPrice")}
                 type="number"
                 placeholder="Min Price"
-                className="w-full px-6 py-4 text-lg border border-gray-300 rounded-2xl"
+                className="w-full px-6 py-4 text-lg border text-secondary border-gray-300 rounded-2xl"
               />
               <span className="text-gray-500 text-xl">—</span>
               <input
                 {...register("maxPrice")}
                 type="number"
                 placeholder="Max Price"
-                className="w-full px-6 py-4 text-lg border border-gray-300 rounded-2xl"
+                className="w-full px-6 py-4 text-lg border text-secondary border-gray-300 rounded-2xl"
               />
             </div>
           </div>
@@ -103,7 +103,7 @@ const AllServices = () => {
         {/* Results count (unchanged) */}
         <p className="text-right text-gray-600 mb-6">
           Found{" "}
-          <span className="font-bold text-primary">{services.length}</span> of{" "}
+          <span className="font-bold text-secondary">{services.length}</span> of{" "}
           <span className="font-bold">{total}</span> packages
         </p>
 
@@ -144,21 +144,21 @@ const AllServices = () => {
                 </div>
 
                 <div className="p-7">
-                  <h3 className="text-2xl font-extrabold text-gray-800 group-hover:text-primary transition-colors">
+                  <h3 className="text-2xl font-extrabold text-gray-800 group-hover:text-secondary transition-colors">
                     {service.name}
                   </h3>
                   <p className="mt-2 text-sm text-gray-500 font-medium uppercase tracking-wider">
                     {service.type}
                   </p>
                   <div className="mt-5">
-                    <span className="text-3xl font-bold text-primary">
+                    <span className="text-3xl font-bold text-secondary">
                       ৳{service.price?.toLocaleString()}
                     </span>
                     <span className="text-gray-500 ml-1">/ package</span>
                   </div>
                   <Link
                     to={`/serviceDetails/${service._id}`}
-                    className="mt-6 w-full btn py-6 bg-primary cursor-pointer text-white font-bold rounded-xl hover:bg-transparent hover:text-primary hover:border-2 hover:border-primary transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    className="mt-6 w-full btn py-6 bg-secondary cursor-pointer text- font-bold rounded-xl hover:bg-transparent hover:text-secondary hover:border-2 hover:border-secondary transition-all duration-300 transform hover:scale-105 shadow-lg"
                   >
                     View Details
                   </Link>
@@ -168,12 +168,12 @@ const AllServices = () => {
           )}
         </div>
 
-        {/* ✔️ Pagination (design unchanged) */}
+        {/*  Pagination (design unchanged) */}
         <div className="flex justify-center mt-14 gap-3">
           <button
             disabled={page === 1}
             onClick={() => setPage((prev) => prev - 1)}
-            className="px-4 py-2 border rounded-lg disabled:opacity-40"
+            className="px-4 py-2 border rounded-lg bg-secondary disabled:opacity-40"
           >
             Prev
           </button>
@@ -182,8 +182,8 @@ const AllServices = () => {
             <button
               key={num}
               onClick={() => setPage(num + 1)}
-              className={`px-4 py-2 border rounded-lg ${
-                page === num + 1 ? "bg-primary text-white" : ""
+              className={`px-4 py-2 border rounded-lg text-gray-600 ${
+                page === num + 1 ? "bg-secondary text-primary" : ""
               }`}
             >
               {num + 1}
@@ -193,7 +193,7 @@ const AllServices = () => {
           <button
             disabled={page === totalPages}
             onClick={() => setPage((prev) => prev + 1)}
-            className="px-4 py-2 border rounded-lg disabled:opacity-40"
+            className="px-4 py-2 border rounded-lg bg-secondary disabled:opacity-40"
           >
             Next
           </button>

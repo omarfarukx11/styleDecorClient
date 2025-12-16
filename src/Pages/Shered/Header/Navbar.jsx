@@ -56,7 +56,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="bg-primary text-neutral-content border-b-1 border-gray-300 shadow-xl">
+    <nav className="bg-[#b7b7b7b7] text-neutral-content border-b border-gray-300 shadow-xl">
       <div className="navbar py-5 xl:w-[1800px] mx-auto">
         {/* Left */}
         <div className="navbar-start">
@@ -91,7 +91,7 @@ const Navbar = () => {
           </button>
 
           {user && (
-            <NavLink to="/dashboard" className="btn btn-primary text-neutral-content">
+            <NavLink to="/dashboard" className="btn btn-primary btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all">
               Dashboard
             </NavLink>
           )}

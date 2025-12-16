@@ -52,7 +52,7 @@ const TopDecorators = () => {
 
             {/* Card Content */}
             <div className="p-8">
-              <h3 className="text-2xl font-extrabold text-gray-800 group-hover:text-primary transition-colors">
+              <h3 className="text-2xl font-extrabold text-gray-800 group-hover:text-secondary transition-colors">
                 {d.name}
               </h3>
 
@@ -76,17 +76,10 @@ const TopDecorators = () => {
                 <p className="mt-2 text-base text-gray-700 font-medium leading-relaxed">
                   {d.specialties}
                 </p>
+                <p className="mt-2 text-base text-gray-700 font-medium leading-relaxed">
+                  {d.description}
+                </p>
               </div>
-
-              {/* Call to action button (optional) */}
-              <button
-                className="mt-6 w-full py-4 bg-primary text-white font-bold rounded-xl 
-                   hover:bg-transparent hover:text-primary hover:border-2 hover:border-primary 
-                   transition-all duration-300 transform hover:scale-105 
-                   shadow-lg hover:shadow-xl cursor-pointer"
-              >
-                View Profile
-              </button>
             </div>
           </div>
         ))}

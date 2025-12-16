@@ -40,7 +40,7 @@ a.active {
   --color-base-300: oklch(24% 0 0);
   --color-base-content: oklch(96% 0 0);
 
-  --color-primary: white;
+  --color-primary: #b7b7b7;
   --color-primary-hover: oklch(88% 0 0);
   --color-primary-content: oklch(12% 0 0);
 

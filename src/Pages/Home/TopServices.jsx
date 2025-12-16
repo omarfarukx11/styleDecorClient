@@ -32,7 +32,7 @@ const TopServices = () => {
   {service.map((service) => (
     <div
       key={service._id}
-      className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 border border-gray-100"
+      className="group relative bg-primary rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 border border-gray-100"
     >
       {/* Image with overlay */}
       <div className="relative overflow-hidden">
@@ -56,7 +56,7 @@ const TopServices = () => {
 
       {/* Card Body */}
       <div className="p-7">
-        <h2 className="text-2xl font-extrabold text-gray-800 group-hover:text-primary transition-colors duration-300">
+        <h2 className="text-2xl font-extrabold text-gray-800 group-hover:text-white transition-colors duration-300">
           {service.name}
         </h2>
 
@@ -74,7 +74,7 @@ const TopServices = () => {
 
         {/* Button */}
         <div className="mt-6">
-          <Link to={`/serviceDetails/${service._id}`} className="mt-6 w-full btn py-6 bg-secondary cursor-pointer text-primary font-bold rounded-xl hover:bg-transparent hover:text-secondary hover:border-2 hover:border-secondary transition-all duration-300 transform hover:scale-105 shadow-lg">
+          <Link to={`/serviceDetails/${service._id}`} className="btn btn-primary btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all">
            View Details
           </Link>
         </div>
