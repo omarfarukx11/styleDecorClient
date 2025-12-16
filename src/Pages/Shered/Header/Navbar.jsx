@@ -56,7 +56,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="bg-primary text-white">
+    <nav className="bg-primary text-neutral-content border-b-1 border-gray-300 shadow-xl">
       <div className="navbar py-5 xl:w-[1800px] mx-auto">
         {/* Left */}
         <div className="navbar-start">
@@ -91,7 +91,7 @@ const Navbar = () => {
           </button>
 
           {user && (
-            <NavLink to="/dashboard" className="btn">
+            <NavLink to="/dashboard" className="btn btn-primary text-neutral-content">
               Dashboard
             </NavLink>
           )}
@@ -113,10 +113,10 @@ const Navbar = () => {
                 </div>
               </div>
 
-              <ul className="menu menu-sm dropdown-content rounded-xl bg-secondary z-10 mt-3 w-52 p-2 shadow">
+              <ul className="menu menu-sm dropdown-content rounded-xl bg-primary text-secondary z-10 mt-3 w-52 p-2 shadow">
                 <li>
                   <Link
-                    className="hover:bg-white hover:text-primary"
+                    className="hover:bg-secondary hover:text-primary"
                     to="/dashboard/my-profile"
                   >
                     Profile
@@ -124,7 +124,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <button
-                    className="hover:bg-white hover:text-primary"
+                    className="hover:bg-secondary hover:text-primary"
                     onClick={handleLogout}
                   >
                     Logout

@@ -14,8 +14,8 @@ const TopServices = () => {
   });
 
   return (
-    <section className="xl:p-20 p-4 bg-[#f8f8f8]">
-      <div className="text-center my-10  py-10 px-4 bg-primary  rounded-xl">
+    <section className="xl:p-20 p-4 ">
+      <div className="text-center my-10  py-10 px-4 bg-secondary text-neutral-content  rounded-xl">
         <h2 className="text-5xl font-extrabold mb-4 text-white ">
            Our Decoration Packages
         </h2>
@@ -66,15 +66,15 @@ const TopServices = () => {
 
         {/* Price - Normal state */}
         <div className="mt-5">
-          <span className="text-3xl font-bold text-primary">
+          <span className="text-3xl font-bold text-secondary">
             ৳{service.price}
           </span>
-          <span className="text-gray-500 ml-1">/ package</span>
+          <span className="ml-1 text-secondary">/ package</span>
         </div>
 
         {/* Button */}
         <div className="mt-6">
-          <Link to={`/serviceDetails/${service._id}`} className="mt-6 w-full btn py-6 bg-primary cursor-pointer text-white font-bold rounded-xl hover:bg-transparent hover:text-primary hover:border-2 hover:border-primary transition-all duration-300 transform hover:scale-105 shadow-lg">
+          <Link to={`/serviceDetails/${service._id}`} className="mt-6 w-full btn py-6 bg-secondary cursor-pointer text-primary font-bold rounded-xl hover:bg-transparent hover:text-secondary hover:border-2 hover:border-secondary transition-all duration-300 transform hover:scale-105 shadow-lg">
            View Details
           </Link>
         </div>

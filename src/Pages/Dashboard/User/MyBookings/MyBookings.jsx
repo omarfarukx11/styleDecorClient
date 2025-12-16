@@ -105,117 +105,155 @@ const MyBookings = () => {
   }
 
   return (
-    <div className="md:p-6 lg:p-10">
+    <div className="">
       <div className="text-center mb-10">
-        <h1 className="lg:text-4xl font-bold">My Bookings</h1>
+        <h1 className="lg:text-4xl font-bold text-primary bg-secondary py-10 rounded-xl">
+          My Bookings
+        </h1>
       </div>
 
-      <div className=" bg-base-200 rounded-lg">
-        <table className="md:table w-full md:table-auto">
-          <thead>
-            <tr className="bg-primary text-primary-content text-[8px] md:text-xl uppercase flex justify-between py-8 md:py-10 px-6  lg:px-10 mx-2 rounded-lg ">
-              <th>#</th>
-              <th>Service Name</th>
-              <th>Category</th>
-              <th className="px-2">Date</th>
-              <th>Amount</th>
-              <th>Booking Status</th>
-              <th>Service Status</th>
-              <th>Payment Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
 
-          <tbody>
-            {book.map((b, i) => (
-              <tr
-                key={b._id}
-                className="hover:bg-base-200 transition-all md:text-lg text-[8px] lg:px-8 flex items-center justify-between my-5 py-5 mx-2 rounded-lg bg-base-100 shadow-2xl"
-              >
-                <td className="text-center font-bold px-2">{i + 1}</td>
-                <td className="font-semibold">{b.serviceName}</td>
-                <td className="px-2 md:px-0">{b.serviceType}</td>
-                <td className="text-center ">{b.bookingDate}</td>
-                <td className="font-bold text-primary px-2">৳{b.serviceCost}</td>
 
-                <td className="text-center">
-                  <span
-                    className={`badge text-[8px] py-4 lg:w-[100px]  ${
-                      b.bookingStatus === "Confirmed"
-                        ? "bg-green-500 text-white"
-                        : "bg-yellow-500 text-white"
-                    }`}
-                  >
-                    {b.bookingStatus}
-                  </span>
-                </td>
 
-                <td className="text-center">
-                  <span
-                    className={`badge text-[8px] py-4 lg:w-[100px] ${
-                      b.decoratorStatus === "completed"
-                        ? "bg-green-500 text-white"
-                        : "bg-blue-500 text-white"
-                    }`}
-                  >
-                    {b.decoratorStatus}
-                  </span>
-                </td>
 
-                <td className="text-center">
-                  <span
-                    className={`badge text-[8px] py-4 lg:w-[80px] ${
-                      b.paymentStatus === "paid"
-                        ? "bg-green-500 text-white"
-                        : "bg-red-500 text-white"
-                    }`}
-                  >
-                    {b.paymentStatus}
-                  </span>
-                </td>
 
-                <td className="text-center">
-                  <div className="flex flex-col md:flex-row justify-center gap-1">
-                    <button
-                      onClick={() => {
-                        if (b.paymentStatus === "unpaid") {
-                          handlePayModal();
-                          setBookingData(b);
-                        }
-                      }}
-                      className={`btn btn-xs lg:w-20 lg:h-8 w-12 ${
-                        b.paymentStatus === "paid"
-                          ? "btn-success"
-                          : "btn-primary"
-                      }`}
-                      disabled={b.paymentStatus === "paid"}
-                    >
-                      {b.paymentStatus === "paid" ? "Paid" : "Pay"}
-                    </button>
 
-                    <button
-                      onClick={() => {
-                        handleModal();
-                        setBookingData(b);
-                      }}
-                      className="btn btn-warning btn-xs lg:w-20 lg:h-8 w-12"
-                    >
-                      Update
-                    </button>
 
-                    <button
-                      onClick={() => handleDeleteBooking(b._id)}
-                      className="btn btn-error btn-xs lg:w-20 lg:h-8 w-12"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+ <div className="bg-gray-500 rounded-lg p-3 space-y-2">
+
+  {/* BODY ROWS */}
+  {book.map((b, i) => (
+    <div
+      key={b._id}
+      className="
+        border border-gray-200 rounded-md p-4
+        flex flex-col md:flex-row
+        gap-2 md:gap-0
+        bg-gray-500 hover:bg-gray-100
+      "
+    >
+      {/* # */}
+      <div className="flex justify-between md:w-10 md:flex-none">
+        <span className="font-semibold">#</span>
+        <span className="md:hidden">{i + 1}</span>
       </div>
+      <div className="hidden md:block w-10 text-center font-semibold">{i + 1}</div>
+
+      {/* Service Name */}
+      <div className="flex justify-between md:flex-1">
+        <span className="font-semibold md:hidden">Service:</span>
+        <span>{b.serviceName}</span>
+      </div>
+
+      {/* Category */}
+      <div className="flex justify-between md:w-[120px] md:text-center">
+        <span className="font-semibold md:hidden">Category:</span>
+        <span>{b.serviceType}</span>
+      </div>
+
+      {/* Date */}
+      <div className="flex justify-between md:w-[120px] md:text-center">
+        <span className="font-semibold md:hidden">Date:</span>
+        <span>{b.bookingDate}</span>
+      </div>
+
+      {/* Amount */}
+      <div className="flex justify-between md:w-[100px] md:text-center font-semibold text-primary">
+        <span className="font-semibold md:hidden">Amount:</span>
+        <span>৳{b.serviceCost}</span>
+      </div>
+
+      {/* Booking Status */}
+      <div className="flex justify-between md:w-[140px] md:text-center">
+        <span className="font-semibold md:hidden">Booking:</span>
+        <span
+          className={`badge badge-sm ${
+            b.bookingStatus === "Confirmed"
+              ? "bg-green-500 text-white"
+              : "bg-yellow-500 text-white"
+          }`}
+        >
+          {b.bookingStatus}
+        </span>
+      </div>
+
+      {/* Service Status */}
+      <div className="flex justify-between md:w-[140px] md:text-center">
+        <span className="font-semibold md:hidden">Service:</span>
+        <span
+          className={`badge badge-sm ${
+            b.decoratorStatus === "completed"
+              ? "bg-green-500 text-white"
+              : "bg-blue-500 text-white"
+          }`}
+        >
+          {b.decoratorStatus}
+        </span>
+      </div>
+
+      {/* Payment Status */}
+      <div className="flex justify-between md:w-[140px] md:text-center">
+        <span className="font-semibold md:hidden">Payment:</span>
+        <span
+          className={`badge badge-sm ${
+            b.paymentStatus === "paid"
+              ? "bg-green-500 text-white"
+              : "bg-red-500 text-white"
+          }`}
+        >
+          {b.paymentStatus}
+        </span>
+      </div>
+
+      {/* ACTION */}
+      <div className="flex flex-col md:flex-row gap-2 md:w-[220px]">
+        <button
+          onClick={() => {
+            if (b.paymentStatus === "unpaid") {
+              handlePayModal();
+              setBookingData(b);
+            }
+          }}
+          disabled={b.paymentStatus === "paid"}
+          className={`btn btn-xs md:btn-sm flex-1 ${
+            b.paymentStatus === "paid" ? "btn-success" : "btn-primary"
+          }`}
+        >
+          {b.paymentStatus === "paid" ? "Paid" : "Pay"}
+        </button>
+
+        <button
+          onClick={() => {
+            handleModal();
+            setBookingData(b);
+          }}
+          className="btn btn-warning btn-xs md:btn-sm flex-1"
+        >
+          Update
+        </button>
+
+        <button
+          onClick={() => handleDeleteBooking(b._id)}
+          className="btn btn-error btn-xs md:btn-sm flex-1"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 
       {/* update modal section  */}
       <dialog ref={updateRef} className="modal">

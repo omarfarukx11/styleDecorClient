@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const Hero = () => {
   return (
-    <section className="hero  bg-base-200 xl:p-20 p-4">
+    <section className="hero text-neutral-content xl:p-20 p-4">
       <div className="flex items-center w-full justify-between flex-col lg:flex-row-reverse gap-10">
 
         {/* BIGGER RESPONSIVE IMAGE */}
@@ -35,7 +35,7 @@ const Hero = () => {
             birthday parties, corporate events, and more.
           </p>
 
-          <Link to="/services" className="btn btn-primary hover:bg-white hover:text-primary hover:border-primary">
+          <Link to="/services" className="btn btn-primary text-neutral-content hover:bg-white hover:text-primary hover:border-primary">
             Book Decoration Service
           </Link>
         </motion.div>

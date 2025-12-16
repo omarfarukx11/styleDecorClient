@@ -17,13 +17,13 @@ const TopDecorators = () => {
   useEffect(() => {}, []);
 
   return (
-    <section className="xl:p-20 p-4 bg-base-100">
-      <div className="text-center my-10 py-10 px-4 bg-primary rounded-2xl">
-        <h2 className="text-5xl font-extrabold mb-6 text-white">
+    <section className="xl:p-20 p-4">
+      <div className="text-center my-10 py-10 px-4 bg-secondary text-primary rounded-2xl shadow-xl">
+        <h2 className="text-5xl font-extrabold mb-6 ">
           Top Decorators
         </h2>
 
-        <p className="max-w-3xl mx-auto text-sm lg:text-base text-gray-100 leading-relaxed">
+        <p className="max-w-3xl mx-auto text-sm   leading-relaxed">
           Discover our top decorators who bring creativity, expertise, and
           precision to every event. From luxurious weddings to corporate
           gatherings, birthday celebrations, and themed parties, each decorator

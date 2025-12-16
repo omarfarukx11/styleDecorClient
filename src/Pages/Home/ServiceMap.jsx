@@ -35,7 +35,7 @@ const ServiceMap = () => {
 
 
   return (
-    <div className="bg-[#f8f8f8] xl:p-20 p-4 rounded-xl mb-10">
+    <div className="xl:p-20 p-4 rounded-xl mb-10">
       <div className="bg-primary p-10 text-secondary rounded-xl">
         <h1 className="text-5xl font-bold ">
           We provide services all over Bangladesh
