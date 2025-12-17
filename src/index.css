@@ -1,63 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Geom:ital,wght@0,300..900;1,300..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Geom:ital,wght@0,300..900;1,300..900&display=swap");
 @import "tailwindcss";
- @plugin "daisyui";
+@plugin "daisyui";
 @import "leaflet/dist/leaflet.css";
 
- *{
+* {
   font-family: "Geom", sans-serif;
   font-optical-sizing: auto;
   font-weight: normal;
   font-style: normal;
- 
 }
-
 
 a.active {
-  border-bottom: 1px solid gray;
+  background-color: black;
   font-size: bold;
-  
-  
-  
 }
 
-
-/* text-primary font-semibold border-b-2 border-primary pb-1"; */
-
-/* .text-neutral-content {
-  color: var(--color-neutral-content);
-} */
-
-/* =========================
-   LIGHT THEME (DARK UI)
-   ========================= */
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
 
-
-  --color-base-100: white; 
+  --color-base-100: white;
   --color-base-200: oklch(18% 0 0);
   --color-base-300: oklch(24% 0 0);
   --color-base-content: oklch(96% 0 0);
 
+  /* Primary: Your existing Grey */
   --color-primary: #b7b7b7;
   --color-primary-hover: oklch(88% 0 0);
   --color-primary-content: oklch(12% 0 0);
 
+  --color-secondary: oklch(25% 0.01 250);
+  --color-secondary-hover: oklch(35% 0.01 250);
+  --color-secondary-content: white;
 
-  --color-secondary: black;
-  --color-secondary-hover: oklch(90% 0 0);
-  --color-secondary-content: oklch(12% 0 0);
+--color-accent: #F4F4F4; 
+  --color-accent-hover: oklch(92% 0 0);
+  --color-accent-content: #1A1A1A;
 
-  
-  --color-accent: oklch(40% 0 0);
-  --color-accent-hover: oklch(50% 0 0);
-  --color-accent-content: oklch(96% 0 0);
-
- 
   --color-neutral: oklch(30% 0 0);
   --color-neutral-content: black;
-
 
   --color-info: oklch(75% 0.12 240);
   --color-success: oklch(70% 0.14 150);
@@ -68,83 +49,42 @@ a.active {
   --radius-btn: 0.5rem;
   --border: 1px;
 }
-/* @plugin "daisyui/theme" {
-  name: "light";
-  default: true;
 
-
-  --color-base-100: white; 
-  --color-base-200: oklch(18% 0 0);
-  --color-base-300: oklch(24% 0 0);
-  --color-base-content: oklch(96% 0 0);
-
-  --color-primary: black;
-  --color-primary-hover: oklch(88% 0 0);
-  --color-primary-content: oklch(12% 0 0);
-
-
-  --color-secondary: white;
-  --color-secondary-hover: oklch(90% 0 0);
-  --color-secondary-content: oklch(12% 0 0);
-
-  
-  --color-accent: oklch(40% 0 0);
-  --color-accent-hover: oklch(50% 0 0);
-  --color-accent-content: oklch(96% 0 0);
-
- 
-  --color-neutral: oklch(30% 0 0);
-  --color-neutral-content: white;
-
-
-  --color-info: oklch(75% 0.12 240);
-  --color-success: oklch(70% 0.14 150);
-  --color-warning: oklch(85% 0.16 90);
-  --color-error: oklch(65% 0.18 30);
-
-  --radius-box: 0.75rem;
-  --radius-btn: 0.5rem;
-  --border: 1px;
-} */
-
-
-/* =========================
-   DARK THEME (LIGHT UI)
-   ========================= */
-/* @plugin "daisyui/theme" {
+@plugin "daisyui/theme" {
   name: "dark";
 
-  --color-base-100: black; 
-  --color-base-200: oklch(96% 0 0);
-  --color-base-300: oklch(90% 0 0);
-  --color-base-content: oklch(12% 0 0); 
+  /* Deep charcoal/black backgrounds */
+  --color-base-100: oklch(15% 0 0);
+  --color-base-200: oklch(12% 0 0);
+  --color-base-300: oklch(10% 0 0);
+  --color-base-content: oklch(98% 0 0);
 
+  /* Primary: A sophisticated medium-dark grey */
+  --color-primary: oklch(35% 0 0);
+  --color-primary-hover: oklch(40% 0 0);
+  --color-primary-content: white;
 
-  --color-primary: white;
-  --color-primary-hover: oklch(22% 0 0);
-  --color-primary-content: oklch(100% 0 0);
+  /* Secondary: Matched to Primary but slightly darker/richer */
+  --color-secondary: oklch(25% 0 0);
+  --color-secondary-hover: oklch(30% 0 0);
+  --color-secondary-content: white;
 
-
-  --color-secondary: white;
-  --color-secondary-hover: oklch(18% 0 0);
-  --color-secondary-content: oklch(100% 0 0);
-
-
-  --color-accent: oklch(85% 0 0);
+  /* Accent: Muted light grey for highlights */
+  --color-accent: oklch(70% 0 0);
   --color-accent-hover: oklch(75% 0 0);
-  --color-accent-content: oklch(12% 0 0);
+  --color-accent-content: black;
 
+  /* Neutral: For borders and subtle UI elements */
+  --color-neutral: oklch(20% 0 0);
+  --color-neutral-content: oklch(90% 0 0);
 
-  --color-neutral: oklch(50% 0 0);
-  --color-neutral-content: black;
-
-
-  --color-info: oklch(65% 0.12 240);
-  --color-success: oklch(60% 0.14 150);
-  --color-warning: oklch(80% 0.16 90);
-  --color-error: oklch(55% 0.18 30);
+  /* Standard Semantic Colors (Adjusted for Dark Mode visibility) */
+  --color-info: oklch(70% 0.1 240);
+  --color-success: oklch(65% 0.15 150);
+  --color-warning: oklch(80% 0.15 90);
+  --color-error: oklch(60% 0.15 30);
 
   --radius-box: 0.75rem;
   --radius-btn: 0.5rem;
   --border: 1px;
-} */
+}

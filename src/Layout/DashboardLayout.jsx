@@ -50,7 +50,7 @@ const DashboardLayout = () => {
 
   const commonMenu = (
     <>
-      <div className="divider my-2"></div>
+      <div className="border-t border-white my-2"></div>
       <li>
         <NavLink
           to="/dashboard/my-profile"
@@ -200,27 +200,21 @@ const DashboardLayout = () => {
           {role === "decorator" && decoratorMenu}
           {role === "admin" && adminMenu}
           {commonMenu}
+          <div>
+            <button
+              onClick={handleLogout}
+              className="btn btn-primary btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50  transform hover:scale-105 transition-all w-full my-10"
+            >
+              Logout
+            </button>
+          </div>
         </ul>
-        <div>
-          <button onClick={handleLogout} className="btn btn-primary btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all w-full my-10" >Logout</button>
-        </div>
+
         <div className="p-4 border-t border-white text-center text-sm opacity-70">
           © 2025 StyleDecor
         </div>
       </div>
 
-      {/* Main Content */}
-      {/* <div className="flex-1 flex flex-col">
-        <div className="bg-secondary text-primary p-8 shadow-md lg:pl-8 pl-20">
-          <h1 className="text-xl font-semibold">
-            Welcome, <span className="capitalize">{role}</span>!
-          </h1>
-        </div>
-
-        <div className="flex-1 lg:p-8 bg-base-100 overflow-y-auto">
-          <Outlet />
-        </div>
-      </div> */}
       <div className="flex-1 bg-base-100 overflow-y-auto">
         <Outlet />
       </div>

@@ -106,150 +106,153 @@ const MyBookings = () => {
 
   return (
     <div>
-      <div className="text-2xl text-secondary bg-primary py-8 border-b border-white text-center">
-        <h1 >
-          My Bookings
-        </h1>
+      <div className="text-2xl text-secondary bg-primary p-8 border-b border-white text-center">
+        <h1>My Bookings</h1>
       </div>
 
-
-
-<div className="bg-primary  p-10">
-
-  {/* HEADER for XL+ */}
-  <div className="hidden xl:flex bg-secondary xl:justify-between text-primary rounded-md py-4 text-sm xl:text-lg font-semibold">
-    <div className="w-10 text-center xl:pl-12">#</div>
-    <div className="w-[250px] text-center">Service Name</div>
-    <div className="w-[120px] text-center">Category</div>
-    <div className="w-[120px] text-center">Date</div>
-    <div className="w-[100px] text-center">Amount</div>
-    <div className="w-[140px] text-center">Booking Status</div>
-    <div className="w-[140px] text-center">Service Status</div>
-    <div className="w-[140px] text-center">Payment Status</div>
-    <div className="w-[220px] text-center">Action</div>
-  </div>
-
-  {/* BODY */}
-  <div className="space-y-5 xl:space-x-2">
-    {book.map((b, i) => (
-      <div
-        key={b._id}
-        className="flex flex-col xl:flex-row xl:items-center xl:justify-between bg-primary text-secondary rounded-lg shadow-xl p-2"
-      >
-        {/* # */}
-        <div className="flex justify-between xl:w-10 px-2 py-2 xl:ml-10 font-semibold border-b xl:border-b-0">
-          <span className="xl:hidden">#{i + 1}</span>
-          <span className="hidden xl:block text-center">{i + 1}</span>
+      <div className="bg-primary p-2 md:p-10">
+        {/* HEADER for XL+ */}
+        <div className="hidden xl:flex bg-secondary py-8 xl:justify-between text-secondary-content rounded-md text-sm xl:text-lg font-semibold px-4">
+          <div className="w-12 text-center">#</div>
+          <div className="flex-2 min-w-[200px] text-center">Service Name</div>
+          <div className="flex-1 text-center">Category</div>
+          <div className="flex-1 text-center">Date</div>
+          <div className="flex-1 text-center">Amount</div>
+          <div className="flex-1 text-center">Booking Status</div>
+          <div className="flex-1 text-center">Service Status</div>
+          <div className="flex-1 text-center">Payment Status</div>
+          <div className="flex-[1.5] min-w-[200px] text-center">Action</div>
         </div>
 
-        {/* Service Name */}
-        <div className="flex justify-between xl:w-[250px] px-2 py-2 border-b xl:border-b-0">
-          <span className="xl:hidden font-semibold">Service Status :</span>
-          <span >{b.serviceName}</span>
-        </div>
+        {/* BODY */}
+        <div className="space-y-5 mt-5">
+          {book.map((b, i) => (
+            <div
+              key={b._id}
+              className="flex flex-col xl:flex-row xl:items-center xl:justify-between bg-accent text-accent-content rounded-lg shadow-xl p-2 2xl:text-xl xl:text-sm xl:px-4"
+            >
+              {/* # */}
+              <div className="flex justify-between xl:w-12 px-2 py-2 font-semibold border-b border-primary xl:border-b-0">
+                <span className="xl:hidden">#</span>
+                <span className="xl:text-center text-end w-full xl:w-auto">{i + 1}</span>
+              </div>
 
-        {/* Category */}
-        <div className="flex justify-between xl:w-[120px] px-2 py-2 border-b xl:border-b-0">
-          <span className="xl:hidden font-semibold">Category :</span>
-          <span className="text-center">{b.serviceType}</span>
-        </div>
+              {/* Service Name */}
+              <div className="flex justify-between xl:flex-2 xl:min-w-[200px] px-2 py-2 border-b border-primary xl:border-b-0">
+                <span className="xl:hidden font-semibold">Service Name</span>
+                <span className="xl:text-start xl:w-full ">
+                  {b.serviceName}
+                </span>
+              </div>
 
-        {/* Date */}
-        <div className="flex justify-between xl:w-[120px] px-2 py-2 border-b xl:border-b-0">
-          <span className="xl:hidden font-semibold">Date :</span>
-          <span className="text-center">{b.bookingDate}</span>
-        </div>
+              {/* Category */}
+              <div className="flex justify-between xl:flex-1 px-2 py-2 border-b border-primary xl:border-b-0">
+                <span className="xl:hidden font-semibold">Category </span>
+                <span className="xl:text-center xl:w-full">
+                  {b.serviceType}
+                </span>
+              </div>
 
-        {/* Amount */}
-        <div className="flex justify-between xl:w-[100px] px-2 py-2 border-b xl:border-b-0 font-semibold">
-          <span className="xl:hidden font-semibold">Amount :</span>
-          <span className="text-center">৳{b.serviceCost}</span>
-        </div>
+              {/* Date */}
+              <div className="flex justify-between xl:flex-1 px-2 py-2 border-b border-primary xl:border-b-0">
+                <span className="xl:hidden font-semibold">Date </span>
+                <span className="xl:text-center xl:w-full">
+                  {b.bookingDate}
+                </span>
+              </div>
 
-        {/* Booking Status */}
-        <div className="flex justify-between xl:w-[140px] px-2 py-1 border-b 2xl:pl-0 xl:pl-10 xl:border-b-0">
-          <span className="xl:hidden font-semibold">Booking Status :</span>
-          <span className={`px-2 py-1 rounded-xl ${
-            b.bookingStatus === "Confirmed"
-              ? "bg-green-500 text-white"
-              : "bg-yellow-500 text-white"
-          }`}>
-            {b.bookingStatus}
-          </span>
-        </div>
+              {/* Amount */}
+              <div className="flex justify-between xl:flex-1 px-2 py-2 border-b border-primary xl:border-b-0 font-semibold">
+                <span className="xl:hidden font-semibold">Amount </span>
+                <span className="xl:text-center xl:w-full">
+                  ৳{b.serviceCost}
+                </span>
+              </div>
 
-        {/* Service Status */}
-        <div className="flex justify-between xl:w-[140px] px-2 py-1 border-b xl:border-b-0">
-          <span className="xl:hidden font-semibold">Service Status :</span>
-          <span className={`px-2 py-1 rounded-xl text-sm text-center ${
-            b.decoratorStatus === "completed"
-              ? "bg-green-500 text-white"
-              : "bg-blue-500 text-white"
-          }`}>
-            {b.decoratorStatus}
-          </span>
-        </div>
+              {/* Booking Status */}
+              <div className="flex justify-between xl:flex-1 px-2 py-1 border-b border-primary xl:border-b-0">
+                <span className="xl:hidden font-semibold">Booking Status </span>
+                <div className="xl:w-full xl:flex xl:justify-center">
+                  <span
+                    className={`px-2 py-1 rounded-xl text-md ${
+                      b.bookingStatus === "Confirmed"
+                        ? "text-green-500  "
+                        : "text-yellow-500  "
+                    }`}
+                  >
+                    {b.bookingStatus}
+                  </span>
+                </div>
+              </div>
 
-        {/* Payment Status */}
-        <div className="flex justify-between xl:w-[140px] px-2 py-1 xl:pl-10 border-b xl:border-b-0">
-          <span className="xl:hidden font-semibold">Payment :</span>
-          <span className={`px-2 py-1 rounded-xl ${
-            b.paymentStatus === "paid"
-              ? "bg-green-500 text-white"
-              : "bg-red-500 text-white"
-          }`}>
-            {b.paymentStatus}
-          </span>
-        </div>
+              {/* Service Status */}
+              <div className="flex justify-between xl:flex-1 px-2 py-1 border-b border-primary xl:border-b-0">
+                <span className="xl:hidden font-semibold">Service Status </span>
+                <div className="xl:w-full xl:flex xl:justify-center">
+                  <span
+                    className={`px-2 py-1 rounded-xl text-md ${
+                      b.decoratorStatus === "completed"
+                        ? "text-green-500 "
+                        : "text-blue-500 "
+                    }`}
+                  >
+                    {b.decoratorStatus}
+                  </span>
+                </div>
+              </div>
 
-        {/* ACTION */}
-        <div className="flex flex-col xl:flex-row gap-2 xl:w-[220px] px-2 py-2 justify-center">
-          <button
-            onClick={() => {
-              if (b.paymentStatus === "unpaid") {
-                handlePayModal();
-                setBookingData(b);
-              }
-            }}
-            disabled={b.paymentStatus === "paid"}
-            className={`btn btn-xs xl:btn-sm text-white ${
-              b.paymentStatus === "paid" ? "btn-success" : "btn-primary"
-            }`}
-          >
-            {b.paymentStatus === "paid" ? "Paid" : "Pay"}
-          </button>
+              {/* Payment Status */}
+              <div className="flex justify-between xl:flex-1 px-2 py-1 border-b border-primary xl:border-b-0">
+                <span className="xl:hidden font-semibold">Payment </span>
+                <div className="xl:w-full xl:flex xl:justify-center">
+                  <span
+                    className={`px-2 py-1 rounded-xl capitalize text-md ${
+                      b.paymentStatus === "paid"
+                        ? "text-green-500 "
+                        : "text-red-500 "
+                    }`}
+                  >
+                    {b.paymentStatus}
+                  </span>
+                </div>
+              </div>
 
-          <button
-            onClick={() => {
-              handleModal();
-              setBookingData(b);
-            }}
-            className="btn btn-warning btn-xs text-white xl:btn-sm"
-          >
-            Update
-          </button>
+              {/* ACTION */}
+              <div className="flex xl:flex-row w-full flex-col gap-2 xl:flex-[1.5] xl:min-w-[200px] px-2 py-2 justify-center">
+                {/* Only show the Pay button if the status is NOT paid */}
+                {b.paymentStatus !== "paid" && (
+                  <button
+                    onClick={() => {
+                      handlePayModal();
+                      setBookingData(b);
+                    }}
+                    className="btn btn-primary btn-xs text-white"
+                  >
+                    Pay
+                  </button>
+                )}
 
-          <button
-            onClick={() => handleDeleteBooking(b._id)}
-            className="btn btn-error btn-xs text-white xl:btn-sm"
-          >
-            Delete
-          </button>
+                <button
+                  onClick={() => {
+                    handleModal();
+                    setBookingData(b);
+                  }}
+                  className="btn btn-warning xl:btn-sm text-white"
+                >
+                  Update
+                </button>
+
+                <button
+                  onClick={() => handleDeleteBooking(b._id)}
+                  className="btn btn-error xl:btn-sm text-white"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    ))}
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
 
       {/* update modal section  */}
       <dialog ref={updateRef} className="modal">
