@@ -46,7 +46,7 @@ const SocialLogin = () => {
   return (
     <div
       onClick={handleGoogleSignIn}
-      className="btn bg-base-200 hover:bg-base-300 text-black w-full border border-gray-300 flex items-center justify-center gap-3 text-lg font-medium transition-all cursor-pointer"
+      className="btn btn-primary py-2 md:py-0 btn-lg flex-1 rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all w-full" 
     >
       <FcGoogle className="text-2xl" />
       Login with Google

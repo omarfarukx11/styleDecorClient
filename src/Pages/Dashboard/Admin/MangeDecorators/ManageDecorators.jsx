@@ -61,11 +61,11 @@ const ManageDecorators = () => {
 
   return (
    <div>
-     <div className="text-3xl font-bold py-8 text-primary bg-secondary text-center">
+     <div className="text-2xl font-bold py-8 text-secondary bg-primary border-b border-white text-center">
        <h2 >Manage Decorators</h2>
      </div>
         
-    <div className='xl:p-8 p-4'>
+    <div className='xl:p-8 p-4 bg-primary'>
       <div className='flex justify-end items-center'>
           <Link to={'/dashboard/add-new-decorator'} className='btn btn-secondary text-primary'>Add New Decorators</Link>
         </div>

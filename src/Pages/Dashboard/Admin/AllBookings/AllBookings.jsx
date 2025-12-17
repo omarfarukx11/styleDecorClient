@@ -80,17 +80,17 @@ const AllBookings = () => {
 
   return (
     <div>
-      <div className="text-3xl font-bold py-8 bg-primary text-secondary text-center">
+      <div className="text-2xl font-bold py-8 bg-primary text-secondary text-center border-b border-white">
         <h2 >All Bookings</h2>
       </div>
-      <div className="xl:p-8 p-4">
+      <div className="xl:p-8 p-4 bg-primary">
       
-      <div className="overflow-x-auto rounded-lg">
+      <div className="rounded-lg">
       <table className="table w-full">
 
         {/* HEADER (Desktop only) */}
         <thead className="hidden xl:table-header-group">
-          <tr className="bg-secondary text-primary">
+          <tr className="bg-secondary text-primary h-20">
             <th>#</th>
             <th>Client Name</th>
             <th>Service Name</th>
@@ -181,7 +181,7 @@ const AllBookings = () => {
                     Find Decorator
                   </button>
                 ) : booking.decoratorId ? (
-                  <span className="badge badge-info xl:py-5">
+                  <span className="text-info  xl:py-5">
                     {booking.decoratorStatus}
                   </span>
                 ) : (
@@ -285,10 +285,7 @@ const AllBookings = () => {
     </div>
   </div>
 </dialog>
-
-
-    </div>
-        {totalPages > 1 && (
+ {totalPages > 1 && (
         <div className="flex justify-center mt-12  gap-2">
           <button
             disabled={page === 1}
@@ -322,7 +319,8 @@ const AllBookings = () => {
         </div>
       )}
 
-
+    </div>
+    
     </div>
   );
 };

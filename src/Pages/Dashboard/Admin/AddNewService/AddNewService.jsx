@@ -30,7 +30,7 @@ const AddNewService = () => {
         name: data.name,
         type: data.type,
         price: Number(data.price),
-        unitType: data["unit-type"],
+        unit: data["unit-type"],
         image: imageUrl,
         status: data.status || "Active",
         description: data.description,
@@ -57,122 +57,128 @@ const AddNewService = () => {
   };
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="w-11/12 max-w-2xl bg-base-100 p-8">
-        <h1 className="text-center font-bold text-5xl my-10 ">
-          Add New Service
-        </h1>
-        <form onSubmit={handleSubmit(handleAddService)} className="space-y-4">
-          {/* Service Name */}
-          <div className="flex flex-col">
-            <label className="font-medium">Service Name</label>
-            <input
-              {...register("name", { required: true })}
-              type="text"
-              placeholder="Luxury Wedding Setup"
-              className="input input-bordered outline-none w-full"
-            />
-          </div>
+    <div>
+      <div className="text-center py-8 font-bold text-3xl bg-primary text-secondary ">
+        <p>Create New Service</p>
+      </div>
 
-          {/* Category / Type */}
-          <div className="flex flex-col">
-            <label className="font-medium">Category / Type</label>
-            <select
-              {...register("type", { required: true })}
-              className="input input-bordered outline-none w-full"
-            >
-              <option value="">Select Category</option>
-              <option value="Home">Home Decoration</option>
-              <option value="Wedding">Wedding</option>
-              <option value="Office">Office</option>
-              <option value="Seminar">Seminar/Conference</option>
-              <option value="Meeting">Meeting Room</option>
-              <option value="Birthday">Birthday Party</option>
-              <option value="Corporate">Corporate Events</option>
-              <option value="Anniversary">Anniversary</option>
-            </select>
-          </div>
+      <div className="flex items-center justify-center xl:p-8 p-4">
+        <div className="w-11/12 max-w-2xl bg-primary text-secondary p-8 rounded-lg">
+          <form onSubmit={handleSubmit(handleAddService)} className="space-y-4">
+            {/* Service Name */}
+            <div className="flex flex-col">
+              <label className="font-medium">Service Name</label>
+              <input
+                {...register("name", { required: true })}
+                type="text"
+                placeholder="Luxury Wedding Setup"
+                className="input input-bordered outline-none w-full"
+              />
+            </div>
 
-          {/* Price */}
-          <div className="flex flex-col">
-            <label className="font-medium">Price (৳)</label>
-            <input
-              {...register("price", { required: true })}
-              type="number"
-              placeholder="120000"
-              className="input input-bordered outline-none w-full"
-            />
-          </div>
+            {/* Category / Type */}
+            <div className="flex flex-col">
+              <label className="font-medium">Category / Type</label>
+              <select
+                {...register("type", { required: true })}
+                className="input input-bordered outline-none w-full"
+              >
+                <option value="">Select Category</option>
+                <option value="Home">Home Decoration</option>
+                <option value="Wedding">Wedding</option>
+                <option value="Office">Office</option>
+                <option value="Seminar">Seminar/Conference</option>
+                <option value="Meeting">Meeting Room</option>
+                <option value="Birthday">Birthday Party</option>
+                <option value="Corporate">Corporate Events</option>
+                <option value="Anniversary">Anniversary</option>
+              </select>
+            </div>
 
-          {/* Unit Type */}
-          <div className="flex flex-col">
-            <label className="font-medium">Unit Type</label>
-            <select
-              {...register("unit-type", { required: true })}
-              className="input input-bordered outline-none w-full"
-            >
-              <option value="">Select Unit</option>
-              <option value="per sqft">Per Square Feet</option>
-              <option value="per floor">Per Floor</option>
-              <option value="per meter">Per Meter</option>
-              <option value="per event">Per Event</option>
-              <option value="per day">Per Day</option>
-              <option value="per room">Per Room</option>
-              <option value="fixed">Fixed Price</option>
-            </select>
-          </div>
+            {/* Price */}
+            <div className="flex flex-col">
+              <label className="font-medium">Price (৳)</label>
+              <input
+                {...register("price", { required: true })}
+                type="number"
+                placeholder="120000"
+                className="input input-bordered outline-none w-full"
+              />
+            </div>
 
-          {/* Image (file upload) */}
-          <div className="flex flex-col">
-            <label className="font-medium">Image</label>
-            <input
-              {...register("image", { required: true })}
-              type="file"
-              accept="image/*"
-              className="file-input file-input-bordered outline-none w-full"
-            />
-          </div>
+            {/* Unit Type */}
+            <div className="flex flex-col">
+              <label className="font-medium">Unit Type</label>
+              <select
+                {...register("unit-type", { required: true })}
+                className="input input-bordered outline-none w-full"
+              >
+                <option value="">Select Unit</option>
+                <option value="per sqft">Per Square Feet</option>
+                <option value="per floor">Per Floor</option>
+                <option value="per meter">Per Meter</option>
+                <option value="per event">Per Event</option>
+                <option value="per day">Per Day</option>
+                <option value="per room">Per Room</option>
+                <option value="fixed">Fixed Price</option>
+              </select>
+            </div>
 
-          {/* Status */}
-          <div className="flex flex-col">
-            <label className="font-medium">Status</label>
-            <select
-              {...register("status")}
-              className="input input-bordered outline-none w-full"
-            >
-              <option value="Active">Active</option>
-              <option value="Inactive">Inactive</option>
-            </select>
-          </div>
+            {/* Image (file upload) */}
+            <div className="flex flex-col">
+              <label className="font-medium">Image</label>
+              <input
+                {...register("image", { required: true })}
+                type="file"
+                accept="image/*"
+                className="file-input file-input-bordered outline-none w-full"
+              />
+            </div>
+
+            {/* Status */}
+            <div className="flex flex-col">
+              <label className="font-medium">Status</label>
+              <select
+                {...register("status")}
+                className="input input-bordered outline-none w-full"
+              >
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
             {/* Description */}
-          <div className="flex flex-col">
-            <label className="font-medium">Description</label>
-            <textarea
-              {...register("description", { required: true })}
-              rows={4}
-              placeholder="Write service details..."
-              className="textarea textarea-bordered outline-none w-full"
-            />
-          </div>
+            <div className="flex flex-col">
+              <label className="font-medium">Description</label>
+              <textarea
+                {...register("description", { required: true })}
+                rows={4}
+                placeholder="Write service details..."
+                className="textarea textarea-bordered outline-none w-full"
+              />
+            </div>
 
-
-          {/* Buttons */}
-          <div className="flex gap-3 mt-6">
-            <button type="submit" className="btn btn-primary flex-1">
-              Confirm Booking
-            </button>
-            <button
-              type="button"
-              className="btn btn-ghost flex-1"
-              onClick={() => reset()}
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
+            {/* Buttons */}
+            <div className="flex gap-3 mt-6">
+              <button
+                type="submit"
+                className="btn btn-primary py-2 md:py-0 btn-lg flex-1 rounded-full font-bold md:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
+              >
+                Create Service
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary py-2 md:py-0 btn-lg flex-1 rounded-full font-bold md:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
+                onClick={() => reset()}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
 };
 
 export default AddNewService;
+

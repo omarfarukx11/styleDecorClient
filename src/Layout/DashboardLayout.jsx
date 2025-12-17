@@ -182,12 +182,12 @@ const DashboardLayout = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 z-40 w-72 bg-primary text-secondary border-r border-base-300 flex flex-col transform transition-transform duration-300 ease-in-out
+        className={`fixed inset-y-0 left-0 z-40 w-72 bg-primary text-secondary border-r border-white flex flex-col transform transition-transform duration-300 ease-in-out
           ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
           xl:translate-x-0 xl:static xl:inset-0
         `}
       >
-        <div className="p-8 border-b border-base-300 sm:pr-2">
+        <div className="p-8 border-b border-white sm:pr-2">
           <h2 className="text-2xl font-bold text-center">
             {role === "admin" && "Admin"}
             {role === "decorator" && "Decorator"}
@@ -204,7 +204,7 @@ const DashboardLayout = () => {
         <div>
           <button onClick={handleLogout} className="btn btn-primary btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all w-full my-10" >Logout</button>
         </div>
-        <div className="p-4 border-t border-base-300 text-center text-sm opacity-70">
+        <div className="p-4 border-t border-white text-center text-sm opacity-70">
           © 2025 StyleDecor
         </div>
       </div>

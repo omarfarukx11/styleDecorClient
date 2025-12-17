@@ -6,7 +6,7 @@ const MyProfile = () => {
 
   return (
     <div className="min-h-screen bg-primary text-secondary ">
-      <div className='bg-secondary text-primary py-8 text-3xl text-center'>
+      <div className='bg-primary text-secondary py-8 text-2xl text-center border-b border-white'>
         <p>My Profile</p>
       </div>
 

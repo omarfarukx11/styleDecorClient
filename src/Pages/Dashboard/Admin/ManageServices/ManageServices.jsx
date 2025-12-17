@@ -83,7 +83,7 @@ const ManageServices = () => {
 
     const updateInfo = {
       service_name: data.service_name,
-      cost: Number(data.cost),
+      price: Number(data.price),
       unit: data.unit,
       serviceCategory: data.serviceCategory,
       status: data.status,
@@ -141,11 +141,11 @@ const ManageServices = () => {
 
   return (
     <div>
-      <div className="text-3xl py-8 font-bold text-center bg-primary text-secondary">
+      <div className="text-2xl py-8 font-bold text-center bg-primary text-secondary border-b border-white">
         <h2>Manage Decoration Services</h2>
       </div>
 
-      <div className="xl:p-8 p-4">
+      <div className="xl:p-8 p-4 bg-primary">
         <div className="flex justify-end items-center mb-4">
           <Link
             to="/dashboard/add-new-service"
@@ -211,8 +211,7 @@ const ManageServices = () => {
                 <th>Cost</th>
                 <th>Unit</th>
                 <th>Status</th>
-                <th>Created By</th>
-                <th>Actions</th>
+                <th className="pl-20">Actions</th>
               </tr>
             </thead>
 
@@ -238,12 +237,12 @@ const ManageServices = () => {
                 block xl:table-row
                 rounded-xl xl:rounded-none
                 mb-6 xl:mb-0
-                bg-primary text-secondary
-                border-b-2 border-secondary
+            
+               
               "
                   >
                     {/* IMAGE */}
-                    <td className="flex justify-between xl:table-cell p-4">
+                    <td className="flex justify-between xl:table-cell p-4 ">
                       <span className="xl:hidden font-semibold">Image</span>
                       <div className="avatar">
                         <div className="mask mask-squircle w-20 h-20">
@@ -256,28 +255,28 @@ const ManageServices = () => {
                     <td className="flex justify-between xl:table-cell p-4">
                       <span className="xl:hidden font-semibold">Service</span>
                       <span className="font-semibold max-w-xs truncate">
-                        {service.service_name || service.name}
+                        {service.name}
                       </span>
                     </td>
 
                     {/* CATEGORY */}
                     <td className="flex justify-between xl:table-cell p-4">
                       <span className="xl:hidden font-semibold">Category</span>
-                      <span className="badge badge-info px-3 py-2">
-                        {service.serviceCategory || service.type}
+                      <span className=" capitalize px-3 py-2">
+                        {service.type}
                       </span>
                     </td>
 
                     {/* COST */}
                     <td className="flex justify-between xl:table-cell p-4">
                       <span className="xl:hidden font-semibold">Cost</span>
-                      <span className="font-bold text-primary">
-                        ৳{(service.cost || service.price)?.toLocaleString()}
+                      <span className="font-bold text-secondary">
+                        ৳{(service.price)?.toLocaleString()}
                       </span>
                     </td>
 
                     {/* UNIT */}
-                    <td className="flex justify-between xl:table-cell p-4">
+                    <td className="flex justify-between xl:table-cell  capitalize p-4">
                       <span className="xl:hidden font-semibold">Unit</span>
                       <span>
                         {service.unit ? `per ${service.unit}` : "Fixed"}
@@ -285,43 +284,30 @@ const ManageServices = () => {
                     </td>
 
                     {/* STATUS */}
-                    <td className="flex justify-between xl:table-cell p-4">
+                    <td className="flex justify-between  xl:table-cell p-4">
                       <span className="xl:hidden font-semibold">Status</span>
                       <span
                         className={`font-semibold ${
                           service.status === "Active"
                             ? "text-green-500"
-                            : "text-red-600"
+                            : "text-red-500"
                         }`}
                       >
                         {service.status}
                       </span>
                     </td>
-
-                    {/* CREATED BY */}
-                    <td className="flex justify-between xl:table-cell p-4">
-                      <span className="xl:hidden font-semibold">
-                        Created By
-                      </span>
-                      <span className="text-sm opacity-75 max-w-xs truncate">
-                        {service.createdByEmail}
-                      </span>
-                    </td>
-
                     {/* ACTIONS */}
-                    <td className="flex flex-col xl:flex-row gap-2 xl:table-cell p-4">
-                      <span className="xl:hidden font-semibold">Actions</span>
-
+                    <td className="flex flex-col md:flex-row space-x-3  xl:table-cell p-4">
                       <button
                         onClick={() => handleModal(service)}
-                        className="btn btn-sm btn-outline btn-info mr-5"
+                        className="btn btn-primary xl:py-2 btn-lg flex-1 py-3  rounded-full my-4 md:my-0 font-bold xl:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
                       >
                         Edit
                       </button>
 
                       <button
                         onClick={() => handleServiceDelete(service._id)}
-                        className="btn btn-sm btn-error"
+                        className="btn btn-error xl:py-2  btn-lg flex-1 py-3  rounded-full font-bold xl:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
                       >
                         Delete
                       </button>
@@ -395,7 +381,7 @@ const ManageServices = () => {
                 <div className="flex flex-col">
                   <label className="font-semibold mb-2">Cost </label>
                   <input
-                    {...registerUpdate("cost", {
+                    {...registerUpdate("price", {
                       required: true,
                       valueAsNumber: true,
                       min: { value: 0, message: "Cost must be positive" },
@@ -446,7 +432,7 @@ const ManageServices = () => {
                     {...registerUpdate("status")}
                     className="select select-bordered outline-none input-lg w-full"
                   >
-                    <option value="Active ">Active</option>
+                    <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
                   </select>
                 </div>
@@ -469,7 +455,7 @@ const ManageServices = () => {
                 className="btn btn-primary py-2 md:py-0 btn-lg flex-1 rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
               >
                 Update Service
-              </button>
+              </button> 
               <button
                 type="button"
                 className="btn btn-primary btn-lg flex-1 py-2 md:py-0 rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
