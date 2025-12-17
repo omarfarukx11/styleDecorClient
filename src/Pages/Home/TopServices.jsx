@@ -56,7 +56,7 @@ const TopServices = () => {
 
       {/* Card Body */}
       <div className="p-7">
-        <h2 className="text-2xl font-extrabold text-gray-800 group-hover:text-white transition-colors duration-300">
+        <h2 className="text-2xl font-extrabold text-gray-500 group-hover:text-white transition-colors duration-300">
           {service.name}
         </h2>
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { FaHeart, FaUsers, FaTrophy, FaStar } from "react-icons/fa";
+import { Link } from "react-router";
 
 const About = () => {
   return (
@@ -15,12 +16,12 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
+        <div className="grid md:grid-cols-2 gap-16 items-center mb-20 bg-primary rounded-xl">
           <div>
             <img
               src="https://i.ibb.co.com/whbwykpC/download-1.jpg"
               alt="Our Team"
-              className="rounded-3xl shadow-2xl w-full"
+              className="rounded-xl shadow-2xl w-full"
             />
           </div>
           <div className="">
@@ -63,9 +64,9 @@ const About = () => {
           <h2 className="text-4xl font-bold  mb-8">
             Ready to Make Your Event Unforgettable?
           </h2>
-          <button className="btn btn-primary btn-lg rounded-full px-12 text-xl font-bold shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105 transition-all">
+          <Link to={'/services'} className="btn hover:bg-base-100  hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all">
             Book Now
-          </button>
+          </Link>
         </div>
       </div>
     </div>

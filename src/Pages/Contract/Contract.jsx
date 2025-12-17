@@ -32,7 +32,7 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl hover:scale-105 transition-transform">
+            <div className="bg-white/10  backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl hover:scale-105 transition-transform">
               <div className="flex items-center gap-6">
                 <div className="p-5 bg-pink-600 rounded-full">
                   <FaEnvelope className="text-3xl text-white" />

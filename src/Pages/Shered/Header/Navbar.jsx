@@ -72,14 +72,14 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="bg-primary border-b shadow-xl px-20">
+    <nav className="bg-primary border-b shadow-xl xl:px-20">
       <div className="flex justify-between items-center max-w-[1800px] py-5 px-4 lg:px-8 mx-auto ">
         {/* Left */}
         <div className="navbar-start flex items-center gap-2">
           {/* Mobile Dropdown */}
           <div className="dropdown lg:hidden">
             <button tabIndex={0} className="btn btn-ghost">
-              <FaBars className="text-2xl" />
+              <FaBars className="xl:text-2xl" />
             </button>
             <ul
               tabIndex={0}
@@ -90,7 +90,7 @@ const Navbar = () => {
           </div>
 
           {/* Logo */}
-          <Link to="/" className="btn btn-ghost text-2xl font-bold">
+          <Link to="/" className="text-2xl font-bold">
             <Logo />
           </Link>
         </div>
@@ -105,7 +105,7 @@ const Navbar = () => {
           {user && (
             <NavLink
               to="/dashboard"
-              className="btn hover:bg-base-100  hover:text-secondary bg-secondary text-base-100 border-none btn-lg rounded-full font-bold xl:text-xl text-sm shadow-xl hover:shadow-primary/70 transform hover:scale-105 transition-all"
+              className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none xl:btn-lg rounded-full font-bold xl:text-xl text-sm shadow-xl hover:shadow-primary/70 transform hover:scale-105 transition-all"
             >
               Dashboard
             </NavLink>

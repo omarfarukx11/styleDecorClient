@@ -7,7 +7,7 @@ const Logo = () => {
              src="https://i.ibb.co.com/jvxBgcQQ/generated-image.jpg" 
              alt=""
              className='w-[100px] h-[100px]' /> */}
-             <p className='text-3xl font-bold' >StyleDecor</p>
+             <p className='xl:text-3xl font-bold' >StyleDecor</p>
         </div>
     );
 };

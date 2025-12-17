@@ -106,13 +106,13 @@ const MyBookings = () => {
 
   return (
     <div>
-      <div className="text-2xl text-secondary bg-primary p-8 border-b border-white text-center">
+      <div className="text-2xl text-white font-bold bg-primary  p-8 border-b border-white text-center">
         <h1>My Bookings</h1>
       </div>
 
-      <div className="bg-primary p-2 md:p-10">
+      <div className="bg-primary p-2 md:p-10 ">
         {/* HEADER for XL+ */}
-        <div className="hidden xl:flex bg-secondary py-8 xl:justify-between text-secondary-content rounded-md text-sm xl:text-lg font-semibold px-4">
+        <div className="hidden xl:flex bg-secondary text-base-100 py-8 xl:justify-between rounded-md text-sm xl:text-lg font-semibold px-4">
           <div className="w-12 text-center">#</div>
           <div className="flex-2 min-w-[200px] text-center">Service Name</div>
           <div className="flex-1 text-center">Category</div>
@@ -129,7 +129,7 @@ const MyBookings = () => {
           {book.map((b, i) => (
             <div
               key={b._id}
-              className="flex flex-col xl:flex-row xl:items-center xl:justify-between bg-accent text-accent-content rounded-lg shadow-xl p-2 2xl:text-xl xl:text-sm xl:px-4"
+              className="flex flex-col hover:bg-primary hover:text-white xl:flex-row xl:items-center xl:justify-between bg-accent text-accent-content rounded-lg shadow-xl p-2 2xl:text-xl xl:text-sm xl:px-4"
             >
               {/* # */}
               <div className="flex justify-between xl:w-12 px-2 py-2 font-semibold border-b border-primary xl:border-b-0">
@@ -256,14 +256,14 @@ const MyBookings = () => {
 
       {/* update modal section  */}
       <dialog ref={updateRef} className="modal">
-        <div className="modal-box w-11/12 max-w-2xl bg-base-100 p-8">
-          <h1 className="text-5xl text-center font-bold mb-3">
+        <div className="modal-box w-11/12 max-w-2xl bg-primary p-8">
+          <h1 className="text-5xl text-center font-bold mb-10">
             Booking Information
           </h1>
-          <div className="bg-base-200 p-4 rounded-xl mb-5">
+          <div className="bg-accent text-secondary p-4 rounded-xl">
             <p className="text-lg">Service Name : {bookingData?.serviceName}</p>
             <p className="text-lg">
-              Service Cost : ৳{bookingData?.serviceCost}
+              Service Cost : ৳ {bookingData?.serviceCost}
             </p>
             <p className="text-lg">Booker Name : {bookingData?.userName}</p>
             <p className="text-lg">Booker Email : {bookingData?.userEmail}</p>
@@ -273,27 +273,27 @@ const MyBookings = () => {
           </h1>
           <form
             onSubmit={handleSubmit(handleUpdateBooking)}
-            className="space-y-5"
+            className="space-y-5 text-secondary"
           >
             <div>
               <label className="font-semibold">
-                Booking Date <span className="text-error">*</span>
+                Booking Date 
               </label>
               <input
                 type="date"
                 {...register("bookingDate", { required: true })}
                 min={new Date().toISOString().split("T")[0]}
-                className="input input-bordered outline-none w-full"
+                className="input input-bordered bg-accent outline-none w-full"
               />
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
               <div>
                 <label className="font-semibold">
-                  Region <span className="text-error">*</span>
+                  Region 
                 </label>
                 <select
                   {...register("BookingRegion", { required: true })}
-                  className="select select-bordered w-full"
+                  className="select select-bordered bg-accent outline-none w-full"
                 >
                   <option value="">Select Region</option>
                   {regions.map((region) => (
@@ -305,11 +305,11 @@ const MyBookings = () => {
               </div>
               <div>
                 <label className="font-semibold">
-                  District <span className="text-error">*</span>
+                  District
                 </label>
                 <select
                   {...register("BookingDistrict", { required: true })}
-                  className="select select-bordered w-full"
+                  className="select select-bordered bg-accent outline-none w-full"
                   disabled={!selectedRegion}
                 >
                   <option value="">Select District</option>
@@ -323,21 +323,21 @@ const MyBookings = () => {
             </div>
             <div>
               <label className="font-semibold">
-                Full Location / Address <span className="text-error">*</span>
+                Full Address
               </label>
               <input
                 {...register("location", { required: true })}
                 placeholder="House, Road, Area, City"
-                className="input input-bordered outline-none w-full"
+                className="input input-bordered bg-accent outline-none w-full"
               />
             </div>
-            <div className="flex gap-3 mt-6">
-              <button type="submit" className="btn btn-primary flex-1">
+            <div className="flex flex-col md:flex-row gap-3 mt-6">
+              <button type="submit" className="btn hover:bg-base-100 flex-1 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all py-2">
                 Update Booking
               </button>
               <button
                 type="button"
-                className="btn btn-ghost flex-1"
+                className="btn hover:bg-base-100 flex-1 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all py-2"
                 onClick={() => updateRef.current.close()}
               >
                 Cancel

@@ -43,16 +43,11 @@ const PaymentHistory = () => {
     }
   }, [sessionId, axiosSecure, refetch]);
 
-
-
-
-
   if (isLoading) {
     return  <Loader></Loader>
   }
 
  
-
   return (
     <div>
       <div className="text-2xl text-secondary bg-primary p-8 border-b border-white text-center">
@@ -78,7 +73,7 @@ const PaymentHistory = () => {
     {history.map((b, i) => (
       <div
         key={b._id}
-        className="flex flex-col xl:flex-row xl:items-center xl:justify-between bg-accent text-accent-content shadow-xl py-4 xl:py-8 text-sm rounded-lg p-3 xl:px-4"
+        className="flex flex-col xl:flex-row hover:bg-primary hover:text-white xl:items-center xl:justify-between bg-accent text-accent-content shadow-xl py-4 xl:py-8 text-sm rounded-lg p-3 xl:px-4"
       >
         {/* # */}
         <div className="flex justify-between xl:w-12 px-1 py-1 font-semibold border-b border-white xl:border-b-0">
@@ -89,7 +84,7 @@ const PaymentHistory = () => {
         {/* Service Name */}
         <div className="flex justify-between xl:flex-[1.5] px-1 py-1 border-b border-white xl:border-b-0">
           <span className="xl:hidden font-semibold">Service Name:</span>
-          <span className="xl:text-center xl:w-full">{b.serviceName}</span>
+          <span className="xl:text-start xl:w-full">{b.serviceName}</span>
         </div>
 
         {/* Biller Name */}

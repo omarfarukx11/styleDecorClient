@@ -52,7 +52,7 @@ const TopDecorators = () => {
 
             {/* Card Content */}
             <div className="p-8">
-              <h3 className="text-2xl font-extrabold text-secondary group-hover:text-white transition-colors">
+              <h3 className="text-2xl font-extrabold text-gray-500 group-hover:text-white transition-colors">
                 {d.name}
               </h3>
 
@@ -63,7 +63,7 @@ const TopDecorators = () => {
                 <FaStar className="text-xl" />
                 <FaStar className="text-xl" />
                 <FaStar className="text-xl" />
-                <span className="ml-2 text-lg font-semibold text-gray-700">
+                <span className="ml-2 text-lg font-semibold text-gray-500">
                   {d.rating} / 5.0
                 </span>
               </div>
@@ -73,10 +73,10 @@ const TopDecorators = () => {
                 <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">
                   Specialties
                 </p>
-                <p className="mt-2 text-base text-gray-700 font-medium leading-relaxed">
+                <p className="mt-2 text-base text-gray-500 font-medium leading-relaxed">
                   {d.specialties}
                 </p>
-                <p className="mt-2 text-base text-gray-700 font-medium leading-relaxed">
+                <p className="mt-2 text-base text-gray-500 font-medium leading-relaxed">
                   {d.description}
                 </p>
               </div>

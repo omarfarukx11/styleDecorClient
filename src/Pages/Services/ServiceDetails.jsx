@@ -100,9 +100,9 @@ const ServiceDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-base-100 py-12 px-6 lg:px-12">
+    <div className="min-h-screen py-12 px-6 lg:px-12">
       <div className="max-w-screen-2xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-12 bg-base-200/30 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-base-300">
+        <div className="grid lg:grid-cols-2 gap-12 bg-primary backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-base-300">
           {/* Image Section */}
           <div className="relative group overflow-hidden">
             <img
@@ -116,18 +116,18 @@ const ServiceDetails = () => {
                 <p className="text-lg opacity-90">Starting Price</p>
               </div>
             </div>
-            <div className="absolute top-6 left-6 bg-primary text-primary-content px-6 py-2 rounded-full font-semibold text-sm shadow-lg">
+            <div className="absolute top-6 left-6 bg-primary text-primary-content px-6 py-2 rounded-full font-semibold text-secondary text-sm shadow-lg">
               Premium Package
             </div>
           </div>
 
           {/* Details Section */}
           <div className="p-8 lg:p-16 flex flex-col justify-center">
-            <span className="badge badge-outline text-primary border-primary px-5 py-3 text-base font-medium mb-6">
+            <span className="badge badge-outline text-secondary bg-primary border-primary px-5 py-3 text-base font-medium mb-6">
               {service.type}
             </span>
 
-            <h1 className="text-4xl lg:text-6xl font-extrabold text-base-content mb-6 leading-tight">
+            <h1 className="text-2xl lg:text-6xl font-extrabold text-secondary mb-6 leading-tight">
               {service.name}
             </h1>
 
@@ -144,28 +144,28 @@ const ServiceDetails = () => {
                   />
                 ))}
               </div>
-              <span className="text-2xl font-bold text-base-content">
+              <span className="text-2xl font-bold text-secondary">
                 {service.rating || "N/A"}
               </span>
-              <span className="text-base-content/70">(248 reviews)</span>
+              <span className="text-secondary">(248 reviews)</span>
             </div>
 
-            <p className="text-lg text-base-content/80 leading-relaxed mb-10">
+            <p className="text-lg text-secondary leading-relaxed mb-10">
               {service.description}
             </p>
 
             <div className="mb-12">
-              <p className="text-6xl font-black text-primary">
+              <p className="text-2xl xl:text-6xl font-black text-secondary">
                 ৳{service.price}
               </p>
-              <p className="text-base-content/60 mt-2">
+              <p className="text-secondary mt-2">
                 One-time package price
               </p>
             </div>
 
             <button
               onClick={handleModal}
-              className="btn btn-primary btn-lg rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
+              className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
             >
               Book Now
             </button>
@@ -176,68 +176,68 @@ const ServiceDetails = () => {
 
       {/* Booking Modal */}
       <dialog ref={dialogRef} className="modal">
-        <div className="modal-box w-11/12 max-w-2xl bg-primary p-8">
+        <div className="modal-box w-11/12 max-w-2xl bg-primary  p-8">
           <h3 className="text-3xl font-bold text-center text-secondary mb-6">
             Confirm Your Booking
           </h3>
 
           <form onSubmit={handleSubmit(handleBooking)} className="space-y-5 text-black">
             {/* Read-only fields */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-secondary ">
               <div>
-                <label className="font-semibold">Service Name</label>
+                <label className="font-semibold text-secondary">Service Name</label>
                 <input
                   {...register("serviceName")}
                   readOnly
-                  className="input input-bordered outline-none w-full"
+                  className="input input-bordered outline-none text-secondary bg-accent  w-full"
                 />
               </div>
               <div>
-                <label className="font-semibold">Price</label>
+                <label className="font-semibold text-secondary">Price</label>
                 <input
                   {...register("serviceCost")}
                   readOnly
-                  className="input input-bordered outline-none w-full"
+                  className="input input-bordered outline-none text-secondary bg-accent w-full"
                 />
               </div>
               <div>
-                <label className="font-semibold">Your Name</label>
+                <label className="font-semibold text-secondary">Your Name</label>
                 <input
                   {...register("userName")}
                   readOnly
-                  className="input input-bordered outline-none w-full"
+                  className="input input-bordered outline-none text-secondary bg-accent w-full"
                 />
               </div>
               <div>
-                <label className="font-semibold">Your Email</label>
+                <label className="font-semibold text-secondary">Your Email</label>
                 <input
                   {...register("userEmail")}
                   readOnly
-                  className="input input-bordered outline-none w-full"
+                  className="input input-bordered outline-none text-secondary bg-accent w-full"
                 />
               </div>
             </div>
 
             <div>
-              <label className="font-semibold">
-                Booking Date <span className="text-error">*</span>
+              <label className="font-semibold text-secondary">
+                Booking Date
               </label>
               <input
                 type="date"
                 {...register("bookingDate", { required: true })}
                 min={new Date().toISOString().split("T")[0]}
-                className="input input-bordered outline-none w-full"
+                className="input input-bordered text-secondary bg-accent outline-none w-full"
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="font-semibold">
-                  Region <span className="text-error">*</span>
+                <label className="font-semibold text-secondary">
+                  Region
                 </label>
                 <select
                   {...register("bookingRegion", { required: true })}
-                  className="select select-bordered w-full outline-none"
+                  className="select select-bordered w-full text-secondary bg-accent outline-none" 
                 >
                   <option value="">Select Region</option>
                   {regions.map((region) => (
@@ -249,12 +249,12 @@ const ServiceDetails = () => {
               </div>
 
               <div>
-                <label className="font-semibold">
-                  District <span className="text-error">*</span>
+                <label className="font-semibold text-secondary">
+                  District
                 </label>
                 <select
                   {...register("bookingDistrict", { required: true })}
-                  className="select select-bordered w-full outline-none"
+                  className="select select-bordered text-secondary bg-accent w-full outline-none"text-secondary bg-accent 
                 >
                   {districtByRegion(selectedRegion).map((district) => (
                     <option key={district} value={district}>
@@ -266,23 +266,23 @@ const ServiceDetails = () => {
             </div>
 
             <div>
-              <label className="font-semibold">
+              <label className="font-semibold text-secondary">
                 Full Location / Address <span className="text-error">*</span>
               </label>
               <input
                 {...register("location", { required: true })}
                 placeholder="House, Road, Area, City"
-                className="input input-bordered outline-none w-full"
+                className="input input-bordered outline-none text-secondary bg-accent w-full"
               />
             </div>
 
-            <div className="flex gap-3 mt-6">
-              <button type="submit" className="btn btn-primary flex-1">
+            <div className="flex flex-col md:flex-row gap-3 mt-6">
+              <button type="submit" className="btn hover:bg-base-100 flex-1 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all py-2">
                 Confirm Booking
               </button>
               <button
                 type="button"
-                className="btn btn-ghost flex-1"
+                className="btn hover:bg-base-100 flex-1 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all py-2"
                 onClick={() => dialogRef.current.close()}
               >
                 Cancel
@@ -290,11 +290,6 @@ const ServiceDetails = () => {
             </div>
           </form>
         </div>
-
-        {/* Click outside to close */}
-        <form method="dialog" className="modal-backdrop">
-          <button>close</button>
-        </form>
       </dialog>
     </div>
   );

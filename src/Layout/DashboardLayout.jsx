@@ -188,14 +188,14 @@ const DashboardLayout = () => {
         `}
       >
         <div className="p-8 border-b border-white sm:pr-2">
-          <h2 className="text-2xl font-bold text-center">
+          <h2 className="text-2xl font-bold text-center text-white">
             {role === "admin" && "Admin"}
             {role === "decorator" && "Decorator"}
             {role === "user" && "My"} Dashboard
           </h2>
         </div>
 
-        <ul className="menu p-4 flex-1 overflow-y-auto">
+        <ul className="menu p-4 flex-1 overflow-y-auto text-white">
           {role === "user" && userMenu}
           {role === "decorator" && decoratorMenu}
           {role === "admin" && adminMenu}
@@ -203,7 +203,7 @@ const DashboardLayout = () => {
           <div>
             <button
               onClick={handleLogout}
-              className="btn hover:bg-base-100  hover:text-secondary bg-secondary text-base-100 border-none border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50  transform hover:scale-105 transition-all w-full my-10"
+              className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50  transform hover:scale-105 transition-all w-full my-10"
             >
               Logout
             </button>
