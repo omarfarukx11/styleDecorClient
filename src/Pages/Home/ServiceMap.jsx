@@ -36,7 +36,7 @@ const ServiceMap = () => {
 
   return (
     <div className="xl:p-20 p-4 rounded-xl mb-10">
-      <div className="bg-secondary p-10 text-primary rounded-xl">
+      <div className="bg-primary text-secondary p-10 rounded-xl">
         <h1 className="text-5xl font-bold ">
           We provide services all over Bangladesh
         </h1>

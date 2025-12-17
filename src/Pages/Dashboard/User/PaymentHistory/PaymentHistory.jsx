@@ -55,13 +55,13 @@ const PaymentHistory = () => {
 
   return (
     <div>
-      <div>
-        <h1 className="text-center bg-black font-extrabold text-3xl py-8 ">
+      <div className="text-2xl text-secondary bg-primary py-8 border-b border-white text-center">
+        <h1>
         Your Payment History
       </h1>
       </div>
 
-<div className="bg-primary rounded-lg p-5">
+<div className="bg-primary  p-8">
 
   {/* HEADER for XL+ */}
   <div className="hidden xl:flex bg-secondary justify-between text-primary rounded-md py-8 text-sm xl:text-base font-semibold">

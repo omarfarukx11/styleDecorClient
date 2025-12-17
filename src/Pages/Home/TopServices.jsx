@@ -15,12 +15,12 @@ const TopServices = () => {
 
   return (
     <section className="xl:p-20 p-4 ">
-      <div className="text-center my-10  py-10 px-4 bg-secondary text-neutral-content  rounded-xl">
-        <h2 className="text-5xl font-extrabold mb-4 text-white ">
+      <div className="text-center my-10  py-10 px-4 bg-primary text-secondary  rounded-xl">
+        <h2 className="text-5xl font-extrabold mb-4  ">
            Our Decoration Packages
         </h2>
 
-        <p className=" max-w-xl mx-auto text-xs text-gray-100">
+        <p className=" max-w-xl mx-auto text-xs ">
           Explore our range of flexible and innovative services designed to meet
           your unique needs. From expert consultation to hands-on execution, we
           ensure each solution is personalized, seamless, and impactful.
@@ -28,7 +28,7 @@ const TopServices = () => {
         </p>
       </div>
 
-   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+   <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-10">
   {service.map((service) => (
     <div
       key={service._id}

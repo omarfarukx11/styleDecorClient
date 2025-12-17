@@ -26,7 +26,6 @@ const Login = () => {
         Swal.fire({
           title: "Login Success!",
           icon: "success",
-          draggable: true,
           timer: 1000,
         });
         navigate(location?.state || "/");

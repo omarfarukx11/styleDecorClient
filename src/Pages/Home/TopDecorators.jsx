@@ -18,7 +18,7 @@ const TopDecorators = () => {
 
   return (
     <section className="xl:p-20 p-4">
-      <div className="text-center my-10 py-10 px-4 bg-secondary text-primary rounded-2xl shadow-xl">
+      <div className="text-center my-10 py-10 px-4 bg-primary text-secondary rounded-2xl shadow-xl">
         <h2 className="text-5xl font-extrabold mb-6 ">
           Top Decorators
         </h2>

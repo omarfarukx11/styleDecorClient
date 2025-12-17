@@ -3,11 +3,11 @@ import { FaHeart, FaUsers, FaTrophy, FaStar } from "react-icons/fa";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-linear-to-br  py-20 px-6">
+    <div className="min-h-screen bg-linear-to-br  py-20 px-6 text-secondary">
       <div className="max-w-7xl mx-auto">
 
         <div className="text-center mb-20">
-          <h1 className="text-5xl md:text-7xl font-extrabold  mb-6">
+          <h1 className="text-5xl md:text-7xl text-secondary font-extrabold  mb-6">
             About Decorator
           </h1>
           <p className="text-xl text-gray-500 max-w-3xl mx-auto">
@@ -37,22 +37,22 @@ const About = () => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20">
+          <div className="bg-primary backdrop-blur-lg rounded-3xl p-8 border border-white/20">
             <FaUsers className="text-5xl text-purple-400 mx-auto mb-4" />
             <h3 className="text-4xl font-black ">500+</h3>
             <p className="text-gray-500">Happy Clients</p>
           </div>
-          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20">
+          <div className="bg-primary backdrop-blur-lg rounded-3xl p-8 border border-white/20">
             <FaTrophy className="text-5xl text-yellow-400 mx-auto mb-4" />
             <h3 className="text-4xl font-black ">50+</h3>
             <p className="text-gray-500">Awards Won</p>
           </div>
-          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20">
+          <div className="bg-primary backdrop-blur-lg rounded-3xl p-8 border border-white/20">
             <FaHeart className="text-5xl text-pink-400 mx-auto mb-4" />
             <h3 className="text-4xl font-black ">1200+</h3>
             <p className="text-gray-500">Events Completed</p>
           </div>
-          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20">
+          <div className="bg-primary backdrop-blur-lg rounded-3xl p-8 border border-white/20">
             <FaStar className="text-5xl text-yellow-500 mx-auto mb-4" />
             <h3 className="text-4xl font-black ">4.9</h3>
             <p className="text-gray-500">Average Rating</p>

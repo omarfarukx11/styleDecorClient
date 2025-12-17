@@ -106,15 +106,15 @@ const MyBookings = () => {
 
   return (
     <div>
-      <div className="text-center">
-        <h1 className="xl:text-4xl font-bold text-primary bg-secondary py-8">
+      <div className="text-2xl text-secondary bg-primary py-8 border-b border-white text-center">
+        <h1 >
           My Bookings
         </h1>
       </div>
 
 
 
-<div className="bg-primary  rounded-lg p-10">
+<div className="bg-primary  p-10">
 
   {/* HEADER for XL+ */}
   <div className="hidden xl:flex bg-secondary xl:justify-between text-primary rounded-md py-4 text-sm xl:text-lg font-semibold">

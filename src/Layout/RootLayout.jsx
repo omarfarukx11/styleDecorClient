@@ -20,8 +20,8 @@ const RootLayout = () => {
 
   return (
     <div>
-      <Navbar />
-      <div className="2xl:w-[1800px] mx-auto">
+        <Navbar />
+      <div className="max-w-[1800px] mx-auto">
       <Outlet />
     </div>
       <Footer />

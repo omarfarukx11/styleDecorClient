@@ -3,8 +3,8 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-secondary text-primary p-10 mt-10">
-      <div className="xl:w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 xl:p-20 p-4">
+    <footer className="bg-primary text-secondary p-10 mt-10">
+      <div className=" mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 xl:p-20 p-4">
 
         {/* Contact Details */}
         <div>
