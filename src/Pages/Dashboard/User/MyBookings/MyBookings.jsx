@@ -129,7 +129,7 @@ const MyBookings = () => {
           {book.map((b, i) => (
             <div
               key={b._id}
-              className="flex flex-col hover:bg-primary hover:text-white xl:flex-row xl:items-center xl:justify-between bg-accent text-accent-content rounded-lg shadow-xl p-2 2xl:text-xl xl:text-sm xl:px-4"
+              className="flex flex-col hover:bg-primary hover:text-white bg-base-100 text-secondary xl:flex-row xl:items-center xl:justify-between  rounded-lg shadow-xl p-2 2xl:text-xl xl:text-sm xl:px-4"
             >
               {/* # */}
               <div className="flex justify-between xl:w-12 px-2 py-2 font-semibold border-b border-primary xl:border-b-0">
@@ -256,8 +256,8 @@ const MyBookings = () => {
 
       {/* update modal section  */}
       <dialog ref={updateRef} className="modal">
-        <div className="modal-box w-11/12 max-w-2xl bg-primary p-8">
-          <h1 className="text-5xl text-center font-bold mb-10">
+        <div className="modal-box w-11/12 max-w-2xl bg-primary p-8 my-10 py-10">
+          <h1 className="md:text-5xl text-2xl text-center font-bold mb-10">
             Booking Information
           </h1>
           <div className="bg-accent text-secondary p-4 rounded-xl">
@@ -283,7 +283,7 @@ const MyBookings = () => {
                 type="date"
                 {...register("bookingDate", { required: true })}
                 min={new Date().toISOString().split("T")[0]}
-                className="input input-bordered bg-accent outline-none w-full"
+                className="input input-bordered bg-accent  outline-none w-full"
               />
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">

@@ -166,13 +166,12 @@ const DashboardLayout = () => {
       <div className="absolute top-5 left-4 z-50 xl:hidden">
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="relative top-5"
+          className="mt-4"
         >
-          {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={20} />}
+          {!isMobileMenuOpen && <FaBars size={20} />}
         </button>
       </div>
 
-      {/* Overlay */}
       {isMobileMenuOpen && (
         <div
           onClick={closeMobileMenu}
@@ -188,6 +187,15 @@ const DashboardLayout = () => {
         `}
       >
         <div className="p-8 border-b border-white sm:pr-2">
+          <div className="absolute top-5 left-4 z-50 xl:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="mt-4 text-white"
+            >
+              {isMobileMenuOpen && <FaTimes size={24} />}
+            </button>
+          </div>
+
           <h2 className="text-2xl font-bold text-center text-white">
             {role === "admin" && "Admin"}
             {role === "decorator" && "Decorator"}

@@ -83,7 +83,7 @@ const Navbar = () => {
             </button>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-primary text-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-primary text-white rounded-box w-52"
             >
               {navLinks}
             </ul>
@@ -114,7 +114,7 @@ const Navbar = () => {
           {!user ? (
             <NavLink
               to="/login"
-              className="btn btn-secondary hover:bg-white hover:text-primary"
+              className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none xl:btn-lg rounded-full font-bold xl:text-xl text-sm shadow-xl hover:shadow-primary/70 transform hover:scale-105 transition-all"
             >
               Login
             </NavLink>

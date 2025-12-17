@@ -65,14 +65,14 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-primary">
+    <div className="flex items-center justify-center min-h-screen bg-primary px-5">
       <div className="card w-full max-w-md border-2 border-white">
         <div className="card-body">
-          <p className="text-center text-5xl">
+          <p className="text-center md:text-5xl text-2xl">
             <Logo />
           </p>
 
-          <h2 className="font-bold text-center mt-5 mb-10 text-5xl text-secondary">
+          <h2 className="font-bold text-center mt-5 mb-10 md:text-5xl text-2xl text-secondary">
             Sign up to start
           </h2>
 
