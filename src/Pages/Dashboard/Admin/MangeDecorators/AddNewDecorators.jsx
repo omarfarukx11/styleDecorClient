@@ -52,12 +52,12 @@ const AddNewDecorators = () => {
 
   return (
     <div>
-      <div className="py-8 text-3xl text-center bg-secondary text-primary">
+      <div className="py-8 text-2xl text-center bg-primary text-white border-b border-white">
         <h1>
         Crete new decorators
       </h1>
       </div>
-      <div className="xl:p-8 py-5 px-2 ">
+      <div className="xl:p-8 p-4 bg-primary h-screen ">
         <table className="table w-full ">
         <thead className="xl:text-xl text-[12px] ">
           <tr className="bg-secondary text-primary rounded-lg">
@@ -67,7 +67,7 @@ const AddNewDecorators = () => {
             <th>Action</th>
           </tr>
         </thead>
-        <tbody className="bg-primary text-secondary shadow-xl border-2 xl:text-xl text-[12px]">
+        <tbody className="hover:bg-primary hover:text-white bg-base-100 text-secondary shadow-xl border-2 xl:text-xl text-[12px]">
           {user.length === 0 ? (
             <p>No Decorators Available</p>
           ) : (

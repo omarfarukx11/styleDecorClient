@@ -62,9 +62,10 @@ const ManageDecorators = () => {
         <div className="flex justify-end items-center">
           <Link
             to={"/dashboard/add-new-decorator"}
-            className="btn btn-secondary text-primary"
+            className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50  transform hover:scale-105 transition-all"
+
           >
-            Add New Decorators
+           + Add New Decorators
           </Link>
         </div>
         <div className="flex justify-end items-center my-5 ">
@@ -75,7 +76,7 @@ const ManageDecorators = () => {
 
         <div className="bg-primary rounded-lg ">
           {/* HEADER for XL+ */}
-          <div className="hidden xl:flex bg-secondary xl:justify-between text-primary rounded-md py-4 text-sm xl:text-lg font-semibold">
+          <div className="hidden xl:flex bg-secondary xl:justify-between text-primary rounded-md py-8 mb-5 text-sm xl:text-lg font-semibold">
             <div className="w-10 text-center xl:ml-10">SL</div>
             <div className="w-[200px] text-center">Decorator</div>
             <div className="w-[200px] text-center ">Specialties</div>
@@ -94,7 +95,7 @@ const ManageDecorators = () => {
               allDecorator.map((d, i) => (
                 <div
                   key={d._id}
-                  className="flex flex-col xl:flex-row xl:items-center xl:justify-between bg-white text-secondary rounded-lg shadow-xl p-2 text-lg"
+                  className="flex flex-col xl:flex-row xl:items-center xl:justify-between  rounded-lg shadow-xl py-5 text-lg hover:bg-primary hover:text-white bg-base-100 text-secondary"
                 >
                   {/* SL */}
                   <div className="flex justify-between xl:w-10 px-2 py-2 xl:ml-10 font-semibold border-b border-gray-300 xl:border-b-0">

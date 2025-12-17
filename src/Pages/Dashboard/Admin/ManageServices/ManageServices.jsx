@@ -149,7 +149,7 @@ const ManageServices = () => {
         <div className="flex justify-end items-center mb-4">
           <Link
             to="/dashboard/add-new-service"
-            className="btn btn-primary btn-lg"
+            className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50  transform hover:scale-105 transition-all"
           >
             + Add New Service
           </Link>
@@ -198,20 +198,17 @@ const ManageServices = () => {
           />
         </form>
 
-
-
-        <div className="overflow-x-auto bg-primary rounded-xl shadow-xl">
-          <table className="table w-full">
-            {/* ===== HEADER (DESKTOP ONLY) ===== */}
+        <div className="overflow-x-auto bg-primary rounded-lg">
+          <table className="table w-full card-table">
             <thead className="hidden xl:table-header-group">
               <tr className="text-primary bg-secondary h-20">
-                <th>Image</th>
+                <th className="rounded-l-xl">Image</th>
                 <th>Service Name</th>
                 <th>Category</th>
                 <th>Cost</th>
                 <th>Unit</th>
                 <th>Status</th>
-                <th className="pl-20">Actions</th>
+                <th className="pl-20 rounded-r-xl">Actions</th>
               </tr>
             </thead>
 
@@ -233,20 +230,14 @@ const ManageServices = () => {
                 services.map((service) => (
                   <tr
                     key={service._id}
-                    className="
-                block xl:table-row
-                rounded-xl xl:rounded-none
-                mb-6 xl:mb-0
-            
-               
-              "
+                    // Added 'rounded-lg' and 'overflow-hidden'
+                    className="block rounded-lg overflow-hidden xl:table-row xl:rounded-none mb-6 xl:mb-0 hover:bg-primary hover:text-white bg-base-100 text-secondary shadow-xl transition-all duration-300"
                   >
-                    {/* IMAGE */}
-                    <td className="flex justify-between xl:table-cell p-4 ">
+                    <td className="flex justify-between xl:table-cell p-4 xl:rounded-l-xl ">
                       <span className="xl:hidden font-semibold">Image</span>
                       <div className="avatar">
                         <div className="mask mask-squircle w-20 h-20">
-                          <img src={service.image} alt={service.service_name} />
+                          <img src={service.image} alt={service.name} />
                         </div>
                       </div>
                     </td>
@@ -270,8 +261,8 @@ const ManageServices = () => {
                     {/* COST */}
                     <td className="flex justify-between xl:table-cell p-4">
                       <span className="xl:hidden font-semibold">Cost</span>
-                      <span className="font-bold text-secondary">
-                        ৳{(service.price)?.toLocaleString()}
+                      <span className="font-bold text-secondary group-hover:text-white transition-colors">
+                        ৳{service.price?.toLocaleString()}
                       </span>
                     </td>
 
@@ -283,7 +274,6 @@ const ManageServices = () => {
                       </span>
                     </td>
 
-                    {/* STATUS */}
                     <td className="flex justify-between  xl:table-cell p-4">
                       <span className="xl:hidden font-semibold">Status</span>
                       <span
@@ -296,18 +286,18 @@ const ManageServices = () => {
                         {service.status}
                       </span>
                     </td>
-                    {/* ACTIONS */}
-                    <td className="flex flex-col md:flex-row space-x-3  xl:table-cell p-4">
+
+                    <td className="flex flex-col md:flex-row space-x-3 xl:table-cell p-4 xl:rounded-r-xl">
                       <button
                         onClick={() => handleModal(service)}
-                        className="btn btn-primary xl:py-2 btn-lg flex-1 py-3  rounded-full my-4 md:my-0 font-bold xl:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
+                        className="btn btn-primary xl:py-2 2xl:btn-md xl:btn-xs flex-1 py-3 rounded-full my-4 md:my-0 font-bold 2xl:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none"
                       >
                         Edit
                       </button>
 
                       <button
                         onClick={() => handleServiceDelete(service._id)}
-                        className="btn btn-error xl:py-2  btn-lg flex-1 py-3  rounded-full font-bold xl:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
+                        className="btn btn-error xl:py-2 2xl:btn-md xl:btn-xs flex-1 py-3 rounded-full font-bold 2xl:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
                       >
                         Delete
                       </button>
@@ -318,8 +308,6 @@ const ManageServices = () => {
             </tbody>
           </table>
         </div>
-
-
 
         {/* Pagination */}
         {totalPages > 1 && (
@@ -455,7 +443,7 @@ const ManageServices = () => {
                 className="btn btn-primary py-2 md:py-0 btn-lg flex-1 rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
               >
                 Update Service
-              </button> 
+              </button>
               <button
                 type="button"
                 className="btn btn-primary btn-lg flex-1 py-2 md:py-0 rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"

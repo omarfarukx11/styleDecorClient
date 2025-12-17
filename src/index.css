@@ -15,6 +15,17 @@ a.active {
   font-size: bold;
 }
 
+/* Add this to your index.css */
+/* Custom table fix for DaisyUI */
+.card-table {
+  border-collapse: separate !important;
+  border-spacing: 0 16px !important; /* This creates the vertical "game" between rows */
+}
+
+.card-table tr {
+  /* This ensures the shadow shows up correctly on the block layout */
+  display: table-row;
+}
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
