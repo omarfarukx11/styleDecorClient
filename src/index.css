@@ -54,7 +54,7 @@ a.active {
   name: "dark";
 
   /* Deep charcoal/black backgrounds */
-  --color-base-100: oklch(15% 0 0);
+  --color-base-100: black;
   --color-base-200: oklch(12% 0 0);
   --color-base-300: oklch(10% 0 0);
   --color-base-content: oklch(98% 0 0);
@@ -65,7 +65,7 @@ a.active {
   --color-primary-content: white;
 
   /* Secondary: Matched to Primary but slightly darker/richer */
-  --color-secondary: oklch(25% 0 0);
+  --color-secondary: white;
   --color-secondary-hover: oklch(30% 0 0);
   --color-secondary-content: white;
 

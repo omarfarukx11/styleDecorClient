@@ -15,7 +15,7 @@ const TopServices = () => {
 
   return (
     <section className="xl:p-20 p-4 ">
-      <div className="text-center my-10  py-10 px-4 bg-primary text-secondary  rounded-xl">
+      <div className="text-center my-10  py-10 px-4 bg-primary text-secondary rounded-xl">
         <h2 className="text-5xl font-extrabold mb-4  ">
            Our Decoration Packages
         </h2>
@@ -74,7 +74,7 @@ const TopServices = () => {
 
         {/* Button */}
         <div className="mt-6">
-          <Link to={`/serviceDetails/${service._id}`} className="btn btn-primary btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all">
+          <Link to={`/serviceDetails/${service._id}`} className="btn hover:bg-base-100  hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all">
            View Details
           </Link>
         </div>

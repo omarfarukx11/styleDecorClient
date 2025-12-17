@@ -51,11 +51,11 @@ const AllServices = () => {
     <section className="min-h-screen bg-[#f8f8f8] lg:p-20">
       <div className="mx-auto">
         {/* Header (unchanged) */}
-        <div className="text-center my-10 py-16 px-6 bg-secondary rounded-3xl shadow-2xl">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white">
+        <div className="text-center my-10 py-16 px-6 bg-primary rounded-3xl shadow-2xl text-secondary">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6">
             Our Decoration Packages
           </h2>
-          <p className="max-w-4xl mx-auto text-sm md:text-base lg:text-lg text-gray-100 leading-relaxed">
+          <p className="max-w-4xl mx-auto text-sm md:text-base lg:text-lg  leading-relaxed">
             Explore our range of flexible and innovative services designed to
             meet your unique needs.
           </p>

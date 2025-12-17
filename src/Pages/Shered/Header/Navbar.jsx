@@ -72,7 +72,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="bg-primary border-b shadow-xl">
+    <nav className="bg-primary border-b shadow-xl px-20">
       <div className="flex justify-between items-center max-w-[1800px] py-5 px-4 lg:px-8 mx-auto ">
         {/* Left */}
         <div className="navbar-start flex items-center gap-2">
@@ -105,7 +105,7 @@ const Navbar = () => {
           {user && (
             <NavLink
               to="/dashboard"
-              className="btn btn-primary btn-lg rounded-full font-bold xl:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
+              className="btn hover:bg-base-100  hover:text-secondary bg-secondary text-base-100 border-none btn-lg rounded-full font-bold xl:text-xl text-sm shadow-xl hover:shadow-primary/70 transform hover:scale-105 transition-all"
             >
               Dashboard
             </NavLink>

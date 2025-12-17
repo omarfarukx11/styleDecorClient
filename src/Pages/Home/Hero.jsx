@@ -35,7 +35,7 @@ const Hero = () => {
             birthday parties, corporate events, and more.
           </p>
 
-          <Link to="/services" className="btn btn-primary btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all">
+          <Link to="/services" className="btn hover:bg-base-100  hover:text-secondary bg-secondary text-base-100 border-none btn-lg rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all">
             Book Decoration Service
           </Link>
         </motion.div>

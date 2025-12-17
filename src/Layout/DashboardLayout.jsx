@@ -203,7 +203,7 @@ const DashboardLayout = () => {
           <div>
             <button
               onClick={handleLogout}
-              className="btn btn-primary btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50  transform hover:scale-105 transition-all w-full my-10"
+              className="btn hover:bg-base-100  hover:text-secondary bg-secondary text-base-100 border-none border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50  transform hover:scale-105 transition-all w-full my-10"
             >
               Logout
             </button>

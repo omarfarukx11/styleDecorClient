@@ -23,7 +23,7 @@ const TopDecorators = () => {
           Top Decorators
         </h2>
 
-        <p className="max-w-3xl mx-auto text-sm   leading-relaxed">
+        <p className="max-w-3xl mx-auto text-sm leading-relaxed">
           Discover our top decorators who bring creativity, expertise, and
           precision to every event. From luxurious weddings to corporate
           gatherings, birthday celebrations, and themed parties, each decorator
@@ -37,7 +37,7 @@ const TopDecorators = () => {
         {decorators.map((d) => (
           <div
             key={d._id}
-            className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500 overflow-hidden border border-gray-100"
+            className="group relative bg-primary rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500 overflow-hidden border border-gray-100"
           >
             {/* Image */}
             <div className="relative overflow-hidden rounded-t-2xl">
@@ -52,7 +52,7 @@ const TopDecorators = () => {
 
             {/* Card Content */}
             <div className="p-8">
-              <h3 className="text-2xl font-extrabold text-gray-800 group-hover:text-secondary transition-colors">
+              <h3 className="text-2xl font-extrabold text-secondary group-hover:text-white transition-colors">
                 {d.name}
               </h3>
 
