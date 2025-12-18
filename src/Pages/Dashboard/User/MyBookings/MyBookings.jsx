@@ -226,7 +226,7 @@ const MyBookings = () => {
                       handlePayModal();
                       setBookingData(b);
                     }}
-                    className="btn btn-primary btn-xs text-white"
+                    className="btn btn-secondary btn-md text-white"
                   >
                     Pay
                   </button>

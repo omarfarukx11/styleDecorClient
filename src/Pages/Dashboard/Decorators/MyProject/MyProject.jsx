@@ -9,7 +9,7 @@ const MyProject = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
-  const {data : decorators } = useQuery({
+  const {data : decorators , isLoading : decoratorLoading } = useQuery({
     queryKey : ['decorators' , user?.email] ,
     queryFn : async () => {
       const res = await axiosSecure.get(`/decorator/${user?.email}`)
@@ -17,7 +17,7 @@ const MyProject = () => {
     }
 
   })
-const { data: booking = [], isLoading , refetch } = useQuery({
+const { data: booking = [], isLoading : bookingLoading , refetch } = useQuery({
   queryKey: ["booking", decorators?.email],
   enabled: !!decorators?.email,
   queryFn: async () => {
@@ -49,7 +49,14 @@ const handleDecoratorWordStatus = () => {
     .then(res => console.log(res.data))
  }
 
-  if(isLoading) {
+
+
+
+ const sortedBooking = [...booking].sort(
+  (a, b) => new Date(b.assignAt) - new Date(a.assignAt)
+);
+
+  if(bookingLoading || decoratorLoading) {
     return <Loader></Loader>
   }
 
@@ -73,7 +80,7 @@ const handleDecoratorWordStatus = () => {
 
   {/* BODY */}
   <div className="space-y-6 xl:space-y-4">
-    {booking.map((d, i) => (
+    {sortedBooking.map((d, i) => (
       <div
         key={d._id}
         className="flex flex-col xl:flex-row gap-5 xl:items-center xl:justify-between hover:bg-primary hover:text-white bg-base-100 text-secondary rounded-lg shadow p-3"

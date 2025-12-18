@@ -28,7 +28,7 @@ a.active {
 }
 @plugin "daisyui/theme" {
   name: "light";
-  default: true;
+ 
 
   --color-base-100: white;
   --color-base-200: oklch(18% 0 0);
@@ -63,6 +63,7 @@ a.active {
 
 @plugin "daisyui/theme" {
   name: "dark";
+   default: true;
 
   /* Deep charcoal/black backgrounds */
   --color-base-100: black;

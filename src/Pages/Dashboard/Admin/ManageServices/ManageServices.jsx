@@ -28,14 +28,13 @@ const ManageServices = () => {
 
   const filters = watchFilter();
 
-  // Update form
+  
   const {
     register: registerUpdate,
     handleSubmit: handleUpdateSubmit,
     reset: resetUpdateForm,
   } = useForm();
 
-  // Fetch services with filters + pagination
   const {
     data = {},
     isLoading,
@@ -82,10 +81,10 @@ const ManageServices = () => {
     if (!selectedService?._id) return;
 
     const updateInfo = {
-      service_name: data.service_name,
+      name: data.service_name,
       price: Number(data.price),
       unit: data.unit,
-      serviceCategory: data.serviceCategory,
+      type: data.serviceCategory,
       status: data.status,
       description: data.description,
     };
@@ -160,7 +159,7 @@ const ManageServices = () => {
           </h1>
         </div>
 
-        {/* Search + Filter */}
+
         <form
           onSubmit={handleSubmitFilter(() => refetch())}
           className="mb-8 flex flex-col lg:flex-row gap-4 items-end"
@@ -169,7 +168,7 @@ const ManageServices = () => {
             {...registerFilter("search")}
             type="text"
             placeholder="Search by service name..."
-            className="input input-bordered outline-none border-gray-300 text-secondary input-lg flex-1"
+            className="input input-bordered outline-none py-3 border-gray-300 text-secondary input-lg flex-1"
           />
           <select
             {...registerFilter("type")}
@@ -342,6 +341,7 @@ const ManageServices = () => {
           </div>
         )}
 
+
         {/* Update Modal */}
         <dialog ref={updateRef} className="modal">
           <form
@@ -355,13 +355,13 @@ const ManageServices = () => {
 
             {selectedService && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 space-y-4 md:space-y-0">
-                {/* Service Name */}
                 <div className="flex flex-col">
                   <label className="font-semibold mb-2">Service Name </label>
                   <input
                     {...registerUpdate("service_name", { required: true })}
                     type="text"
-                    className="input input-bordered  input-lg w-full"
+                    // defaultValue={`${selectedService.name}`}
+                    className="input input-bordered outline-none input-lg w-full"
                   />
                 </div>
 
@@ -375,7 +375,8 @@ const ManageServices = () => {
                       min: { value: 0, message: "Cost must be positive" },
                     })}
                     type="number"
-                    className="input input-bordered  input-lg w-full"
+                    defaultValue={`${selectedService.price}`}
+                    className="input input-bordered outline-none input-lg w-full"
                   />
                 </div>
 
@@ -401,6 +402,7 @@ const ManageServices = () => {
                   <label className="font-semibold mb-2">Category </label>
                   <select
                     {...registerUpdate("serviceCategory", { required: true })}
+                    defaultValue={'hello world'}
                     className="select select-bordered outline-none  input-lg w-full"
                   >
                     <option value="Home">Home</option>

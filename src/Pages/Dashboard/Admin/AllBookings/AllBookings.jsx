@@ -48,8 +48,6 @@ const AllBookings = () => {
       bookingRegion : selectedService.bookingRegion,
       bookingDistrict : selectedService.bookingDistrict,
     };
-    console.log(decorator.userId)
-    console.log(decorator._id)
     axiosSecure
       .patch(`/afterAssign/${selectedService._id}`, decoratorAssignInfo)
       .then((res) => {
