@@ -4,23 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../Hooks/useAuth";
 import Loader from "../../../../Components/Loader";
 
-// Workflow steps
-const decoratorFlow = [
-  "decorator Assigned",
-  "In Progress",
-  "Materials Purchased",
-  "Rider On The Way",
-  "Decorator Reached",
-  "completed",
-];
-
-// Get next step for a status
-const getNextTask = (currentStatus) => {
-  const index = decoratorFlow.indexOf(currentStatus);
-  if (index === -1 || currentStatus === "completed") return "Task Finished 🎉";
-  return decoratorFlow[index + 1];
-};
-
 const TodaySchedule = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
@@ -47,59 +30,78 @@ const TodaySchedule = () => {
 
   if (decoratorLoading || bookingLoading) return <Loader />;
 
-  // Filter incomplete bookings only
+  // Filter only incomplete bookings that are accepted
   const incompleteBookings = bookings.filter(
-  (b) =>
-    b.decoratorStatus !== "completed" &&
-    b.decoratorStatus !== "decorator Assigned" // hide unaccepted tasks
-);
+    (b) =>
+      b.decoratorStatus !== "completed" &&
+      b.decoratorStatus !== "decorator Assigned"
+  );
+
   return (
     <div className="min-h-screen bg-primary">
       <div className="text-2xl text-white text-center py-8 border-b border-white">
-        <h1>Today's Schedule</h1>
+        <h1>Today's Work Schedule</h1>
       </div>
 
       <div className="p-8">
         {incompleteBookings.length === 0 ? (
-          <div className="text-center text-white mt-20">
-            <h2 className="text-3xl bg-accent py-6 rounded-lg">
-              No projects assigned 🎉
+          <div className="text-center bg-base-100 text-secondary rounded-lg py-8">
+            <h2 className="text-5xl py-6 rounded-lg">
+              No projects assigned
             </h2>
+            <p className="text-lg ">
+              You currently have no tasks for today. Once a task is assigned and
+              accepted, it will appear here.
+            </p>
           </div>
         ) : (
           <div className="space-y-6">
-            {incompleteBookings.map((booking) => (
-              <div
-                key={booking._id}
-                className="flex flex-col xl:flex-row gap-5 xl:items-center xl:justify-between bg-base-100 text-secondary rounded-xl shadow p-6 border-l-8 border-secondary"
-              >
-                <div className="flex-1">
-                  <h2 className="text-xl font-bold text-primary">
-                    {booking.serviceName}
-                  </h2>
-                  <p className="mt-2 font-semibold">
-                    📍 {booking.location}, {booking.bookingDistrict}
-                  </p>
-                  <div className="flex gap-4 mt-2 text-sm opacity-70">
-                    <span>👤 {booking.userName}</span>
-                    <span>📧 {booking.userEmail}</span>
+            {incompleteBookings.map((booking) => {
+              let nextAction = "";
+              if (booking.decoratorStatus === "In Progress") {
+                nextAction = `Purchase materials for ${booking.serviceName}`;
+              } else if (booking.decoratorStatus === "Materials Purchased") {
+                nextAction = `Go to client location ${booking.location}, ${booking.bookingDistrict}`;
+              } else if (booking.decoratorStatus === "Rider On The Way") {
+                nextAction = "Deliver materials to client";
+              } else if (booking.decoratorStatus === "Decorator Reached") {
+                nextAction = "Start decorating at client's site";
+              } else {
+                nextAction = "No action required";
+              }
+
+              return (
+                <div
+                  key={booking._id}
+                  className="bg-base-100 flex flex-col lg:flex-row justify-between items-start lg:items-center p-6 md:p-10 text-secondary rounded-xl shadow border-l-4 border-primary gap-6"
+                >
+                  <div>
+                    <span className="text-info font-bold text-xl lg:text-3xl">
+                      {nextAction}
+                    </span>
+                    <p className="mt-2 font-semibold text-md md:text-xl lg:text-2xl">
+                      This is your schedule for today
+                    </p>
+                  </div>
+
+                  {/* Current Service Info */}
+                  <div>
+                    <p className="mt-2 text-lg md:text-xl lg:text-2xl font-medium">
+                      Your current service
+                    </p>
+                    <div className="mt-2 text-sm md:text-base space-y-1 md:space-y-2">
+                      <p className="text-blue-500 font-semibold">
+                        {booking.serviceName}
+                      </p>
+                      <p>Client: {booking.userName}</p>
+                      <p>
+                        Location: {booking.location}, {booking.bookingDistrict}
+                      </p>
+                    </div>
                   </div>
                 </div>
-
-                {/* Workflow step display */}
-                <div className="xl:w-1/3 flex flex-col gap-2">
-                  <span className="font-semibold text-lg">Current Status:</span>
-                  <span className="text-blue-500 font-bold">
-                    {booking.decoratorStatus}
-                  </span>
-
-                  <span className="font-semibold text-lg mt-2">Next Step:</span>
-                  <span className="text-green-500 font-bold">
-                    {getNextTask(booking.decoratorStatus)}
-                  </span>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

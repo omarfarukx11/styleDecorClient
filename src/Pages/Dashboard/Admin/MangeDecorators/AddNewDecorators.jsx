@@ -63,11 +63,11 @@ const AddNewDecorators = () => {
           <tr className="bg-secondary text-primary rounded-lg">
             <th>SL</th>
             <th>Name</th>
-            <th>Email</th>
-            <th>Action</th>
+            <th className="pl-20 ">Email</th>
+            <th className="xl:pl-10 pl-10">Action</th>
           </tr>
         </thead>
-        <tbody className="hover:bg-primary hover:text-white bg-base-100 text-secondary shadow-xl border-2 xl:text-xl text-[12px]">
+        <tbody className="hover:bg-primary hover:text-white bg-base-100 text-secondary shadow-xl border-2 xl:text-xl text-[10px]">
           {user.length === 0 ? (
             <p>No Decorators Available</p>
           ) : (
@@ -78,7 +78,7 @@ const AddNewDecorators = () => {
                 <td>{u.email}</td>
                 <td>
                   <button
-                    className="btn btn-primary text-secondary "
+                     className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-xs xl:btn-lg  text-[10px] py-2 md:text-md xl:text-xl rounded-full font-bold shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all mr-20"
                     onClick={() => handleMakeDecorator(u)}
                   >
                     Make Decorator

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { Link } from "react-router";
 
 const AddNewService = () => {
   const axiosSecure = useAxiosSecure();
@@ -165,13 +166,13 @@ const AddNewService = () => {
               >
                 Create Service
               </button>
-              <button
+              <Link to={'/dashboard/manage-services'}
                 type="button"
                 className="btn btn-primary py-2 md:py-0 btn-lg flex-1 rounded-full font-bold md:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
                 onClick={() => reset()}
               >
                 Cancel
-              </button>
+              </Link>
             </div>
           </form>
         </div>

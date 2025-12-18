@@ -226,7 +226,7 @@ const MyBookings = () => {
                       handlePayModal();
                       setBookingData(b);
                     }}
-                    className="btn btn-secondary btn-md text-white"
+                    className="btn btn-primary xl:btn-sm text-white"
                   >
                     Pay
                   </button>
@@ -349,12 +349,12 @@ const MyBookings = () => {
 
       {/* payment modal section  */}
       <dialog ref={payRef} className="modal">
-        <div className="modal-box w-11/12 max-w-2xl bg-base-100 p-8">
+        <div className="modal-box w-11/12 max-w-2xl bg-primary p-8">
           <h1 className="text-center font-extrabold text-3xl py-5">
             Complete the payment for the services booked by{" "}
             {bookingData?.userName}
           </h1>
-          <div className="bg-base-200 p-8 rounded-xl mb-5">
+          <div className="bg-primary border border-white shadow-2xl p-8 rounded-xl mb-5">
             <p className="text-lg">Service Name : {bookingData?.serviceName}</p>
             <p className="text-lg">
               Service Cost : ৳{bookingData?.serviceCost}
@@ -369,14 +369,14 @@ const MyBookings = () => {
           <div className="flex gap-3 mt-6">
             <button
               type="button"
-              className="btn btn-primary flex-1"
+               className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-sm md:btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all flex-1"
               onClick={() => handlePayment(bookingData)}
             >
               Pay For Service
             </button>
             <button
               type="button"
-              className="btn btn-ghost flex-1"
+               className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-sm md:btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all flex-1"
               onClick={() => payRef.current.close()}
             >
               Cancel

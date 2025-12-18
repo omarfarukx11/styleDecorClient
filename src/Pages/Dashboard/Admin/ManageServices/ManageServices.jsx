@@ -28,7 +28,6 @@ const ManageServices = () => {
 
   const filters = watchFilter();
 
-  
   const {
     register: registerUpdate,
     handleSubmit: handleUpdateSubmit,
@@ -158,7 +157,6 @@ const ManageServices = () => {
             {services.length} of {total} Decorators
           </h1>
         </div>
-
 
         <form
           onSubmit={handleSubmitFilter(() => refetch())}
@@ -341,7 +339,6 @@ const ManageServices = () => {
           </div>
         )}
 
-
         {/* Update Modal */}
         <dialog ref={updateRef} className="modal">
           <form
@@ -402,16 +399,17 @@ const ManageServices = () => {
                   <label className="font-semibold mb-2">Category </label>
                   <select
                     {...registerUpdate("serviceCategory", { required: true })}
-                    defaultValue={'hello world'}
+                    defaultValue={"hello world"}
                     className="select select-bordered outline-none  input-lg w-full"
                   >
-                    <option value="Home">Home</option>
+                    <option value="Home">Home Decoration</option>
                     <option value="Wedding">Wedding</option>
                     <option value="Office">Office</option>
-                    <option value="Seminar">Seminar</option>
-                    <option value="Meeting">Meeting</option>
-                    <option value="Birthday">Birthday</option>
-                    <option value="Corporate">Corporate</option>
+                    <option value="Seminar">Seminar/Conference</option>
+                    <option value="Meeting">Meeting Room</option>
+                    <option value="Birthday">Birthday Party</option>
+                    <option value="Corporate">Corporate Events</option>
+                    <option value="Anniversary">Anniversary</option>
                   </select>
                 </div>
 

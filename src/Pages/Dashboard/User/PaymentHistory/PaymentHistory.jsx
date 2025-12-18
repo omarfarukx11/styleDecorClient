@@ -50,7 +50,7 @@ const PaymentHistory = () => {
  
   return (
     <div>
-      <div className="text-2xl text-text-white bg-primary p-8 border-b border-white text-center">
+      <div className="text-2xl text-white bg-primary p-8 border-b border-white text-center">
         <h1>
         Your Payment History
       </h1>
@@ -65,7 +65,7 @@ const PaymentHistory = () => {
     <div className="flex-[1.5] text-center">User Email</div>
     <div className="flex-[1.5] text-center">Time</div>
     <div className="flex-1 text-center">Amount</div>
-    <div className="flex-[2] text-center">Transaction ID</div>
+    <div className="flex-2 text-center">Transaction ID</div>
   </div>
 
   {/* BODY */}
@@ -114,7 +114,7 @@ const PaymentHistory = () => {
         </div>
 
         {/* Transaction ID */}
-        <div className="flex justify-between xl:flex-[2] px-1 py-1 border-b border-white xl:border-b-0">
+        <div className="flex justify-between xl:flex-2 px-1 py-1 border-b border-white xl:border-b-0">
           <span className="xl:hidden font-semibold">Txn ID:</span>
           <span className="xl:text-center xl:w-full break-all xl:break-normal font-mono text-xs">
             {b.transactionId}

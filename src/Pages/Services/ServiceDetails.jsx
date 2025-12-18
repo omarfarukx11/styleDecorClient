@@ -182,7 +182,6 @@ const ServiceDetails = () => {
           </h3>
 
           <form onSubmit={handleSubmit(handleBooking)} className="space-y-5 text-black">
-            {/* Read-only fields */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-secondary ">
               <div>
                 <label className="font-semibold text-secondary">Service Name</label>
