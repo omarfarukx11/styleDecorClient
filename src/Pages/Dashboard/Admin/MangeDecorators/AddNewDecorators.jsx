@@ -49,46 +49,58 @@ const AddNewDecorators = () => {
     }
   };
 
-
   return (
     <div>
       <div className="py-8 text-2xl text-center bg-primary text-white border-b border-white">
-        <h1>
-        Crete new decorators
-      </h1>
+        <h1>Crete new decorators</h1>
       </div>
-      <div className="xl:p-8 p-4 bg-primary h-screen ">
-        <table className="table w-full ">
-        <thead className="xl:text-xl text-[12px] ">
-          <tr className="bg-secondary text-primary rounded-lg">
-            <th>SL</th>
-            <th>Name</th>
-            <th className="pl-20 ">Email</th>
-            <th className="xl:pl-10 pl-10">Action</th>
-          </tr>
-        </thead>
-        <tbody className="hover:bg-primary hover:text-white bg-base-100 text-secondary shadow-xl border-2 xl:text-xl text-[10px]">
-          {user.length === 0 ? (
-            <p>No Decorators Available</p>
-          ) : (
-            user.map((u, i) => (
-              <tr key={u._id} className="hover">
-                <td>{i + 1}</td>
-                <td>{u.displayName}</td>
-                <td>{u.email}</td>
-                <td>
-                  <button
-                     className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-xs xl:btn-lg  text-[10px] py-2 md:text-md xl:text-xl rounded-full font-bold shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all mr-20"
-                    onClick={() => handleMakeDecorator(u)}
-                  >
-                    Make Decorator
-                  </button>
-                </td>
+
+      <div className="xl:p-8 p-4 bg-primary min-h-screen">
+
+        <div className="overflow-x-auto w-full rounded-lg ">
+          <table className="table w-full border-separate border-spacing-y-3">
+            <thead className="bg-secondary text-primary">
+              <tr className="xl:text-xl text-sm">
+                <th className="rounded-l-lg py-5">SL</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th className="rounded-r-lg text-center">Action</th>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            </thead>
+
+            <tbody>
+              {user.length === 0 ? (
+                <tr>
+                  <td
+                    colSpan="4"
+                    className="text-center py-10 text-2xl text-secondary font-bold bg-base-100 rounded-lg"
+                  >
+                    No Users Available
+                  </td>
+                </tr>
+              ) : (
+                user.map((u, i) => (
+                  <tr
+                    key={u._id}
+                    className="bg-base-100 text-secondary hover:bg-secondary hover:text-primary transition-all duration-300 shadow-md group"
+                  >
+                    <td className="font-bold rounded-l-lg">{i + 1}</td>
+                    <td className="font-semibold">{u.displayName}</td>
+                    <td className="italic">{u.email}</td>
+                    <td className="rounded-r-lg text-center">
+                      <button
+                        onClick={() => handleMakeDecorator(u)}
+                        className="btn  hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 btn-xs sm:btn-sm md:btn-md lg:btn-lg rounded-full font-bold shadow-lg hover:shadow-primary/50 transform hover:scale-105 transition-all border-none"
+                      >
+                        Make Decorator
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

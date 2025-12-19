@@ -54,7 +54,7 @@ const ManageDecorators = () => {
 
   return (
     <div>
-      <div className="text-2xl font-bold py-8 text-secondary bg-primary border-b border-white text-center uppercase">
+      <div className="text-2xl font-bold py-8 text-white bg-primary border-b border-white text-center uppercase">
         <h2>Manage Decorators</h2>
       </div>
 
@@ -62,9 +62,7 @@ const ManageDecorators = () => {
         <div className="flex justify-end items-center">
           <Link
             to={"/dashboard/add-new-decorator"}
-            className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50  transform hover:scale-105 transition-all"
-
-          >
+            className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50  transform hover:scale-105 transition-all">
            + Add New Decorators
           </Link>
         </div>
@@ -75,7 +73,6 @@ const ManageDecorators = () => {
         </div>
 
         <div className="bg-primary rounded-lg ">
-          {/* HEADER for XL+ */}
           <div className="hidden xl:flex bg-secondary xl:justify-between text-primary rounded-md py-8 mb-5 text-sm xl:text-lg font-semibold">
             <div className="w-10 text-center xl:ml-10">SL</div>
             <div className="w-[200px] text-center">Decorator</div>
@@ -95,7 +92,7 @@ const ManageDecorators = () => {
               allDecorator.map((d, i) => (
                 <div
                   key={d._id}
-                  className="flex flex-col xl:flex-row xl:items-center xl:justify-between  rounded-lg shadow-xl py-5 text-lg hover:bg-primary hover:text-white bg-base-100 text-secondary"
+                  className="flex flex-col xl:flex-row xl:items-center xl:justify-between rounded-lg shadow-xl py-5 text-lg hover:bg-secondary hover:text-base-100 bg-base-100 text-secondary"
                 >
                   {/* SL */}
                   <div className="flex justify-between xl:w-10 px-2 py-2 xl:ml-10 font-semibold xl:border-b-0">
@@ -142,7 +139,7 @@ const ManageDecorators = () => {
                   <div className="flex flex-col xl:flex-row gap-2 xl:w-[140px] px-2 py-2 justify-center">
                     <button
                       onClick={() => handleServiceDelete(d._id)}
-                      className="btn btn-error btn-xs xl:btn-sm py-4 text-white"
+                      className="btn btn-error xl:py-2 2xl:btn-md  flex-1 py-3 rounded-full font-bold 2xl:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all hover:bg-red-500 hover:text-white border-none"
                     >
                       Delete
                     </button>

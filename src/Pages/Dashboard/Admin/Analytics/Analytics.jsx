@@ -40,6 +40,8 @@ const AdminAnalytics = () => {
 
   const bookingsResult = bookingData?.result || [];
 
+  console.log(bookingData)
+
   const prepareHistogramData = () => {
     const categories = [
       "Home",
@@ -76,9 +78,8 @@ const AdminAnalytics = () => {
       </div>
 
       <div className="p-8 bg-primary h-full min-h-screen">
-        {/* Stats Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="stats shadow bg-base-100 border border-neutral">
+          <div className="stats shadow-2xl bg-base-100 ">
             <div className="stat">
               <div className="stat-figure text-secondary">
                 <FaCalendarCheck size={30} />
@@ -91,7 +92,7 @@ const AdminAnalytics = () => {
             </div>
           </div>
 
-          <div className="stats shadow bg-base-100 border border-neutral">
+          <div className="stats shadow-2xl bg-base-100">
             <div className="stat">
               <div className="stat-figure text-secondary">
                 <FaLayerGroup size={30} />
@@ -109,8 +110,7 @@ const AdminAnalytics = () => {
 
         {/* Charts Section */}
         <div className="gap-8 mt-10">
-          {/* Service Demand Histogram */}
-          <div className="bg-base-100 p-6 rounded-xl shadow-lg border border-neutral">
+          <div className="bg-base-100 p-6 rounded-xl shadow-2xl">
             <div className="flex items-center gap-2 mb-6 text-secondary font-bold text-lg">
               <FaChartBar className="text-accent" size={24} />
               <h3>Service Demand Distribution</h3>
@@ -149,7 +149,7 @@ const AdminAnalytics = () => {
                     tickCount={6}
                   />
                   <Tooltip
-                    cursor={{ fill: "var(--color-primary)", opacity: 0.2 }}
+                    cursor={{ fill: "var(--color-info)", opacity: 0.2 }}
                     contentStyle={{
                       backgroundColor: "var(--color-secondary)", 
                       border: "1px solid var(--color-primary)",
@@ -157,9 +157,9 @@ const AdminAnalytics = () => {
                       fontSize: "14px",
                       fontWeight: "bold",
                     }}
-                    labelStyle={{ color: "green" }}
+                    labelStyle={{ color: "var(--color-info)" }}
                     itemStyle={{
-                      color: "green",
+                      color: "var(--color-info)",
                       paddingTop: "4px",
                     }}
                     formatter={(value) => [`${value}`, "Total Bookings"]}

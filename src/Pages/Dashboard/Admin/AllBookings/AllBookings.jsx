@@ -78,7 +78,7 @@ const AllBookings = () => {
 
   return (
     <div>
-      <div className="text-2xl font-bold py-8 bg-primary text-secondary text-center border-b border-white uppercase">
+      <div className="text-2xl font-bold py-8 bg-primary text-white text-center border-b border-white uppercase">
         <h2 >All Bookings</h2>
       </div>
       <div className="xl:p-8 p-4 bg-primary h-screen">
@@ -86,9 +86,8 @@ const AllBookings = () => {
       <div className="rounded-lg">
       <table className="table w-full">
 
-        {/* HEADER (Desktop only) */}
         <thead className="hidden xl:table-header-group">
-          <tr className="bg-secondary text-primary h-20">
+          <tr className="bg-secondary text-primary h-20 ">
             <th>#</th>
             <th>Client Name</th>
             <th>Service Name</th>
@@ -104,7 +103,7 @@ const AllBookings = () => {
           {allBooking.map((booking, i) => (
             <tr
               key={booking._id}
-              className="block xl:table-row hover:bg-primary hover:text-white bg-base-100 text-secondary border-b border-primary  rounded-lg xl:rounded-none  mb-4 xl:mb-0  shadow-2xl 2xl:text-xl sm:text-2xl  xl:text-lg
+              className="block xl:table-row hover:bg-secondary hover:text-base-100 bg-base-100 text-secondary border-b border-primary  rounded-lg xl:rounded-none  mb-4 xl:mb-0  shadow-2xl 2xl:text-xl sm:text-2xl  xl:text-lg
               "
             >
               <td className="flex justify-between xl:table-cell px-4 py-2">

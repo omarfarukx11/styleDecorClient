@@ -61,7 +61,7 @@ const Revenue = () => {
           ].map((stat, idx) => (
             <div
               key={idx}
-              className="stats shadow bg-base-100 border border-neutral w-full"
+              className="stats shadow-2xl bg-base-100 w-full "
             >
               <div className="stat px-4 py-5">
                 <div className="stat-figure text-secondary">{stat.icon}</div>
@@ -89,7 +89,7 @@ const Revenue = () => {
 
           <div className="hidden sm:block overflow-x-auto">
             <table className="table w-full">
-              <thead className="bg-secondary text-primary">
+              <thead className="bg-primary text-white">
                 <tr>
                   <th>Service</th>
                   <th>Transaction ID</th>
@@ -101,7 +101,7 @@ const Revenue = () => {
                 {allHistory.slice(0, 5).map((b) => (
                   <tr
                     key={b._id}
-                    className="hover:bg-primary hover:text-white transition-all"
+                    className="hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 transition-all"
                   >
                     <td>{b.serviceName}</td>
                     <td className="font-mono text-xs opacity-60">

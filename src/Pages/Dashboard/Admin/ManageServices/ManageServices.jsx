@@ -32,6 +32,7 @@ const ManageServices = () => {
     register: registerUpdate,
     handleSubmit: handleUpdateSubmit,
     reset: resetUpdateForm,
+    formState: { errors}
   } = useForm();
 
   const {
@@ -139,7 +140,7 @@ const ManageServices = () => {
 
   return (
     <div>
-      <div className="text-2xl py-8 font-bold text-center bg-primary text-secondary border-b border-white uppercase">
+      <div className="text-2xl py-8 font-bold text-center bg-primary text-white border-b border-white uppercase">
         <h2>Manage Decoration Services</h2>
       </div>
 
@@ -227,8 +228,7 @@ const ManageServices = () => {
                 services.map((service) => (
                   <tr
                     key={service._id}
-                    // Added 'rounded-lg' and 'overflow-hidden'
-                    className="block rounded-lg overflow-hidden xl:table-row xl:rounded-none mb-6 xl:mb-0 hover:bg-primary hover:text-white bg-base-100 text-secondary shadow-xl transition-all duration-300"
+                    className="block rounded-lg overflow-hidden xl:table-row xl:rounded-none mb-6 xl:mb-0 hover:bg-secondary hover:text-base-100 bg-base-100 text-secondary shadow-xl transition-all duration-300"
                   >
                     <td className="flex justify-between xl:table-cell p-4 xl:rounded-l-xl ">
                       <span className="xl:hidden font-semibold">Image</span>
@@ -294,7 +294,7 @@ const ManageServices = () => {
 
                       <button
                         onClick={() => handleServiceDelete(service._id)}
-                        className="btn btn-error xl:py-2 2xl:btn-md xl:btn-xs flex-1 py-3 rounded-full font-bold 2xl:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
+                        className="btn btn-error xl:py-2 2xl:btn-md xl:btn-xs flex-1 py-3 rounded-full font-bold 2xl:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all hover:bg-red-500 hover:text-white border-none"
                       >
                         Delete
                       </button>
@@ -357,9 +357,13 @@ const ManageServices = () => {
                   <input
                     {...registerUpdate("service_name", { required: true })}
                     type="text"
-                    // defaultValue={`${selectedService.name}`}
-                    className="input input-bordered outline-none input-lg w-full"
+                    className="input input-bordered bg-accent outline-none input-lg w-full"
                   />
+                  {
+                    errors.service_name?.type === "required" && (
+                      <p className="text-red-600">Service Name Required</p>
+                    )
+                  }
                 </div>
 
                 {/* Cost */}
@@ -373,16 +377,21 @@ const ManageServices = () => {
                     })}
                     type="number"
                     defaultValue={`${selectedService.price}`}
-                    className="input input-bordered outline-none input-lg w-full"
+                    className="input input-bordered bg-accent outline-none input-lg w-full"
                   />
+                  { errors.price && (
+                    <p className="text-red-600">
+                      {errors.price.message || "Cost Required"}
+                    </p>
+                  ) }
                 </div>
 
                 {/* Unit */}
                 <div className="flex flex-col">
-                  <label className="font-semibold mb-2">Unit </label>
+                  <label className="font-semibold mb-2 ">Unit </label>
                   <select
                     {...registerUpdate("unit", { required: true })}
-                    className="select select-bordered outline-none input-lg w-full"
+                    className="select select-bordered bg-accent outline-none input-lg w-full"
                   >
                     <option value="sqft">Per square feet</option>
                     <option value="floor">Per floor</option>
@@ -400,7 +409,7 @@ const ManageServices = () => {
                   <select
                     {...registerUpdate("serviceCategory", { required: true })}
                     defaultValue={"hello world"}
-                    className="select select-bordered outline-none  input-lg w-full"
+                    className="select select-bordered bg-accent outline-none  input-lg w-full"
                   >
                     <option value="Home">Home Decoration</option>
                     <option value="Wedding">Wedding</option>
@@ -418,7 +427,7 @@ const ManageServices = () => {
                   <label className="font-semibold mb-2">Status</label>
                   <select
                     {...registerUpdate("status")}
-                    className="select select-bordered outline-none input-lg w-full"
+                    className="select select-bordered bg-accent outline-none input-lg w-full"
                   >
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
@@ -429,10 +438,15 @@ const ManageServices = () => {
                 <div className="flex flex-col md:col-span-2">
                   <label className="font-semibold mb-2">Description</label>
                   <textarea
-                    {...registerUpdate("description")}
+                    {...registerUpdate("description"  , { required: true })}
                     rows={4}
-                    className="textarea textarea-bordered outline-none  textarea-lg w-full"
+                    className="textarea textarea-bordered bg-accent outline-none  textarea-lg w-full"
                   />
+                  {
+                    errors.description && (
+                      <p className="text-red-600">Description Required</p>
+                    )
+                  }
                 </div>
               </div>
             )}
@@ -440,13 +454,13 @@ const ManageServices = () => {
             <div className="flex gap-4 mt-10 flex-col md:flex-row">
               <button
                 type="submit"
-                className="btn btn-primary py-2 md:py-0 btn-lg flex-1 rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
+                className="btn hover:bg-base-100 hover:text-secondary bg-secondary border-none  text-base-100 py-2 md:py-0 btn-lg flex-1 rounded-full font-bold md:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
               >
                 Update Service
               </button>
               <button
                 type="button"
-                className="btn btn-primary btn-lg flex-1 py-2 md:py-0 rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
+               className="btn hover:bg-base-100 hover:text-secondary bg-secondary border-none text-base-100 py-2 md:py-0 btn-lg flex-1 rounded-full font-bold md:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
                 onClick={() => {
                   updateRef.current.close();
                   setSelectedService(null);

@@ -131,7 +131,7 @@ const Navbar = () => {
                   />
                 </div>
               </div>
-              <ul className="menu menu-sm dropdown-content rounded-xl bg-primary text-secondary z-50 mt-3 w-52 p-2 shadow">
+              <ul className="menu menu-sm dropdown-content h-[100px] pt-6 space-y-2 rounded-lg bg-primary text-secondary z-50 mt-3 w-52 p-2 shadow">
                 <li>
                   <Link
                     className="hover:bg-secondary hover:text-primary"
