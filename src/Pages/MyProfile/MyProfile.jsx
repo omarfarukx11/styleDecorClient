@@ -1,122 +1,156 @@
-import React from 'react';
-import useAuth from '../../Hooks/useAuth'; // Adjust the path as needed
+import React, { useState } from "react";
+import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import axios from "axios";
+import { FaUserEdit, FaEnvelope, FaIdBadge, FaImage } from "react-icons/fa";
 
 const MyProfile = () => {
-  const { user } = useAuth(); // Assuming your auth hook provides the user object
+  // Using your custom hook and axiosSecure
+  const { user, updataUserProfile } = useAuth();
+  const [showForm, setShowForm] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const axiosSecure = useAxiosSecure();
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    // Accessing form data manually
+    const name = e.target.name.value;
+    const profileImage = e.target.photo.files[0];
+
+    try {
+      let photoURL = user?.photoURL;
+
+      // 1. Image Upload Logic (Matching your Register page)
+      if (profileImage) {
+        const formData = new FormData();
+        const image_API_URL = `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_image_host_key
+        }`;
+        formData.append("image", profileImage);
+
+        const res = await axios.post(image_API_URL, formData);
+        if (res.data.success) {
+          photoURL = res.data.data.display_url;
+        }
+      }
+
+      await updataUserProfile({
+        displayName: name,
+        photoURL: photoURL,
+      });
+
+      setShowForm(false);
+      Swal.fire({
+        title: "Profile Updated!",
+        icon: "success",
+        confirmButtonColor: "oklch(var(--s))",
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Update Failed",
+        text: error.message,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-primary text-secondary ">
-      <div className='bg-primary text-secondary py-8 text-2xl text-center border-b border-white'>
-        <p>My Profile</p>
+    <div>
+      <div className="text-center py-8 text-white uppercase border-b border-white text-2xl bg-primary">
+        my profile
       </div>
-
-      {/* Gradient Header */}
-      <div className="h-48 rounded-b-3xl relative">
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2">
-          <img
-            src={user?.photoURL || 'https://via.placeholder.com/150'}
-            alt="Profile"
-            className="w-32 h-32 rounded-full border-4 border-white shadow-lg object-cover"
-          />
-        </div>
-        <button className="absolute top-4 right-4 text-white">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-        </button>
-      </div>
-
-      {/* Main Content */}
-      <div className="mt-20 px-6 max-w-4xl mx-auto">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">{user?.displayName || 'Omar Faruk'}</h1>
-          <p className="text-sm text-gray-500">
-            User • Member since {new Date().toISOString().slice(0, 10).replace(/-/g, '-')}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-          {/* Contact Information */}
-          <div className="bg-white rounded-2xl shadow-md p-6">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">Contact Information</h3>
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="bg-purple-100 p-2 rounded-lg">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Email Address</p>
-                  <p className="font-medium">{user?.email || 'khfarukch@gmail.com'}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="bg-pink-100 p-2 rounded-lg">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-pink-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Phone Number</p>
-                  <p className="font-medium text-gray-400">Not added yet</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="bg-teal-100 p-2 rounded-lg">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Location</p>
-                  <p className="font-medium text-gray-400">Not specified</p>
-                </div>
-              </div>
+      <div className="bg-primary min-h-screen md:p-8 p-4">
+        <div className="border border-white">
+          <div className="flex flex-col items-center  pt-12 pb-10 px-8">
+            <div className="relative mb-6">
+              <img
+                src={user?.photoURL || "https://via.placeholder.com/150"}
+                alt="Profile"
+                className="w-40 h-40 rounded-4xl border-4 border-base-100 object-cover shadow-2xl"
+              />
             </div>
+
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-black text-secondary uppercase tracking-tight">
+                {user?.displayName || "Member"}
+              </h2>
+              <p className="text-secondary opacity-60 flex items-center justify-center gap-2 mt-1">
+                <FaEnvelope className="text-primary text-xs" /> {user?.email}
+              </p>
+            </div>
+
+            {!showForm ? (
+              <button
+                onClick={() => setShowForm(true)}
+                className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50  transform hover:scale-105 transition-all"
+              >
+                <FaUserEdit size={18} /> Edit Details
+              </button>
+            ) : (
+              <div className="lg:w-[50%] w-full animate-in fade-in slide-in-from-bottom-4 duration-300">
+                <form
+                  onSubmit={handleUpdate}
+                  className="shadow-2xl border-white p-6 rounded-lg border space-y-4"
+                >
+                  <div className="form-control">
+                    <label className="label text-xs font-bold uppercase text-secondary/60">
+                      Full Name
+                    </label>
+                    <div className="relative">
+                      <FaIdBadge className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary/30" />
+                      <input
+                        type="text"
+                        name="name"
+                        defaultValue={user?.displayName}
+                        className="input w-full bg-base-100 border-none rounded-xl text-secondary focus:ring-2 ring-primary/20"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-control">
+                    <label className="label text-xs font-bold uppercase text-secondary">
+                      Update Photo
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="file"
+                        name="photo"
+                        accept="image/*"
+                        className="file-input file-input-bordered w-full bg-base-100 rounded-xl text-secondary border-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex sm:flex-row flex-col gap-3 pt-4">
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="btn border-none  flex-1 rounded-lg hover:bg-base-100 hover:text-secondary bg-secondary text-base-100"
+                    >
+                      {loading ? (
+                        <span className="loading loading-spinner"></span>
+                      ) : (
+                        "Save Changes"
+                      )}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setShowForm(false)}
+                      className="btn border-none  flex-1 rounded-lg hover:bg-base-100 hover:text-secondary bg-secondary text-base-100"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
           </div>
-
-          {/* Account Status */}
-          {/* <div className="bg-white rounded-2xl shadow-md p-6">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">Account Status</h3>
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <div className="bg-green-100 p-2 rounded-lg">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Authentication Type</p>
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                    Google
-                  </span>
-                </div>
-              </div>
-
-              <div className="bg-blue-50 rounded-lg p-4 flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p className="text-sm text-blue-800">
-                  Welcome back! You have full access to book tickets.
-                </p>
-              </div>
-            </div>
-          </div> */}
-        </div>
-
-        {/* Edit Profile Button */}
-        <div className="text-center">
-          <button
-            className="bg-purple-600 text-white px-8 py-3 rounded-full font-medium hover:bg-purple-700 transition shadow-lg"
-          >
-            Edit Profile
-          </button>
         </div>
       </div>
     </div>

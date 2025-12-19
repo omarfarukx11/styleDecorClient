@@ -54,7 +54,7 @@ const ManageDecorators = () => {
 
   return (
     <div>
-      <div className="text-2xl font-bold py-8 text-secondary bg-primary border-b border-white text-center">
+      <div className="text-2xl font-bold py-8 text-secondary bg-primary border-b border-white text-center uppercase">
         <h2>Manage Decorators</h2>
       </div>
 
@@ -98,19 +98,19 @@ const ManageDecorators = () => {
                   className="flex flex-col xl:flex-row xl:items-center xl:justify-between  rounded-lg shadow-xl py-5 text-lg hover:bg-primary hover:text-white bg-base-100 text-secondary"
                 >
                   {/* SL */}
-                  <div className="flex justify-between xl:w-10 px-2 py-2 xl:ml-10 font-semibold border-b border-gray-300 xl:border-b-0">
+                  <div className="flex justify-between xl:w-10 px-2 py-2 xl:ml-10 font-semibold xl:border-b-0">
                     <span className="xl:hidden">#</span>
                     <span className="text-center">{i + 1}</span>
                   </div>
 
                   {/* Decorator */}
-                  <div className="flex justify-between xl:w-[200px] px-2 py-2 border-b  border-gray-300 xl:border-b-0">
+                  <div className="flex justify-between xl:w-[200px] px-2 py-2   xl:border-b-0">
                     <span className="xl:hidden font-semibold">Decorator </span>
                     <span className="xl:ml-10">{d.name}</span>
                   </div>
 
                   {/* Specialties */}
-                  <div className="flex justify-between xl:w-[200px] px-2 py-2 border-b border-gray-300 xl:border-b-0">
+                  <div className="flex justify-between xl:w-[200px] px-2 py-2 xl:border-b-0">
                     <span className="xl:hidden font-semibold">
                       Specialties{" "}
                     </span>
@@ -118,13 +118,13 @@ const ManageDecorators = () => {
                   </div>
 
                   {/* District */}
-                  <div className="flex justify-between xl:w-[140px] px-2 py-2 border-b border-gray-300 xl:border-b-0">
+                  <div className="flex justify-between xl:w-[140px] px-2 py-2 xl:border-b-0">
                     <span className="xl:hidden font-semibold">District </span>
                     <span>{d.district}</span>
                   </div>
 
                   {/* Status */}
-                  <div className="flex justify-between xl:w-[120px] px-2 py-2 border-b border-gray-300 xl:border-b-0">
+                  <div className="flex justify-between xl:w-[120px] px-2 py-2 xl:border-b-0">
                     <span className="xl:hidden font-semibold">Status </span>
                     <span
                       className={`px-2 py-1 rounded-xl text-center xl:w-full capitalize text-lg ${

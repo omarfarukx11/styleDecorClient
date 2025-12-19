@@ -93,11 +93,11 @@ const AdminAnalytics = () => {
 
           <div className="stats shadow bg-base-100 border border-neutral">
             <div className="stat">
-              <div className="stat-figure text-accent">
+              <div className="stat-figure text-secondary">
                 <FaLayerGroup size={30} />
               </div>
               <div className="stat-title text-secondary">Categories</div>
-              <div className="stat-value text-accent">
+              <div className="stat-value text-secondary">
                 {histogramData.length}
               </div>
               <div className="stat-desc text-secondary font-bold text-xs uppercase italic">

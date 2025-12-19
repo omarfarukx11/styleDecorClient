@@ -78,7 +78,7 @@ const AllBookings = () => {
 
   return (
     <div>
-      <div className="text-2xl font-bold py-8 bg-primary text-secondary text-center border-b border-white">
+      <div className="text-2xl font-bold py-8 bg-primary text-secondary text-center border-b border-white uppercase">
         <h2 >All Bookings</h2>
       </div>
       <div className="xl:p-8 p-4 bg-primary">

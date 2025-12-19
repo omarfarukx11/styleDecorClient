@@ -116,10 +116,6 @@ const DashboardLayout = () => {
 
   const adminMenu = (
     <>
-      <li className="menu-title">
-        <span className="text-xs uppercase opacity-70">Management</span>
-      </li>
-
       <li>
         <NavLink to="/dashboard/manage-decorators" onClick={closeMobileMenu}>
           <FaUserTie className="text-xl" />
@@ -139,12 +135,7 @@ const DashboardLayout = () => {
         </NavLink>
       </li>
 
-      <div className="divider my-4"></div>
-
-      <li className="menu-title">
-        <span className="text-xs uppercase opacity-70">Reports</span>
-      </li>
-
+      <div className="border-b border-white my-4"></div>
       <li>
         <NavLink to="/dashboard/revenue" onClick={closeMobileMenu}>
           <FaMoneyBillWave className="text-xl" />
@@ -187,7 +178,7 @@ const DashboardLayout = () => {
         `}
       >
         <div className="p-8 border-b border-white sm:pr-2">
-          <div className="absolute top-5 left-4 z-50 xl:hidden">
+          <div className="absolute top-5 right-4 z-50 xl:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="mt-4 text-white"
@@ -196,10 +187,10 @@ const DashboardLayout = () => {
             </button>
           </div>
 
-          <h2 className="text-2xl font-bold text-center text-white">
+          <h2 className="text-2xl font-bold uppercase text-white">
             {role === "admin" && "Admin"}
             {role === "decorator" && "Decorator"}
-            {role === "user" && "My"} Dashboard
+            {role === "user" && "My Dashboard"} 
           </h2>
         </div>
 

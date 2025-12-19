@@ -12,7 +12,7 @@ const ManageServices = () => {
   const limit = 20;
   const updateRef = useRef();
 
-  // Filter form
+  
   const {
     register: registerFilter,
     watch: watchFilter,
@@ -61,7 +61,7 @@ const ManageServices = () => {
   const total = data.total || 0;
   const totalPages = Math.ceil(total / limit);
 
-  // Open modal with service data
+
   const handleModal = (service) => {
     setSelectedService(service);
     resetUpdateForm({
@@ -75,7 +75,7 @@ const ManageServices = () => {
     updateRef.current.showModal();
   };
 
-  // Update service
+ 
   const handleUpdateService = (data) => {
     if (!selectedService?._id) return;
 
@@ -111,7 +111,7 @@ const ManageServices = () => {
       });
   };
 
-  // Delete service
+ 
   const handleServiceDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -139,7 +139,7 @@ const ManageServices = () => {
 
   return (
     <div>
-      <div className="text-2xl py-8 font-bold text-center bg-primary text-secondary border-b border-white">
+      <div className="text-2xl py-8 font-bold text-center bg-primary text-secondary border-b border-white uppercase">
         <h2>Manage Decoration Services</h2>
       </div>
 

@@ -106,11 +106,11 @@ const MyBookings = () => {
 
   return (
     <div>
-      <div className="text-2xl text-white font-bold bg-primary  p-8 border-b border-white text-center">
+      <div className="text-2xl text-white font-bold bg-primary py-8 border-b uppercase border-white text-center">
         <h1>My Bookings</h1>
       </div>
 
-      <div className="bg-primary p-2 md:p-10 ">
+      <div className="bg-primary p-2 md:p-8 ">
         {/* HEADER for XL+ */}
         <div className="hidden xl:flex bg-secondary text-base-100 py-8 xl:justify-between rounded-md text-sm xl:text-lg font-semibold px-4">
           <div className="w-12 text-center">#</div>
@@ -131,46 +131,43 @@ const MyBookings = () => {
               key={b._id}
               className="flex flex-col hover:bg-primary hover:text-white bg-base-100 text-secondary xl:flex-row xl:items-center xl:justify-between  rounded-lg shadow-xl p-2 2xl:text-xl xl:text-sm xl:px-4"
             >
-              {/* # */}
-              <div className="flex justify-between xl:w-12 px-2 py-2 font-semibold border-b border-primary xl:border-b-0">
+
+              <div className="flex justify-between xl:w-12 px-2 py-2 font-semibold  xl:border-b-0">
                 <span className="xl:hidden">#</span>
                 <span className="xl:text-center text-end w-full xl:w-auto">{i + 1}</span>
               </div>
 
-              {/* Service Name */}
-              <div className="flex justify-between xl:flex-2 xl:min-w-[200px] px-2 py-2 border-b border-primary xl:border-b-0">
+              <div className="flex justify-between xl:flex-2 xl:min-w-[200px] px-2 py-2  xl:border-b-0">
                 <span className="xl:hidden font-semibold">Service Name</span>
                 <span className="xl:text-start xl:w-full ">
                   {b.serviceName}
                 </span>
               </div>
 
-              {/* Category */}
-              <div className="flex justify-between xl:flex-1 px-2 py-2 border-b border-primary xl:border-b-0">
+              <div className="flex justify-between xl:flex-1 px-2 py-2  xl:border-b-0">
                 <span className="xl:hidden font-semibold">Category </span>
                 <span className="xl:text-center xl:w-full">
                   {b.serviceType}
                 </span>
               </div>
 
-              {/* Date */}
-              <div className="flex justify-between xl:flex-1 px-2 py-2 border-b border-primary xl:border-b-0">
+              <div className="flex justify-between xl:flex-1 px-2 py-2  xl:border-b-0">
                 <span className="xl:hidden font-semibold">Date </span>
                 <span className="xl:text-center xl:w-full">
                   {b.bookingDate}
                 </span>
               </div>
 
-              {/* Amount */}
-              <div className="flex justify-between xl:flex-1 px-2 py-2 border-b border-primary xl:border-b-0 font-semibold">
+
+              <div className="flex justify-between xl:flex-1 px-2 py-2  xl:border-b-0 font-semibold">
                 <span className="xl:hidden font-semibold">Amount </span>
                 <span className="xl:text-center xl:w-full">
                   ৳{b.serviceCost}
                 </span>
               </div>
 
-              {/* Booking Status */}
-              <div className="flex justify-between xl:flex-1 px-2 py-1 border-b border-primary xl:border-b-0">
+
+              <div className="flex justify-between xl:flex-1 px-2 py-1  xl:border-b-0">
                 <span className="xl:hidden font-semibold">Booking Status </span>
                 <div className="xl:w-full xl:flex xl:justify-center">
                   <span
@@ -185,8 +182,8 @@ const MyBookings = () => {
                 </div>
               </div>
 
-              {/* Service Status */}
-              <div className="flex justify-between xl:flex-1 px-2 py-1 border-b border-primary xl:border-b-0">
+ 
+              <div className="flex justify-between xl:flex-1 px-2 py-1  xl:border-b-0">
                 <span className="xl:hidden font-semibold">Service Status </span>
                 <div className="xl:w-full xl:flex xl:justify-center">
                   <span
@@ -201,8 +198,8 @@ const MyBookings = () => {
                 </div>
               </div>
 
-              {/* Payment Status */}
-              <div className="flex justify-between xl:flex-1 px-2 py-1 border-b border-primary xl:border-b-0">
+
+              <div className="flex justify-between xl:flex-1 px-2 py-1  xl:border-b-0">
                 <span className="xl:hidden font-semibold">Payment </span>
                 <div className="xl:w-full xl:flex xl:justify-center">
                   <span
@@ -217,7 +214,7 @@ const MyBookings = () => {
                 </div>
               </div>
 
-              {/* ACTION */}
+
               <div className="flex xl:flex-row w-full flex-col gap-2 xl:flex-[1.5] xl:min-w-[200px] px-2 py-2 justify-center">
                 {/* Only show the Pay button if the status is NOT paid */}
                 {b.paymentStatus !== "paid" && (
@@ -254,7 +251,6 @@ const MyBookings = () => {
         </div>
       </div>
 
-      {/* update modal section  */}
       <dialog ref={updateRef} className="modal">
         <div className="modal-box w-11/12 max-w-2xl bg-primary p-8 my-10 py-10">
           <h1 className="md:text-5xl text-2xl text-center font-bold mb-10">
@@ -347,7 +343,7 @@ const MyBookings = () => {
         </div>
       </dialog>
 
-      {/* payment modal section  */}
+
       <dialog ref={payRef} className="modal">
         <div className="modal-box w-11/12 max-w-2xl bg-primary p-8">
           <h1 className="text-center font-extrabold text-3xl py-5">
