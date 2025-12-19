@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import axios from "axios";
 import { FaUserEdit, FaEnvelope, FaIdBadge, FaImage } from "react-icons/fa";
 
@@ -10,7 +9,6 @@ const MyProfile = () => {
   const { user, updataUserProfile } = useAuth();
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(false);
-  const axiosSecure = useAxiosSecure();
 
   const handleUpdate = async (e) => {
     e.preventDefault();

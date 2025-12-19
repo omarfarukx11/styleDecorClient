@@ -81,7 +81,7 @@ const AllBookings = () => {
       <div className="text-2xl font-bold py-8 bg-primary text-secondary text-center border-b border-white uppercase">
         <h2 >All Bookings</h2>
       </div>
-      <div className="xl:p-8 p-4 bg-primary">
+      <div className="xl:p-8 p-4 bg-primary h-screen">
       
       <div className="rounded-lg">
       <table className="table w-full">
@@ -109,7 +109,7 @@ const AllBookings = () => {
             >
               <td className="flex justify-between xl:table-cell px-4 py-2">
                 <span className="xl:hidden font-semibold">#</span>
-                <span>{i + 1}</span>
+                <span className="text-center">{(page - 1) * limit + i + 1}</span>
               </td>
 
               <td className="flex justify-between xl:table-cell px-4 py-2">

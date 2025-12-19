@@ -20,10 +20,9 @@ const AddNewDecorators = () => {
       });
 
       const updateInfo = {
-        userId: user._id,
         name: user.displayName,
         email: user.email,
-        specialties: "birthday, anniversary , corporate, meeting",
+        specialties: "birthday, anniversary",
         rating: 4.7,
         image: user.photoURL,
         description: "Creative birthday party specialist",
@@ -35,7 +34,7 @@ const AddNewDecorators = () => {
         phone: "+8801700000000",
         status: "available",
       };
-      await axiosSecure.post("/decorators", updateInfo).then((res) => {
+      await axiosSecure.post("/newDecorators", updateInfo).then((res) => {
         if (res.data.acknowledged) {
           refetch();
           Swal.fire({
@@ -49,6 +48,7 @@ const AddNewDecorators = () => {
       console.log(err);
     }
   };
+
 
   return (
     <div>

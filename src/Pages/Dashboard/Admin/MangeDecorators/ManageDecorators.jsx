@@ -35,7 +35,7 @@ const ManageDecorators = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/deleteDecorators/${id}`).then((res) => {
-          if (res.data.deletedCount) {
+          if (res.data.deleted) {
             refetch();
             Swal.fire({
               title: "Deleted!",
@@ -100,7 +100,7 @@ const ManageDecorators = () => {
                   {/* SL */}
                   <div className="flex justify-between xl:w-10 px-2 py-2 xl:ml-10 font-semibold xl:border-b-0">
                     <span className="xl:hidden">#</span>
-                    <span className="text-center">{i + 1}</span>
+                    <span className="text-center">{(page - 1) * limit + i + 1}</span>
                   </div>
 
                   {/* Decorator */}
