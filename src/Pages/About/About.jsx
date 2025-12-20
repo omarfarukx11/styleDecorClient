@@ -4,7 +4,9 @@ import { Link } from "react-router";
 
 const About = () => {
   return (
+    
     <div className="min-h-screen bg-linear-to-br  py-20 px-6 text-secondary">
+      <title>StyelDecor - About</title>
       <div className="max-w-7xl mx-auto">
 
         <div className="text-center mb-20">
@@ -19,7 +21,7 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-16 items-center mb-20 bg-primary rounded-xl">
           <div>
             <img
-              src="https://i.ibb.co.com/whbwykpC/download-1.jpg"
+              src="https://i.ibb.co.com/PGDhs74D/home-decor-1100-x-921-wallpaper-afxadyvf33e1kh3c.jpg"
               alt="Our Team"
               className="rounded-xl shadow-2xl w-full"
             />

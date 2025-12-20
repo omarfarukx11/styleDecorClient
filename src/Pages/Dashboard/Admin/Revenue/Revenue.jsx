@@ -33,7 +33,7 @@ const Revenue = () => {
       <div className="text-2xl text-white bg-primary py-8 border-b border-white text-center uppercase">
         <h1>Revenue Monitoring</h1>
       </div>
-
+      <title>StyelDecor - Revenue Monitoring</title>
       <div className="p-4 md:p-8 bg-primary min-h-screen">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
@@ -86,7 +86,6 @@ const Revenue = () => {
             <MdOutlinePayments /> Recent Revenue
           </div>
 
-
           <div className="hidden sm:block overflow-x-auto">
             <table className="table w-full">
               <thead className="bg-primary text-white">
@@ -101,7 +100,7 @@ const Revenue = () => {
                 {allHistory.slice(0, 5).map((b) => (
                   <tr
                     key={b._id}
-                    className="hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 transition-all"
+                    className="bg-base-100 text-secondary hover:bg-secondary hover:text-base-100 transition-all"
                   >
                     <td>{b.serviceName}</td>
                     <td className="font-mono text-xs opacity-60">

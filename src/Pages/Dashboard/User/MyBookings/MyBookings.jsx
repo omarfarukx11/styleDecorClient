@@ -14,7 +14,7 @@ const MyBookings = () => {
   const [bookingData, setBookingData] = useState(null);
   const { register, handleSubmit, watch, reset } = useForm();
 
-  const { data: book = [], refetch } = useQuery({
+  const { data: book = [], refetch , } = useQuery({
     queryKey: ["booking", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/booking?email=${user?.email}`);
@@ -109,9 +109,8 @@ const MyBookings = () => {
       <div className="text-2xl text-white font-bold bg-primary py-8 border-b uppercase border-white text-center">
         <h1>My Bookings</h1>
       </div>
-
-      <div className="bg-primary p-2 md:p-8 ">
-        {/* HEADER for XL+ */}
+     <title>StyelDecor - My Booking</title>
+      <div className="bg-primary min-h-screen p-2 md:p-8 ">
         <div className="hidden xl:flex bg-secondary text-base-100 py-8 xl:justify-between rounded-md text-sm xl:text-lg font-semibold px-4">
           <div className="w-12 text-center">#</div>
           <div className="flex-2 min-w-[200px] text-center">Service Name</div>

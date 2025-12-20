@@ -8,14 +8,13 @@ import Loader from "../Components/Loader";
 const RootLayout = () => {
   const [loading, setLoading] = useState(true);
 
-  // Simulate page loading
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 500); // 1.5s loader
+    const timer = setTimeout(() => setLoading(false), 500); 
     return () => clearTimeout(timer);
   }, []);
 
   if (loading) {
-    return <Loader width={250} height={250} />; // Show loader while loading
+    return <Loader width={250} height={250} />;
   }
 
   return (

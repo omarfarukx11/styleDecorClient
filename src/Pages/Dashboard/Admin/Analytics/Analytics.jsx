@@ -39,9 +39,6 @@ const AdminAnalytics = () => {
   if (bLoading) return <Loader />;
 
   const bookingsResult = bookingData?.result || [];
-
-  console.log(bookingData)
-
   const prepareHistogramData = () => {
     const categories = [
       "Home",
@@ -76,7 +73,7 @@ const AdminAnalytics = () => {
       <div className="text-2xl text-white bg-primary p-8 border-b border-white text-center shadow-lg uppercase font-bold">
         <h1>StyleDecor Business Insights</h1>
       </div>
-
+      <title>StyelDecor - Analytics Dashboard</title>
       <div className="p-8 bg-primary h-full min-h-screen">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="stats shadow-2xl bg-base-100 ">

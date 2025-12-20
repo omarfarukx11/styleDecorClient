@@ -27,6 +27,8 @@ import TodaySchedule from "../Pages/Dashboard/Decorators/TodaySchedule/TodaySche
 import MyEarnings from "../Pages/Dashboard/Decorators/MyEarnings/MyEarnings";
 import AddNewService from "../Pages/Dashboard/Admin/AddNewService/AddNewService";
 import AddNewDecorators from "../Pages/Dashboard/Admin/MangeDecorators/AddNewDecorators";
+import AllPaymentHistory from "../Pages/Dashboard/Decorators/AllPaymentHistory/AllPaymentHistory";
+import Loader from "../Components/Loader";
 
 
 
@@ -36,6 +38,7 @@ export const router = createBrowserRouter([
         path:"/",
         Component:RootLayout,
         errorElement:<NotFound></NotFound>,
+        hydrateFallbackElement:<Loader></Loader>,
         children:[
             {
             index: true,
@@ -71,7 +74,11 @@ export const router = createBrowserRouter([
             {
             path:'/register',
             Component:Register
-            }
+            },
+            {
+            path: "*",
+            Component: NotFound,
+         },
         ]
     },
     {
@@ -95,7 +102,7 @@ export const router = createBrowserRouter([
                 element:<UserRoute><PaymentHistory></PaymentHistory></UserRoute>
             },
 
-
+            
             {
                 path:"/dashboard/my-projects",
                 element:<DecoratorRoute><MyProject></MyProject></DecoratorRoute>
@@ -107,6 +114,10 @@ export const router = createBrowserRouter([
             {
                 path:"/dashboard/my-earnings",
                 element:<DecoratorRoute><MyEarnings></MyEarnings></DecoratorRoute>
+            },
+            {
+                path:"/dashboard/all-payment-history",
+                element:<DecoratorRoute><AllPaymentHistory></AllPaymentHistory></DecoratorRoute>
             },
            
 
@@ -140,9 +151,8 @@ export const router = createBrowserRouter([
                 path:"/dashboard/add-new-decorator",
                 element:<AdminRoute><AddNewDecorators></AddNewDecorators></AdminRoute>
             },
-
+            
             
         ]
     },
-
 ])

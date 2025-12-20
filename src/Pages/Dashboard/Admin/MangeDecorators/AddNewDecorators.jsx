@@ -54,13 +54,13 @@ const AddNewDecorators = () => {
       <div className="py-8 text-2xl text-center bg-primary text-white border-b border-white">
         <h1>Crete new decorators</h1>
       </div>
-
+      <title>StyelDecor - Add New Decortor</title>
       <div className="xl:p-8 p-4 bg-primary min-h-screen">
 
-        <div className="overflow-x-auto w-full rounded-lg ">
+        <div className="overflow-x-auto w-full  rounded-lg ">
           <table className="table w-full border-separate border-spacing-y-3">
             <thead className="bg-secondary text-primary">
-              <tr className="xl:text-xl text-sm">
+              <tr className="xl:text-xl text-xs">
                 <th className="rounded-l-lg py-5">SL</th>
                 <th>Name</th>
                 <th>Email</th>
@@ -82,15 +82,15 @@ const AddNewDecorators = () => {
                 user.map((u, i) => (
                   <tr
                     key={u._id}
-                    className="bg-base-100 text-secondary hover:bg-secondary hover:text-primary transition-all duration-300 shadow-md group"
+                    className="bg-base-100 text-secondary hover:bg-secondary hover:text-primary text-sm transition-all duration-300 shadow-md group"
                   >
                     <td className="font-bold rounded-l-lg">{i + 1}</td>
-                    <td className="font-semibold">{u.displayName}</td>
-                    <td className="italic">{u.email}</td>
+                    <td className="font-semibold sm:text-lg text-[10px]">{u.displayName}</td>
+                    <td className="italic sm:text-lg text-[10px]">{u.email}</td>
                     <td className="rounded-r-lg text-center">
                       <button
                         onClick={() => handleMakeDecorator(u)}
-                        className="btn  hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 btn-xs sm:btn-sm md:btn-md lg:btn-lg rounded-full font-bold shadow-lg hover:shadow-primary/50 transform hover:scale-105 transition-all border-none"
+                        className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 sm:py-0 py-5 btn-xs sm:btn-sm md:btn-md lg:btn-lg rounded-full font-bold shadow-lg hover:shadow-primary/50 transform hover:scale-105 transition-all border-none"
                       >
                         Make Decorator
                       </button>

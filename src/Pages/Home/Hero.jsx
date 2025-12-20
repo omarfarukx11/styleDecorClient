@@ -8,7 +8,7 @@ const Hero = () => {
 
         {/* BIGGER RESPONSIVE IMAGE */}
         <motion.img
-          src="https://i.ibb.co.com/WpzJrV8M/dabito-living-room-7297f95db79240d095734d010681d23e.webp"
+          src="https://i.ibb.co.com/PGDhs74D/home-decor-1100-x-921-wallpaper-afxadyvf33e1kh3c.jpg"
           className="
             w-full h-full
             lg:w-[550px] lg:h-[550px] 
@@ -27,7 +27,7 @@ const Hero = () => {
           className="lg:w-[50%] text-center lg:text-left"
         >
           <h1 className="md:text-5xl text-xl font-bold">
-            Make Your Special Day Beautiful ✨
+            Make Your Special Day Beautiful 
           </h1>
           <p className="py-6 text-sm md:text-xl">
             StyleDecor provides premium decoration services for weddings,

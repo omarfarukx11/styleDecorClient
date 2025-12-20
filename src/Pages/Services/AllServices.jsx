@@ -48,6 +48,7 @@ const AllServices = () => {
 
   return (
     <section className="min-h-screen lg:p-20 p-4">
+      <title>StyelDecor - Services</title>
       <div className="mx-auto">
         {/* Header (unchanged) */}
         <div className="text-center md:my-10 md:py-16 py-4 px-6 bg-primary rounded-xl shadow-2xl text-secondary">
@@ -75,10 +76,13 @@ const AllServices = () => {
               className="w-full px-6 py-4 text-lg border text-secondary bg-primary outline-none border-gray-300 rounded-2xl"
             >
               <option value="All">All Service Types</option>
+              <option value="Home">Home</option>
+              <option value="Office">Office</option>
               <option value="Wedding">Wedding</option>
               <option value="Birthday">Birthday</option>
               <option value="Corporate">Corporate</option>
               <option value="Anniversary">Anniversary</option>
+              <option value="Meeting">Meeting</option>
             </select>
 
             <div className="flex items-center gap-4">

@@ -52,12 +52,11 @@ const PaymentHistory = () => {
     <div>
       <div className="text-2xl text-white bg-primary py-8 border-b border-white text-center uppercase">
         <h1>
-        Your Payment History
+        My Payment History
       </h1>
       </div>
-
-<div className="bg-primary p-2 md:p-8 h-screen">
-  {/* HEADER for XL+ */}
+<title>StyelDecor - Payment History</title>
+<div className="bg-primary p-2 md:p-8 min-h-screen">
   <div className="hidden xl:flex bg-secondary xl:justify-between text-primary rounded-md py-8 text-sm xl:text-base font-semibold mb-3 px-4">
     <div className="w-12 text-center">#</div>
     <div className="flex-[1.5] text-center">Service Name</div>

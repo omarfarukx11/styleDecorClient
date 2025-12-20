@@ -80,8 +80,8 @@ const AllBookings = () => {
       <div className="text-2xl font-bold py-8 bg-primary text-white text-center border-b border-white uppercase">
         <h2 >All Bookings</h2>
       </div>
-      <div className="xl:p-8 p-4 bg-primary h-screen">
-      
+      <title>StyelDecor - All Bookings</title>
+      <div className="xl:p-8 p-4 bg-primary min-h-screen">
       <div className="rounded-lg">
       <table className="table w-full">
 

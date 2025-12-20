@@ -4,18 +4,19 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { FaStar } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
-import { useForm, useWatch} from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import Swal from "sweetalert2";
 import Loader from "../../Components/Loader";
+import NotFound from "../../Components/NotFound";
 
 const ServiceDetails = () => {
   const { user } = useAuth();
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const dialogRef = useRef();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const { data: service = {} } = useQuery({
+  const { data: service, isLoading: isServiceLoading } = useQuery({
     queryKey: ["service", id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/servicesDetails/${id}`);
@@ -23,7 +24,7 @@ const ServiceDetails = () => {
     },
   });
 
-  const { data: regionData = [] , isLoading } = useQuery({
+  const { data: regionData = [], isLoading: isRegionLoading } = useQuery({
     queryKey: ["serviceCenters"],
     queryFn: async () => {
       const res = await axiosSecure.get("/serviceCenter");
@@ -31,11 +32,9 @@ const ServiceDetails = () => {
     },
   });
 
-  
+  const { register, handleSubmit, reset, control,formState : {errors }} = useForm();
 
-  const { register, handleSubmit, reset, control} = useForm();
-
-  const selectedRegion = useWatch({control , name: "bookingRegion"});
+  const selectedRegion = useWatch({ control, name: "bookingRegion" });
 
   const regionsDuplicate = regionData.map((r) => r.region);
   const regions = [...new Set(regionsDuplicate)];
@@ -46,7 +45,6 @@ const ServiceDetails = () => {
     return districts;
   };
 
- 
   useEffect(() => {
     if (service && user) {
       reset({
@@ -55,22 +53,21 @@ const ServiceDetails = () => {
         serviceCost: service.price || 0,
         userName: user.displayName || "",
         userEmail: user.email || "",
-        bookingStatus : "pending",
+        bookingStatus: "pending",
         bookingRegion: "",
-        paymentStatus : "unpaid",
+        paymentStatus: "unpaid",
         bookingDistrict: "",
         bookingDate: "",
         location: "",
       });
     }
-  }, [service, user, reset]);
+  }, [service, user , reset]);
 
-
-  const handleBooking  = async (data) => {
+  const handleBooking = async (data) => {
     try {
       await axiosSecure.post("/booking", data);
-        navigate('/dashboard/my-bookings')
-       Swal.fire({
+      navigate("/dashboard/my-bookings");
+      Swal.fire({
         icon: "success",
         title: "Booking Confirmed!",
         text: "Your service has been booked successfully.",
@@ -80,7 +77,7 @@ const ServiceDetails = () => {
     } catch (err) {
       Swal.fire({
         icon: "error",
-        title: { err },
+        title: err.message || "Booking Failed",
         text: "Something went wrong. Please try again.",
       });
     }
@@ -88,22 +85,25 @@ const ServiceDetails = () => {
 
   const handleModal = () => {
     if (!user) {
-        navigate('/login')
+      navigate("/login");
       return;
     }
     dialogRef.current.showModal();
   };
 
+  if (isServiceLoading || isRegionLoading) {
+    return <Loader></Loader>;
+  }
 
-  if(isLoading){
-    return <Loader></Loader>
+  if (!service || !service._id) {
+    return <NotFound></NotFound>;
   }
 
   return (
     <div className="min-h-screen py-12 px-6 lg:px-12">
+      <title>StyelDecor - Sevice Details</title>
       <div className="max-w-screen-2xl mx-auto w-full">
         <div className="grid lg:grid-cols-2 gap-12 bg-primary backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-base-300">
-          {/* Image Section */}
           <div className="relative group overflow-hidden">
             <img
               src={service.image}
@@ -116,12 +116,11 @@ const ServiceDetails = () => {
                 <p className="text-lg opacity-90">Starting Price</p>
               </div>
             </div>
-            <div className="absolute top-6 left-6 bg-primary text-primary-content px-6 py-2 rounded-full font-semibold text-secondary text-sm shadow-lg">
+            <div className="absolute top-6 left-6 bg-primary  px-6 py-2 rounded-full font-semibold text-secondary text-sm shadow-lg">
               Premium Package
             </div>
           </div>
 
-          {/* Details Section */}
           <div className="p-8 lg:p-16 flex flex-col justify-center">
             <span className="badge badge-outline text-secondary bg-primary border-primary px-5 py-3 text-base font-medium mb-6">
               {service.type}
@@ -158,9 +157,7 @@ const ServiceDetails = () => {
               <p className="text-2xl xl:text-6xl font-black text-secondary">
                 ৳{service.price}
               </p>
-              <p className="text-secondary mt-2">
-                One-time package price
-              </p>
+              <p className="text-secondary mt-2">One-time package price</p>
             </div>
 
             <button
@@ -173,18 +170,21 @@ const ServiceDetails = () => {
         </div>
       </div>
 
-
-      {/* Booking Modal */}
       <dialog ref={dialogRef} className="modal">
         <div className="modal-box w-11/12 max-w-2xl bg-primary  p-8">
           <h3 className="text-3xl font-bold text-center text-secondary mb-6">
             Confirm Your Booking
           </h3>
 
-          <form onSubmit={handleSubmit(handleBooking)} className="space-y-5 text-black">
+          <form
+            onSubmit={handleSubmit(handleBooking)}
+            className="space-y-5 text-black"
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-secondary ">
               <div>
-                <label className="font-semibold text-secondary">Service Name</label>
+                <label className="font-semibold text-secondary">
+                  Service Name
+                </label>
                 <input
                   {...register("serviceName")}
                   readOnly
@@ -200,7 +200,9 @@ const ServiceDetails = () => {
                 />
               </div>
               <div>
-                <label className="font-semibold text-secondary">Your Name</label>
+                <label className="font-semibold text-secondary">
+                  Your Name
+                </label>
                 <input
                   {...register("userName")}
                   readOnly
@@ -208,7 +210,9 @@ const ServiceDetails = () => {
                 />
               </div>
               <div>
-                <label className="font-semibold text-secondary">Your Email</label>
+                <label className="font-semibold text-secondary">
+                  Your Email
+                </label>
                 <input
                   {...register("userEmail")}
                   readOnly
@@ -227,16 +231,17 @@ const ServiceDetails = () => {
                 min={new Date().toISOString().split("T")[0]}
                 className="input input-bordered text-secondary bg-accent outline-none w-full"
               />
+               {errors.bookingDate?.type === "required" && (
+              <p className="text-red-600">Date Required</p>
+            )}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="font-semibold text-secondary">
-                  Region
-                </label>
+                <label className="font-semibold text-secondary">Region</label>
                 <select
                   {...register("bookingRegion", { required: true })}
-                  className="select select-bordered w-full text-secondary bg-accent outline-none" 
+                  className="select select-bordered w-full text-secondary bg-accent outline-none"
                 >
                   <option value="">Select Region</option>
                   {regions.map((region) => (
@@ -245,15 +250,16 @@ const ServiceDetails = () => {
                     </option>
                   ))}
                 </select>
+                 {errors.bookingRegion?.type === "required" && (
+              <p className="text-red-600">Region Required</p>
+            )}
               </div>
 
               <div>
-                <label className="font-semibold text-secondary">
-                  District
-                </label>
+                <label className="font-semibold text-secondary">District</label>
                 <select
                   {...register("bookingDistrict", { required: true })}
-                  className="select select-bordered text-secondary bg-accent w-full outline-none"text-secondary bg-accent 
+                  className="select select-bordered text-secondary bg-accent w-full outline-none"
                 >
                   {districtByRegion(selectedRegion).map((district) => (
                     <option key={district} value={district}>
@@ -273,10 +279,16 @@ const ServiceDetails = () => {
                 placeholder="House, Road, Area, City"
                 className="input input-bordered outline-none text-secondary bg-accent w-full"
               />
+              {errors.location?.type === "required" && (
+              <p className="text-red-600">Address Required</p>
+            )}
             </div>
 
             <div className="flex flex-col md:flex-row gap-3 mt-6">
-              <button type="submit" className="btn hover:bg-base-100 flex-1 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all py-2">
+              <button
+                type="submit"
+                className="btn hover:bg-base-100 flex-1 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all py-2"
+              >
                 Confirm Booking
               </button>
               <button

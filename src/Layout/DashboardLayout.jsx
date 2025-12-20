@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, Outlet, useLocation, useNavigate } from "react-router";
+import { NavLink, Outlet, useLocation } from "react-router";
 import {
   FaHome,
   FaUser,
@@ -15,36 +15,21 @@ import {
 import { MdOutlineDesignServices } from "react-icons/md";
 import useRole from "../Hooks/useRole";
 import Loader from "../Components/Loader";
-import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
 
 const DashboardLayout = () => {
   const { role, roleLoading } = useRole();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const { logOut } = useAuth();
-  const navigate = useNavigate();
 
-  // Close mobile menu on route change
+
   useEffect(() => {
-    // setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
 
-  const handleLogout = () => {
-    logOut().then(() => {
-      navigate("/");
-      Swal.fire({
-        title: "Logged Out!",
-        icon: "success",
-        timer: 1800,
-        showConfirmButton: false,
-      });
-    });
-  };
 
   if (roleLoading) return <Loader />;
 
@@ -111,6 +96,12 @@ const DashboardLayout = () => {
           <span>Earnings Summary</span>
         </NavLink>
       </li>
+      <li>
+        <NavLink to="/dashboard/all-payment-history" onClick={closeMobileMenu}>
+          <FaMoneyBillWave className="text-xl" />
+          <span>All Payemt History</span>
+        </NavLink>
+      </li>
     </>
   );
 
@@ -152,8 +143,8 @@ const DashboardLayout = () => {
   );
 
   return (
-    <div className="flex min-h-screen bg-base-100 max-w-[1800px] mx-auto">
-      {/* Mobile Hamburger Button in header */}
+    <div className="flex min-h-screen bg-base-100 max-w-[1800px] mx-auto ">
+      <title>StyelDecor - Dashbord</title>
       <div className="absolute top-5 left-4 z-50 xl:hidden">
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -199,14 +190,6 @@ const DashboardLayout = () => {
           {role === "decorator" && decoratorMenu}
           {role === "admin" && adminMenu}
           {commonMenu}
-          <div>
-            <button
-              onClick={handleLogout}
-              className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50  transform hover:scale-105 transition-all w-full my-10"
-            >
-              Logout
-            </button>
-          </div>
         </ul>
 
         <div className="p-4 border-t border-white text-center text-sm opacity-70">

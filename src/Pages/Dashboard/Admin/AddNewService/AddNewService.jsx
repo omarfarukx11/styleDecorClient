@@ -57,9 +57,9 @@ const AddNewService = () => {
       <div className="text-center py-8 font-bold text-2xl bg-primary text-secondary border-b border-white uppercase">
         <p>Create New Service</p>
       </div>
-
-      <div className="flex items-center justify-center xl:p-8 p-4 bg-primary h-screen">
-        <div className="w-11/12 max-w-2xl bg-primary text-secondary p-8 rounded-l shadow-2xl border border-white rounded-lg">
+    <title>StyelDecor - Create New Service</title>
+      <div className="flex items-center justify-center xl:p-8 p-4 bg-primary min-h-screen ">
+        <div className="w-11/12 max-w-2xl bg-primary text-secondary p-8  shadow-2xl border border-white rounded-xl">
           <form onSubmit={handleSubmit(handleAddService)} className="space-y-4">
             <div className="flex flex-col">
               <label className="font-medium">Service Name</label>
@@ -74,7 +74,6 @@ const AddNewService = () => {
             )}
             </div>
 
-            {/* Category / Type */}
             <div className="flex flex-col">
               <label className="font-medium">Category / Type</label>
               <select
@@ -112,7 +111,6 @@ const AddNewService = () => {
             )}
             </div>
 
-            {/* Unit Type */}
             <div className="flex flex-col">
               <label className="font-medium">Unit Type</label>
               <select

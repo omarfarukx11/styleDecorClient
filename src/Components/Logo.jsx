@@ -1,13 +1,9 @@
 import React from 'react';
-
 const Logo = () => {
     return (
         <div>
-            {/* <img
-             src="https://i.ibb.co.com/jvxBgcQQ/generated-image.jpg" 
-             alt=""
-             className='w-[100px] h-[100px]' /> */}
-             <p className='xl:text-3xl font-bold' >StyleDecor</p>
+            <p className='md:text-4xl text-2xl'>StyleDecor</p>
+
         </div>
     );
 };

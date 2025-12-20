@@ -62,12 +62,13 @@ const MyProfile = () => {
       <div className="text-center py-8 text-white uppercase border-b border-white text-2xl bg-primary">
         my profile
       </div>
+      <title>StyelDecor - Profile</title>
       <div className="bg-primary min-h-screen md:p-8 p-4">
-        <div className="border border-white">
+        <div className="border border-white rounded-lg">
           <div className="flex flex-col items-center  pt-12 pb-10 px-8">
             <div className="relative mb-6">
               <img
-                src={user?.photoURL || "https://via.placeholder.com/150"}
+                src={user?.photoURL}
                 alt="Profile"
                 className="w-40 h-40 rounded-4xl border-4 border-base-100 object-cover shadow-2xl"
               />
@@ -75,7 +76,7 @@ const MyProfile = () => {
 
             <div className="text-center mb-8">
               <h2 className="text-3xl font-black text-secondary uppercase tracking-tight">
-                {user?.displayName || "Member"}
+                {user?.displayName}
               </h2>
               <p className="text-secondary opacity-60 flex items-center justify-center gap-2 mt-1">
                 <FaEnvelope className="text-primary text-xs" /> {user?.email}
@@ -129,7 +130,7 @@ const MyProfile = () => {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="btn border-none  flex-1 rounded-lg hover:bg-base-100 hover:text-secondary bg-secondary text-base-100"
+                       className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50  transform hover:scale-105 transition-all flex-1"
                     >
                       {loading ? (
                         <span className="loading loading-spinner"></span>
@@ -140,7 +141,7 @@ const MyProfile = () => {
                     <button
                       type="button"
                       onClick={() => setShowForm(false)}
-                      className="btn border-none  flex-1 rounded-lg hover:bg-base-100 hover:text-secondary bg-secondary text-base-100"
+                      className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50  transform hover:scale-105 transition-all flex-1"
                     >
                       Cancel
                     </button>

@@ -4,6 +4,7 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from "react-icons/fa";
 const Contact = () => {
   return (
     <div className="min-h-screen py-20 px-6 text-secondary">
+      <title>StyelDecor - Contact</title>
       <div className="max-w-6xl mx-auto">
 
         <div className="text-center mb-16">

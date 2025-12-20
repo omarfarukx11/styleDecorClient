@@ -57,7 +57,7 @@ const ManageDecorators = () => {
       <div className="text-2xl font-bold py-8 text-white bg-primary border-b border-white text-center uppercase">
         <h2>Manage Decorators</h2>
       </div>
-
+    <title>StyelDecor - Manage Decorators</title>
       <div className="xl:p-8 p-4 bg-primary">
         <div className="flex justify-end items-center">
           <Link

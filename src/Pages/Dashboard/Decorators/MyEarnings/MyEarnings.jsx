@@ -24,7 +24,7 @@ const MyEarnings = () => {
 
   return (
     <div>
-      {/* HEADER */}
+     <title>StyelDecor - My Earning</title>
       <div className="bg-primary text-white py-8 text-center text-2xl border-b border-white">
         <h1>My Earnings 💰</h1>
       </div>

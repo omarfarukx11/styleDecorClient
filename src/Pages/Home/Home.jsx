@@ -7,6 +7,7 @@ import TopServices from './TopServices';
 const Home = () => {
     return (
         <div>
+            <title>StyelDecor - Home</title>
             <Hero></Hero>
             <TopServices></TopServices>
             <TopDecorators></TopDecorators>

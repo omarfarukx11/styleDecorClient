@@ -34,10 +34,9 @@ const SocialLogin = () => {
 
       })
       .catch((error) => {
-        console.error("Google Login Error:", error);
         Swal.fire({
           icon: "error",
-          title: "Login Failed",
+          title: error.message || "Login Failed",
           text: error.message || "Please try again later.",
         });
       });

@@ -141,10 +141,10 @@ const ManageServices = () => {
   return (
     <div>
       <div className="text-2xl py-8 font-bold text-center bg-primary text-white border-b border-white uppercase">
-        <h2>Manage Decoration Services</h2>
+        <h2>Manage Services</h2>
       </div>
-
-      <div className="xl:p-8 p-4 bg-primary">
+      <title>StyelDecor - Manage Services</title>
+      <div className="xl:p-8 p-4 min-h-screen bg-primary">
         <div className="flex justify-end items-center mb-4">
           <Link
             to="/dashboard/add-new-service"
@@ -386,7 +386,6 @@ const ManageServices = () => {
                   ) }
                 </div>
 
-                {/* Unit */}
                 <div className="flex flex-col">
                   <label className="font-semibold mb-2 ">Unit </label>
                   <select

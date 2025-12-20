@@ -29,8 +29,6 @@ const TodaySchedule = () => {
   });
 
   if (decoratorLoading || bookingLoading) return <Loader />;
-
-  // Filter only incomplete bookings that are accepted
   const incompleteBookings = bookings.filter(
     (b) =>
       b.decoratorStatus !== "completed" &&
@@ -42,12 +40,12 @@ const TodaySchedule = () => {
       <div className="text-2xl text-white text-center py-8 border-b border-white">
         <h1>Today's Work Schedule</h1>
       </div>
-
+      <title>StyelDecor - Schedule</title>
       <div className="p-8">
         {incompleteBookings.length === 0 ? (
           <div className="text-center bg-base-100 text-secondary rounded-lg py-8">
             <h2 className="text-5xl py-6 rounded-lg">
-              No projects assigned
+              No projects scheduled for today!
             </h2>
             <p className="text-lg ">
               You currently have no tasks for today. Once a task is assigned and
@@ -60,14 +58,17 @@ const TodaySchedule = () => {
               let nextAction = "";
               if (booking.decoratorStatus === "In Progress") {
                 nextAction = `Purchase materials for ${booking.serviceName}`;
-              } else if (booking.decoratorStatus === "Materials Purchased") {
+              } else if (booking.decoratorStatus === "Planning Phase") {
                 nextAction = `Go to client location ${booking.location}, ${booking.bookingDistrict}`;
-              } else if (booking.decoratorStatus === "Rider On The Way") {
-                nextAction = "Deliver materials to client";
-              } else if (booking.decoratorStatus === "Decorator Reached") {
+              } else if (booking.decoratorStatus === "On the Way to Venue") {
                 nextAction = "Start decorating at client's site";
-              } else {
-                nextAction = "No action required";
+              } else if (booking.decoratorStatus === "Setup in Progress") {
+                nextAction = "Start decorating at client's site";
+              } else if (booking.decoratorStatus === "Working") {
+                nextAction = "Finish the decoration work";
+              }
+              else {
+                nextAction = "No Action Required";
               }
 
               return (

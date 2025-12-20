@@ -31,10 +31,9 @@ const Login = () => {
         navigate(location?.state || "/");
       })
       .catch((error) => {
-        console.error("Google Login Error:", error);
         Swal.fire({
           icon: "error",
-          title: "Login Failed",
+          title: error.message,
           text: "Incorrect email or password",
           timer: 1000,
         });
@@ -45,9 +44,9 @@ const Login = () => {
     <div className="flex items-center justify-center min-h-screen bg-primary px-5 ">
       <div className="card w-full max-w-md border-2 border-white ">
         <div className="card-body">
-          <p className="text-center md:text-5xl text-2xl">
+          <div className="font-bold text-center md:text-5xl text-2xl text-secondary">
             <Logo />
-          </p>
+          </div>
 
           <h2 className="font-bold text-center mt-5 mb-10 md:text-5xl text-2xl text-secondary">
             Login to start{" "}

@@ -62,10 +62,10 @@ const MyProject = () => {
 
   return (
     <div>
-      <div className="bg-primary text-white py-8 text-center text-2xl border-b border-white">
+      <div className="bg-primary text-white py-8 text-center text-2xl border-b border-white uppercase ">
         <h1>Assign Project</h1>
       </div>
-
+    <title>StyelDecor - My Project</title>
       <div className="bg-primary p-8 min-h-screen ">
         {/* HEADER for XL+ */}
         <div className="hidden xl:flex bg-secondary justify-between mb-5 text-base-100 rounded-md py-8 text-sm xl:text-lg font-semibold">
@@ -126,10 +126,18 @@ const MyProject = () => {
               <div className="flex flex-col xl:flex-row gap-2 py-5 px-1 justify-center xl:mr-16">
                 {d.decoratorStatus === "decorator Assigned" && (
                   <button
-                    onClick={() => handleDecoratorStatus("Planning Phase", d._id)}
+                    onClick={() => handleDecoratorStatus("In Progress", d._id)}
                     className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
                   >
                     Accept
+                  </button>
+                )}
+                {d.decoratorStatus === "In Progress" && (
+                  <button
+                    onClick={() => handleDecoratorStatus("Planning Phase", d._id)}
+                    className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
+                  >
+                    Planning Phase
                   </button>
                 )}
 
@@ -140,7 +148,7 @@ const MyProject = () => {
                     }
                     className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
                   >
-                    On the Way to Venue
+                    On the Way
                   </button>
                 )}
 
@@ -149,7 +157,7 @@ const MyProject = () => {
                     onClick={() =>
                       handleDecoratorStatus("Setup in Progress", d._id)
                     }
-                    className="btn btn-base-100 text-secondary btn-sm xl:btn-sm w-full"
+                    className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 btn-sm xl:btn-sm w-full"
                   >
                     Setup in Progress
                   </button>
