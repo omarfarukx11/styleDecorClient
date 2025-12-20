@@ -24,7 +24,7 @@ const AllPaymentHistory = () => {
         <h1>Client Payment History</h1>
       </div>
         <title>StyelDecor - All Payment History</title>
-      <div className="bg-primary p-2 md:p-8 min-h-screen">
+      <div className="bg-primary p-2 md:p-8">
         <div className="hidden xl:flex bg-secondary xl:justify-between text-primary rounded-md py-8 text-sm xl:text-base font-semibold mb-3 px-4">
           <div className="w-12 text-center">#</div>
           <div className="flex-[1.5] text-center">Service Name</div>

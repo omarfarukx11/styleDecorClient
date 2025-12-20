@@ -74,7 +74,7 @@ const AdminAnalytics = () => {
         <h1>StyleDecor Business Insights</h1>
       </div>
       <title>StyelDecor - Analytics Dashboard</title>
-      <div className="p-8 bg-primary h-full min-h-screen">
+      <div className="p-8 bg-primary h-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="stats shadow-2xl bg-base-100 ">
             <div className="stat">

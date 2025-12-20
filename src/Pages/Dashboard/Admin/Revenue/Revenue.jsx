@@ -34,7 +34,7 @@ const Revenue = () => {
         <h1>Revenue Monitoring</h1>
       </div>
       <title>StyelDecor - Revenue Monitoring</title>
-      <div className="p-4 md:p-8 bg-primary min-h-screen">
+      <div className="p-4 md:p-8 bg-primary">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
             {

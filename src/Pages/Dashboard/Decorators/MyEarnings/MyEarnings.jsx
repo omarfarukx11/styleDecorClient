@@ -26,11 +26,11 @@ const MyEarnings = () => {
     <div>
      <title>StyelDecor - My Earning</title>
       <div className="bg-primary text-white py-8 text-center text-2xl border-b border-white">
-        <h1>My Earnings 💰</h1>
+        <h1>My Earnings</h1>
       </div>
 
     
-    <div className="xl:p-8 p-4 bg-primary h-screen overflow-hidden ">
+    <div className="xl:p-8 p-4 bg-primary overflow-hidden ">
 
         <div className="card bg-base-100 text-secondary shadow-xl border border-primary/30">
         <div className="card-body">

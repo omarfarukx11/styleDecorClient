@@ -36,7 +36,7 @@ const TodaySchedule = () => {
   );
 
   return (
-    <div className="min-h-screen bg-primary">
+    <div className="bg-primary">
       <div className="text-2xl text-white text-center py-8 border-b border-white">
         <h1>Today's Work Schedule</h1>
       </div>

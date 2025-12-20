@@ -9,7 +9,7 @@ const AllBookings = () => {
   const [selectedService, setSelectedService] = useState(null);
   const AssignRef = useRef();
   const [page, setPage] = useState(1);
-  const limit = 20;
+  const limit = 10;
 
   const { data, isLoading , refetch  } = useQuery({
     queryKey: ["allBooking", page],
@@ -81,7 +81,7 @@ const AllBookings = () => {
         <h2 >All Bookings</h2>
       </div>
       <title>StyelDecor - All Bookings</title>
-      <div className="xl:p-8 p-4 bg-primary min-h-screen">
+      <div className="xl:p-8 p-4 bg-primary">
       <div className="rounded-lg">
       <table className="table w-full">
 

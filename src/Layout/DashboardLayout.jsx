@@ -161,8 +161,8 @@ const DashboardLayout = () => {
         ></div>
       )}
 
-      {/* Sidebar */}
-      <div
+
+        <div
         className={`fixed inset-y-0 left-0 z-40 w-72 bg-primary text-secondary border-r border-white flex flex-col transform transition-transform duration-300 ease-in-out
           ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
           xl:translate-x-0 xl:static xl:inset-0
@@ -197,7 +197,7 @@ const DashboardLayout = () => {
         </div>
       </div>
 
-      <div className="flex-1 bg-base-100 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto min-h-screen bg-primary">
         <Outlet />
       </div>
     </div>

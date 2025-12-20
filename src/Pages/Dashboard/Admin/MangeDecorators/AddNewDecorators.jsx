@@ -55,7 +55,7 @@ const AddNewDecorators = () => {
         <h1>Crete new decorators</h1>
       </div>
       <title>StyelDecor - Add New Decortor</title>
-      <div className="xl:p-8 p-4 bg-primary min-h-screen">
+      <div className="xl:p-8 p-4 bg-primary">
 
         <div className="overflow-x-auto w-full  rounded-lg ">
           <table className="table w-full border-separate border-spacing-y-3">

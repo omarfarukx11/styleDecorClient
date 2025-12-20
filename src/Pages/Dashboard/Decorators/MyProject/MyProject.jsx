@@ -66,7 +66,7 @@ const MyProject = () => {
         <h1>Assign Project</h1>
       </div>
     <title>StyelDecor - My Project</title>
-      <div className="bg-primary p-8 min-h-screen ">
+      <div className="bg-primary p-8">
         {/* HEADER for XL+ */}
         <div className="hidden xl:flex bg-secondary justify-between mb-5 text-base-100 rounded-md py-8 text-sm xl:text-lg font-semibold">
           <div className="w-8 text-center">#</div>

@@ -9,7 +9,7 @@ const ManageServices = () => {
   const axiosSecure = useAxiosSecure();
   const [page, setPage] = useState(1);
   const [selectedService, setSelectedService] = useState(null);
-  const limit = 20;
+  const limit = 10;
   const updateRef = useRef();
 
   
@@ -144,7 +144,7 @@ const ManageServices = () => {
         <h2>Manage Services</h2>
       </div>
       <title>StyelDecor - Manage Services</title>
-      <div className="xl:p-8 p-4 min-h-screen bg-primary">
+      <div className="xl:p-8 p-4 bg-primary">
         <div className="flex justify-end items-center mb-4">
           <Link
             to="/dashboard/add-new-service"

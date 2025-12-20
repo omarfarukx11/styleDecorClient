@@ -8,7 +8,7 @@ import { Link } from "react-router";
 const ManageDecorators = () => {
   const axiosSecure = useAxiosSecure();
   const [page, setPage] = useState(1);
-  const limit = 20;
+  const limit = 10;
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["allBooking", page],

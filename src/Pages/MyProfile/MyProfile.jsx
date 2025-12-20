@@ -58,12 +58,14 @@ const MyProfile = () => {
   };
 
   return (
-    <div>
-      <div className="text-center py-8 text-white uppercase border-b border-white text-2xl bg-primary">
+    <div >
+        <div className="text-center py-8 text-white uppercase border-b border-white text-2xl bg-primary">
         my profile
       </div>
+
       <title>StyelDecor - Profile</title>
-      <div className="bg-primary min-h-screen md:p-8 p-4">
+
+      <div className="bg-primary  md:p-8 p-4">
         <div className="border border-white rounded-lg">
           <div className="flex flex-col items-center  pt-12 pb-10 px-8">
             <div className="relative mb-6">
@@ -74,7 +76,7 @@ const MyProfile = () => {
               />
             </div>
 
-            <div className="text-center mb-8">
+            <div className="text-center mb-8 ">
               <h2 className="text-3xl font-black text-secondary uppercase tracking-tight">
                 {user?.displayName}
               </h2>
@@ -152,6 +154,7 @@ const MyProfile = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };
