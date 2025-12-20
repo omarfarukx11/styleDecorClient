@@ -11,7 +11,7 @@ const AllBookings = () => {
   const [page, setPage] = useState(1);
   const limit = 20;
 
-  const { data, isLoading  } = useQuery({
+  const { data, isLoading , refetch  } = useQuery({
     queryKey: ["allBooking", page],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -26,7 +26,7 @@ const AllBookings = () => {
   const totalPages = Math.ceil(total / limit);
 
 
-  const { data: decorators = [] , refetch  } = useQuery({
+  const { data: decorators = []  } = useQuery({
     queryKey: ["decorators", selectedService?.bookingDistrict],
     enabled: !!selectedService,
     queryFn: async () => {
@@ -41,7 +41,6 @@ const AllBookings = () => {
     const decoratorAssignInfo = {
       decoratorName: decorator.name,
       decoratorEmail: decorator.email,
-      decoratorId: decorator.userId,
       decoratorID: decorator._id,
       decoratorStatus: decorator.status,
       serviceId: selectedService._id,
@@ -95,7 +94,7 @@ const AllBookings = () => {
             <th>Date</th>
             <th>Booking Status</th>
             <th>Payment</th>
-            <th>Action</th>
+            <th>Service Status</th>
           </tr>
         </thead>
 
@@ -158,22 +157,21 @@ const AllBookings = () => {
               </td>
 
               <td className="flex justify-between xl:table-cell px-4 py-3">
-                <span className="xl:hidden font-semibold">Action</span>
+                <span className="xl:hidden font-semibold">Service Status</span>
 
-                {booking.paymentStatus === "paid" && !booking.decoratorId ? (
+                {booking.paymentStatus === "paid" && !booking.decoratorEmail ? (
                   <button
                     onClick={() => handleModal(booking)}
-                    // className="btn btn-primary btn-sm"
-                    className="btn btn-primary rounded-full font-bold text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
+                    className="btn btn-primary rounded-full btn-sm hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none font-bold text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
                   >
                     Find Decorator
                   </button>
-                ) : booking.decoratorId ? (
+                ) : booking.decoratorEmail ? (
                   <span className="text-info  xl:py-5">
                     {booking.decoratorStatus}
                   </span>
                 ) : (
-                  <span className="text-red-600 btn bg-primary w-26 border-none cursor-not-allowed">Not pay</span>
+                  <span className="text-red-600">Unpaid</span>
                 )}
               </td>
             </tr>
@@ -208,13 +206,8 @@ const AllBookings = () => {
           decorators.map((d, i) => (
             <tr
               key={d._id}
-              className="
-                block xl:table-row
-                rounded-lg xl:rounded-none
-                mb-4 xl:mb-0
-                shadow-xl
-              "
-            >
+               className="block xl:table-row hover:bg-secondary hover:text-base-100 bg-base-100 text-secondary border-b border-primary  rounded-lg xl:rounded-none  mb-4 xl:mb-0  shadow-2xl 2xl:text-xl sm:text-2xl  xl:text-lg
+              ">
               <td className="flex justify-between xl:table-cell px-4 py-2">
                 <span className="xl:hidden font-semibold">#</span>
                 <span>{i + 1}</span>
@@ -241,7 +234,7 @@ const AllBookings = () => {
               {/* Status */}
               <td className="flex justify-between xl:table-cell px-4 py-2">
                 <span className="xl:hidden font-semibold">Status</span>
-                <span className="px-3 py-1 rounded-lg bg-primary text-secondary text-sm">
+                <span className="px-3 py-1 text-green-400  text-sm">
                   {d.status}
                 </span>
               </td>
@@ -251,7 +244,7 @@ const AllBookings = () => {
                 <span className="xl:hidden font-semibold">Action</span>
                 <button
                   onClick={() => handleAssignDecorators(d)}
-                  className="btn btn-sm bg-secondary text-primary"
+                  className="btn btn-sm bg-secondary hover:bg-base-100 hover:text-secondary border-none text-primary"
                 >
                   Assign
                 </button>
@@ -263,10 +256,10 @@ const AllBookings = () => {
     </table>
 
     {/* CLOSE BUTTON */}
-    <div className="flex justify-end pt-6">
+    <div className="flex justify-end pt-6 ">
       <button
         onClick={() => AssignRef.current.close()}
-        className="btn bg-secondary text-primary px-6"
+        className="btn bg-secondary text-primary px-6 hover:bg-base-100 hover:text-secondary"
       >
         Close
       </button>

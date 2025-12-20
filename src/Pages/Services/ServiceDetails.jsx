@@ -266,7 +266,7 @@ const ServiceDetails = () => {
 
             <div>
               <label className="font-semibold text-secondary">
-                Full Location / Address <span className="text-error">*</span>
+                Full Address <span className="text-error">*</span>
               </label>
               <input
                 {...register("location", { required: true })}

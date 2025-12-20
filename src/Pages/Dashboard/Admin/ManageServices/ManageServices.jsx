@@ -167,7 +167,7 @@ const ManageServices = () => {
             {...registerFilter("search")}
             type="text"
             placeholder="Search by service name..."
-            className="input input-bordered outline-none py-3 border-gray-300 text-secondary input-lg flex-1"
+            className="input input-bordered outline-none py-3 border-gray-300 w-full text-secondary input-lg flex-1"
           />
           <select
             {...registerFilter("type")}
@@ -287,7 +287,7 @@ const ManageServices = () => {
                     <td className="flex flex-col md:flex-row space-x-3 xl:table-cell p-4 xl:rounded-r-xl">
                       <button
                         onClick={() => handleModal(service)}
-                        className="btn btn-primary xl:py-2 2xl:btn-md xl:btn-xs flex-1 py-3 rounded-full my-4 md:my-0 font-bold 2xl:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none"
+                        className="btn btn-primary xl:py-2 2xl:btn-md xl:btn-xs flex-1 py-3 rounded-full my-4 md:my-0 font-bold 2xl:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none w-full lg:w-auto"
                       >
                         Edit
                       </button>
@@ -312,7 +312,7 @@ const ManageServices = () => {
             <button
               disabled={page === 1}
               onClick={() => setPage((prev) => prev - 1)}
-              className="btn border-none bg-primary text-secondary disabled:opacity-40"
+              className="btn border-none text-primary bg-secondary disabled:opacity-40"
             >
               « Prev
             </button>
@@ -322,8 +322,8 @@ const ManageServices = () => {
                 <button
                   key={num}
                   onClick={() => setPage(num)}
-                  className={`btn btn-sm text-secondary mt-1 ${
-                    page === num ? "btn-primary" : "btn-outline btn-ghost"
+                  className={`btn btn-sm text-base-100 mt-1 ${
+                    page === num ? "btn-secondary text-primary" : "btn-outline btn-ghost"
                   }`}
                 >
                   {num}
@@ -332,7 +332,7 @@ const ManageServices = () => {
             <button
               disabled={page === totalPages}
               onClick={() => setPage((prev) => prev + 1)}
-              className="btn border-none bg-primary text-secondary disabled:opacity-40"
+              className="btn border-none text-primary bg-secondary disabled:opacity-40"
             >
               Next »
             </button>

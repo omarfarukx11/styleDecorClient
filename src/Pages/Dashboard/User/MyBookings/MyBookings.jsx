@@ -223,7 +223,7 @@ const MyBookings = () => {
                       handlePayModal();
                       setBookingData(b);
                     }}
-                    className="btn btn-primary xl:btn-sm text-white"
+                    className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 xl:btn-sm border-none "
                   >
                     Pay
                   </button>
@@ -234,14 +234,14 @@ const MyBookings = () => {
                     handleModal();
                     setBookingData(b);
                   }}
-                  className="btn btn-warning xl:btn-sm text-white"
+                  className="btn btn-warning xl:btn-sm hover:text-base-100 hover:bg-secondary border-none  text-white"
                 >
                   Update
                 </button>
 
                 <button
                   onClick={() => handleDeleteBooking(b._id)}
-                  className="btn btn-error xl:btn-sm text-white"
+                  className="btn btn-error  xl:btn-sm hover:text-base-100 hover:bg-secondary border-none text-white"
                 >
                   Delete
                 </button>
@@ -350,7 +350,7 @@ const MyBookings = () => {
             Complete the payment for the services booked by{" "}
             {bookingData?.userName}
           </h1>
-          <div className="bg-primary border border-white shadow-2xl p-8 rounded-xl mb-5">
+          <div className="bg-secondary text-base-100 border border-white shadow-2xl p-8 rounded-xl mb-5">
             <p className="text-lg">Service Name : {bookingData?.serviceName}</p>
             <p className="text-lg">
               Service Cost : ৳{bookingData?.serviceCost}

@@ -88,7 +88,7 @@ const AdminAnalytics = () => {
               <div className="stat-value text-secondary">
                 {bookingData?.total || 0}
               </div>
-              <div className="stat-desc text-info">Total Booking Attempts</div>
+              <div className="stat-desc text-info">Total Booking Recorded</div>
             </div>
           </div>
 

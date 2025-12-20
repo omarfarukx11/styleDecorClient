@@ -45,7 +45,6 @@ const MyProject = () => {
   };
 
   const handleDecoratorWordStatus = () => {
-    console.log("hello world");
     axiosSecure
       .patch(`/updateDecoratorsWorkStatus/${decorators?._id}`, {
         status: "available",
@@ -87,100 +86,100 @@ const MyProject = () => {
               className="flex flex-col xl:flex-row gap-5 xl:items-center xl:justify-between hover:bg-primary hover:text-white bg-base-100 text-secondary rounded-lg shadow p-3"
             >
               {/* # */}
-              <div className="flex justify-between xl:w-8 px-1 py-1 font-semibold border-b xl:border-b-0">
+              <div className="flex justify-between xl:w-8 px-1 py-1 font-semibold ">
                 <span className="xl:hidden">#{i + 1}</span>
                 <span className="hidden xl:block text-center">{i + 1}</span>
               </div>
 
               {/* Service Name */}
-              <div className="flex justify-between xl:w-[220px] px-1 py-1 border-b xl:border-b-0">
-                <span className="xl:hidden font-semibold">Service Name :</span>
+              <div className="flex justify-between xl:w-[220px] px-1 py-1 ">
+                <span className="xl:hidden font-semibold">Service Name </span>
                 <span>{d.serviceName}</span>
               </div>
 
               {/* Client Name */}
-              <div className="flex justify-between xl:w-[180px] px-1 py-1 border-b xl:border-b-0">
-                <span className="xl:hidden font-semibold">Client Name :</span>
+              <div className="flex justify-between xl:w-[180px] px-1 py-1 ">
+                <span className="xl:hidden font-semibold">Client Name </span>
                 <span>{d.userName}</span>
               </div>
 
               {/* Client Email */}
-              <div className="flex justify-between xl:w-[220px] px-1 py-1 border-b xl:border-b-0">
-                <span className="xl:hidden font-semibold">Client Email :</span>
+              <div className="flex justify-between xl:w-[220px] px-1 py-1 ">
+                <span className="xl:hidden font-semibold">Client Email </span>
                 <span>{d.userEmail}</span>
               </div>
 
               {/* Client Address */}
-              <div className="flex justify-between xl:w-[200px] px-1 py-1 border-b xl:border-b-0">
-                <span className="xl:hidden font-semibold">Address :</span>
+              <div className="flex justify-between xl:w-[200px] px-1 py-1 ">
+                <span className="xl:hidden font-semibold">Address </span>
                 <span className="xl:pr-25">
                   {d.location} {d.bookingDistrict}
                 </span>
               </div>
 
               {/* Booking Date */}
-              <div className="flex justify-between xl:w-[140px] px-1 py-1 border-b xl:border-b-0">
-                <span className="xl:hidden font-semibold">Booking Date :</span>
+              <div className="flex justify-between xl:w-[140px] px-1 py-1 ">
+                <span className="xl:hidden font-semibold">Booking Date </span>
                 <span className="xl:mr-25">{d.bookingDate}</span>
               </div>
 
               <div className="flex flex-col xl:flex-row gap-2 py-5 px-1 justify-center xl:mr-16">
                 {d.decoratorStatus === "decorator Assigned" && (
                   <button
-                    onClick={() => handleDecoratorStatus("In Progress", d._id)}
-                    className="btn btn-primary text-white btn-sm xl:btn-sm w-full"
+                    onClick={() => handleDecoratorStatus("Planning Phase", d._id)}
+                    className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
                   >
                     Accept
                   </button>
                 )}
 
-                {d.decoratorStatus === "In Progress" && (
+                {d.decoratorStatus === "Planning Phase" && (
                   <button
                     onClick={() =>
-                      handleDecoratorStatus("Materials Purchased", d._id)
+                      handleDecoratorStatus("On the Way to Venue", d._id)
                     }
-                    className="btn btn-primary text-white btn-sm xl:btn-sm w-full"
+                    className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
                   >
-                    Materials Purchased
+                    On the Way to Venue
                   </button>
                 )}
 
-                {d.decoratorStatus === "Materials Purchased" && (
+                {d.decoratorStatus === "On the Way to Venue" && (
                   <button
                     onClick={() =>
-                      handleDecoratorStatus("Rider On The Way", d._id)
+                      handleDecoratorStatus("Setup in Progress", d._id)
                     }
-                    className="btn btn-primary text-white btn-sm xl:btn-sm w-full"
+                    className="btn btn-base-100 text-secondary btn-sm xl:btn-sm w-full"
                   >
-                    Rider On The Way
+                    Setup in Progress
                   </button>
                 )}
 
-                {d.decoratorStatus === "Rider On The Way" && (
+                {d.decoratorStatus === "Setup in Progress" && (
                   <button
                     onClick={() =>
-                      handleDecoratorStatus("Decorator Reached", d._id)
+                      handleDecoratorStatus("Working", d._id)
                     }
-                    className="btn btn-primary text-white btn-sm xl:btn-sm w-full"
+                    className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
                   >
-                    Decorator Reached
+                    Working
                   </button>
                 )}
 
-                {d.decoratorStatus === "Decorator Reached" && (
+                {d.decoratorStatus === "Working" && (
                   <button
                     onClick={() => {
                       handleDecoratorStatus("completed", d._id);
                       handleDecoratorWordStatus();
                     }}
-                    className="btn btn-primary text-white btn-sm xl:btn-sm w-full"
+                    className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 px-4 border-none text-xl btn-sm xl:btn-sm w-full"
                   >
                     Complete
                   </button>
                 )}
 
                 {d.decoratorStatus === "completed" && (
-                  <button className="btn btn-success cursor-not-allowed btn-sm xl:btn-sm w-full">
+                  <button className="btn btn-success text-white cursor-not-allowed btn-sm xl:btn-sm w-full">
                     Completed
                   </button>
                 )}
