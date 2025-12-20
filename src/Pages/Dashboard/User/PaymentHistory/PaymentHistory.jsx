@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../Hooks/useAuth";
@@ -33,7 +33,7 @@ const PaymentHistory = () => {
           if (res.data.bookingUpdate.modifiedCount) {
             Swal.fire({
               icon: "success",
-              title: "Booking Confirmed!",
+              title: "Payment & Booking success!",
               text: "Your service has been booked successfully.",
               timer: 2000,
             });
@@ -67,14 +67,19 @@ const PaymentHistory = () => {
     <div className="flex-2 text-center">Transaction ID</div>
   </div>
 
-  {/* BODY */}
+
   <div className="space-y-6 xl:space-y-4">
-    {history.map((b, i) => (
+    {
+      history.length === 0 ? ( 
+        <p className="md:text-4xl text-center mt-10 text-secondary font-bold uppercase">
+          No Payment History Available
+      </p> )  :   (
+
+        history.map((b, i) => (
       <div
         key={b._id}
         className="flex flex-col xl:flex-row  xl:items-center xl:justify-between  shadow-xl py-4 xl:py-8 text-sm rounded-lg p-3 xl:px-4 hover:bg-primary hover:text-white bg-base-100 text-secondary"
       >
-        {/* # */}
         <div className="flex justify-between xl:w-12 px-1 py-1 font-semibold  xl:border-b-0">
           <span className="xl:hidden">#</span>
           <span className="xl:text-center w-full">{i + 1}</span>
@@ -120,7 +125,9 @@ const PaymentHistory = () => {
           </span>
         </div>
       </div>
-    ))}
+    ))
+      )
+    }
   </div>
 </div>
 

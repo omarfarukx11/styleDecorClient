@@ -99,7 +99,15 @@ const AllBookings = () => {
         </thead>
 
         <tbody>
-          {allBooking.map((booking, i) => (
+          {
+            allBooking.length === 0 ? (
+              <tr>
+                <td colSpan="8" className="text-center py-10 text-2xl text-secondary font-bold bg-base-100 rounded-lg">
+                   No Bookings Available
+                </td>
+              </tr>
+            ) : 
+            (allBooking.map((booking, i) => (
             <tr
               key={booking._id}
               className="block xl:table-row hover:bg-secondary hover:text-base-100 bg-base-100 text-secondary border-b border-primary  rounded-lg xl:rounded-none  mb-4 xl:mb-0  shadow-2xl 2xl:text-xl sm:text-2xl  xl:text-lg
@@ -175,7 +183,8 @@ const AllBookings = () => {
                 )}
               </td>
             </tr>
-          ))}
+          )))
+          }
         </tbody>
       </table>
     </div>

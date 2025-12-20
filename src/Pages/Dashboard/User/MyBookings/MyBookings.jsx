@@ -14,7 +14,7 @@ const MyBookings = () => {
   const [bookingData, setBookingData] = useState(null);
   const { register, handleSubmit, watch, reset } = useForm();
 
-  const { data: book = [], refetch , } = useQuery({
+  const { data: book = [], refetch } = useQuery({
     queryKey: ["booking", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/booking?email=${user?.email}`);
@@ -109,7 +109,7 @@ const MyBookings = () => {
       <div className="text-2xl text-white font-bold bg-primary py-8 border-b uppercase border-white text-center">
         <h1>My Bookings</h1>
       </div>
-     <title>StyelDecor - My Booking</title>
+      <title>StyelDecor - My Booking</title>
       <div className="bg-primary min-h-screen p-2 md:p-8 ">
         <div className="hidden xl:flex bg-secondary text-base-100 py-8 xl:justify-between rounded-md text-sm xl:text-lg font-semibold px-4">
           <div className="w-12 text-center">#</div>
@@ -125,128 +125,137 @@ const MyBookings = () => {
 
         {/* BODY */}
         <div className="space-y-5 mt-5">
-          {book.map((b, i) => (
-            <div
-              key={b._id}
-              className="flex flex-col hover:bg-primary hover:text-white bg-base-100 text-secondary xl:flex-row xl:items-center xl:justify-between  rounded-lg shadow-xl p-2 2xl:text-xl xl:text-sm xl:px-4"
-            >
-
-              <div className="flex justify-between xl:w-12 px-2 py-2 font-semibold  xl:border-b-0">
-                <span className="xl:hidden">#</span>
-                <span className="xl:text-center text-end w-full xl:w-auto">{i + 1}</span>
-              </div>
-
-              <div className="flex justify-between xl:flex-2 xl:min-w-[200px] px-2 py-2  xl:border-b-0">
-                <span className="xl:hidden font-semibold">Service Name</span>
-                <span className="xl:text-start xl:w-full ">
-                  {b.serviceName}
-                </span>
-              </div>
-
-              <div className="flex justify-between xl:flex-1 px-2 py-2  xl:border-b-0">
-                <span className="xl:hidden font-semibold">Category </span>
-                <span className="xl:text-center xl:w-full">
-                  {b.serviceType}
-                </span>
-              </div>
-
-              <div className="flex justify-between xl:flex-1 px-2 py-2  xl:border-b-0">
-                <span className="xl:hidden font-semibold">Date </span>
-                <span className="xl:text-center xl:w-full">
-                  {b.bookingDate}
-                </span>
-              </div>
-
-
-              <div className="flex justify-between xl:flex-1 px-2 py-2  xl:border-b-0 font-semibold">
-                <span className="xl:hidden font-semibold">Amount </span>
-                <span className="xl:text-center xl:w-full">
-                  ৳{b.serviceCost}
-                </span>
-              </div>
-
-
-              <div className="flex justify-between xl:flex-1 px-2 py-1  xl:border-b-0">
-                <span className="xl:hidden font-semibold">Booking Status </span>
-                <div className="xl:w-full xl:flex xl:justify-center">
-                  <span
-                    className={`px-2 py-1 rounded-xl text-md ${
-                      b.bookingStatus === "Confirmed"
-                        ? "text-green-500  "
-                        : "text-yellow-500  "
-                    }`}
-                  >
-                    {b.bookingStatus}
+          {book.length === 0 ? (
+            <p className="md:text-4xl text-center mt-10 text-secondary font-bold uppercase">
+              you didn't booking yet
+            </p>
+          ) : (
+            book.map((b, i) => (
+              <div
+                key={b._id}
+                className="flex flex-col hover:bg-primary hover:text-white bg-base-100 text-secondary xl:flex-row xl:items-center xl:justify-between  rounded-lg shadow-xl p-2 2xl:text-xl xl:text-sm xl:px-4"
+              >
+                <div className="flex justify-between xl:w-12 px-2 py-2 font-semibold  xl:border-b-0">
+                  <span className="xl:hidden">#</span>
+                  <span className="xl:text-center text-end w-full xl:w-auto">
+                    {i + 1}
                   </span>
                 </div>
-              </div>
 
- 
-              <div className="flex justify-between xl:flex-1 px-2 py-1  xl:border-b-0">
-                <span className="xl:hidden font-semibold">Service Status </span>
-                <div className="xl:w-full xl:flex xl:justify-center">
-                  <span
-                    className={`px-2 py-1 rounded-xl text-md ${
-                      b.decoratorStatus === "completed"
-                        ? "text-green-500 "
-                        : "text-blue-500 "
-                    }`}
-                  >
-                    {b.decoratorStatus}
+                <div className="flex justify-between xl:flex-2 xl:min-w-[200px] px-2 py-2  xl:border-b-0">
+                  <span className="xl:hidden font-semibold">Service Name</span>
+                  <span className="xl:text-start xl:w-full ">
+                    {b.serviceName}
                   </span>
                 </div>
-              </div>
 
-
-              <div className="flex justify-between xl:flex-1 px-2 py-1  xl:border-b-0">
-                <span className="xl:hidden font-semibold">Payment </span>
-                <div className="xl:w-full xl:flex xl:justify-center">
-                  <span
-                    className={`px-2 py-1 rounded-xl capitalize text-md ${
-                      b.paymentStatus === "paid"
-                        ? "text-green-500 "
-                        : "text-red-500 "
-                    }`}
-                  >
-                    {b.paymentStatus}
+                <div className="flex justify-between xl:flex-1 px-2 py-2  xl:border-b-0">
+                  <span className="xl:hidden font-semibold">Category </span>
+                  <span className="xl:text-center xl:w-full">
+                    {b.serviceType}
                   </span>
                 </div>
-              </div>
 
+                <div className="flex justify-between xl:flex-1 px-2 py-2  xl:border-b-0">
+                  <span className="xl:hidden font-semibold">Date </span>
+                  <span className="xl:text-center xl:w-full">
+                    {b.bookingDate}
+                  </span>
+                </div>
 
-              <div className="flex xl:flex-row w-full flex-col gap-2 xl:flex-[1.5] xl:min-w-[200px] px-2 py-2 justify-center">
-                {/* Only show the Pay button if the status is NOT paid */}
-                {b.paymentStatus !== "paid" && (
-                  <button
+                <div className="flex justify-between xl:flex-1 px-2 py-2  xl:border-b-0 font-semibold">
+                  <span className="xl:hidden font-semibold">Amount </span>
+                  <span className="xl:text-center xl:w-full">
+                    ৳{b.serviceCost}
+                  </span>
+                </div>
+
+                <div className="flex justify-between xl:flex-1 px-2 py-1  xl:border-b-0">
+                  <span className="xl:hidden font-semibold">
+                    Booking Status{" "}
+                  </span>
+                  <div className="xl:w-full xl:flex xl:justify-center">
+                    <span
+                      className={`px-2 py-1 rounded-xl text-md ${
+                        b.bookingStatus === "Confirmed"
+                          ? "text-green-500  "
+                          : "text-yellow-500  "
+                      }`}
+                    >
+                      {b.bookingStatus}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex justify-between xl:flex-1 px-2 py-1  xl:border-b-0">
+                  <span className="xl:hidden font-semibold">
+                    Service Status{" "}
+                  </span>
+                  <div className="xl:w-full xl:flex xl:justify-center">
+                    <span
+                      className={`px-2 py-1 rounded-xl text-md capitalize ${
+                        b.decoratorStatus === "completed"
+                          ? "text-green-500 "
+                          : "text-blue-500 "
+                      }`}
+                    >
+                      {b.decoratorStatus}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex justify-between xl:flex-1 px-2 py-1  xl:border-b-0">
+                  <span className="xl:hidden font-semibold">Payment </span>
+                  <div className="xl:w-full xl:flex xl:justify-center">
+                    <span
+                      className={`px-2 py-1 rounded-xl capitalize text-md ${
+                        b.paymentStatus === "paid"
+                          ? "text-green-500 "
+                          : "text-red-500 "
+                      }`}
+                    >
+                      {b.paymentStatus}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex xl:flex-row w-full flex-col gap-2 xl:flex-[1.5] xl:min-w-[200px] px-2 py-2 justify-center">
+                  {b.paymentStatus !== "paid" && (
+                    <button
+                      onClick={() => {
+                        handlePayModal();
+                        setBookingData(b);
+                      }}
+                      className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 xl:btn-sm border-none "
+                    >
+                      Pay
+                    </button>
+                  )}
+
+                  {
+                    b.decoratorStatus !== "completed" && (
+                      <button
                     onClick={() => {
-                      handlePayModal();
+                      handleModal();
                       setBookingData(b);
                     }}
-                    className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 xl:btn-sm border-none "
+                    className="btn btn-warning xl:btn-sm hover:text-base-100 hover:bg-secondary border-none  text-white"
                   >
-                    Pay
+                    Update
                   </button>
-                )}
+                    )
+                  }
 
-                <button
-                  onClick={() => {
-                    handleModal();
-                    setBookingData(b);
-                  }}
-                  className="btn btn-warning xl:btn-sm hover:text-base-100 hover:bg-secondary border-none  text-white"
-                >
-                  Update
-                </button>
-
-                <button
-                  onClick={() => handleDeleteBooking(b._id)}
-                  className="btn btn-error  xl:btn-sm hover:text-base-100 hover:bg-secondary border-none text-white"
-                >
-                  Delete
-                </button>
+                  <button
+                    onClick={() => handleDeleteBooking(b._id)}
+                    className="btn btn-error  xl:btn-sm hover:text-base-100 hover:bg-secondary border-none text-white"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
 
@@ -271,9 +280,7 @@ const MyBookings = () => {
             className="space-y-5 text-secondary"
           >
             <div>
-              <label className="font-semibold">
-                Booking Date 
-              </label>
+              <label className="font-semibold">Booking Date</label>
               <input
                 type="date"
                 {...register("bookingDate", { required: true })}
@@ -283,9 +290,7 @@ const MyBookings = () => {
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
               <div>
-                <label className="font-semibold">
-                  Region 
-                </label>
+                <label className="font-semibold">Region</label>
                 <select
                   {...register("BookingRegion", { required: true })}
                   className="select select-bordered bg-accent outline-none w-full"
@@ -299,9 +304,7 @@ const MyBookings = () => {
                 </select>
               </div>
               <div>
-                <label className="font-semibold">
-                  District
-                </label>
+                <label className="font-semibold">District</label>
                 <select
                   {...register("BookingDistrict", { required: true })}
                   className="select select-bordered bg-accent outline-none w-full"
@@ -317,9 +320,7 @@ const MyBookings = () => {
               </div>
             </div>
             <div>
-              <label className="font-semibold">
-                Full Address
-              </label>
+              <label className="font-semibold">Full Address</label>
               <input
                 {...register("location", { required: true })}
                 placeholder="House, Road, Area, City"
@@ -327,7 +328,10 @@ const MyBookings = () => {
               />
             </div>
             <div className="flex flex-col md:flex-row gap-3 mt-6">
-              <button type="submit" className="btn hover:bg-base-100 flex-1 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all py-2">
+              <button
+                type="submit"
+                className="btn hover:bg-base-100 flex-1 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all py-2"
+              >
                 Update Booking
               </button>
               <button
@@ -341,7 +345,6 @@ const MyBookings = () => {
           </form>
         </div>
       </dialog>
-
 
       <dialog ref={payRef} className="modal">
         <div className="modal-box w-11/12 max-w-2xl bg-primary p-8">
@@ -364,14 +367,14 @@ const MyBookings = () => {
           <div className="flex gap-3 mt-6">
             <button
               type="button"
-               className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-sm md:btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all flex-1"
+              className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-sm md:btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all flex-1"
               onClick={() => handlePayment(bookingData)}
             >
               Pay For Service
             </button>
             <button
               type="button"
-               className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-sm md:btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all flex-1"
+              className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-sm md:btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all flex-1"
               onClick={() => payRef.current.close()}
             >
               Cancel

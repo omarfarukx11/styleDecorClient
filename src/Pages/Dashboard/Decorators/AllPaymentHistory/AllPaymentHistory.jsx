@@ -36,7 +36,13 @@ const AllPaymentHistory = () => {
         </div>
 
         <div className="space-y-6 xl:space-y-4">
-          {history.map((b, i) => (
+          {
+            history.length === 0 ? (
+              <p className="md:text-4xl text-center mt-10 text-secondary font-bold uppercase">
+                No Payment History Available
+              </p>
+            )
+             : (history.map((b, i) => (
             <div
               key={b._id}
               className="flex flex-col xl:flex-row xl:items-center xl:justify-between  shadow-xl py-4 xl:py-8 text-sm rounded-lg p-3 xl:px-4 hover:bg-primary hover:text-white bg-base-100 text-secondary"
@@ -88,7 +94,7 @@ const AllPaymentHistory = () => {
                 </span>
               </div>
             </div>
-          ))}
+          )))          }
         </div>
       </div>
     </div>

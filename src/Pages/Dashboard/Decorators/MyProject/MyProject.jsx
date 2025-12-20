@@ -78,9 +78,15 @@ const MyProject = () => {
           <div className="w-[280px] text-center">Action</div>
         </div>
 
-        {/* BODY */}
         <div className="space-y-6 xl:space-y-4">
-          {sortedBooking.map((d, i) => (
+          {
+            sortedBooking.length === 0 ?
+             (
+              <p className="md:text-4xl text-center mt-10 text-secondary font-bold uppercase">
+                No Project Assigned Yet
+              </p>
+             ) : (
+              sortedBooking.map((d, i) => (
             <div
               key={d._id}
               className="flex flex-col xl:flex-row gap-5 xl:items-center xl:justify-between hover:bg-primary hover:text-white bg-base-100 text-secondary rounded-lg shadow p-3"
@@ -194,7 +200,9 @@ const MyProject = () => {
               </div>
               
             </div>
-          ))}
+          ))
+            )
+          }
         </div>
       </div>
     </div>

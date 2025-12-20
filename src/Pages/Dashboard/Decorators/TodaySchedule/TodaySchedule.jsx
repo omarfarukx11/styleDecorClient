@@ -37,7 +37,7 @@ const TodaySchedule = () => {
 
   return (
     <div className="bg-primary">
-      <div className="text-2xl text-white text-center py-8 border-b border-white">
+      <div className="text-2xl text-white text-center py-8 border-b border-white uppercase">
         <h1>Today's Work Schedule</h1>
       </div>
       <title>StyelDecor - Schedule</title>
