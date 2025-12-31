@@ -52,4 +52,4 @@ A modern, high-performance interior design and home decor platform designed to h
 ---
 
 ## 👤 Author
-**Faruk** 
+GitHub: https://github.com/omarfarukx11
