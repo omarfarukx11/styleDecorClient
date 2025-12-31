@@ -9,7 +9,7 @@
 ## 📖 Project Overview
 **StyleDecor** is a modern, high-performance interior design and home decor platform designed to help users visualize and manage their dream living spaces. It serves as a bridge between professional decorators and clients seeking a modern, aesthetic home transformation, focusing on high-quality visuals and interactive data management.
 
-🔗 **Live Demo:** [StyleDecor Live Link](https://your-live-link.netlify.app)
+🔗 **Live Demo:** [[StyleDecor Live Link](https://your-live-link.netlify.app)](https://style-decor-by-faruk.web.app/)
 
 ---
 
