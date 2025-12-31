@@ -47,5 +47,5 @@ The project uses the following major libraries and frameworks:
 ---
 
 ## 👤 Author
-GitHub: https://github.com/omarfarukx11
-linkedin : www.linkedin.com/in/omar-farukx57
+- GitHub: https://github.com/omarfarukx11
+- linkedin : www.linkedin.com/in/omar-farukx57
