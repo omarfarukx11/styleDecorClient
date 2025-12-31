@@ -1,53 +1,49 @@
-# 🏠 StyleDecor
+# 🏠 StyleDecor - Interior Design Platform
 
-A modern, high-performance interior design and home decor platform designed to help users visualize and manage their dream living spaces.
-
-**🔗 [Live Demo](https://style-decor-by-faruk.web.app/)**
+<p align="center">
+  <img src="https://i.ibb.co.com/WNKH8bJM/StyleDecor-Screenshot.png" width="100%" alt="StyleDecor Banner" />
+</p>
 
 ---
 
-## 🎯 Purpose
-**StyleDecor** is built to provide a seamless experience for users looking to explore professional interior styling services. The platform focuses on high-quality visuals, interactive data management, and a smooth user journey from inspiration to booking. It serves as a bridge between professional decorators and clients seeking a modern, aesthetic home transformation.
+## 📖 Project Overview
+**StyleDecor** is a modern, high-performance interior design and home decor platform designed to help users visualize and manage their dream living spaces. It serves as a bridge between professional decorators and clients seeking a modern, aesthetic home transformation, focusing on high-quality visuals and interactive data management.
+
+🔗 **Live Demo:** [StyleDecor Live Link](https://your-live-link.netlify.app)
 
 ---
 
 ## ✨ Key Features
-* **Secure Authentication:** User-friendly login and registration system powered by **Firebase Auth**.
-* **Efficient Data Fetching:** Optimized API calls and server-state management using **TanStack Query**.
-* **Interactive Mapping:** Integrated **Leaflet** maps to display studio locations or project sites.
-* **Data Visualization:** Sleek, interactive charts using **Recharts** for tracking service metrics.
-* **Smooth UI/UX:** High-end animations via **Framer Motion** and **Lottie** for an engaging user experience.
-* **Responsive Styling:** A cutting-edge interface built with **Tailwind CSS v4** for ultimate performance.
-* **Robust Forms:** Clean and validated user inputs using **React Hook Form**.
-* **Interactive Alerts:** Professional feedback notifications integrated with **SweetAlert2**.
+- 🔐 **Secure Authentication:** User-friendly login and registration system powered by **Firebase Auth**.
+- ⚡ **Efficient Data Fetching:** Optimized API calls and server-state management using **TanStack Query**.
+- 🗺️ **Interactive Mapping:** Integrated **Leaflet** maps to display studio locations or project sites.
+- 📊 **Data Visualization:** Sleek, interactive charts using **Recharts** for tracking service metrics.
+- 🎬 **Smooth UI/UX:** High-end animations via **Framer Motion** and **Lottie** for an engaging experience.
+- 🎨 **Responsive Styling:** A cutting-edge interface built with **Tailwind CSS v4** for ultimate performance.
+- 📝 **Robust Forms:** Clean and validated user inputs using **React Hook Form**.
 
 ---
 
-## 🛠️ Built With (NPM Packages)
+## 🛠️ Built With (Dependencies)
+The project uses the following major libraries and frameworks:
 
-### Core Framework & Routing
-* `react` (^19.2.0) - UI Library
-* `react-router` (^7.10.1) - Navigation
+### Core & State Management
+- **React 19**: UI Library.
+- **React Router 7**: For seamless navigation.
+- **Firebase**: Backend database and Authentication.
+- **TanStack React Query**: Efficient data fetching and caching.
+- **Axios**: HTTP requests.
 
-### State Management & Backend
-* `firebase` (^12.6.0) - Database & Auth
-* `@tanstack/react-query` (^5.90.12) - Data fetching
-* `axios` (^1.13.2) - HTTP Client
+### UI & Styling
+- **Tailwind CSS v4**: Modern, high-performance styling.
+- **Framer Motion**: For professional animations.
+- **React Icons**: Industry-standard icons.
+- **SweetAlert2**: Professional popup notifications.
 
-### Styling & UI Components
-* `tailwindcss` & `@tailwindcss/vite` (^4.1.17) - Modern CSS framework
-* `react-icons` (^5.5.0) - Icon library
-* `sweetalert2` (^11.26.3) - Custom popup modals
-
-### Visuals & Maps
-* `recharts` (^3.6.0) - Statistical charts
-* `leaflet` & `react-leaflet` (^5.0.0) - Interactive maps
-* `framer-motion` (^12.23.25) - Motion components
-* `lottie-react` (^2.4.1) - Vector animations
-
-### Utilities
-* `react-hook-form` (^7.68.0) - Form handling
-
+### Specialized Tools
+- **Recharts**: For statistical data representation.
+- **Leaflet**: For interactive maps.
+- **React Hook Form**: For efficient form handling.
 
 ---
 
