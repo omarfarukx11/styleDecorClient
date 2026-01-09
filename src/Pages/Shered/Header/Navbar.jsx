@@ -84,7 +84,8 @@ const Navbar = () => {
             </button>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-primary text-white rounded-box w-52"
+              style={{ }}
+              className=" menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-primary text-white rounded-box w-52 font-second"
             >
               {navLinks}
             </ul>

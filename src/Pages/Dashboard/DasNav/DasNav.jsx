@@ -48,7 +48,7 @@ const DasNav = ({role}) => {
 
 
   return (
-    <nav className="bg-[#ffffff] text-black max-w-[1980px] mx-auto shadow-sm">
+    <nav className="bg-[#ffffff] text-black max-w-[1980px] mx-auto border-b border-gray-200">
       <div className="flex justify-end items-center py-5 px-4 lg:px-8  ">
         
         <div className="navbar-end flex items-center gap-5">

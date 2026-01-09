@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useSearchParams } from "react-router";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../Hooks/useAuth";
 import Swal from "sweetalert2";
-import Loader from "../../../../Components/Loader";
+import { motion } from "framer-motion";
+import MyBookingSkeleton from "../../../../Skelenton/MyBookingSkeleton"; // Using existing skeleton for consistency
 
 const PaymentHistory = () => {
   const [searchParams] = useSearchParams();
@@ -34,6 +35,9 @@ const PaymentHistory = () => {
               icon: "success",
               title: "Payment & Booking success!",
               text: "Your service has been booked successfully.",
+              background: "#040404",
+              color: "#fff",
+              confirmButtonColor: "oklch(var(--s))",
               timer: 2000,
             });
           }
@@ -43,86 +47,87 @@ const PaymentHistory = () => {
   }, [sessionId, axiosSecure, refetch]);
 
   if (isLoading) {
-    return <Loader></Loader>;
+    return <MyBookingSkeleton />;
   }
 
   return (
-    <div>
-      <div className="text-2xl text-white bg-primary py-8 border-b border-white text-center uppercase">
-        <h1>My Payment History</h1>
+    <div className="font-body min-h-[calc(100vh-90px)]">
+      <title>StyleDecor - Payment History</title>
+
+      <div className="text-3xl text-base-200 font-black font-title bg-primary py-10 uppercase text-center tracking-tighter">
+        <h1>Payment History</h1>
       </div>
-      <title>StyelDecor - Payment History</title>
-      <div className="bg-primary p-2 md:p-8">
-        <div className="hidden xl:flex bg-secondary xl:justify-between text-primary rounded-md py-8 text-sm xl:text-base font-semibold mb-3 px-4">
-          <div className="w-12 text-center">#</div>
-          <div className="flex-[1.5] text-center">Service Name</div>
-          <div className="flex-1 text-center">Biller Name</div>
-          <div className="flex-[1.5] text-center">User Email</div>
+
+      <div className="bg-primary p-4 md:p-8">
+        <div className="hidden xl:flex bg-secondary backdrop-blur-md text-base-200 py-8 text-xs font-bold uppercase tracking-widest px-6 ">
+          <div className="w-12">#</div>
+          <div className="flex-[1.5] min-w-[200px]">Service Name</div>
+          <div className="flex-1 text-center">Biller</div>
           <div className="flex-[1.5] text-center">Time</div>
           <div className="flex-1 text-center">Amount</div>
-          <div className="flex-2 text-center">Transaction ID</div>
+          <div className="flex-2 text-right">Transaction ID</div>
         </div>
 
-        <div className="space-y-6 xl:space-y-4">
+        {/* BODY */}
+        <div className="space-y-4 mt-4">
           {history.length === 0 ? (
-            <p className="md:text-4xl text-center mt-10 text-secondary font-bold uppercase">
-              No Payment History Available
-            </p>
+            <div className="flex flex-col items-center justify-center py-20">
+              <p className="text-2xl text-base-200/30 font-bold uppercase font-title">
+                No Transactions Found
+              </p>
+            </div>
           ) : (
             history.map((b, i) => (
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
                 key={b._id}
-                className="flex flex-col xl:flex-row  xl:items-center xl:justify-between  shadow-xl py-4 xl:py-8 text-sm rounded-lg p-3 xl:px-4 hover:bg-primary hover:text-white bg-base-100 text-secondary"
+                className="flex flex-col xl:flex-row xl:items-center bg-base-100 lg:py-7 text-base-200 shadow-sm p-4 xl:px-6 transition-all"
               >
-                <div className="flex justify-between xl:w-12 px-1 py-1 font-semibold  xl:border-b-0">
+                {/* Index */}
+                <div className="flex justify-between xl:w-12 font-bold ">
                   <span className="xl:hidden">#</span>
-                  <span className="xl:text-center w-full">{i + 1}</span>
+                  <span>{i + 1}</span>
                 </div>
 
                 {/* Service Name */}
-                <div className="flex justify-between xl:flex-[1.5] px-1 py-1  xl:border-b-0">
-                  <span className="xl:hidden font-semibold">Service Name:</span>
-                  <span className="xl:text-start xl:w-full">
+                <div className="flex justify-between xl:flex-[1.5] xl:min-w-[200px] mt-2 xl:mt-0">
+                  <span className="xl:hidden ">Service</span>
+                  <span className="text-xs uppercase font-black tracking-tight text-end xl:text-left">
                     {b.serviceName}
                   </span>
                 </div>
 
                 {/* Biller Name */}
-                <div className="flex justify-between xl:flex-1 px-1 py-1  xl:border-b-0">
-                  <span className="xl:hidden font-semibold">Biller:</span>
-                  <span className="xl:text-center xl:w-full">{b.userName}</span>
-                </div>
-
-                {/* User Email */}
-                <div className="flex justify-between xl:flex-[1.5] px-1 py-1  xl:border-b-0">
-                  <span className="xl:hidden font-semibold">Email:</span>
-                  <span className="xl:text-center xl:w-full truncate">
-                    {b.userEmail}
-                  </span>
+                <div className="flex justify-between xl:flex-1 xl:text-center mt-2 xl:mt-0">
+                  <span className="xl:hidden  font-bold uppercase text-[10px] tracking-widest">Biller</span>
+                  <span className="xl:w-full">{b.userName}</span>
                 </div>
 
                 {/* Time */}
-                <div className="flex justify-between xl:flex-[1.5] px-1 py-1  xl:border-b-0">
-                  <span className="xl:hidden font-semibold">Time:</span>
-                  <span className="xl:text-center xl:w-full xl:text-xs">
+                <div className="flex justify-between xl:flex-[1.5] xl:text-center mt-2 xl:mt-0">
+                  <span className="xl:hidden  font-bold uppercase text-[10px] tracking-widest">Date</span>
+                  <span className="xl:w-full text-xs opacity-80">
                     {new Date(b.paidAt).toLocaleString()}
                   </span>
                 </div>
 
                 {/* Amount */}
-                <div className="flex justify-between xl:flex-1 px-1 py-1  xl:border-b-0 font-semibold">
-                  <span className="xl:hidden font-semibold">Amount:</span>
-                  <span className="xl:text-center xl:w-full">৳{b.amount}</span>
+                <div className="flex justify-between xl:flex-1 xl:text-center mt-2 xl:mt-0">
+                  <span className="xl:hidden ">Amount</span>
+                  <span className="xl:w-full ">৳{b.amount}</span>
                 </div>
 
                 {/* Transaction ID */}
-                <div className="flex justify-between xl:flex-2 px-1 py-1  xl:border-b-0">
-                  <span className="xl:hidden font-semibold">Txn ID:</span>
-                  <span className="xl:text-center xl:w-full break-all xl:break-normal font-mono text-xs">
-                    {b.transactionId}
-                  </span>
+                <div className="flex justify-between xl:flex-2 mt-4 xl:mt-0">
+                  <span className="xl:hidden text-[10px] uppercase tracking-widest">TXN ID</span>
+                  <div className="xl:w-full xl:text-right">
+                    <span className="rounded-md text-[12px] text-base-200/70 select-all">
+                      {b.transactionId}
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             ))
           )}
         </div>
