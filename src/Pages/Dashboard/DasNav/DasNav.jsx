@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { FaBars, FaMoon, FaSun } from "react-icons/fa";
 import Button from "../../../utility/Button";
 
-const Navbar = () => {
+const DasNav = ({role}) => {
   const { user, logOut } = useAuth();
   const navigate = useNavigate();
 
@@ -46,79 +46,22 @@ const Navbar = () => {
     });
   };
 
-  const navLinks = (
-    <>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-      <li>
-        <NavLink to="/services">Services</NavLink>
-      </li>
-      <li>
-        <NavLink to="/about">About</NavLink>
-      </li>
-      <li>
-        <NavLink to="/contact">Contact</NavLink>
-      </li>
-      <li>
-        <button
+
+  return (
+    <nav className="bg-[#ffffff] text-black max-w-[1980px] mx-auto shadow-sm">
+      <div className="flex justify-end items-center py-5 px-4 lg:px-8  ">
+        
+        <div className="navbar-end flex items-center gap-5">
+        <div>
+             <button
           onClick={() => setDarkMode(!darkMode)}
-          className="pt-3"
+          className="pt-3 text-xl"
           aria-label="Toggle Theme"
         >
           {darkMode ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-base-200 hover:bg-none" />}
         </button>
-      </li>
-    </>
-  );
-
-  return (
-    <nav className="bg-[#ffffff] text-black xl:px-20 ">
-      <div className="flex justify-between items-center max-w-[1800px] py-5 px-4 lg:px-8 mx-auto ">
-        {/* Left */}
-        <div className="navbar-start flex items-center gap-2">
-          {/* Mobile Dropdown */}
-          <div className="dropdown lg:hidden">
-            <button tabIndex={0} className="btn btn-ghost">
-              <FaBars className="xl:text-2xl" />
-            </button>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-primary text-white rounded-box w-52"
-            >
-              {navLinks}
-            </ul>
-          </div>
-
-          {/* Logo */}
-          <Link to="/" className="text-2xl font-bold">
-            <Logo />
-          </Link>
         </div>
-
-        {/* Center - Desktop Links */}
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navLinks}</ul>
-        </div>
-
-        {/* Right */}
-        <div className="navbar-end flex items-center gap-2">
           {user && (
-            <NavLink
-              to="/dashboard"
-              className="btn hover:bg-base-100 bg-secondary text-base-200 border-none xl:btn-lg rounded-full font-bold xl:text-xl text-sm shadow-xl hover:shadow-primary/70 transform hover:scale-105 transition-all"
-            >
-              Dashboard
-            </NavLink>
-          )}
-          {!user ? (
-            <NavLink
-              to="/login"
-              className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none xl:btn-lg rounded-full font-bold xl:text-xl text-sm shadow-xl hover:shadow-primary/70 transform hover:scale-105 transition-all"
-            >
-              Login
-            </NavLink>
-          ) : (
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
@@ -152,9 +95,10 @@ const Navbar = () => {
             </div>
           )}
         </div>
+
       </div>
     </nav>
   );
 };
 
-export default Navbar;
+export default DasNav;

@@ -1,88 +1,87 @@
-import { useEffect } from "react";
+import React from "react";
 import { FaStar } from "react-icons/fa";
-// import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import DecoratorSkeleton from "../../Skelenton/DecoratorSkeleton";
 
 const TopDecorators = () => {
-  // const {} = useAuth()
   const axiosSecure = useAxiosSecure();
-  const { data: decorators = [] } = useQuery({
+  
+  const { data: decorators = [], isLoading } = useQuery({
     queryKey: ["decorators"],
     queryFn: async () => {
       const res = await axiosSecure.get("/topDecorators");
       return res.data;
     },
   });
-  useEffect(() => {}, []);
+
+  if (isLoading) return <DecoratorSkeleton />;
 
   return (
-    <section className="xl:p-20 p-4">
-      <div className="text-center md:my-10 my-4 py-4 md:py-10 px-4 bg-primary text-secondary rounded-2xl shadow-xl">
-        <h2 className="md:text-5xl text-4xl font-extrabold mb-6 ">
-          Top Decorators
-        </h2>
+    <section className="bg-secondary">
+      <div className="xl:p-16 p-5 max-w-[1980px] mx-auto">
+        {/* Header */}
+        <div className="text-center px-4 text-base-200 rounded-2xl mb-10">
+          <h2 className="lg:text-4xl md:text-3xl text-2xl font-extrabold mb-4">
+            Top Decorators
+          </h2>
+          <p className="max-w-3xl mx-auto text-[10px] md:text-xs opacity-80 leading-relaxed">
+            Discover our top decorators who bring creativity, expertise, and
+            precision to every event. Handpicked for their unique skills and proven track record.
+          </p>
+        </div>
 
-        <p className="max-w-3xl mx-auto md:text-sm tabs-xs leading-relaxed">
-          Discover our top decorators who bring creativity, expertise, and
-          precision to every event. From luxurious weddings to corporate
-          gatherings, birthday celebrations, and themed parties, each decorator
-          is handpicked for their unique skills and proven track record. Explore
-          their specialties, see their ratings, and choose the perfect
-          professional to make your event unforgettable.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-        {decorators.map((d) => (
-          <div
-            key={d._id}
-            className="group relative bg-primary rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500 overflow-hidden border border-gray-100"
-          >
-            {/* Image */}
-            <div className="relative overflow-hidden rounded-t-2xl">
-              <img
-                src={d.image}
-                className="h-72 w-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              {/* Overlay on hover */}
-              <div className="absolute inset-0 
-              bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            </div>
-
-            {/* Card Content */}
-            <div className="p-8">
-              <h3 className="text-2xl font-extrabold text-gray-500 group-hover:text-white transition-colors">
-                {d.name}
-              </h3>
-
-              {/* Rating */}
-              <div className="flex items-center mt-3 text-yellow-500">
-                <FaStar className="text-xl" />
-                <FaStar className="text-xl" />
-                <FaStar className="text-xl" />
-                <FaStar className="text-xl" />
-                <FaStar className="text-xl" />
-                <span className="ml-2 text-lg font-semibold text-gray-500">
-                  {d.rating} / 5.0
-                </span>
+        {/* Grid: 5-column layout */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6 items-stretch">
+          {decorators.map((d) => (
+            <div
+              key={d._id}
+              className="group flex flex-col h-full relative rounded-xl transition-all duration-300 overflow-hidden bg-primary border border-gray-100/10 shadow-sm hover:shadow-md"
+            >
+              {/* Image Section - Uniform height */}
+              <div className="relative h-40 md:h-48 overflow-hidden shrink-0">
+                <img
+                  src={d.image}
+                  alt={d.name}
+                  className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                {/* Rating Badge on Image */}
+                <div className="absolute top-3 right-3 bg-black/50 backdrop-blur-md px-2 py-1 rounded-md flex items-center gap-1 z-10">
+                  <FaStar className="text-yellow-400 text-[10px]" />
+                  <span className="text-white text-[10px] font-bold">
+                    {d.rating || "5.0"}
+                  </span>
+                </div>
               </div>
 
-              {/* Specialties */}
-              <div className="mt-5">
-                <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">
-                  Specialties
-                </p>
-                <p className="mt-2 text-base text-gray-500 font-medium leading-relaxed">
-                  {d.specialties}
-                </p>
-                <p className="mt-2 text-base text-gray-500 font-medium leading-relaxed">
-                  {d.description}
-                </p>
+              {/* Card Content */}
+              <div className="p-4 md:p-5 flex flex-col grow">
+                <h3 className="text-sm md:text-base font-bold text-gray-400 group-hover:text-base-200 transition-colors duration-300 line-clamp-1">
+                  {d.name}
+                </h3>
+
+                {/* Star Row */}
+                <div className="flex items-center mt-1 mb-3 text-yellow-500 gap-0.5">
+                   {[...Array(5)].map((_, i) => (
+                     <FaStar key={i} className="text-[10px]" />
+                   ))}
+                </div>
+
+                <div className="space-y-2">
+                  <p className="text-[10px] text-gray-500 font-semibold uppercase tracking-widest">
+                    Specialties
+                  </p>
+                  <p className="text-[11px] text-gray-400 leading-tight line-clamp-2">
+                    {d.specialties}
+                  </p>
+                  <p className="text-[11px] text-gray-500 italic line-clamp-3 border-l border-gray-100/20 pl-2">
+                    {d.description}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -18,11 +18,11 @@ const RootLayout = () => {
   }
 
   return (
-    <div>
-       <div className="fixed top-0 w-full z-30">
+    <div className="bg-primary">
+       <div className="fixed top-0 w-full z-300">
          <Navbar />
        </div>
-      <div className="max-w-[1800px] mx-auto mt-20">
+      <div className="mt-20">
       <Outlet />
     </div>
       <Footer />

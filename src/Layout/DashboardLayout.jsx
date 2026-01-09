@@ -16,20 +16,19 @@ import { MdOutlineDesignServices } from "react-icons/md";
 import useRole from "../Hooks/useRole";
 import Loader from "../Components/Loader";
 import Swal from "sweetalert2";
+import Navbar from "../Pages/Shered/Header/Navbar";
+import DasNav from "../Pages/Dashboard/DasNav/DasNav";
 
 const DashboardLayout = () => {
   const { role, roleLoading } = useRole();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-
-  useEffect(() => {
-  }, [location.pathname]);
+  useEffect(() => {}, [location.pathname]);
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
-
 
   if (roleLoading) return <Loader />;
 
@@ -143,62 +142,73 @@ const DashboardLayout = () => {
   );
 
   return (
-    <div className="flex min-h-screen bg-base-100 max-w-[1800px] mx-auto ">
-      <title>StyelDecor - Dashbord</title>
-      <div className="absolute top-5 left-4 z-50 xl:hidden">
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="mt-4"
-        >
-          {!isMobileMenuOpen && <FaBars size={20} />}
-        </button>
+    <div className="bg-primary text-black">
+      <div className="fixed z-20 top-0 w-full">
+        <DasNav></DasNav>
       </div>
 
-      {isMobileMenuOpen && (
-        <div
-          onClick={closeMobileMenu}
-          className="fixed inset-0 z-30 bg-black/30 lg:hidden"
-        ></div>
-      )}
+      <div className="">
+        <div className="flex min-h-screen max-w-[1980px] mx-auto ">
+          <title>StyelDecor - Dashbord</title>
 
-
-        <div
-        className={`fixed inset-y-0 left-0 z-40 w-72 bg-primary text-secondary border-r border-white flex flex-col transform transition-transform duration-300 ease-in-out
-          ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
-          xl:translate-x-0 xl:static xl:inset-0
-        `}
-      >
-        <div className="p-8 border-b border-white sm:pr-2">
-          <div className="absolute top-5 right-4 z-50 xl:hidden">
+          <div className="absolute top-5 left-4 z-50 xl:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="mt-4 text-white"
+              className="mt-4"
             >
-              {isMobileMenuOpen && <FaTimes size={24} />}
+              {!isMobileMenuOpen && <FaBars size={20} />}
             </button>
           </div>
 
-          <h2 className="text-2xl font-bold uppercase text-white">
-            {role === "admin" && "Admin"}
-            {role === "decorator" && "Decorator"}
-            {role === "user" && "My Dashboard"} 
-          </h2>
+          {isMobileMenuOpen && (
+            <div
+              onClick={closeMobileMenu}
+              className="fixed inset-0 z-30 bg-black/30 lg:hidden"
+            ></div>
+          )}
+
+          <div
+            className={`fixed inset-y-0 left-0 z-40 w-72 bg-primary text-black border-r  flex flex-col transform transition-transform duration-300 ease-in-out
+          ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
+          xl:translate-x-0 xl:static xl:inset-0
+        `}
+          >
+            <div className="p-8 border-b border-white sm:pr-2 z-200 ">
+              <div className="absolute top-5 right-4 z-50 xl:hidden">
+                <button
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className="mt-4 text-white"
+                >
+                  {isMobileMenuOpen && <FaTimes size={24} />}
+                </button>
+              </div>
+
+              <h2 className="text-2xl font-bold uppercase text-base-200 ">
+                {role === "admin" && "Admin"}
+                {role === "decorator" && "Decorator"}
+                {role === "user" && "My Dashboard"}
+              </h2>
+            </div>
+
+            <ul className="menu p-4 flex-1 overflow-y-auto ">
+              {role === "user" && userMenu}
+              {role === "decorator" && decoratorMenu}
+              {role === "admin" && adminMenu}
+              {commonMenu}
+            </ul>
+
+            <div className="p-4 border-t border-white text-center text-sm opacity-70">
+              © 2025 StyleDecor
+            </div>
+          </div>
+
+          <div className="flex-1 h-screen overflow-y-auto pt-20">
+            <div>
+              {" "}
+              <Outlet />
+            </div>
+          </div>
         </div>
-
-        <ul className="menu p-4 flex-1 overflow-y-auto text-white">
-          {role === "user" && userMenu}
-          {role === "decorator" && decoratorMenu}
-          {role === "admin" && adminMenu}
-          {commonMenu}
-        </ul>
-
-        <div className="p-4 border-t border-white text-center text-sm opacity-70">
-          © 2025 StyleDecor
-        </div>
-      </div>
-
-      <div className="flex-1 overflow-y-auto min-h-screen bg-primary">
-        <Outlet />
       </div>
     </div>
   );

@@ -2,10 +2,13 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { Link } from "react-router";
+import Button from "../../utility/Button";
+import ServiceSkeleton from "../../Skelenton/ServiceSkeleton";
+import { FaStar } from "react-icons/fa"; // Assuming you use react-icons
+
 const TopServices = () => {
   const axiosSecure = useAxiosSecure();
-
-  const { data: service = [] } = useQuery({
+  const { data: service = [], isLoading } = useQuery({
     queryKey: ["services"],
     queryFn: async () => {
       const res = await axiosSecure.get("/services");
@@ -13,72 +16,79 @@ const TopServices = () => {
     },
   });
 
+  if (isLoading) {
+    return <ServiceSkeleton />;
+  }
+
   return (
-    <section className="xl:p-20 p-4 ">
-      <div className="text-center md:my-10 md:py-10 py-4 my-4 px-4 bg-primary text-secondary rounded-xl">
-        <h2 className="md:text-5xl text-2xl font-extrabold mb-4  ">
-          Our Decoration Packages
-        </h2>
+    <section className="bg-primary">
+      <div className="xl:p-16 p-5 max-w-[1980px] mx-auto">
+        <div className="text-center text-base-200 rounded-xl mb-10">
+          <h2 className="lg:text-4xl md:text-3xl text-2xl font-extrabold mb-3">
+            Our Decoration Packages
+          </h2>
+          <p className="max-w-xl mx-auto text-[10px] md:text-xs opacity-80">
+            Explore our range of flexible and innovative services designed to meet
+            your unique needs.
+          </p>
+        </div>
 
-        <p className=" max-w-xl mx-auto text-xs ">
-          Explore our range of flexible and innovative services designed to meet
-          your unique needs. From expert consultation to hands-on execution, we
-          ensure each solution is personalized, seamless, and impactful.
-          Discover how our dynamic services can elevate your experience today.
-        </p>
-      </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6 items-stretch">
+          {service.map((service) => (
+            <div
+              key={service._id}
+              className="group flex flex-col h-full relative rounded-xl hover:shadow-lg overflow-hidden transform transition-all duration-500 border bg-secondary border-gray-100/10 shadow-sm"
+            >
+              {/* Image Container */}
+              <div className="relative h-40 md:h-48 overflow-hidden shrink-0">
+                <img
+                  src={service.image}
+                  alt={service.name}
+                  className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                {/* Rating Badge on Image */}
+                <div className="absolute top-3 right-3 bg-black/50 backdrop-blur-md px-2 py-1 rounded-md flex items-center gap-1">
+                  <FaStar className="text-yellow-400 text-[10px]" />
+                  <span className="text-white text-[10px] font-bold">
+                    {service.rating || "5.0"}
+                  </span>
+                </div>
+                
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
+                  <div className="p-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <p className="text-[10px] uppercase">Starting from</p>
+                    <p className="text-lg font-bold">৳{service.price}</p>
+                  </div>
+                </div>
+              </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-10">
-        {service.map((service) => (
-          <div
-            key={service._id}
-            className="group relative bg-primary rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 border border-gray-100"
-          >
-            <div className="relative overflow-hidden">
-              <img
-                src={service.image}
-                alt={service.name}
-                className="h-64 w-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
-                <div className="p-6 text-white transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
-                  <p className="text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity delay-200">
-                    Starting from
-                  </p>
-                  <p className="md:text-3xl text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity delay-300">
+              {/* Content Area */}
+              <div className="p-4 md:p-5 flex flex-col grow">
+                <h2 className="text-sm md:text-base font-bold text-gray-400 group-hover:text-base-200 transition-colors duration-300 line-clamp-1">
+                  {service.name}
+                </h2>
+
+                <p className="mt-1 text-[10px] text-gray-500 font-medium uppercase tracking-widest">
+                  {service.type}
+                </p>
+
+                <div className="mt-3 mb-4">
+                  <span className="text-lg md:text-xl font-bold text-base-200">
                     ৳{service.price}
-                  </p>
+                  </span>
+                  <span className="ml-1 text-[10px] text-base-200/70">/ package</span>
+                </div>
+
+                {/* mt-auto ensures all buttons align at the bottom */}
+                <div className="mt-auto">
+                  <Link to={`/serviceDetails/${service._id}`} className="block">
+                    <Button className="w-full py-2 text-xs">View Details</Button>
+                  </Link>
                 </div>
               </div>
             </div>
-
-            <div className="p-7">
-              <h2 className="md:text-2xl text-xl font-extrabold text-gray-500 group-hover:text-white transition-colors duration-300">
-                {service.name}
-              </h2>
-
-              <p className="mt-2 text-sm text-gray-500 font-medium uppercase tracking-wider">
-                {service.type}
-              </p>
-
-              <div className="mt-5">
-                <span className="md:text-3xl text-xl font-bold text-secondary">
-                  ৳{service.price}
-                </span>
-                <span className="ml-1 text-secondary">/ package</span>
-              </div>
-
-              <div className="mt-6">
-                <Link
-                  to={`/serviceDetails/${service._id}`}
-                  className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-sm md:btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
-                >
-                  View Details
-                </Link>
-              </div>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,45 +1,113 @@
+import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router";
+import { Link } from "react-router"; 
+import Button from "../../utility/Button";
 
 const Hero = () => {
+  // Animation for the container to orchestrate children
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2, 
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  // Slide up and fade in for paragraphs and buttons
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } 
+    },
+  };
+
+  // Split text animation for the heading
+  const wordVariants = {
+    hidden: { y: "100%" },
+    visible: { 
+      y: 0, 
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+    },
+  };
+
   return (
-    <section className="hero text-neutral-content xl:p-20 p-4">
-      <div className="flex items-center w-full justify-between flex-col lg:flex-row-reverse gap-10">
-
-        {/* BIGGER RESPONSIVE IMAGE */}
-        <motion.img
+    <section className="relative w-full h-[80vh] lg:min-h-screen overflow-hidden flex items-center justify-center bg-[#2A2A2A]">
+      
+      {/* BACKGROUND IMAGE - Keep scale/fade but focus is on text */}
+      <motion.div 
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 0.6 }}
+        transition={{ duration: 2 }}
+        className="absolute inset-0 z-0"
+      >
+        <img
           src="https://i.ibb.co.com/PGDhs74D/home-decor-1100-x-921-wallpaper-afxadyvf33e1kh3c.jpg"
-          className="
-            w-full h-full
-            lg:w-[550px] lg:h-[550px] 
-            object-cover rounded-lg shadow-2xl
-          "
-          initial={{ opacity: 0, x: 400 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 2 }}
+          alt="Background"
+          className="w-full h-full object-cover"
         />
+        <div className="absolute inset-0 bg-linear-to-t from-[#2A2A2A] via-transparent to-[#2A2A2A]/50" />
+      </motion.div>
 
+      {/* CONTENT AREA */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="relative z-10 container mx-auto px-6 text-center text-white"
+      >
+        {/* HEADING WITH MASK REVEAL */}
+        <h1 className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter leading-none overflow-hidden">
+          <span className="block overflow-hidden">
+            <motion.span variants={wordVariants} className="block">
+              Make Your Special
+            </motion.span>
+          </span>
+          <span className="block overflow-hidden">
+            <motion.span 
+              variants={wordVariants} 
+              className="block text-secondary drop-shadow-lg"
+            >
+              Day Beautiful
+            </motion.span>
+          </span>
+        </h1>
 
-        <motion.div
-          initial={{ opacity: 0, x: -400 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 2 }}
-          className="lg:w-[50%] text-center lg:text-left"
+        {/* SUBHEADING WITH FADE IN UP */}
+        <motion.p 
+          variants={fadeInUp}
+          className="mt-8 text-sm md:text-xl lg:text-2xl max-w-2xl mx-auto text-gray-300 leading-relaxed font-medium"
         >
-          <h1 className="md:text-5xl text-xl font-bold">
-            Make Your Special Day Beautiful 
-          </h1>
-          <p className="py-6 text-sm md:text-xl">
-            StyleDecor provides premium decoration services for weddings,
-            birthday parties, corporate events, and more.
-          </p>
+          StyleDecor provides premium decoration services for weddings,
+          birthday parties, corporate events, and more.
+        </motion.p>
 
-          <Link to="/services" className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-md md:btn-lg rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all">
-            Book Decoration Service
+        {/* BUTTON WITH SCALE & HOVER */}
+        <motion.div variants={fadeInUp} className="mt-12">
+          <Link to="/services">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button className="px-12 py-5 text-xl font-bold rounded-full shadow-2xl">
+                Book Decoration Service
+              </Button>
+            </motion.div>
           </Link>
         </motion.div>
+      </motion.div>
 
-      </div>
+      {/* ANIMATED SCROLL LINE */}
+      <motion.div 
+        initial={{ height: 0 }}
+        animate={{ height: 80 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-gradient-to-b from-secondary to-transparent"
+      />
     </section>
   );
 };

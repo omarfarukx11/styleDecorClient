@@ -11,7 +11,7 @@
 }
 
 a.active {
-  background-color: black;
+  background-color: #f0fff1;
   font-size: bold;
 }
 
@@ -26,7 +26,83 @@ a.active {
   /* This ensures the shadow shows up correctly on the block layout */
   display: table-row;
 }
+
 @plugin "daisyui/theme" {
+  name: "light";
+ 
+
+  --color-base-100: #edf6f9;
+  --color-base-200: black;
+  --color-base-300: oklch(24% 0 0);
+  --color-base-content: oklch(96% 0 0);
+
+
+  --color-primary: #ffffff;
+  --color-primary-hover: oklch(88% 0 0);
+  --color-primary-content: oklch(12% 0 0);
+
+  --color-secondary: #edede9;
+  --color-secondary-hover: oklch(35% 0.01 250);
+  --color-secondary-content: white;
+
+--color-accent: #F4F4F4; 
+  --color-accent-hover: oklch(92% 0 0);
+  --color-accent-content: #1A1A1A;
+
+  --color-neutral: oklch(30% 0 0);
+  --color-neutral-content: black;
+
+  --color-info: oklch(75% 0.12 240);
+  --color-success: oklch(70% 0.14 150);
+  --color-warning: oklch(85% 0.16 90);
+  --color-error: oklch(65% 0.18 30);
+
+  --radius-box: 0.75rem;
+  --radius-btn: 0.5rem;
+  --border: 1px;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+   default: true;
+
+
+  --color-base-100: black;
+  --color-base-200: white;
+  --color-base-300: oklch(10% 0 0);
+  --color-base-content: oklch(98% 0 0);
+
+  --color-primary: #040404;
+  --color-primary-hover: oklch(40% 0 0);
+  --color-primary-content: white;
+
+
+  --color-secondary: white;
+  --color-secondary-hover: oklch(30% 0 0);
+  --color-secondary-content: white;
+
+
+  --color-accent: oklch(70% 0 0);
+  --color-accent-hover: oklch(75% 0 0);
+  --color-accent-content: black;
+
+
+  --color-neutral: oklch(20% 0 0);
+  --color-neutral-content: oklch(90% 0 0);
+
+ 
+  --color-info: oklch(70% 0.1 240);
+  --color-success: oklch(65% 0.15 150);
+  --color-warning: oklch(80% 0.15 90);
+  --color-error: oklch(60% 0.15 30);
+
+  --radius-box: 0.75rem;
+  --radius-btn: 0.5rem;
+  --border: 1px;
+}
+
+
+/* @plugin "daisyui/theme" {
   name: "light";
  
 
@@ -35,7 +111,7 @@ a.active {
   --color-base-300: oklch(24% 0 0);
   --color-base-content: oklch(96% 0 0);
 
-  /* Primary: Your existing Grey */
+
   --color-primary: #b7b7b7;
   --color-primary-hover: oklch(88% 0 0);
   --color-primary-content: oklch(12% 0 0);
@@ -65,32 +141,31 @@ a.active {
   name: "dark";
    default: true;
 
-  /* Deep charcoal/black backgrounds */
+
   --color-base-100: black;
   --color-base-200: oklch(12% 0 0);
   --color-base-300: oklch(10% 0 0);
   --color-base-content: oklch(98% 0 0);
 
-  /* Primary: A sophisticated medium-dark grey */
   --color-primary: oklch(35% 0 0);
   --color-primary-hover: oklch(40% 0 0);
   --color-primary-content: white;
 
-  /* Secondary: Matched to Primary but slightly darker/richer */
+
   --color-secondary: white;
   --color-secondary-hover: oklch(30% 0 0);
   --color-secondary-content: white;
 
-  /* Accent: Muted light grey for highlights */
+
   --color-accent: oklch(70% 0 0);
   --color-accent-hover: oklch(75% 0 0);
   --color-accent-content: black;
 
-  /* Neutral: For borders and subtle UI elements */
+
   --color-neutral: oklch(20% 0 0);
   --color-neutral-content: oklch(90% 0 0);
 
-  /* Standard Semantic Colors (Adjusted for Dark Mode visibility) */
+ 
   --color-info: oklch(70% 0.1 240);
   --color-success: oklch(65% 0.15 150);
   --color-warning: oklch(80% 0.15 90);
@@ -99,4 +174,88 @@ a.active {
   --radius-box: 0.75rem;
   --radius-btn: 0.5rem;
   --border: 1px;
+} */
+
+
+
+
+
+/* @plugin "daisyui/theme" {
+  name: "light";
+
+
+  --color-base-100: #ffffff;
+  --color-base-200: #f4e5ff; 
+  --color-base-300: #e9ccff; 
+  --color-base-content: #10002b;
+
+
+  --color-primary: #7b2cbf; 
+  --color-primary-hover: #954bd6;
+  --color-primary-content: #ffffff;
+
+
+  --color-secondary: #5a189a; 
+  --color-secondary-hover: #7a21d4; 
+  --color-secondary-content: #ffffff;
+
+
+  --color-accent: #c77dff; 
+  --color-accent-hover: #d399ff;
+  --color-accent-content: #240046; 
+
+
+  --color-neutral: #3c096c;
+  --color-neutral-content: #ffffff;
+
+
+  --color-info: #8d25ed;   
+  --color-success: #9d4edd; 
+  --color-warning: #e0aaff; 
+  --color-error: #5400e4;  
+
+
+  --radius-box: 0.75rem;
+  --radius-btn: 0.5rem;
+  --border: 1px;
 }
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  default: true;
+
+
+  --color-base-100: #030008; 
+  --color-base-200: #060010; 
+  --color-base-300: #090018; 
+  --color-base-content: #f9eeff; 
+
+
+  --color-primary: #7b2cbf; 
+  --color-primary-hover: #954bd6; 
+  --color-primary-content: #ffffff;
+
+  --color-secondary: #3c096c; 
+  --color-secondary-hover: #650fb5;
+  --color-secondary-content: #ffffff;
+
+ 
+  --color-accent: #c77dff; 
+  --color-accent-hover: #d399ff; 
+  --color-accent-content: #240046; 
+
+  
+  --color-neutral: #1e0039;
+  --color-neutral-content: #dec6f6;
+
+
+  --color-info: #8d25ed;
+  --color-success: #9d4edd; 
+  --color-warning: #e0aaff;
+  --color-error: #5400e4; 
+
+
+  --radius-box: 0.75rem;
+  --radius-btn: 0.5rem;
+  --border: 1px;
+} */

@@ -35,17 +35,18 @@ const ServiceMap = () => {
 
 
   return (
-    <div className="xl:p-20 p-4 rounded-xl md:mb-10">
-      <div className="bg-primary text-secondary p-10 rounded-xl">
+    <section>
+      <div className="xl:p-20 p-4 rounded-xl md:mb-10 max-w-[1980px] mx-auto ">
+      <div className="text-base-200 p-10 rounded-xl">
         <h1 className="md:text-5xl text-2xl text-center sm:text-start font-bold ">
           We provide services all over Bangladesh
         </h1>
         <div className="md:my-10 text-center sm:text-start">
          <form onSubmit={handleSearch}>
-           <label className="input  rounded-4xl outline-none bg-accent text-secondary border-none shadow-2xl my-5">
-            <IoSearch className="text-4xl text-secondary" />
+           <label className="input  rounded-4xl outline-none bg-accent text-base-200 border-none shadow-sm my-5">
+            <IoSearch className="text-4xl text-base-200" />
             <input  name="location" placeholder="Search here" required />
-            <button  className="py-2 px-4 hover:bg-base-100  hover:text-secondary bg-secondary text-base-100 border-none rounded-4xl ml-4 relative left-3 font-bold">
+            <button  className="py-2 px-4 hover:bg-base-100  hover:text-base-200 bg-base-200 text-base-100 border-none rounded-4xl ml-4 relative left-3 font-bold">
               Search
             </button>
           </label>
@@ -58,7 +59,7 @@ const ServiceMap = () => {
         center={position}
          zoom={7} 
          scrollWheelZoom={false}
-         className="h-[800px]"
+         className="h-[800px] z-0 relative"
          ref={mapRef}
          >
           <TileLayer
@@ -76,6 +77,7 @@ const ServiceMap = () => {
         </MapContainer>
       </div>
     </div>
+    </section>
   );
 };
 

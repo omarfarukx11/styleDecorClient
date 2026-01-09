@@ -5,8 +5,8 @@ import Logo from "../../../Components/Logo";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-secondary pt-16 pb-8 px-6 md:px-12 lg:px-24 border-t border-secondary/20">
-      <div className="max-w-[1800px] xl:px-20 p-4 mx-auto ">
+    <footer className="bg-[#A9DF59] text-secondary pt-16 pb-8 px-6 md:px-12 lg:px-24 border-t border-secondary/20">
+      <div className="max-w-[1980px] p-4 mx-auto ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           
           {/* Brand Identity */}
