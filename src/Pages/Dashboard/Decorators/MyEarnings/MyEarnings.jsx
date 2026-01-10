@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../Hooks/useAuth";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Loader from "../../../../Components/Loader";
+import Title from "../../../../utility/Title";
 
 const MyEarnings = () => {
   const axiosSecure = useAxiosSecure();
@@ -25,9 +26,7 @@ const MyEarnings = () => {
   return (
     <div className="text-base-200">
      <title>StyelDecor - My Earning</title>
-      <div className="bg-primary text-white py-8 text-center text-2xl border-b border-white">
-        <h1>My Earnings</h1>
-      </div>
+      <Title>My Earning</Title>
 
     
     <div className="xl:p-8 p-4 bg-primary overflow-hidden ">

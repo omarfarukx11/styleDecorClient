@@ -6,6 +6,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
 import { motion } from "framer-motion";
 import MyBookingSkeleton from "../../../../Skelenton/MyBookingSkeleton";
+import Title from "../../../../utility/Title";
 
 const MyBookings = () => {
   const axiosSecure = useAxiosSecure();
@@ -94,10 +95,7 @@ const MyBookings = () => {
     <div className="font-body  min-h-[calc(100vh-90px)]">
       <title>StyleDecor - My Booking</title>
       
-      <div className="text-3xl text-base-200 font-black font-title bg-primary py-10 uppercase text-center tracking-tighter">
-        <h1>My Bookings</h1>
-      </div>
-
+      <Title>My Bookings</Title>
       <div className="bg-primary p-4 md:p-8">
 
         <div className="hidden xl:flex bg-secondary backdrop-blur-md text-base-200 py-8 text-xs font-bold uppercase tracking-widest px-6">

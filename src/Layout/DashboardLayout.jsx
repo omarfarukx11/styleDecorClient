@@ -37,7 +37,7 @@ const DashboardLayout = () => {
       <div className="border-t border-white my-2"></div>
       <li>
         <NavLink
-          to="/dashboard/my-profile"
+          to="/dashboard"
           onClick={closeMobileMenu}
           className="flex items-center gap-3"
         >
@@ -154,7 +154,7 @@ const DashboardLayout = () => {
           <div className="absolute top-5 left-4 z-50 xl:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="mt-4"
+              className="mt-4 text-base-200"
             >
               {!isMobileMenuOpen && <FaBars size={20} />}
             </button>
@@ -168,7 +168,7 @@ const DashboardLayout = () => {
           )}
 
           <div
-            className={`fixed inset-y-0 left-0 z-40 w-72 text-base-200 border-r border-gray-200  flex flex-col transform transition-transform duration-300 ease-in-out
+            className={`fixed inset-y-0 left-0 z-40 w-72 text-base-200 border-r border-gray-200 bg-primary xl:shadow-none shadow-xl  flex flex-col transform transition-transform duration-300 ease-in-out
           ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
           xl:translate-x-0 xl:static xl:inset-0
         `}
@@ -177,7 +177,7 @@ const DashboardLayout = () => {
               <div className="absolute top-5 right-4 z-50 xl:hidden">
                 <button
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="mt-4 text-white"
+                  className="mt-4 text-base-200"
                 >
                   {isMobileMenuOpen && <FaTimes size={24} />}
                 </button>

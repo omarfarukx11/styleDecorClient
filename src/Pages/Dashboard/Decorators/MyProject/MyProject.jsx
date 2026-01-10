@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import Loader from "../../../../Components/Loader";
+import Title from "../../../../utility/Title";
 
 const MyProject = () => {
   const axiosSecure = useAxiosSecure();
@@ -62,9 +63,7 @@ const MyProject = () => {
 
   return (
     <div className="text-base-200">
-      <div className="bg-primary  py-8 text-center text-2xl border-b border-white uppercase ">
-        <h1>Assign Project</h1>
-      </div>
+      <Title>Assign Project</Title>
     <title>StyelDecor - My Project</title>
       <div className="bg-primary p-8">
         {/* HEADER for XL+ */}
@@ -82,9 +81,7 @@ const MyProject = () => {
           {
             sortedBooking.length === 0 ?
              (
-              <p className="md:text-4xl text-center mt-10 font-bold uppercase">
-                No Project Assigned Yet
-              </p>
+              <Title>No Project Assigned Yet</Title>
              ) : (
               sortedBooking.map((d, i) => (
             <div
@@ -133,7 +130,7 @@ const MyProject = () => {
                 {d.decoratorStatus === "decorator Assigned" && (
                   <button
                     onClick={() => handleDecoratorStatus("In Progress", d._id)}
-                    className="btn hover:bg-base-100  bg-secondary text-base-200 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
+                    className="btn hover:bg-base-100  bg-secondary text-base-200 px-5 border-none text-xs btn-sm xl:btn-sm w-full"
                   >
                     Accept
                   </button>
@@ -141,7 +138,7 @@ const MyProject = () => {
                 {d.decoratorStatus === "In Progress" && (
                   <button
                     onClick={() => handleDecoratorStatus("Planning Phase", d._id)}
-                    className="btn hover:bg-base-100  bg-secondary text-base-200 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
+                    className="btn hover:bg-base-100  bg-secondary  text-base-200 px-5 border-none text-xs btn-sm xl:btn-sm w-full"
                   >
                     Planning Phase
                   </button>
@@ -152,7 +149,7 @@ const MyProject = () => {
                     onClick={() =>
                       handleDecoratorStatus("On the Way to Venue", d._id)
                     }
-                    className="btn hover:bg-base-100  bg-secondary text-base-200 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
+                    className="btn hover:bg-base-100  bg-secondary text-base-200 px-5 border-none text-xs btn-sm xl:btn-sm w-full"
                   >
                     On the Way
                   </button>
@@ -174,7 +171,7 @@ const MyProject = () => {
                     onClick={() =>
                       handleDecoratorStatus("Working", d._id)
                     }
-                    className="btn hover:bg-base-100  bg-secondary text-base-200 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
+                    className="btn hover:bg-base-100  bg-secondary text-base-200 px-5 border-none text-xs btn-sm xl:btn-sm w-full"
                   >
                     Working
                   </button>
@@ -186,7 +183,7 @@ const MyProject = () => {
                       handleDecoratorStatus("completed", d._id);
                       handleDecoratorWordStatus();
                     }}
-                    className="btn hover:bg-base-100  bg-secondary text-base-200 px-4 border-none text-xl btn-sm xl:btn-sm w-full"
+                    className="btn hover:bg-base-100  bg-secondary text-base-200 px-4 border-none text-xs btn-sm xl:btn-sm w-full"
                   >
                     Complete
                   </button>

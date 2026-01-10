@@ -5,6 +5,7 @@ import Loader from "../../../../Components/Loader";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
 import Button from "../../../../utility/Button";
+import Title from "../../../../utility/Title";
 
 const ManageDecorators = () => {
   const axiosSecure = useAxiosSecure();
@@ -55,9 +56,7 @@ const ManageDecorators = () => {
 
   return (
     <div>
-      <div className="text-2xl font-bold py-8 text-base-200 bg-primary border-b border-white text-center uppercase">
-        <h2>Manage Decorators</h2>
-      </div>
+      <Title>Manage Decorators</Title>
     <title>StyelDecor - Manage Decorators</title>
       <div className="xl:p-8 p-4 bg-primary">
         <div className="flex justify-end items-center">
@@ -86,9 +85,7 @@ const ManageDecorators = () => {
           {/* BODY */}
           <div className="space-y-5 xl:space-x-2">
             {allDecorator.length === 0 ? (
-              <div className="text-center text-lg text-gray-500">
-                No Decorators Available
-              </div>
+              <Title>No Decorators Available</Title>
             ) : (
               allDecorator.map((d, i) => (
                 <div

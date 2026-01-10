@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import Loader from "../../../../Components/Loader";
 import Button from "../../../../utility/Button";
+import Title from "../../../../utility/Title";
 
 const AllBookings = () => {
   const axiosSecure = useAxiosSecure();
@@ -74,9 +75,7 @@ const AllBookings = () => {
 
   return (
     <div className="text-base-200">
-      <div className="text-2xl font-bold py-8 bg-primary text-center border-b border-white uppercase">
-        <h2>All Bookings</h2>
-      </div>
+      <Title>All Bookings</Title>
       <title>StyelDecor - All Bookings</title>
       <div className="xl:p-8 p-4 bg-primary">
         <div className="rounded-lg">

@@ -12,20 +12,25 @@
 }
 
 a.active {
-  background-color: #edf6f9;
-  font-size: bold;
-  color: black;
+  background-color: #4361ee;
+  color: white;
+  font-weight: 700; 
+  border-radius: 8px;
+  padding: 8px 16px;
+  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+  position: relative;
+  transition: all 0.3s ease;
 }
 
-/* Add this to your index.css */
-/* Custom table fix for DaisyUI */
+
+
+
 .card-table {
   border-collapse: separate !important;
-  border-spacing: 0 16px !important; /* This creates the vertical "game" between rows */
+  border-spacing: 0 16px !important; 
 }
 
 .card-table tr {
-  /* This ensures the shadow shows up correctly on the block layout */
   display: table-row;
 }
 

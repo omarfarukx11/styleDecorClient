@@ -86,7 +86,7 @@ export const router = createBrowserRouter([
         element:<PrivetRoute><DashboardLayout></DashboardLayout></PrivetRoute>,
         children: [
             {
-                index : true ,
+                index : true,
                 element:<MyProfile></MyProfile>
             },
              {

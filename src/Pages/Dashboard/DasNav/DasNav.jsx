@@ -22,29 +22,36 @@ const DasNav = ({role}) => {
     localStorage.setItem("theme", darkMode ? "dark" : "light");
   }, [darkMode]);
 
-  const handleLogout = () => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You will be logged out of your account.",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes, Log me out",
-      cancelButtonText: "Cancel",
-      reverseButtons: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        logOut().then(() => {
-          navigate("/");
-          Swal.fire({
-            title: "Logged Out!",
-            icon: "success",
-            timer: 1800,
-            showConfirmButton: false,
-          });
+ const handleLogout = () => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You will be logged out.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, Log me out",
+    cancelButtonText: "Cancel",
+    reverseButtons: true,
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      try {
+        // 1. Start moving to Home first
+        navigate("/", { replace: true }); 
+        
+        // 2. Then trigger the logout
+        await logOut();
+        
+        Swal.fire({
+          title: "Logged Out!",
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false,
         });
+      } catch (error) {
+        console.error("Logout Error:", error);
       }
-    });
-  };
+    }
+  });
+};
 
 
   return (

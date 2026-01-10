@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
 import Button from "../../../../utility/Button";
+import Title from "../../../../utility/Title";
 
 const ManageServices = () => {
   const axiosSecure = useAxiosSecure();
@@ -141,9 +142,7 @@ const ManageServices = () => {
 
   return (
     <div className="text-base-200">
-      <div className="text-2xl py-8 font-bold text-center bg-primary text-base-200 border-b border-white uppercase">
-        <h2>Manage Services</h2>
-      </div>
+      <Title>Manage Services</Title>
       <title>StyelDecor - Manage Services</title>
       <div className="xl:p-8 p-4">
         <div className="flex justify-end items-center mb-4">

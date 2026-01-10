@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Loader from "../../../../Components/Loader";
 import { FaMoneyBillWave, FaChartLine, FaHistory } from "react-icons/fa"; // React Icons
 import { MdOutlinePayments, MdTrendingUp } from "react-icons/md"; // React Icons
+import Title from "../../../../utility/Title";
 
 const Revenue = () => {
   const axiosSecure = useAxiosSecure();
@@ -31,7 +32,7 @@ const Revenue = () => {
   return (
     <div className="">
       <div className="text-2xl bg-primary py-8 border-b border-white text-base-200 text-center uppercase">
-        <h1>Revenue Monitoring</h1>
+        <Title>Revenue Monitoring</Title>
       </div>
       <title>StyelDecor - Revenue Monitoring</title>
       <div className="p-4 md:p-8 bg-primary">

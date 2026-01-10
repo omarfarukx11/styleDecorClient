@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import Loader from "../../../../Components/Loader";
+import Title from "../../../../utility/Title";
 
 const AllPaymentHistory = () => {
   const axiosSecure = useAxiosSecure();
@@ -20,9 +21,7 @@ const AllPaymentHistory = () => {
 
   return (
     <div className="text-base-200">
-      <div className="text-2xl bg-primary py-8 border-b border-white text-center uppercase">
-        <h1>Client Payment History</h1>
-      </div>
+      <Title>Client Payment History</Title>
         <title>StyelDecor - All Payment History</title>
       <div className="bg-primary p-2 md:p-8">
         <div className="hidden xl:flex bg-secondary text-base-200 xl:justify-between rounded-md py-8 text-sm xl:text-base font-semibold mb-3 px-4">
@@ -35,12 +34,10 @@ const AllPaymentHistory = () => {
           <div className="flex-2 text-center">Transaction ID</div>
         </div>
 
-        <div className="space-y-6 xl:space-y-4">
+        <div className="space-y-6 xl:space-y-4">r
           {
             history.length === 0 ? (
-              <p className="md:text-4xl text-center mt-10 text-secondary font-bold uppercase">
-                No Payment History Available
-              </p>
+              <Title> No Payment History Available</Title>
             )
              : (history.map((b, i) => (
             <div

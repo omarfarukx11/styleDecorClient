@@ -73,8 +73,8 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="bg-primary text-base-200 xl:px-20 ">
-      <div className="flex justify-between items-center max-w-[1980px] py-5 px-4 lg:px-8 mx-auto border-b border-gray-400">
+    <nav className="bg-primary text-base-200 border-b border-gray-400 ">
+      <div className="flex justify-between items-center max-w-[1980px] py-5 px-4 lg:px-8 xl:px-16 mx-auto ">
         {/* Left */}
         <div className="navbar-start flex items-center gap-2">
           {/* Mobile Dropdown */}

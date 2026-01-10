@@ -74,7 +74,7 @@ const TopDecorators = () => {
                   <p className="text-[11px] text-gray-400 leading-tight line-clamp-2">
                     {d.specialties}
                   </p>
-                  <p className="text-[11px] text-gray-500 italic line-clamp-3 border-l border-gray-100/20 pl-2">
+                  <p className="text-[11px] text-gray-500 italic line-clamp-3 border-l border-gray-100/20">
                     {d.description}
                   </p>
                 </div>

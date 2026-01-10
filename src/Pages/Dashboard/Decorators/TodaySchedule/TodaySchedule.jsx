@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../Hooks/useAuth";
 import Loader from "../../../../Components/Loader";
+import Title from "../../../../utility/Title";
 
 const TodaySchedule = () => {
   const axiosSecure = useAxiosSecure();
@@ -37,9 +38,7 @@ const TodaySchedule = () => {
 
   return (
     <div className="text-base-200">
-      <div className="text-2xl text-center py-8 uppercase">
-        <h1>Today's Work Schedule</h1>
-      </div>
+      <Title>Today's Work Schedule</Title>
       <title>StyelDecor - Schedule</title>
       <div className="p-8">
         {incompleteBookings.length === 0 ? (

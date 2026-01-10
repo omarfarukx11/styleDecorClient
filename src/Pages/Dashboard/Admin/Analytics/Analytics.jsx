@@ -22,6 +22,7 @@ import { MdOutlinePayments, MdTrendingUp } from "react-icons/md";
 
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Loader from "../../../../Components/Loader";
+import Title from "../../../../utility/Title";
 
 const AdminAnalytics = () => {
   const axiosSecure = useAxiosSecure();
@@ -70,9 +71,7 @@ const AdminAnalytics = () => {
 
   return (
     <div className="text-base-200">
-      <div className="text-2xl text-base-200 bg-primary p-8 border-b border-white text-center shadow-lg uppercase font-bold">
-        <h1>StyleDecor Business Insights</h1>
-      </div>
+      <Title>StyleDecor Business Insights</Title>
       <title>StyelDecor - Analytics Dashboard</title>
       <div className="p-8 bg-primary h-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

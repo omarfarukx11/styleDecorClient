@@ -6,6 +6,7 @@ import useAuth from "../../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 import MyBookingSkeleton from "../../../../Skelenton/MyBookingSkeleton"; // Using existing skeleton for consistency
+import Title from "../../../../utility/Title";
 
 const PaymentHistory = () => {
   const [searchParams] = useSearchParams();
@@ -53,11 +54,9 @@ const PaymentHistory = () => {
   return (
     <div className="font-body min-h-[calc(100vh-90px)]">
       <title>StyleDecor - Payment History</title>
+  
 
-      <div className="text-3xl text-base-200 font-black font-title bg-primary py-10 uppercase text-center tracking-tighter">
-        <h1>Payment History</h1>
-      </div>
-
+     <Title>Payment History</Title>
       <div className="bg-primary p-4 md:p-8">
         <div className="hidden xl:flex bg-secondary backdrop-blur-md text-base-200 py-8 text-xs font-bold uppercase tracking-widest px-6 ">
           <div className="w-12">#</div>
