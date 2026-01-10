@@ -93,9 +93,9 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button className="px-12 py-5 text-xl font-bold rounded-full shadow-2xl">
+              <button className="px-12 py-5 text-xl font-bold rounded-full shadow-2xl bg-primary text-base-200">
                 Book Decoration Service
-              </Button>
+              </button>
             </motion.div>
           </Link>
         </motion.div>

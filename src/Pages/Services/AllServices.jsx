@@ -51,7 +51,7 @@ const AllServices = () => {
 
   return (
     <section className="">
-      <div className="min-h-screen lg:p-20 p-4 max-w-[1980px] mx-auto">
+      <div className="min-h-[calc(100vh-90px)] lg:p-20 p-4 max-w-[1980px] mx-auto">
       <title>StyleDecor - Services</title>
       <div className="mx-auto">
         {/* Header Section */}

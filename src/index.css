@@ -12,8 +12,9 @@
 }
 
 a.active {
-  background-color: #f0fff1;
+  background-color: #edf6f9;
   font-size: bold;
+  color: black;
 }
 
 /* Add this to your index.css */

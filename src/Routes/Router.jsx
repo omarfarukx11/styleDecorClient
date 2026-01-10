@@ -115,10 +115,7 @@ export const router = createBrowserRouter([
                 path:"/dashboard/my-earnings",
                 element:<DecoratorRoute><MyEarnings></MyEarnings></DecoratorRoute>
             },
-            {
-                path:"/dashboard/all-payment-history",
-                element:<DecoratorRoute><AllPaymentHistory></AllPaymentHistory></DecoratorRoute>
-            },
+            
            
 
 
@@ -150,6 +147,10 @@ export const router = createBrowserRouter([
             {
                 path:"/dashboard/add-new-decorator",
                 element:<AdminRoute><AddNewDecorators></AddNewDecorators></AdminRoute>
+            },
+            {
+                path:"/dashboard/all-payment-history",
+                element:<AdminRoute><AllPaymentHistory></AllPaymentHistory></AdminRoute>
             },
             
             

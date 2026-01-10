@@ -43,19 +43,19 @@ const MyProfile = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-120px)] flex items-center justify-center p-6 font-body">
+    <div className="min-h-[calc(100vh-120px)] flex items-center justify-center p-6 font-body bg-primary">
       <title>StyleDecor - Profile</title>
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="w-full max-w-2xl backdrop-blur-2xl border border-white/10 rounded-4xl overflow-hidden"
+        className="w-full max-w-2xl backdrop-blur-2xl border border-white/10 rounded-4xl overflow-hidden bg-base-100/10 shadow-2xl"
       >
         <div className="p-8 md:p-12">
           {/* PROFILE HEADER AREA */}
           <div className="flex flex-col items-center text-center">
             <div className="relative group mb-6">
-              <div className="absolute -inset-1 bg-linear-to-r from-secondary to-base-200 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-secondary to-base-200 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
               <img
                 src={user?.photoURL || "https://i.ibb.co/mR4t96H/user-placeholder.png"}
                 alt="Profile"
@@ -77,12 +77,12 @@ const MyProfile = () => {
             <div className="mt-8">
               {!showForm ? (
                 <div onClick={() => setShowForm(true)}>
-                  <Button className="px-8 py-3 rounded-full">
+                  <Button className="px-8 py-3 rounded-full flex items-center">
                     <FaUserEdit className="mr-2" /> Edit Details
                   </Button>
                 </div>
               ) : (
-                <span className="text-xs font-bold uppercase tracking-widest text-base-200">Updating Profile</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-secondary animate-pulse">Updating Profile</span>
               )}
             </div>
           </div>
@@ -122,6 +122,7 @@ const MyProfile = () => {
                   </div>
 
                   <div className="flex flex-col gap-3 pt-4">
+                    {/* SUBMIT BUTTON */}
                     <Button
                       type="submit"
                       disabled={loading}
@@ -129,10 +130,14 @@ const MyProfile = () => {
                     >
                       {loading ? <span className="loading loading-spinner"></span> : "Save Changes"}
                     </Button>
+                    
+                    {/* CANCEL BUTTON - Fixed to prevent toast */}
                     <Button
-                      type="button"
-                      onClick={() => setShowForm(false)}
-                      className="flex-1 border border-white/10 text-base-200 hover:bg-white/5 rounded-2xl transition-all font-bold"
+                      type="button" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setShowForm(false);
+                      }}
                     >
                       Cancel
                     </Button>

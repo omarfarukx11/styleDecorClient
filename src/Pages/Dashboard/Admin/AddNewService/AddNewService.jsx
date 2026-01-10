@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { Link } from "react-router";
+import Button from "../../../../utility/Button";
 
 const AddNewService = () => {
   const axiosSecure = useAxiosSecure();
@@ -53,13 +54,13 @@ const AddNewService = () => {
   };
 
   return (
-    <div>
-      <div className="text-center py-8 font-bold text-2xl bg-primary text-secondary border-b border-white uppercase">
+    <div className="min-h-[calc(100vh-90px)] text-base-200">
+      <div className="text-center lg:p-8 p-4 font-bold text-2xl bg-primary  border-b border-white uppercase">
         <p>Create New Service</p>
       </div>
     <title>StyelDecor - Create New Service</title>
-      <div className="flex items-center justify-center xl:p-8 p-4 bg-primary">
-        <div className="w-11/12 max-w-2xl bg-primary text-secondary p-8  shadow-2xl border border-white rounded-xl">
+      <div className="flex items-center justify-center p-4 bg-primary">
+        <div className="w-11/12 max-w-2xl bg-primary  p-8  shadow-2xl border border-white rounded-xl">
           <form onSubmit={handleSubmit(handleAddService)} className="space-y-4">
             <div className="flex flex-col">
               <label className="font-medium">Service Name</label>
@@ -67,7 +68,7 @@ const AddNewService = () => {
                 {...register("name", { required: true })}
                 type="text"
                 placeholder="Luxury Wedding Setup"
-                className="input input-bordered outline-none bg-accent w-full"
+                className="input input-bordered outline-none bg-base-100 w-full"
               />
                {errors.name?.type === "required" && (
               <p className="text-red-600">Name Required</p>
@@ -78,7 +79,7 @@ const AddNewService = () => {
               <label className="font-medium">Category / Type</label>
               <select
                 {...register("type", { required: true })}
-                className="input input-bordered outline-none bg-accent w-full"
+                className="input input-bordered outline-none bg-base-100 w-full"
                 type="select"
               >
                 <option value="">Select Category</option>
@@ -104,7 +105,7 @@ const AddNewService = () => {
                 {...register("price", { required: true })}
                 type="number"
                 placeholder="120000"
-                className="input input-bordered outline-none  bg-accent w-full"
+                className="input input-bordered outline-none  bg-base-100 w-full"
               />
                 {errors.price?.type === "required" && (
               <p className="text-red-600">Price Required</p>
@@ -115,7 +116,7 @@ const AddNewService = () => {
               <label className="font-medium">Unit Type</label>
               <select
                 {...register("unitType", { required: true })}
-                className="input input-bordered outline-none  bg-accent w-full"
+                className="input input-bordered outline-none  bg-base-100 w-full"
               >
                 <option value="">Select Unit</option>
                 <option value="per sqft">Per Square Feet</option>
@@ -138,7 +139,7 @@ const AddNewService = () => {
                 {...register("image", { required: true })}
                 type="file"
                 accept="image/*"
-                className="file-input file-input-bordered outline-none  bg-accent w-full"
+                className="file-input file-input-bordered outline-none  bg-base-100 w-full"
               />
               {errors.image?.type === "required" && (
               <p className="text-red-600">Image Required</p>
@@ -150,7 +151,7 @@ const AddNewService = () => {
               <label className="font-medium">Status</label>
               <select
                 {...register("status" , { required: true })}
-                className="input input-bordered outline-none  bg-accent w-full"
+                className="input input-bordered outline-none  bg-base-100 w-full"
               >
                 <option value="">Select Status</option>
                 <option value="Active">Active</option>
@@ -170,7 +171,7 @@ const AddNewService = () => {
                 {...register("description", { required: true })}
                 rows={4}
                 placeholder="Write service details..."
-                className="textarea textarea-bordered outline-none  bg-accent w-full"
+                className="textarea textarea-bordered outline-none  bg-base-100 w-full"
               />
               {errors.description && (
               <p className="text-red-600">Description Required</p>
@@ -178,19 +179,19 @@ const AddNewService = () => {
             </div>
 
             {/* Buttons */}
-            <div className="flex gap-3 mt-6">
+            <div className="flex gap-3 flex-col lg:flex-row w-full justify-between mt-6">
               <button
                 type="submit"
-                className="btn border-none hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 py-2 md:py-0 btn-lg flex-1 rounded-full font-bold md:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
+                className="flex-1 text-center"
               >
-                Create Service
+               <Button> Create Service</Button>
               </button>
               <Link to={'/dashboard/manage-services'}
                 type="button"
-                className="btn border-none hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 py-2 md:py-0 btn-lg flex-1 rounded-full font-bold md:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
                 onClick={() => reset()}
+                className="flex-1 text-center"
               >
-                Cancel
+               <Button >Cancel</Button>
               </Link>
             </div>
           </form>

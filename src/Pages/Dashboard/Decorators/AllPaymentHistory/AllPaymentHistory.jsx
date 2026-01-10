@@ -19,13 +19,13 @@ const AllPaymentHistory = () => {
   }
 
   return (
-    <div>
-      <div className="text-2xl text-white bg-primary py-8 border-b border-white text-center uppercase">
+    <div className="text-base-200">
+      <div className="text-2xl bg-primary py-8 border-b border-white text-center uppercase">
         <h1>Client Payment History</h1>
       </div>
         <title>StyelDecor - All Payment History</title>
       <div className="bg-primary p-2 md:p-8">
-        <div className="hidden xl:flex bg-secondary xl:justify-between text-primary rounded-md py-8 text-sm xl:text-base font-semibold mb-3 px-4">
+        <div className="hidden xl:flex bg-secondary text-base-200 xl:justify-between rounded-md py-8 text-sm xl:text-base font-semibold mb-3 px-4">
           <div className="w-12 text-center">#</div>
           <div className="flex-[1.5] text-center">Service Name</div>
           <div className="flex-1 text-center">Biller Name</div>
@@ -45,7 +45,7 @@ const AllPaymentHistory = () => {
              : (history.map((b, i) => (
             <div
               key={b._id}
-              className="flex flex-col xl:flex-row xl:items-center xl:justify-between  shadow-xl py-4 xl:py-8 text-sm rounded-lg p-3 xl:px-4 hover:bg-primary hover:text-white bg-base-100 text-secondary"
+              className="flex flex-col xl:flex-row xl:items-center xl:justify-between shadow-xl py-4 xl:py-8 text-sm rounded-lg p-3 xl:px-4 hover:bg-secondary bg-base-100"
             >
               <div className="flex justify-between xl:w-12 px-1 py-1 font-semibold  xl:border-b-0">
                 <span className="xl:hidden">#</span>

@@ -23,7 +23,7 @@ const MyEarnings = () => {
   const total = earnings.reduce((sum, item) => sum + Number(item.amount || 0), 0);
 
   return (
-    <div>
+    <div className="text-base-200">
      <title>StyelDecor - My Earning</title>
       <div className="bg-primary text-white py-8 text-center text-2xl border-b border-white">
         <h1>My Earnings</h1>
@@ -32,7 +32,7 @@ const MyEarnings = () => {
     
     <div className="xl:p-8 p-4 bg-primary overflow-hidden ">
 
-        <div className="card bg-base-100 text-secondary shadow-xl border border-primary/30">
+        <div className="card bg-base-100  shadow-xl border border-primary/30">
         <div className="card-body">
           <h2 className="card-title text-xl">Total Income</h2>
           <p className="text-5xl font-extrabold mt-3">
@@ -51,7 +51,7 @@ const MyEarnings = () => {
       earnings.map((e, index) => (
         <div
           key={index}
-          className="rounded-lg shadow p-4 transition-colors hover:bg-primary hover:text-white bg-base-100 text-secondary"
+          className="rounded-lg shadow p-4 transition-colors hover:bg-secondary bg-base-100 "
         >
           <div className="flex justify-between">
             <span className="font-semibold">#</span>
@@ -67,7 +67,7 @@ const MyEarnings = () => {
           </div>
           <div className="flex justify-between">
             <span className="font-semibold">Earned Amount </span>
-            <span className="font-semibold text-secondary">৳ {Number(e.amount || 0).toLocaleString()}</span>
+            <span className="font-semibold ">৳ {Number(e.amount || 0).toLocaleString()}</span>
           </div>
           <div className="flex justify-between">
             <span className="font-semibold">Completed Date </span>
@@ -76,7 +76,7 @@ const MyEarnings = () => {
         </div>
       ))
     ) : (
-      <div className="text-center py-6 text-secondary opacity-70">
+      <div className="text-center py-6  opacity-70">
         No earnings yet.
       </div>
     )}
@@ -85,7 +85,7 @@ const MyEarnings = () => {
 
   <div className="hidden xl:block overflow-x-auto">
     <table className="table-auto w-full text-base">
-      <thead className="bg-secondary text-primary text-sm xl:text-lg h-20">
+      <thead className="bg-secondary text-base-200 text-sm xl:text-lg h-20">
         <tr className="">
           <th className="px-3 py-2 text-center">#</th>
           <th className="px-3 py-2 text-left">Service Name</th>
@@ -99,7 +99,7 @@ const MyEarnings = () => {
           earnings.map((e, index) => (
             <tr
               key={index}
-              className="transition-colors border-b border-primary h-20 hover:bg-primary hover:text-white bg-base-100 text-secondary"
+              className="transition-colors border-b border-primary h-20 hover:bg-secondary bg-base-100 "
             >
               <td className="px-3 py-2 text-center">{index + 1}</td>
               <td className="px-3 py-2 font-semibold">{e.serviceName}</td>
@@ -112,7 +112,7 @@ const MyEarnings = () => {
           ))
         ) : (
           <tr>
-            <td colSpan="5" className="text-center py-6 text-secondary opacity-70">
+            <td colSpan="5" className="text-center py-6  opacity-70">
               No earnings yet.
             </td>
           </tr>

@@ -29,8 +29,8 @@ const Revenue = () => {
     .reduce((sum, b) => sum + (parseFloat(b.amount) || 0), 0);
 
   return (
-    <div>
-      <div className="text-2xl text-white bg-primary py-8 border-b border-white text-center uppercase">
+    <div className="">
+      <div className="text-2xl  bg-primary py-8 border-b border-white text-center uppercase">
         <h1>Revenue Monitoring</h1>
       </div>
       <title>StyelDecor - Revenue Monitoring</title>
@@ -56,7 +56,7 @@ const Revenue = () => {
               value: allHistory.length,
               icon: <FaHistory size={25} />,
               desc: "Transactions recorded",
-              descColor: "text-secondary",
+              descColor: "text-base-200",
             },
           ].map((stat, idx) => (
             <div
@@ -64,11 +64,11 @@ const Revenue = () => {
               className="stats shadow-2xl bg-base-100 w-full "
             >
               <div className="stat px-4 py-5">
-                <div className="stat-figure text-secondary">{stat.icon}</div>
-                <div className="stat-title text-secondary opacity-70 text-xs uppercase tracking-wider">
+                <div className="stat-figure text-base-200">{stat.icon}</div>
+                <div className="stat-title text-base-200 opacity-70 text-xs uppercase tracking-wider">
                   {stat.label}
                 </div>
-                <div className="stat-value text-secondary text-2xl">
+                <div className="stat-value text-base-200 text-2xl">
                   {" "}
                   {stat.value}{" "}
                 </div>
@@ -81,14 +81,14 @@ const Revenue = () => {
         </div>
 
 
-        <div className="mt-8 bg-base-100 text-secondary rounded-xl shadow-2xl overflow-hidden">
+        <div className="mt-8 bg-base-100 text-base-200 rounded-xl shadow-2xl overflow-hidden">
           <div className="p-4 flex items-center gap-2 font-bold text-lg border-b border-neutral/10">
             <MdOutlinePayments /> Recent Revenue
           </div>
 
           <div className="hidden sm:block overflow-x-auto">
             <table className="table w-full">
-              <thead className="bg-primary text-white">
+              <thead className="bg-primary text-base-200">
                 <tr>
                   <th>Service</th>
                   <th>Transaction ID</th>
@@ -100,7 +100,7 @@ const Revenue = () => {
                 {allHistory.slice(0, 5).map((b) => (
                   <tr
                     key={b._id}
-                    className="bg-base-100 text-secondary hover:bg-secondary hover:text-base-100 transition-all"
+                    className="bg-base-100 text-base-200 hover:bg-secondary  transition-all"
                   >
                     <td>{b.serviceName}</td>
                     <td className="font-mono text-xs opacity-60">
@@ -118,13 +118,13 @@ const Revenue = () => {
             {allHistory.slice(0, 5).map((b) => (
               <div
                 key={b._id}
-                className="p-4 flex flex-col gap-1 active:bg-primary active:text-white transition-colors"
+                className="p-4 flex flex-col gap-1 active:bg-primary active:transition-colors"
               >
                 <div className="flex justify-between items-start">
                   <span className="font-bold text-sm w-2/3 leading-tight">
                     {b.serviceName}
                   </span>
-                  <span className="font-bold text-secondary">৳{b.amount}</span>
+                  <span className="font-bold text-base-200">৳{b.amount}</span>
                 </div>
                 <div className="flex justify-between items-center text-[10px] opacity-70 uppercase tracking-tighter">
                   <span>{b.transactionId}</span>

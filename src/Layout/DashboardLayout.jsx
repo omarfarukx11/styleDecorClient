@@ -95,12 +95,7 @@ const DashboardLayout = () => {
           <span>Earnings Summary</span>
         </NavLink>
       </li>
-      <li>
-        <NavLink to="/dashboard/all-payment-history" onClick={closeMobileMenu}>
-          <FaMoneyBillWave className="text-xl" />
-          <span>All Payemt History</span>
-        </NavLink>
-      </li>
+
     </>
   );
 
@@ -124,7 +119,12 @@ const DashboardLayout = () => {
           <span>All Bookings</span>
         </NavLink>
       </li>
-
+      <li>
+        <NavLink to="/dashboard/all-payment-history" onClick={closeMobileMenu}>
+          <FaMoneyBillWave className="text-xl" />
+          <span>All Payemt History</span>
+        </NavLink>
+      </li>
       <div className="border-b border-white my-4"></div>
       <li>
         <NavLink to="/dashboard/revenue" onClick={closeMobileMenu}>
@@ -168,12 +168,12 @@ const DashboardLayout = () => {
           )}
 
           <div
-            className={`fixed inset-y-0 left-0 z-40 w-72 bg-primary text-black border-r  flex flex-col transform transition-transform duration-300 ease-in-out
+            className={`fixed inset-y-0 left-0 z-40 w-72 text-base-200 border-r border-gray-200  flex flex-col transform transition-transform duration-300 ease-in-out
           ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
           xl:translate-x-0 xl:static xl:inset-0
         `}
           >
-            <div className="p-8 border-b border-white sm:pr-2 z-200 ">
+            <div className="p-8 sm:pr-2 z-200 ">
               <div className="absolute top-5 right-4 z-50 xl:hidden">
                 <button
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

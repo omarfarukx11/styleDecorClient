@@ -61,14 +61,14 @@ const MyProject = () => {
   }
 
   return (
-    <div>
-      <div className="bg-primary text-white py-8 text-center text-2xl border-b border-white uppercase ">
+    <div className="text-base-200">
+      <div className="bg-primary  py-8 text-center text-2xl border-b border-white uppercase ">
         <h1>Assign Project</h1>
       </div>
     <title>StyelDecor - My Project</title>
       <div className="bg-primary p-8">
         {/* HEADER for XL+ */}
-        <div className="hidden xl:flex bg-secondary justify-between mb-5 text-base-100 rounded-md py-8 text-sm xl:text-lg font-semibold">
+        <div className="hidden xl:flex bg-secondary text-base-200 justify-between mb-5 text-base-200 rounded-md py-8 text-sm xl:text-lg font-semibold">
           <div className="w-8 text-center">#</div>
           <div className="w-[220px] text-center">Service Name</div>
           <div className="w-[180px] text-center">Client Name</div>
@@ -82,14 +82,14 @@ const MyProject = () => {
           {
             sortedBooking.length === 0 ?
              (
-              <p className="md:text-4xl text-center mt-10 text-secondary font-bold uppercase">
+              <p className="md:text-4xl text-center mt-10 font-bold uppercase">
                 No Project Assigned Yet
               </p>
              ) : (
               sortedBooking.map((d, i) => (
             <div
               key={d._id}
-              className="flex flex-col xl:flex-row gap-5 xl:items-center xl:justify-between hover:bg-primary hover:text-white bg-base-100 text-secondary rounded-lg shadow p-3"
+              className="flex flex-col xl:flex-row gap-5 xl:items-center xl:justify-between hover:bg-secondary hover: bg-base-100 rounded-lg shadow p-3"
             >
               {/* # */}
               <div className="flex justify-between xl:w-8 px-1 py-1 font-semibold ">
@@ -133,7 +133,7 @@ const MyProject = () => {
                 {d.decoratorStatus === "decorator Assigned" && (
                   <button
                     onClick={() => handleDecoratorStatus("In Progress", d._id)}
-                    className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
+                    className="btn hover:bg-base-100  bg-secondary text-base-200 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
                   >
                     Accept
                   </button>
@@ -141,7 +141,7 @@ const MyProject = () => {
                 {d.decoratorStatus === "In Progress" && (
                   <button
                     onClick={() => handleDecoratorStatus("Planning Phase", d._id)}
-                    className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
+                    className="btn hover:bg-base-100  bg-secondary text-base-200 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
                   >
                     Planning Phase
                   </button>
@@ -152,7 +152,7 @@ const MyProject = () => {
                     onClick={() =>
                       handleDecoratorStatus("On the Way to Venue", d._id)
                     }
-                    className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
+                    className="btn hover:bg-base-100  bg-secondary text-base-200 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
                   >
                     On the Way
                   </button>
@@ -163,7 +163,7 @@ const MyProject = () => {
                     onClick={() =>
                       handleDecoratorStatus("Setup in Progress", d._id)
                     }
-                    className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 btn-sm xl:btn-sm w-full"
+                    className="btn hover:bg-base-100  bg-secondary text-base-200 btn-sm xl:btn-sm w-full"
                   >
                     Setup in Progress
                   </button>
@@ -174,7 +174,7 @@ const MyProject = () => {
                     onClick={() =>
                       handleDecoratorStatus("Working", d._id)
                     }
-                    className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
+                    className="btn hover:bg-base-100  bg-secondary text-base-200 px-5 border-none text-xl btn-sm xl:btn-sm w-full"
                   >
                     Working
                   </button>
@@ -186,14 +186,14 @@ const MyProject = () => {
                       handleDecoratorStatus("completed", d._id);
                       handleDecoratorWordStatus();
                     }}
-                    className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 px-4 border-none text-xl btn-sm xl:btn-sm w-full"
+                    className="btn hover:bg-base-100  bg-secondary text-base-200 px-4 border-none text-xl btn-sm xl:btn-sm w-full"
                   >
                     Complete
                   </button>
                 )}
 
                 {d.decoratorStatus === "completed" && (
-                  <button className="btn btn-success text-white cursor-not-allowed btn-sm xl:btn-sm w-full">
+                  <button className="btn btn-success  cursor-not-allowed btn-sm xl:btn-sm w-full">
                     Completed
                   </button>
                 )}

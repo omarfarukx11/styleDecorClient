@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
+import Button from "../../../../utility/Button";
 
 const ManageServices = () => {
   const axiosSecure = useAxiosSecure();
@@ -139,22 +140,21 @@ const ManageServices = () => {
   };
 
   return (
-    <div>
-      <div className="text-2xl py-8 font-bold text-center bg-primary text-white border-b border-white uppercase">
+    <div className="text-base-200">
+      <div className="text-2xl py-8 font-bold text-center bg-primary text-base-200 border-b border-white uppercase">
         <h2>Manage Services</h2>
       </div>
       <title>StyelDecor - Manage Services</title>
-      <div className="xl:p-8 p-4 bg-primary">
+      <div className="xl:p-8 p-4">
         <div className="flex justify-end items-center mb-4">
           <Link
             to="/dashboard/add-new-service"
-            className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50  transform hover:scale-105 transition-all"
           >
-            + Add New Service
+            <Button>+ Add New Service</Button>
           </Link>
         </div>
         <div className="flex justify-end items-center">
-          <h1 className="text-2xl my-4 font-bold text-secondary">
+          <h1 className="text-2xl my-4 font-bold">
             {services.length} of {total} Decorators
           </h1>
         </div>
@@ -167,7 +167,7 @@ const ManageServices = () => {
             {...registerFilter("search")}
             type="text"
             placeholder="Search by service name..."
-            className="input input-bordered outline-none py-3 border-gray-300 w-full text-secondary input-lg flex-1"
+            className="input input-bordered outline-none py-3 border-gray-300 w-full  input-lg flex-1"
           />
           <select
             {...registerFilter("type")}
@@ -186,20 +186,20 @@ const ManageServices = () => {
             {...registerFilter("minPrice")}
             type="number"
             placeholder="Min Price"
-            className="input input-bordered outline-none border-gray-300 text-secondary  input-lg w-full lg:w-32"
+            className="input input-bordered outline-none border-gray-300  input-lg w-full lg:w-32"
           />
           <input
             {...registerFilter("maxPrice")}
             type="number"
             placeholder="Max Price"
-            className="input input-bordered outline-none border-gray-300 text-secondary  input-lg w-full lg:w-32"
+            className="input input-bordered outline-none border-gray-300  input-lg w-full lg:w-32"
           />
         </form>
 
-        <div className="overflow-x-auto bg-primary rounded-lg">
+        <div className="overflow-x-auto rounded-lg">
           <table className="table w-full card-table">
             <thead className="hidden xl:table-header-group">
-              <tr className="text-primary bg-secondary h-20">
+              <tr className="bg-secondary text-base-200 h-20">
                 <th className="rounded-l-xl">Image</th>
                 <th>Service Name</th>
                 <th>Category</th>
@@ -228,7 +228,7 @@ const ManageServices = () => {
                 services.map((service) => (
                   <tr
                     key={service._id}
-                    className="block rounded-lg overflow-hidden xl:table-row xl:rounded-none mb-6 xl:mb-0 hover:bg-secondary hover:text-base-100 bg-base-100 text-secondary shadow-xl transition-all duration-300"
+                    className="block rounded-lg overflow-hidden xl:table-row xl:rounded-none mb-6 xl:mb-0 hover:bg-secondary bg-base-100 transition-all duration-300"
                   >
                     <td className="flex justify-between xl:table-cell p-4 xl:rounded-l-xl ">
                       <span className="xl:hidden font-semibold">Image</span>
@@ -258,7 +258,7 @@ const ManageServices = () => {
                     {/* COST */}
                     <td className="flex justify-between xl:table-cell p-4">
                       <span className="xl:hidden font-semibold">Cost</span>
-                      <span className="font-bold text-secondary group-hover:text-white transition-colors">
+                      <span className="font-bold group-hover:text-base-200 transition-colors">
                         ৳{service.price?.toLocaleString()}
                       </span>
                     </td>
@@ -287,14 +287,14 @@ const ManageServices = () => {
                     <td className="flex flex-col md:flex-row space-x-3 xl:table-cell p-4 xl:rounded-r-xl">
                       <button
                         onClick={() => handleModal(service)}
-                        className="btn btn-primary xl:py-2 2xl:btn-md xl:btn-xs flex-1 py-3 rounded-full my-4 md:my-0 font-bold 2xl:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none w-full lg:w-auto"
+                        className="btn xl:py-2 2xl:btn-md xl:btn-xs flex-1 py-3 rounded-full my-4 md:my-0 font-bold 2xl:text-xl text-sm shadow-xl bg-primary text-base-200 border-none w-full lg:w-auto hover:bg-base-100"
                       >
                         Edit
                       </button>
 
                       <button
                         onClick={() => handleServiceDelete(service._id)}
-                        className="btn btn-error xl:py-2 2xl:btn-md xl:btn-xs flex-1 py-3 rounded-full font-bold 2xl:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all hover:bg-red-500 hover:text-white border-none"
+                        className="btn btn-error xl:py-2 2xl:btn-md xl:btn-xs flex-1 py-3 rounded-full font-bold 2xl:text-xl text-sm shadow-xl  hover:bg-red-500 text-base-200 border-none"
                       >
                         Delete
                       </button>
@@ -312,7 +312,7 @@ const ManageServices = () => {
             <button
               disabled={page === 1}
               onClick={() => setPage((prev) => prev - 1)}
-              className="btn border-none text-primary bg-secondary disabled:opacity-40"
+              className="btn border-none text-base-200 bg-secondary disabled:opacity-40"
             >
               « Prev
             </button>
@@ -322,8 +322,8 @@ const ManageServices = () => {
                 <button
                   key={num}
                   onClick={() => setPage(num)}
-                  className={`btn btn-sm text-base-100 mt-1 ${
-                    page === num ? "btn-secondary text-primary" : "btn-outline btn-ghost"
+                  className={`btn btn-sm text-base-200 border border-secondary mt-1 hover:bg-secondary ${
+                    page === num ? "btn-secondary text-base-200" : "btn-outline btn-ghost"
                   }`}
                 >
                   {num}
@@ -332,7 +332,7 @@ const ManageServices = () => {
             <button
               disabled={page === totalPages}
               onClick={() => setPage((prev) => prev + 1)}
-              className="btn border-none text-primary bg-secondary disabled:opacity-40"
+              className="btn border-none text-base-200 bg-secondary disabled:opacity-40"
             >
               Next »
             </button>
@@ -344,9 +344,9 @@ const ManageServices = () => {
           <form
             method="dialog"
             onSubmit={handleUpdateSubmit(handleUpdateService)}
-            className="modal-box w-11/12 max-w-4xl max-h-[90vh] overflow-y-auto bg-primary text-secondary"
+            className="modal-box w-11/12 max-w-4xl max-h-[90vh] overflow-y-auto bg-primary"
           >
-            <h1 className="text-center font-extrabold text-3xl py-6 text-secondary">
+            <h1 className="text-center font-extrabold text-3xl py-6">
               Update Service Details
             </h1>
 
@@ -357,7 +357,7 @@ const ManageServices = () => {
                   <input
                     {...registerUpdate("service_name", { required: true })}
                     type="text"
-                    className="input input-bordered bg-accent outline-none input-lg w-full"
+                    className="input input-bordered bg-base-100 outline-none input-lg w-full"
                   />
                   {
                     errors.service_name?.type === "required" && (
@@ -377,7 +377,7 @@ const ManageServices = () => {
                     })}
                     type="number"
                     defaultValue={`${selectedService.price}`}
-                    className="input input-bordered bg-accent outline-none input-lg w-full"
+                    className="input input-bordered bg-base-100 outline-none input-lg w-full"
                   />
                   { errors.price && (
                     <p className="text-red-600">
@@ -390,7 +390,7 @@ const ManageServices = () => {
                   <label className="font-semibold mb-2 ">Unit </label>
                   <select
                     {...registerUpdate("unit", { required: true })}
-                    className="select select-bordered bg-accent outline-none input-lg w-full"
+                    className="select select-bordered bg-base-100 outline-none input-lg w-full"
                   >
                     <option value="sqft">Per square feet</option>
                     <option value="floor">Per floor</option>
@@ -408,7 +408,7 @@ const ManageServices = () => {
                   <select
                     {...registerUpdate("serviceCategory", { required: true })}
                     defaultValue={"hello world"}
-                    className="select select-bordered bg-accent outline-none  input-lg w-full"
+                    className="select select-bordered bg-base-100 outline-none  input-lg w-full"
                   >
                     <option value="Home">Home Decoration</option>
                     <option value="Wedding">Wedding</option>
@@ -426,7 +426,7 @@ const ManageServices = () => {
                   <label className="font-semibold mb-2">Status</label>
                   <select
                     {...registerUpdate("status")}
-                    className="select select-bordered bg-accent outline-none input-lg w-full"
+                    className="select select-bordered bg-base-100 outline-none input-lg w-full"
                   >
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
@@ -439,7 +439,7 @@ const ManageServices = () => {
                   <textarea
                     {...registerUpdate("description"  , { required: true })}
                     rows={4}
-                    className="textarea textarea-bordered bg-accent outline-none  textarea-lg w-full"
+                    className="textarea textarea-bordered bg-base-100 outline-none  textarea-lg w-full"
                   />
                   {
                     errors.description && (
@@ -450,22 +450,22 @@ const ManageServices = () => {
               </div>
             )}
 
-            <div className="flex gap-4 mt-10 flex-col md:flex-row">
+            <div className="flex justify-between gap-4 mt-10 flex-col md:flex-row">
               <button
                 type="submit"
-                className="btn hover:bg-base-100 hover:text-secondary bg-secondary border-none  text-base-100 py-2 md:py-0 btn-lg flex-1 rounded-full font-bold md:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
+                className="flex-1"
               >
-                Update Service
+                <Button>Update Service</Button>
               </button>
               <button
                 type="button"
-               className="btn hover:bg-base-100 hover:text-secondary bg-secondary border-none text-base-100 py-2 md:py-0 btn-lg flex-1 rounded-full font-bold md:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
+                className="flex-1"
                 onClick={() => {
                   updateRef.current.close();
                   setSelectedService(null);
                 }}
               >
-                Cancel
+                <Button>Cancel</Button>
               </button>
             </div>
           </form>

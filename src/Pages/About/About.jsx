@@ -5,12 +5,12 @@ import { Link } from "react-router";
 const About = () => {
   return (
     
-    <div className="min-h-screen bg-linear-to-br  py-20 px-6 text-secondary">
+    <div className="min-h-screen bg-linear-to-br py-20 px-6 text-base-200">
       <title>StyelDecor - About</title>
       <div className="max-w-7xl mx-auto">
 
         <div className="text-center mb-20">
-          <h1 className="text-5xl md:text-7xl text-secondary font-extrabold  mb-6">
+          <h1 className="text-5xl md:text-7xl text-base-200 font-extrabold  mb-6">
             About Decorator
           </h1>
           <p className="text-xl text-gray-500 max-w-3xl mx-auto">
@@ -66,7 +66,8 @@ const About = () => {
           <h2 className="text-4xl font-bold  mb-8">
             Ready to Make Your Event Unforgettable?
           </h2>
-          <Link to={'/services'} className="btn hover:bg-base-100  hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all">
+          <Link to={'/services'} 
+          className="btn hover:bg-base-100  hover:text-base-200 bg-primary text-base-200 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all">
             Book Now
           </Link>
         </div>

@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../../Components/Loader";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
+import Button from "../../../../utility/Button";
 
 const ManageDecorators = () => {
   const axiosSecure = useAxiosSecure();
@@ -54,7 +55,7 @@ const ManageDecorators = () => {
 
   return (
     <div>
-      <div className="text-2xl font-bold py-8 text-white bg-primary border-b border-white text-center uppercase">
+      <div className="text-2xl font-bold py-8 text-base-200 bg-primary border-b border-white text-center uppercase">
         <h2>Manage Decorators</h2>
       </div>
     <title>StyelDecor - Manage Decorators</title>
@@ -62,18 +63,18 @@ const ManageDecorators = () => {
         <div className="flex justify-end items-center">
           <Link
             to={"/dashboard/add-new-decorator"}
-            className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50  transform hover:scale-105 transition-all">
-           + Add New Decorators
+            >
+           <Button>+ Add New Decorators</Button>
           </Link>
         </div>
         <div className="flex justify-end items-center my-5 ">
-          <h1 className="text-2xl mb-2 text-secondary font-bold">
+          <h1 className="text-2xl mb-2 text-base-200 font-bold">
             {allDecorator.length} of {total} Decorators
           </h1>
         </div>
 
         <div className="bg-primary rounded-lg ">
-          <div className="hidden xl:flex bg-secondary xl:justify-between text-primary rounded-md py-8 mb-5 text-sm xl:text-lg font-semibold">
+          <div className="hidden xl:flex bg-secondary xl:justify-between text-base-200 rounded-md py-8 mb-5 text-sm xl:text-lg font-semibold">
             <div className="w-10 text-center xl:ml-10">SL</div>
             <div className="w-[200px] text-center">Decorator</div>
             <div className="w-[200px] text-center ">Specialties</div>
@@ -92,7 +93,7 @@ const ManageDecorators = () => {
               allDecorator.map((d, i) => (
                 <div
                   key={d._id}
-                  className="flex flex-col xl:flex-row xl:items-center xl:justify-between rounded-lg shadow-xl py-5 text-lg hover:bg-secondary hover:text-base-100 bg-base-100 text-secondary"
+                  className="flex flex-col xl:flex-row xl:items-center xl:justify-between rounded-lg shadow-xl py-5 text-lg hover:bg-secondary hover:text-base-200 bg-base-100 text-base-200"
                 >
                   {/* SL */}
                   <div className="flex justify-between xl:w-10 px-2 py-2 xl:ml-10 font-semibold xl:border-b-0">
@@ -139,7 +140,7 @@ const ManageDecorators = () => {
                   <div className="flex flex-col xl:flex-row gap-2 xl:w-[140px] px-2 py-2 justify-center">
                     <button
                       onClick={() => handleServiceDelete(d._id)}
-                      className="btn btn-error xl:py-2 2xl:btn-md  flex-1 py-3 rounded-full font-bold 2xl:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all hover:bg-red-500 hover:text-white border-none"
+                      className="btn btn-error xl:py-2 2xl:btn-md  flex-1 py-3 rounded-full font-bold 2xl:text-xl text-sm shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all hover:bg-red-500 hover:text-base-200 border-none"
                     >
                       Delete
                     </button>
@@ -155,7 +156,7 @@ const ManageDecorators = () => {
             <button
               disabled={page === 1}
               onClick={() => setPage((prev) => prev - 1)}
-              className="btn btn-secondary mt-1 text-primary btn-sm disabled:opacity-40"
+              className="btn btn-secondary mt-1 text-base-200 btn-sm disabled:opacity-40"
             >
               « Prev
             </button>
@@ -167,7 +168,7 @@ const ManageDecorators = () => {
                   onClick={() => setPage(num)}
                   className={`btn btn-secondary text-neutral-content ${
                     page === num
-                      ? "btn-secondary text-primary"
+                      ? "btn-secondary text-base-200"
                       : "btn-outline btn-ghost"
                   }`}
                 >
@@ -177,7 +178,7 @@ const ManageDecorators = () => {
             <button
               disabled={page === totalPages}
               onClick={() => setPage((prev) => prev + 1)}
-              className="btn btn-secondary mt-1 text-primary btn-sm disabled:opacity-40"
+              className="btn btn-secondary mt-1 text-base-200 btn-sm disabled:opacity-40"
             >
               Next »
             </button>

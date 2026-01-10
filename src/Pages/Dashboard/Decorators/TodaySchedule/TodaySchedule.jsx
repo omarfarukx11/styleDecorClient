@@ -36,14 +36,14 @@ const TodaySchedule = () => {
   );
 
   return (
-    <div className="bg-primary">
-      <div className="text-2xl text-white text-center py-8 border-b border-white uppercase">
+    <div className="text-base-200">
+      <div className="text-2xl text-center py-8 uppercase">
         <h1>Today's Work Schedule</h1>
       </div>
       <title>StyelDecor - Schedule</title>
       <div className="p-8">
         {incompleteBookings.length === 0 ? (
-          <div className="text-center bg-base-100 text-secondary rounded-lg py-8">
+          <div className="text-center bg-base-100 rounded-lg py-8">
             <h2 className="text-5xl py-6 rounded-lg">
               No projects scheduled for today!
             </h2>
@@ -74,7 +74,7 @@ const TodaySchedule = () => {
               return (
                 <div
                   key={booking._id}
-                  className="bg-base-100 flex flex-col lg:flex-row justify-between items-start lg:items-center p-6 md:p-10 text-secondary rounded-xl shadow border-l-4 border-primary gap-6"
+                  className="bg-base-100 flex flex-col lg:flex-row justify-between items-start lg:items-center p-6 md:p-10  rounded-xl shadow gap-6"
                 >
                   <div>
                     <span className="text-info font-bold text-xl lg:text-3xl">

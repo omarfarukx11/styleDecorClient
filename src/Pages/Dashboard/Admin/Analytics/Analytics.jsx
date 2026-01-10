@@ -69,36 +69,36 @@ const AdminAnalytics = () => {
   const histogramData = prepareHistogramData();
 
   return (
-    <div>
-      <div className="text-2xl text-white bg-primary p-8 border-b border-white text-center shadow-lg uppercase font-bold">
+    <div className="text-base-200">
+      <div className="text-2xl text-base-200 bg-primary p-8 border-b border-white text-center shadow-lg uppercase font-bold">
         <h1>StyleDecor Business Insights</h1>
       </div>
       <title>StyelDecor - Analytics Dashboard</title>
       <div className="p-8 bg-primary h-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="stats shadow-2xl bg-base-100 ">
+          <div className="stats shadow-sm bg-base-100 ">
             <div className="stat">
-              <div className="stat-figure text-secondary">
+              <div className="stat-figure ">
                 <FaCalendarCheck size={30} />
               </div>
-              <div className="stat-title text-secondary">Total Interest</div>
-              <div className="stat-value text-secondary">
+              <div >Total Interest</div>
+              <div className="stat-value ">
                 {bookingData?.total || 0}
               </div>
               <div className="stat-desc text-info">Total Booking Recorded</div>
             </div>
           </div>
 
-          <div className="stats shadow-2xl bg-base-100">
+          <div className="stats shadow-sm bg-base-100">
             <div className="stat">
-              <div className="stat-figure text-secondary">
+              <div className="stat-figure ">
                 <FaLayerGroup size={30} />
               </div>
-              <div className="stat-title text-secondary">Categories</div>
-              <div className="stat-value text-secondary">
+              <div >Categories</div>
+              <div className="stat-value ">
                 {histogramData.length}
               </div>
-              <div className="stat-desc text-secondary font-bold text-xs uppercase italic">
+              <div className="text-info font-bold text-xs ">
                 Diversified Services
               </div>
             </div>
@@ -107,8 +107,8 @@ const AdminAnalytics = () => {
 
         {/* Charts Section */}
         <div className="gap-8 mt-10">
-          <div className="bg-base-100 p-6 rounded-xl shadow-2xl">
-            <div className="flex items-center gap-2 mb-6 text-secondary font-bold text-lg">
+          <div className="bg-base-100 p-6 rounded-xl shadow-sm">
+            <div className="flex items-center gap-2 mb-6 font-bold text-lg">
               <FaChartBar className="text-accent" size={24} />
               <h3>Service Demand Distribution</h3>
             </div>
@@ -120,15 +120,15 @@ const AdminAnalytics = () => {
                 >
                   <CartesianGrid
                     strokeDasharray="4 4"
-                    stroke="var(--color-neutral)"
+                    stroke="var(--color-info)"
                     vertical={false}
                     opacity={0.5}
                   />
                   <XAxis
                     dataKey="name"
-                    stroke="var(--color-secondary)"
+                    stroke="var(--color-base-200)"
                     fontSize={11}
-                    tick={{ fill: "var(--color-secondary)" }}
+                    tick={{ fill: "var(--color-info)" }}
                     angle={-35}
                     textAnchor="end"
                     interval={0}
@@ -138,7 +138,7 @@ const AdminAnalytics = () => {
                   <YAxis
                     stroke="var(--color-secondary)"
                     fontSize={11}
-                    tick={{ fill: "var(--color-secondary)" }}
+                    tick={{ fill: "var(--color-info)" }}
                     axisLine={false}
                     tickLine={false}
                     allowDecimals={false}
@@ -167,8 +167,8 @@ const AdminAnalytics = () => {
                         key={`cell-${index}`}
                         fill={
                           index % 2 === 0
-                            ? "var(--color-primary)"
-                            : "var(--color-accent)"
+                            ? "var(--color-base-200)"
+                            : "var(--color-base-200)"
                         }
                       />
                     ))}
