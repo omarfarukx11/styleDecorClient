@@ -50,7 +50,10 @@ const Register = () => {
         Swal.fire({
           title: "Register Success!",
           icon: "success",
-          draggable: true,
+          background: "#1a1a1a",
+          color: "#ffffff",
+          showConfirmButton: false,
+          timer: 1500,
         });
 
         navigate(location?.state || "/");
@@ -60,117 +63,116 @@ const Register = () => {
           icon: "error",
           title: "Register Failed",
           text: error.message || "Please try again later.",
+          background: "#1a1a1a",
+          color: "#ffffff",
         });
       });
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-primary px-5">
-      <div className="card w-full max-w-md border-2 border-white">
-        <div className="card-body">
-          <div className="font-bold text-center md:text-5xl text-2xl text-secondary">
+    <div className="flex items-center justify-center min-h-screen bg-primary text-base-200 px-5 py-10">
+      <div className="w-full max-w-md bg-primary text-base-200 border border-white/10 rounded-3xl p-8 shadow-2xl">
+        {/* Header Section */}
+        <div className="text-center mb-8">
+          <div className="flex justify-center mb-4 ">
             <Logo />
           </div>
-
-          <h2 className="font-bold text-center mt-5 mb-10 md:text-5xl text-2xl text-secondary">
-            Sign up to start
+          <p className="text-gray-400 text-sm uppercase tracking-widest mb-2">Join us today</p>
+          <h2 className="text-4xl font-bold ">
+            Create account<span className="text-blue-500">.</span>
           </h2>
+          <p className="text-gray-400 mt-2">
+            Already a member?{" "}
+            <Link to="/login" className="text-blue-500 hover:underline font-medium">
+              Log In
+            </Link>
+          </p>
+        </div>
 
-          <form onSubmit={handleSubmit(handleRegister)} className="space-y-4">
-            {/* Name */}
-            <label className="font-bold">Name</label>
+        <form onSubmit={handleSubmit(handleRegister)} className="space-y-5">
+          {/* Name */}
+          <div>
+            <label className="block text-sm font-medium text-gray-400 mb-1 ml-1">Full Name</label>
             <input
               type="text"
-              placeholder="Type Your Name"
-              className="input input-bordered text-secondary w-full outline-none"
+              placeholder="John Doe"
+              className="w-full px-4 py-3 rounded-xl bg-base-100 border border-white/10 focus:border-blue-500 outline-none transition-all "
               {...register("name", { required: true })}
             />
-            {errors.name && (
-              <p className="text-red-600">Name Required</p>
-            )}
+            {errors.name && <p className="text-red-500 text-xs mt-1">Name is required</p>}
+          </div>
 
-            {/* Email */}
-            <label className="font-bold">Email</label>
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-400 mb-1 ml-1">Email Address</label>
             <input
               type="email"
-              placeholder="type your email"
-              className="input input-bordered text-secondary w-full outline-none"
+              placeholder="name@example.com"
+              className="w-full px-4 py-3 rounded-xl bg-base-100 border border-white/10 focus:border-blue-500 outline-none transition-all "
               {...register("email", { required: true })}
             />
-            {errors.email && (
-              <p className="text-red-600">Email Required</p>
-            )}
+            {errors.email && <p className="text-red-500 text-xs mt-1">Email is required</p>}
+          </div>
 
-              {/* Photo */}
-            <label className="font-bold">Photo</label>
+          {/* Photo */}
+          <div>
+            <label className="block text-sm font-medium text-gray-400 mb-1 ml-1">Profile Picture</label>
             <input
               type="file"
               {...register("photo", { required: true })}
-              className="file-input file-input-bordered text-gray-500 w-full outline-none"
+              className="file-input file-input-bordered w-full bg-base-100 border-white/10 text-gray-400 rounded-xl"
             />
-            {errors.photo && (
-              <p className="text-red-600">Photo Required</p>
-            )}
+            {errors.photo && <p className="text-red-500 text-xs mt-1">Photo is required</p>}
+          </div>
 
-            {/* Password */}
-            <label className="font-bold">Password</label>
+          {/* Password */}
+          <div>
+            <label className="block text-sm font-medium text-gray-400 mb-1 ml-1">Password</label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
-                placeholder="type your password"
-                className="input input-bordered text-secondary w-full outline-none pr-12"
+                placeholder="••••••••"
+                className="w-full px-4 py-3 rounded-xl bg-base-100 border border-white/10 focus:border-blue-500 outline-none transition-all "
                 {...register("password", {
                   required: true,
-                  pattern:
-                    /^(?=.*[A-Z])(?=.*[a-z])(?=.*[^A-Za-z0-9]).{6,}$/,
+                  pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[^A-Za-z0-9]).{6,}$/,
                 })}
               />
-
               <button
                 type="button"
-                onClick={() => setShowPassword((prev) => !prev)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-secondary text-xl z-10 pointer-events-auto"
-                tabIndex={-1}
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
-
             {errors.password?.type === "required" && (
-              <p className="text-red-500">Password required</p>
+              <p className="text-red-500 text-xs mt-1">Password is required</p>
             )}
             {errors.password?.type === "pattern" && (
-              <p className="text-red-500">
-                Password must contain at least 1 uppercase letter, <br />
-                1 lowercase letter, 1 special character, <br />
-                and be at least 6 characters long.
+              <p className="text-red-400 text-[10px] mt-1 leading-tight">
+                Must contain 1 uppercase, 1 lowercase, 1 special char, & 6+ chars.
               </p>
             )}
+          </div>
 
-            {/* Social Login */}
-            <button className="w-full">
-              <SocialLogin />
-            </button>
+          {/* Register Button */}
+          <button
+            type="submit"
+            className="w-full py-3 bg-blue-400 hover:bg-blue-500 text-base-200 rounded-4xl font-bold text-lg shadow-lg shadow-blue-900/20 transform active:scale-95 transition-all"
+          >
+            Create Account
+          </button>
+        </form>
 
-            {/* Register Button */}
-            <button
-              type="submit"
-              className="btn btn-primary py-2 md:py-0 btn-lg rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all w-full"
-            >
-              Register
-            </button>
-          </form>
+        <div className="relative flex py-6 items-center">
+          <div className="flex-grow border-t border-white/10"></div>
+          <span className="flex-shrink mx-4 text-gray-500 text-xs uppercase">Or Sign up with</span>
+          <div className="flex-grow border-t border-white/10"></div>
+        </div>
 
-          <p className="text-center mt-4">
-            Already have an account?{" "}
-            <Link
-              state={location.state}
-              to={"/login"}
-              className="text-secondary font-semibold"
-            >
-              Login
-            </Link>
-          </p>
+        <div>
+          <SocialLogin />
         </div>
       </div>
     </div>

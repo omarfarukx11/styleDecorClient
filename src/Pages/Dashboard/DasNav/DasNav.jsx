@@ -74,10 +74,10 @@ const DasNav = ({role}) => {
                   />
                 </div>
               </div>
-              <ul className="menu menu-sm dropdown-content h-[100px] pt-6 space-y-2 rounded-lg bg-primary text-secondary z-50 mt-3 w-52 p-2 shadow">
+              <ul className="menu menu-sm dropdown-content h-[100px] pt-6 space-y-2 rounded-lg bg-primary text-base-200 z-50 mt-3 w-52 p-2 shadow">
                 <li>
                   <Link
-                    className="hover:bg-secondary hover:text-primary"
+                    className="hover:bg-base-100"
                     to="/dashboard/my-profile"
                   >
                     Profile
@@ -85,7 +85,7 @@ const DasNav = ({role}) => {
                 </li>
                 <li>
                   <button
-                    className="hover:bg-secondary hover:text-primary w-full text-left"
+                    className="hover:bg-base-100 w-full text-left"
                     onClick={handleLogout}
                   >
                     Logout
