@@ -3,6 +3,7 @@ import { FaStar } from "react-icons/fa";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import DecoratorSkeleton from "../../Skelenton/DecoratorSkeleton";
+import BigTitile from "../../utility/BigTitile";
 
 const TopDecorators = () => {
   const axiosSecure = useAxiosSecure();
@@ -18,13 +19,10 @@ const TopDecorators = () => {
   if (isLoading) return <DecoratorSkeleton />;
 
   return (
-    <section className="bg-secondary">
-      <div className="xl:p-16 p-5 max-w-[1980px] mx-auto">
-        {/* Header */}
+    <section className="bg-secondary bprder border-green-500 lg:pb-20 pb-5">
+      <div className="xl:px-20 px-5 max-w-[1980px] mx-auto">
         <div className="text-center px-4 text-base-200 rounded-2xl mb-10">
-          <h2 className="lg:text-4xl md:text-3xl text-2xl font-extrabold mb-4">
-            Top Decorators
-          </h2>
+        <BigTitile>Top Decorators</BigTitile>
           <p className="max-w-3xl mx-auto text-[10px] md:text-xs opacity-80 leading-relaxed">
             Discover our top decorators who bring creativity, expertise, and
             precision to every event. Handpicked for their unique skills and proven track record.

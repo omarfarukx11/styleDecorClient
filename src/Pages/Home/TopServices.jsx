@@ -5,6 +5,7 @@ import { Link } from "react-router";
 import Button from "../../utility/Button";
 import ServiceSkeleton from "../../Skelenton/ServiceSkeleton";
 import { FaStar } from "react-icons/fa"; // Assuming you use react-icons
+import BigTitile from "../../utility/BigTitile";
 
 const TopServices = () => {
   const axiosSecure = useAxiosSecure();
@@ -22,14 +23,12 @@ const TopServices = () => {
 
   return (
     <section className="bg-primary">
-      <div className="xl:p-16 p-5 max-w-[1980px] mx-auto">
-        <div className="text-center text-base-200 rounded-xl mb-10">
-          <h2 className="lg:text-4xl md:text-3xl text-2xl font-extrabold mb-3">
-            Our Decoration Packages
-          </h2>
+      <div className="xl:px-16 px-5  max-w-[1980px] mx-auto">
+        <div className="text-center text-base-200 rounded-xl pb-10">
+          <BigTitile>Our Decoration Packages</BigTitile>
           <p className="max-w-xl mx-auto text-[10px] md:text-xs opacity-80">
-            Explore our range of flexible and innovative services designed to meet
-            your unique needs.
+            Explore our range of flexible and innovative services designed to
+            meet your unique needs.
           </p>
         </div>
 
@@ -53,7 +52,7 @@ const TopServices = () => {
                     {service.rating || "5.0"}
                   </span>
                 </div>
-                
+
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
                   <div className="p-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     <p className="text-[10px] uppercase">Starting from</p>
@@ -76,18 +75,30 @@ const TopServices = () => {
                   <span className="text-lg md:text-xl font-bold text-base-200">
                     ৳{service.price}
                   </span>
-                  <span className="ml-1 text-[10px] text-base-200/70">/ package</span>
+                  <span className="ml-1 text-[10px] text-base-200/70">
+                    / package
+                  </span>
                 </div>
 
                 {/* mt-auto ensures all buttons align at the bottom */}
                 <div className="mt-auto">
                   <Link to={`/serviceDetails/${service._id}`} className="block">
-                    <Button className="w-full py-2 text-xs">View Details</Button>
+                    <Button className="w-full py-2 text-xs">
+                      View Details
+                    </Button>
                   </Link>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="flex justify-center w-full pt-10">
+          <div className="w-40 text-center">
+            <Link to="services">
+              <Button className="py-2 text-xs">View All</Button>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

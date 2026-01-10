@@ -35,8 +35,8 @@ const ServiceMap = () => {
 
   return (
     <section>
-      <div className="xl:p-20 p-4 rounded-xl md:mb-10 max-w-[1980px] mx-auto ">
-        <div className="text-base-200 p-10 rounded-xl flex items-center justify-center flex-col">
+      <div className="rounded-xl max-w-[1980px] lg:px-20 mx-auto ">
+        <div className="text-base-200 rounded-xl flex items-center justify-center flex-col">
           <Title>We provide services all over Bangladesh</Title>
           <div className="md:my-10 flex justify-center sm:justify-start">
   <form onSubmit={handleSearch} className="w-full max-w-sm"> {/* Controlled small width */}
@@ -61,7 +61,7 @@ const ServiceMap = () => {
 </div>
         </div>
 
-        <div className="h-[800px] my-10">
+        <div className="h-[800px] lg:mb-20 mb-5 mt-5 px-5">
           <MapContainer
             center={position}
             zoom={7}

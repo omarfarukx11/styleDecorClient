@@ -61,6 +61,13 @@ const Navbar = () => {
         <NavLink to="/contact">Contact</NavLink>
       </li>
       <li>
+        <NavLink to="/service-area">Serive Area</NavLink>
+      </li>
+    {
+      user && <li><NavLink to="/rate-us">Rate Us</NavLink></li>
+    }
+
+      <li>
         <button
           onClick={() => setDarkMode(!darkMode)}
           className="pt-3"
@@ -106,7 +113,7 @@ const Navbar = () => {
         <div className="navbar-end flex items-center gap-2">
           {user && (
             <NavLink
-              to="/dashboard"
+              to="/dashboard/profile"
             >
               <Button>Dashboard</Button>
             </NavLink>
@@ -134,7 +141,7 @@ const Navbar = () => {
                 <li>
                   <Link
                     className="hover:bg-base-100 "
-                    to="/dashboard/my-profile"
+                    to="/dashboard/profile"
                   >
                     Profile
                   </Link>

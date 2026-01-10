@@ -37,8 +37,6 @@ const Hero = () => {
 
   return (
     <section className="relative w-full h-[80vh] lg:min-h-screen overflow-hidden flex items-center justify-center bg-[#2A2A2A]">
-      
-      {/* BACKGROUND IMAGE - Keep scale/fade but focus is on text */}
       <motion.div 
         initial={{ scale: 1.1, opacity: 0 }}
         animate={{ scale: 1, opacity: 0.6 }}
@@ -70,7 +68,7 @@ const Hero = () => {
           <span className="block overflow-hidden">
             <motion.span 
               variants={wordVariants} 
-              className="block text-white drop-shadow-lg"
+              className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500 inline-block"
             >
               Day Beautiful
             </motion.span>
@@ -93,9 +91,13 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <button className="px-12 py-5 text-xl font-bold rounded-full shadow-2xl bg-primary text-base-200">
-                Book Decoration Service
-              </button>
+               <div className="flex justify-center w-full pt-10">
+                <div className="w-80 text-center">
+                  <Link to="services">
+                    <Button className="py-2 text-xs">Book Decoration Service</Button>
+                  </Link>
+                </div>
+              </div>
             </motion.div>
           </Link>
         </motion.div>

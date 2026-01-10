@@ -3,7 +3,7 @@ import { HiArrowRight } from "react-icons/hi";
 
 const Button = ({ children = "Hover Me !" }) => {
   return (
-    <button className="group relative inline-flex items-center justify-center overflow-hidden  rounded-md font-bold shadow-lg transition-all duration-300 transform w-full py-2  text-sm h-auto min-h-0  px-2  md:text-base md:px-4 xl:text-xl  bg-[#4361ee] text-white  hover:scale-105 hover:shadow-cyan-400/50"
+    <button className="group  relative inline-flex items-center justify-center overflow-hidden  rounded-md font-bold shadow-lg transition-all duration-300 transform w-full py-2  text-sm h-auto min-h-0  px-2  md:text-base md:px-4 xl:text-xl  bg-[#4361ee] text-white  hover:scale-105 hover:shadow-cyan-400/50"
     >
       {/* 1. THE EXPANDING COLOR LAYER */}
       <span className="absolute inset-0 w-0 h-0 transition-all duration-500 ease-out rounded-full bg-cyan-500 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:w-full group-hover:h-[600px]"></span>

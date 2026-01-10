@@ -30,7 +30,7 @@ const Revenue = () => {
     .reduce((sum, b) => sum + (parseFloat(b.amount) || 0), 0);
 
   return (
-    <div className="">
+    <div >
       <div className="text-2xl bg-primary py-8 border-b border-white text-base-200 text-center uppercase">
         <Title>Revenue Monitoring</Title>
       </div>

@@ -5,7 +5,7 @@ import Loader from "../../../../Components/Loader";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
 import Button from "../../../../utility/Button";
-import Title from "../../../../utility/Title";
+import BigTitile from "../../../../utility/BigTitile";
 
 const ManageDecorators = () => {
   const axiosSecure = useAxiosSecure();
@@ -56,7 +56,7 @@ const ManageDecorators = () => {
 
   return (
     <div>
-      <Title>Manage Decorators</Title>
+      <BigTitile >Manage Decorators</BigTitile>
     <title>StyelDecor - Manage Decorators</title>
       <div className="xl:p-8 p-4 bg-primary">
         <div className="flex justify-end items-center">

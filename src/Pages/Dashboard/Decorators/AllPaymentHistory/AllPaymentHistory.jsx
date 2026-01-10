@@ -34,7 +34,7 @@ const AllPaymentHistory = () => {
           <div className="flex-2 text-center">Transaction ID</div>
         </div>
 
-        <div className="space-y-6 xl:space-y-4">r
+        <div className="space-y-6 xl:space-y-4">rr
           {
             history.length === 0 ? (
               <Title> No Payment History Available</Title>

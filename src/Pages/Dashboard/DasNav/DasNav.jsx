@@ -85,7 +85,7 @@ const DasNav = ({role}) => {
                 <li>
                   <Link
                     className="hover:bg-base-100"
-                    to="/dashboard/my-profile"
+                    to="/dashboard/profile"
                   >
                     Profile
                   </Link>

@@ -29,6 +29,8 @@ import AddNewService from "../Pages/Dashboard/Admin/AddNewService/AddNewService"
 import AddNewDecorators from "../Pages/Dashboard/Admin/MangeDecorators/AddNewDecorators";
 import AllPaymentHistory from "../Pages/Dashboard/Decorators/AllPaymentHistory/AllPaymentHistory";
 import Loader from "../Components/Loader";
+import RateUs from "../Components/RateUs";
+import ServiceMap from "../Pages/Home/ServiceMap";
 
 
 
@@ -60,6 +62,14 @@ export const router = createBrowserRouter([
             path:'/serviceDetails/:id',
             Component:ServiceDetails,
             },
+            {
+            path:'/rate-us',
+            Component:RateUs,
+            },
+            {
+            path:'/service-area',
+            Component:ServiceMap,
+            },
           
         ]
     },
@@ -86,7 +96,7 @@ export const router = createBrowserRouter([
         element:<PrivetRoute><DashboardLayout></DashboardLayout></PrivetRoute>,
         children: [
             {
-                index : true,
+                path:'/dashboard/profile',
                 element:<MyProfile></MyProfile>
             },
              {

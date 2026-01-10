@@ -111,7 +111,7 @@ const ServiceDetails = () => {
               alt={service.name}
               className="w-full h-96 lg:h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+            <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
               <div className="">
                 <p className="text-5xl font-bold">৳{service.price}</p>
                 <p className="text-lg opacity-90">Starting Price</p>

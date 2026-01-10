@@ -37,7 +37,7 @@ const DashboardLayout = () => {
       <div className="border-t border-white my-2"></div>
       <li>
         <NavLink
-          to="/dashboard"
+          to="/dashboard/profile"
           onClick={closeMobileMenu}
           className="flex items-center gap-3"
         >
@@ -183,7 +183,7 @@ const DashboardLayout = () => {
                 </button>
               </div>
 
-              <h2 className="text-2xl font-bold uppercase text-base-200 ">
+              <h2 className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500 inline-block pt-5 lg:pb-5 pb-1 text-2xl lg:text-3xl">
                 {role === "admin" && "Admin"}
                 {role === "decorator" && "Decorator"}
                 {role === "user" && "My Dashboard"}
