@@ -129,7 +129,7 @@ const AllServices = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="group flex flex-col h-full relative rounded-xl hover:shadow-lg overflow-hidden transition-all duration-500 border bg-secondary shadow-sm"
+                className="group flex flex-col h-full relative rounded-xl hover:shadow-sm overflow-hidden transition-all duration-500  bg-secondary shadow-sm"
               >
                 {/* Image Section */}
                 <div className="relative h-40 md:h-48 overflow-hidden shrink-0">
@@ -148,7 +148,7 @@ const AllServices = () => {
                 </div>
 
                 {/* Content Section */}
-                <div className="p-4 md:p-5 flex flex-col flex-grow">
+                <div className="p-4 md:p-5 flex flex-col grow">
                   <h3 className="text-sm md:text-base font-bold text-gray-400 group-hover:text-base-200 transition-colors duration-300 line-clamp-1">
                     {service.name}
                   </h3>
@@ -181,7 +181,7 @@ const AllServices = () => {
           <button
             disabled={page === 1}
             onClick={() => setPage((prev) => prev - 1)}
-            className="px-4 py-2 border rounded-lg bg-base-100 disabled:opacity-40"
+            className="px-4 py-2 border rounded-lg bg-secondary text-base-200 border-none disabled:opacity-40"
           >
             Prev
           </button>
@@ -190,7 +190,7 @@ const AllServices = () => {
             <button
               key={num}
               onClick={() => setPage(num + 1)}
-              className={`px-4 py-2 border rounded-lg transition-colors ${
+              className={`px-4 py-2 border rounded-lg transition-colors border-gray-300 ${
                 page === num + 1 ? "bg-base-200 text-primary" : "text-gray-600"
               }`}
             >
@@ -201,7 +201,7 @@ const AllServices = () => {
           <button
             disabled={page === totalPages}
             onClick={() => setPage((prev) => prev + 1)}
-            className="px-4 py-2 border rounded-lg bg-base-100 disabled:opacity-40"
+            className="px-4 py-2 border rounded-lg bg-secondary text-base-200 border-none disabled:opacity-40"
           >
             Next
           </button>

@@ -30,7 +30,7 @@ const Revenue = () => {
 
   return (
     <div className="">
-      <div className="text-2xl  bg-primary py-8 border-b border-white text-center uppercase">
+      <div className="text-2xl bg-primary py-8 border-b border-white text-base-200 text-center uppercase">
         <h1>Revenue Monitoring</h1>
       </div>
       <title>StyelDecor - Revenue Monitoring</title>

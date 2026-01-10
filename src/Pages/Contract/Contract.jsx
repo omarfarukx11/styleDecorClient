@@ -1,5 +1,6 @@
 import React from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from "react-icons/fa";
+import Button from "../../utility/Button";
 
 const Contact = () => {
   return (
@@ -81,26 +82,26 @@ const Contact = () => {
               <input
                 type="text"
                 placeholder="Your Name"
-                className="input input-bordered w-full bg-white/10 outline-none  border-2 border-primary  placeholder-gray-400 "
+                className="input input-bordered w-full bg-base-100 outline-none  border-2 border-primary  placeholder-gray-400 "
               />
               <input
                 type="email"
                 placeholder="Your Email"
-                className="input input-bordered w-full bg-white/10 outline-none  border-2 border-primary placeholder-gray-400 "
+                className="input input-bordered w-full bg-base-100 outline-none  border-2 border-primary placeholder-gray-400 "
               />
               <input
                 type="text"
                 placeholder="Subject"
-                className="input input-bordered w-full bg-white/10 outline-none  border-2 border-primary placeholder-gray-400 "
+                className="input input-bordered w-full bg-base-100 outline-none  border-2 border-primary placeholder-gray-400 "
               />
               <textarea
                 rows="6"
                 placeholder="Your Message"
-                className="textarea textarea-bordered w-full bg-white/10 outline-none  border-2 border-primary placeholder-gray-400 "
+                className="textarea textarea-bordered w-full bg-base-100 outline-none  border-2 border-primary placeholder-gray-400 "
               ></textarea>
               
-              <button className="btn  btn-primary btn-lg mt-10 w-full rounded-full text-lg font-bold shadow-xl hover:shadow-purple-500/50 transform hover:scale-105 transition-all">
-                Send Message
+              <button className="w-full">
+               <Button>Send Masseage</Button>
               </button>
             </form>
           </div>

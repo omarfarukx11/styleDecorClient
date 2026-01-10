@@ -21,19 +21,21 @@ const MyProfile = () => {
       let photoURL = user?.photoURL;
       if (profileImage) {
         const formData = new FormData();
-        const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`;
+        const image_API_URL = `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_image_host_key
+        }`;
         formData.append("image", profileImage);
         const res = await axios.post(image_API_URL, formData);
         if (res.data.success) photoURL = res.data.data.display_url;
       }
       await updataUserProfile({ displayName: name, photoURL });
       setShowForm(false);
-      Swal.fire({ 
-        title: "Profile Updated!", 
-        icon: "success", 
-        background: "#040404", 
+      Swal.fire({
+        title: "Profile Updated!",
+        icon: "success",
+        background: "#040404",
         color: "#fff",
-        confirmButtonColor: "oklch(var(--s))" 
+        confirmButtonColor: "oklch(var(--s))",
       });
     } catch (error) {
       Swal.fire({ icon: "error", title: "Update Failed", text: error.message });
@@ -46,7 +48,7 @@ const MyProfile = () => {
     <div className="min-h-[calc(100vh-120px)] flex items-center justify-center p-6 font-body bg-primary">
       <title>StyleDecor - Profile</title>
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         className="w-full max-w-2xl backdrop-blur-2xl border border-white/10 rounded-4xl overflow-hidden bg-base-100/10 shadow-2xl"
@@ -55,9 +57,12 @@ const MyProfile = () => {
           {/* PROFILE HEADER AREA */}
           <div className="flex flex-col items-center text-center">
             <div className="relative group mb-6">
-              <div className="absolute -inset-1 bg-gradient-to-r from-secondary to-base-200 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+              <div className="absolute -inset-1 bg-linear-to-r from-secondary to-base-200 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
               <img
-                src={user?.photoURL || "https://i.ibb.co/mR4t96H/user-placeholder.png"}
+                src={
+                  user?.photoURL ||
+                  "https://i.ibb.co/mR4t96H/user-placeholder.png"
+                }
                 alt="Profile"
                 className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-white/20 object-cover shadow-2xl"
               />
@@ -69,7 +74,7 @@ const MyProfile = () => {
             <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-base-200 font-title">
               {user?.displayName}
             </h2>
-            
+
             <p className="mt-2 text-base-200/60 flex items-center gap-2 text-lg">
               <FaEnvelope className="text-secondary" /> {user?.email}
             </p>
@@ -82,7 +87,9 @@ const MyProfile = () => {
                   </Button>
                 </div>
               ) : (
-                <span className="text-xs font-bold uppercase tracking-widest text-secondary animate-pulse">Updating Profile</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-secondary animate-pulse">
+                  Updating Profile
+                </span>
               )}
             </div>
           </div>
@@ -98,26 +105,32 @@ const MyProfile = () => {
               >
                 <form onSubmit={handleUpdate} className="space-y-6">
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-base-200/40 ml-1">Full Identity Name</label>
+                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-base-200 ml-1">
+                      Full Identity Name
+                    </label>
                     <div className="relative">
                       <FaIdBadge className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary/60" />
                       <input
                         type="text"
                         name="name"
                         defaultValue={user?.displayName}
-                        className="w-full bg-black/20 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-base-200 focus:border-secondary/50 outline-none transition-all font-medium"
+                        className="w-full  bg-base-100 border border-white/10 rounded-2xl py-4 pl-3 pr-4 text-base-200 focus:border-secondary/50 outline-none transition-all font-medium"
                         required
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-base-200/40 ml-1">New Profile Image</label>
+                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-base-200 ml-1">
+                      New Profile Image
+                    </label>
                     <input
                       type="file"
                       name="photo"
                       accept="image/*"
-                      className="file-input file-input-bordered w-full bg-black/20 border-white/10 text-base-200 rounded-2xl"
+                      className="file-input w-full bg-base-100 rounded-2xl text-base-200
+               file:bg-base-100 file:text-base-200 file:border-none 
+               cursor-pointer"
                     />
                   </div>
 
@@ -128,12 +141,16 @@ const MyProfile = () => {
                       disabled={loading}
                       className="flex-1 bg-base-200 text-primary py-4 rounded-2xl font-black uppercase tracking-tighter hover:bg-secondary transition-all disabled:opacity-50 active:scale-95"
                     >
-                      {loading ? <span className="loading loading-spinner"></span> : "Save Changes"}
+                      {loading ? (
+                        <span className="loading loading-spinner"></span>
+                      ) : (
+                        "Save Changes"
+                      )}
                     </Button>
-                    
+
                     {/* CANCEL BUTTON - Fixed to prevent toast */}
                     <Button
-                      type="button" 
+                      type="button"
                       onClick={(e) => {
                         e.preventDefault();
                         setShowForm(false);

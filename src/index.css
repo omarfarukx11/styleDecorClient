@@ -69,17 +69,17 @@ a.active {
    default: true;
 
 
-  --color-base-100: black;
+  --color-base-100: #001219;
   --color-base-200: white;
   --color-base-300: oklch(10% 0 0);
   --color-base-content: oklch(98% 0 0);
 
-  --color-primary: #040404;
+  --color-primary: #000000;
   --color-primary-hover: oklch(40% 0 0);
   --color-primary-content: white;
 
 
-  --color-secondary: white;
+  --color-secondary: rgba(255, 255, 255, 0.1);
   --color-secondary-hover: oklch(30% 0 0);
   --color-secondary-content: white;
 

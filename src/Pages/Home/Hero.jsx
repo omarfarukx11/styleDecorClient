@@ -70,7 +70,7 @@ const Hero = () => {
           <span className="block overflow-hidden">
             <motion.span 
               variants={wordVariants} 
-              className="block text-secondary drop-shadow-lg"
+              className="block text-white drop-shadow-lg"
             >
               Day Beautiful
             </motion.span>

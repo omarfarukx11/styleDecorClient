@@ -167,11 +167,11 @@ const ManageServices = () => {
             {...registerFilter("search")}
             type="text"
             placeholder="Search by service name..."
-            className="input input-bordered outline-none py-3 border-gray-300 w-full  input-lg flex-1"
+            className="input input-bordered outline-none py-3 w-full  input-lg flex-1"
           />
           <select
             {...registerFilter("type")}
-            className="select select-bordered outline-none border-gray-300 text-gray-500 input-lg w-full lg:w-48"
+            className="select select-bordered outline-none input-lg w-full lg:w-48"
           >
             <option value="All">All Categories</option>
             <option value="Home">Home</option>
@@ -186,13 +186,13 @@ const ManageServices = () => {
             {...registerFilter("minPrice")}
             type="number"
             placeholder="Min Price"
-            className="input input-bordered outline-none border-gray-300  input-lg w-full lg:w-32"
+            className="input input-bordered outline-none input-lg w-full lg:w-32"
           />
           <input
             {...registerFilter("maxPrice")}
             type="number"
             placeholder="Max Price"
-            className="input input-bordered outline-none border-gray-300  input-lg w-full lg:w-32"
+            className="input input-bordered outline-none  input-lg w-full lg:w-32"
           />
         </form>
 
@@ -408,7 +408,7 @@ const ManageServices = () => {
                   <select
                     {...registerUpdate("serviceCategory", { required: true })}
                     defaultValue={"hello world"}
-                    className="select select-bordered bg-base-100 outline-none  input-lg w-full"
+                    className="select select-bordered bg-base-100 text-base-200 outline-none  input-lg w-full"
                   >
                     <option value="Home">Home Decoration</option>
                     <option value="Wedding">Wedding</option>

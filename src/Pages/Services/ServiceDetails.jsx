@@ -8,6 +8,7 @@ import { useForm, useWatch } from "react-hook-form";
 import Swal from "sweetalert2";
 import Loader from "../../Components/Loader";
 import NotFound from "../../Components/NotFound";
+import Button from "../../utility/Button";
 
 const ServiceDetails = () => {
   const { user } = useAuth();
@@ -100,33 +101,33 @@ const ServiceDetails = () => {
   }
 
   return (
-    <div className="min-h-screen py-12 px-6 lg:px-12">
+    <div className="min-h-[calc(100vh-90px)] py-12 px-6 lg:px-12 text-base-200">
       <title>StyelDecor - Sevice Details</title>
-      <div className="max-w-screen-2xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-12 bg-primary backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-base-300">
-          <div className="relative group overflow-hidden">
+      <div className="max-w-screen-2xl mx-auto w-full bg-secondary rounded-xl">
+        <div className="grid lg:grid-cols-2 gap-12 backdrop-blur-xl shadow-sm rounded-xl overflow-hidden ">
+          <div className="relative group overflow-hidden ">
             <img
               src={service.image}
               alt={service.name}
               className="w-full h-96 lg:h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-              <div className="text-white">
+              <div className="">
                 <p className="text-5xl font-bold">৳{service.price}</p>
                 <p className="text-lg opacity-90">Starting Price</p>
               </div>
             </div>
-            <div className="absolute top-6 left-6 bg-primary  px-6 py-2 rounded-full font-semibold text-secondary text-sm shadow-lg">
+            <div className="absolute top-6 left-6 bg-primary  px-6 py-2 rounded-full font-semibold  text-sm shadow-lg">
               Premium Package
             </div>
           </div>
 
           <div className="p-8 lg:p-16 flex flex-col justify-center">
-            <span className="badge badge-outline text-secondary bg-primary border-primary px-5 py-3 text-base font-medium mb-6">
+            <span className="badge badge-outline  bg-primary border-primary px-5 py-3 text-base font-medium mb-6">
               {service.type}
             </span>
 
-            <h1 className="text-2xl lg:text-6xl font-extrabold text-secondary mb-6 leading-tight">
+            <h1 className="text-2xl lg:text-6xl font-extrabold  mb-6 leading-tight">
               {service.name}
             </h1>
 
@@ -143,36 +144,35 @@ const ServiceDetails = () => {
                   />
                 ))}
               </div>
-              <span className="text-2xl font-bold text-secondary">
+              <span className="text-2xl font-bold ">
                 {service.rating || "N/A"}
               </span>
-              <span className="text-secondary">(248 reviews)</span>
+              <span className="">(248 reviews)</span>
             </div>
 
-            <p className="text-lg text-secondary leading-relaxed mb-10">
+            <p className="text-lg  leading-relaxed mb-10">
               {service.description}
             </p>
 
             <div className="mb-12">
-              <p className="text-2xl xl:text-6xl font-black text-secondary">
+              <p className="text-2xl xl:text-6xl font-black ">
                 ৳{service.price}
               </p>
-              <p className="text-secondary mt-2">One-time package price</p>
+              <p className=" mt-2">One-time package price</p>
             </div>
 
             <button
               onClick={handleModal}
-              className="btn hover:bg-base-100 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all"
             >
-              Book Now
+              <Button>Book Now</Button>
             </button>
           </div>
         </div>
       </div>
 
       <dialog ref={dialogRef} className="modal">
-        <div className="modal-box w-11/12 max-w-2xl bg-primary  p-8">
-          <h3 className="text-3xl font-bold text-center text-secondary mb-6">
+        <div className="modal-box w-11/12 max-w-2xl bg-primary p-8 text-base-200">
+          <h3 className="text-3xl font-bold text-center  mb-6">
             Confirm Your Booking
           </h3>
 
@@ -180,68 +180,68 @@ const ServiceDetails = () => {
             onSubmit={handleSubmit(handleBooking)}
             className="space-y-5 text-black"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-secondary ">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-base-200 ">
               <div>
-                <label className="font-semibold text-secondary">
+                <label className="font-semibold">
                   Service Name
                 </label>
                 <input
                   {...register("serviceName")}
                   readOnly
-                  className="input input-bordered outline-none text-secondary bg-accent  w-full"
+                  className="input input-bordered outline-none bg-base-100  w-full"
                 />
               </div>
               <div>
-                <label className="font-semibold text-secondary">Price</label>
+                <label className="font-semibold ">Price</label>
                 <input
                   {...register("serviceCost")}
                   readOnly
-                  className="input input-bordered outline-none text-secondary bg-accent w-full"
+                  className="input input-bordered outline-none bg-base-100 w-full"
                 />
               </div>
               <div>
-                <label className="font-semibold text-secondary">
+                <label className="font-semibold ">
                   Your Name
                 </label>
                 <input
                   {...register("userName")}
                   readOnly
-                  className="input input-bordered outline-none text-secondary bg-accent w-full"
+                  className="input input-bordered outline-none bg-base-100 w-full"
                 />
               </div>
               <div>
-                <label className="font-semibold text-secondary">
+                <label className="font-semibold ">
                   Your Email
                 </label>
                 <input
                   {...register("userEmail")}
                   readOnly
-                  className="input input-bordered outline-none text-secondary bg-accent w-full"
+                  className="input input-bordered outline-none bg-base-100 w-full"
                 />
               </div>
             </div>
 
-            <div>
-              <label className="font-semibold text-secondary">
+            <div className="text-base-200">
+              <label className="font-semibold ">
                 Booking Date
               </label>
               <input
                 type="date"
                 {...register("bookingDate", { required: true })}
                 min={new Date().toISOString().split("T")[0]}
-                className="input input-bordered text-secondary bg-accent outline-none w-full"
+                className="input input-bordered bg-base-100 outline-none w-full"
               />
                {errors.bookingDate?.type === "required" && (
               <p className="text-red-600">Date Required</p>
             )}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-base-200">
               <div>
-                <label className="font-semibold text-secondary">Region</label>
+                <label className="font-semibold ">Region</label>
                 <select
                   {...register("bookingRegion", { required: true })}
-                  className="select select-bordered w-full text-secondary bg-accent outline-none"
+                  className="select select-bordered w-full bg-base-100 outline-none"
                 >
                   <option value="">Select Region</option>
                   {regions.map((region) => (
@@ -256,10 +256,10 @@ const ServiceDetails = () => {
               </div>
 
               <div>
-                <label className="font-semibold text-secondary">District</label>
+                <label className="font-semibold ">District</label>
                 <select
                   {...register("bookingDistrict", { required: true })}
-                  className="select select-bordered text-secondary bg-accent w-full outline-none"
+                  className="select select-bordered bg-base-100 w-full outline-none"
                 >
                   {districtByRegion(selectedRegion).map((district) => (
                     <option key={district} value={district}>
@@ -270,14 +270,14 @@ const ServiceDetails = () => {
               </div>
             </div>
 
-            <div>
-              <label className="font-semibold text-secondary">
-                Full Address <span className="text-error">*</span>
+            <div className="text-base-200">
+              <label className="font-semibold ">
+                Full Address 
               </label>
               <input
                 {...register("location", { required: true })}
                 placeholder="House, Road, Area, City"
-                className="input input-bordered outline-none text-secondary bg-accent w-full"
+                className="input input-bordered outline-none bg-base-100 w-full"
               />
               {errors.location?.type === "required" && (
               <p className="text-red-600">Address Required</p>
@@ -287,16 +287,16 @@ const ServiceDetails = () => {
             <div className="flex flex-col md:flex-row gap-3 mt-6">
               <button
                 type="submit"
-                className="btn hover:bg-base-100 flex-1 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all py-2"
+                className="flex-1"
               >
-                Confirm Booking
+                <Button>Confirm Booking</Button>
               </button>
               <button
                 type="button"
-                className="btn hover:bg-base-100 flex-1 hover:text-secondary bg-secondary text-base-100 border-none btn-lg  rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all py-2"
+                className="flex-1"
                 onClick={() => dialogRef.current.close()}
               >
-                Cancel
+                 <Button>Cancel</Button>
               </button>
             </div>
           </form>

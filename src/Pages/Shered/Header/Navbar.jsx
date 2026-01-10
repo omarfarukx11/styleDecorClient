@@ -73,8 +73,8 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="bg-[#ffffff] text-black xl:px-20 ">
-      <div className="flex justify-between items-center max-w-[1800px] py-5 px-4 lg:px-8 mx-auto ">
+    <nav className="bg-primary text-base-200 xl:px-20 ">
+      <div className="flex justify-between items-center max-w-[1980px] py-5 px-4 lg:px-8 mx-auto border-b border-gray-400">
         {/* Left */}
         <div className="navbar-start flex items-center gap-2">
           {/* Mobile Dropdown */}
@@ -85,7 +85,7 @@ const Navbar = () => {
             <ul
               tabIndex={0}
               style={{ }}
-              className=" menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-primary text-white rounded-box w-52 font-second"
+              className=" menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-primary rounded-box w-52 font-second"
             >
               {navLinks}
             </ul>
