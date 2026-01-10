@@ -3,6 +3,7 @@ import { Outlet } from "react-router";
 import Navbar from "../Pages/Shered/Header/Navbar";
 import Footer from "../Pages/Shered/Footer/Footer";
 import Loader from "../Components/Loader";
+import ScrollToTop from "../utility/ScrollToTop";
 
 
 const RootLayout = () => {
@@ -26,6 +27,7 @@ const RootLayout = () => {
       <Outlet />
     </div>
       <Footer />
+      <ScrollToTop></ScrollToTop>
     </div>
   );
 };

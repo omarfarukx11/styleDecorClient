@@ -34,7 +34,7 @@ const ServiceMap = () => {
   };
 
   return (
-    <section>
+    <section className="">
       <div className="rounded-xl max-w-[1980px] lg:px-20 mx-auto ">
         <div className="text-base-200 rounded-xl flex items-center justify-center flex-col">
           <Title>We provide services all over Bangladesh</Title>

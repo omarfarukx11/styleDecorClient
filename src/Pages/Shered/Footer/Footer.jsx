@@ -6,8 +6,8 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#050505] text-white pt-24 pb-12 border-t border-white/5 w-full">
-      <div className="max-w-[1980px] mx-auto px-10 md:px-20 lg:px-32">
+    <footer className="bg-[#050505] text-white pt-10 pb-12 border-t border-white/5 w-full">
+      <div className="max-w-[1980px] mx-auto px-10 md:px-20">
         
         {/* TOP SECTION: Logo as a standalone corner element */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-8">
@@ -111,7 +111,7 @@ const Footer = () => {
         </div>
 
         {/* BOTTOM SECTION */}
-        <div className="mt-24 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center opacity-60">
+        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center opacity-60">
           <p className="text-[10px] tracking-[0.4em] uppercase">
             © {currentYear} STYLEDECOR. DESIGNED FOR THE BOLD.
           </p>
