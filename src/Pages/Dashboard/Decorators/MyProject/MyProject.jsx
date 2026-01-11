@@ -67,7 +67,7 @@ const MyProject = () => {
     <title>StyelDecor - My Project</title>
       <div className="bg-primary p-8">
         {/* HEADER for XL+ */}
-        <div className="hidden xl:flex bg-secondary text-base-200 justify-between mb-5 text-base-200 rounded-md py-8 text-sm xl:text-lg font-semibold">
+        <div className="hidden xl:flex bg-secondary justify-between mb-5 text-base-200 rounded-md py-8 text-sm xl:text-lg font-semibold">
           <div className="w-8 text-center">#</div>
           <div className="w-[220px] text-center">Service Name</div>
           <div className="w-[180px] text-center">Client Name</div>
@@ -86,7 +86,7 @@ const MyProject = () => {
               sortedBooking.map((d, i) => (
             <div
               key={d._id}
-              className="flex flex-col xl:flex-row gap-5 xl:items-center xl:justify-between hover:bg-secondary hover: bg-base-100 rounded-lg shadow p-3"
+              className="flex flex-col xl:flex-row gap-5 xl:items-center xl:justify-between hover:bg-secondary hover: bg-base-100 rounded-lg p-3"
             >
               {/* # */}
               <div className="flex justify-between xl:w-8 px-1 py-1 font-semibold ">

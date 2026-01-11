@@ -34,7 +34,7 @@ const AllPaymentHistory = () => {
           <div className="flex-2 text-center">Transaction ID</div>
         </div>
 
-        <div className="space-y-6 xl:space-y-4">rr
+        <div className="space-y-6 xl:space-y-4">
           {
             history.length === 0 ? (
               <Title> No Payment History Available</Title>
@@ -42,7 +42,7 @@ const AllPaymentHistory = () => {
              : (history.map((b, i) => (
             <div
               key={b._id}
-              className="flex flex-col xl:flex-row xl:items-center xl:justify-between shadow-xl py-4 xl:py-8 text-sm rounded-lg p-3 xl:px-4 hover:bg-secondary bg-base-100"
+              className="flex flex-col xl:flex-row xl:items-center xl:justify-between py-4 xl:py-8 text-sm rounded-lg p-3 xl:px-4 hover:bg-secondary bg-base-100"
             >
               <div className="flex justify-between xl:w-12 px-1 py-1 font-semibold  xl:border-b-0">
                 <span className="xl:hidden">#</span>

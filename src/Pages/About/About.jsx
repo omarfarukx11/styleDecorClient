@@ -3,6 +3,7 @@ import { FaHeart, FaUsers, FaTrophy, FaStar, FaGem, FaPalette, FaRocket } from "
 import { Link } from "react-router";
 import Title from "../../utility/Title";
 import { motion } from "framer-motion";
+import Button from "../../utility/Button";
 
 const About = () => {
   return (
@@ -19,9 +20,8 @@ const About = () => {
         </div>
 
         {/* --- Story Section with Laser Border --- */}
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-32 bg-secondary p-8 rounded-3xl border border-white/5 relative overflow-hidden shadow-2xl">
-          <div className="relative p-[2px] overflow-hidden rounded-xl group">
-            {/* Very Slow smooth Laser Border */}
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-32 bg-secondary  rounded-3xl border border-white/5 relative overflow-hidden shadow-2xl">
+          <div className="relative  overflow-hidden rounded-xl group">
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
@@ -30,7 +30,7 @@ const About = () => {
             <img
               src="https://i.ibb.co.com/PGDhs74D/home-decor-1100-x-921-wallpaper-afxadyvf33e1kh3c.jpg"
               alt="Luxury Decor"
-              className="relative z-10 rounded-xl w-full object-cover h-[400px] grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
+              className="relative z-10 rounded-xl w-full object-cover h-full grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
             />
           </div>
           
@@ -96,10 +96,13 @@ const About = () => {
           <h2 className="text-4xl font-bold text-base-200 mb-8">
             Ready to Make Your Event Unforgettable?
           </h2>
-          <Link to={'/services'} 
-            className="btn btn-info btn-lg rounded-full font-bold px-12 shadow-2xl hover:shadow-info/40 transform hover:scale-105 transition-all text-primary">
-            Start Planning Now
-          </Link>
+         <div className="flex justify-center w-full pt-10">
+                <div className="w-80 text-center">
+                  <Link to="/services">
+                    <Button>Start Planning Now</Button>
+                  </Link>
+                </div>
+              </div>
         </div>
       </div>
     </div>

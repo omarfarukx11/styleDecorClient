@@ -85,7 +85,7 @@ const Hero = () => {
         </motion.p>
 
         {/* BUTTON WITH SCALE & HOVER */}
-        <motion.div variants={fadeInUp} className="mt-12">
+        <motion.div variants={fadeInUp}>
           <Link to="/services">
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -94,7 +94,7 @@ const Hero = () => {
                <div className="flex justify-center w-full pt-10">
                 <div className="w-80 text-center">
                   <Link to="services">
-                    <Button className="py-2 text-xs">Book Decoration Service</Button>
+                    <Button>Book Decoration Service</Button>
                   </Link>
                 </div>
               </div>

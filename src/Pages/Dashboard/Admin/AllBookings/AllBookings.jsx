@@ -108,7 +108,7 @@ const AllBookings = () => {
                 allBooking.map((booking, i) => (
                   <tr
                     key={booking._id}
-                    className="block xl:table-row hover:bg-secondary bg-base-100 border-b border-primary  rounded-lg xl:rounded-none  mb-4 xl:mb-0  shadow-2xl 2xl:text-xl sm:text-2xl  xl:text-lg
+                    className="block xl:table-row hover:bg-secondary bg-base-100 border-b border-primary rounded-lg xl:rounded-none  mb-4 xl:mb-0 2xl:text-xl sm:text-2xl  xl:text-lg
               "
                   >
                     <td className="flex justify-between xl:table-cell px-4 py-2">

@@ -90,7 +90,7 @@ const ManageDecorators = () => {
               allDecorator.map((d, i) => (
                 <div
                   key={d._id}
-                  className="flex flex-col xl:flex-row xl:items-center xl:justify-between rounded-lg shadow-xl py-5 text-lg hover:bg-secondary hover:text-base-200 bg-base-100 text-base-200"
+                  className="flex flex-col xl:flex-row xl:items-center xl:justify-between rounded-lg py-5 text-lg hover:bg-secondary hover:text-base-200 bg-base-100 text-base-200"
                 >
                   {/* SL */}
                   <div className="flex justify-between xl:w-10 px-2 py-2 xl:ml-10 font-semibold xl:border-b-0">

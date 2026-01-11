@@ -31,7 +31,7 @@ const MyEarnings = () => {
     
     <div className="xl:p-8 p-4 bg-primary overflow-hidden ">
 
-        <div className="card bg-base-100  shadow-xl border border-primary/30">
+        <div className="card bg-base-100">
         <div className="card-body">
           <h2 className="card-title text-xl">Total Income</h2>
           <p className="text-5xl font-extrabold mt-3">
@@ -50,7 +50,7 @@ const MyEarnings = () => {
       earnings.map((e, index) => (
         <div
           key={index}
-          className="rounded-lg shadow p-4 transition-colors hover:bg-secondary bg-base-100 "
+          className="rounded-lg p-4 transition-colors hover:bg-secondary bg-base-100 "
         >
           <div className="flex justify-between">
             <span className="font-semibold">#</span>
@@ -98,7 +98,7 @@ const MyEarnings = () => {
           earnings.map((e, index) => (
             <tr
               key={index}
-              className="transition-colors border-b border-primary h-20 hover:bg-secondary bg-base-100 "
+              className="transition-colors h-20 hover:bg-secondary bg-base-100 "
             >
               <td className="px-3 py-2 text-center">{index + 1}</td>
               <td className="px-3 py-2 font-semibold">{e.serviceName}</td>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import { useNavigate } from "react-router"; // Link er poriborte navigate use kora safe eikhaner jonno
+import Button from "../utility/Button";
 
 const NotFound = () => {
   const [animationData, setAnimationData] = useState(null);
@@ -31,13 +32,12 @@ const NotFound = () => {
         <div className="flex justify-center">
           <button
             onClick={() => navigate("/")}
-            className="btn btn-lg btn-secondary text-primary rounded-full px-10 font-bold text-lg shadow-2xl hover:shadow-secondary/50 transform hover:scale-105 transition-all duration-300"
           >
-            Go Home
+            <Button>Go Home</Button>
           </button>
         </div>
 
-        <footer className="mt-16 text-secondary/60 text-sm">
+        <footer className="mt-16 text-base-200 text-sm">
           © {new Date().getFullYear()} StyleDecor. All rights reserved.
         </footer>
       </div>
