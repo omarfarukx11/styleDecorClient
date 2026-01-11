@@ -6,7 +6,6 @@ import useAuth from "../../Hooks/useAuth";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash, FaUserShield, FaPaintRoller, FaUser } from "react-icons/fa";
-import Button from "../../utility/Button";
 
 const Login = () => {
   const { singInUser } = useAuth();
@@ -18,10 +17,11 @@ const Login = () => {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm(); // Form starts empty, showing placeholders by default
 
   const [showPassword, setShowPassword] = useState(false);
 
+  // This handles the "One-click" demo logic
   const handleDemoLogin = (email, password) => {
     setValue("email", email);
     setValue("password", password);
@@ -58,7 +58,8 @@ const Login = () => {
           </div>
           <p className="text-gray-400 text-sm uppercase tracking-widest mb-2">welcome back</p>
           <h2 className="text-4xl font-bold">
-            Login to account<span className="text-blue-500">.</span>
+            Login to account
+            <span className="bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">.</span>
           </h2>
           <p className="text-gray-400 mt-2">
             don't have an Account?{" "}
@@ -113,7 +114,7 @@ const Login = () => {
             <input
               type="email"
               placeholder="name@example.com"
-              className="w-full px-4 py-3 rounded-xl bg-base-100 border border-white/10 focus:border-blue-500 outline-none transition-all text-base-200"
+              className="w-full px-4 py-3 rounded-xl bg-base-100 border border-white/10 focus:border-cyan-500 outline-none transition-all text-base-200"
               {...register("email", { required: true })}
             />
             {errors.email && <p className="text-red-500 text-xs mt-1">Email is required</p>}
@@ -125,7 +126,7 @@ const Login = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 rounded-xl bg-base-100 border border-white/10 focus:border-blue-500 outline-none transition-all text-base-200"
+                className="w-full px-4 py-3 rounded-xl bg-base-100 border border-white/10 focus:border-cyan-500 outline-none transition-all text-base-200"
                 {...register("password", { required: true })}
               />
               <button
@@ -141,7 +142,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full py-3 bg-blue-400 hover:bg-blue-500 text-base-200 rounded-4xl font-bold text-lg shadow-lg shadow-blue-900/20 transform active:scale-95 transition-all"
+            className="w-full py-3 bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-500 hover:to-blue-600 text-white rounded-4xl font-bold text-lg shadow-lg shadow-blue-900/20 transform active:scale-95 transition-all"
           >
             Sign In
           </button>

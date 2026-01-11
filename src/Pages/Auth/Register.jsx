@@ -116,7 +116,7 @@ const Register = () => {
             <input
               type="file"
               {...register("photo", { required: true })}
-              className="file-input file-input-bordered w-full bg-base-100 border-white/10 text-gray-400 rounded-xl"
+              className="file-input file-input-info w-full bg-base-100 border-white/10 text-gray-400 rounded-xl"
             />
             {errors.photo && <p className="text-red-500 text-xs mt-1">Photo is required</p>}
           </div>
@@ -155,16 +155,16 @@ const Register = () => {
           {/* Register Button */}
           <button
             type="submit"
-            className="w-full py-3 bg-blue-400 hover:bg-blue-500 text-base-200 rounded-4xl font-bold text-lg shadow-lg shadow-blue-900/20 transform active:scale-95 transition-all"
+            className="w-full py-3 bg-linear-to-r from-cyan-400 to-blue-500 hover:from-cyan-500 hover:to-blue-600 text-white rounded-4xl font-bold text-lg shadow-lg shadow-blue-900/20 transform active:scale-95 transition-all"
           >
             Create Account
           </button>
         </form>
 
         <div className="relative flex py-6 items-center">
-          <div className="flex-grow border-t border-white/10"></div>
-          <span className="flex-shrink mx-4 text-gray-500 text-xs uppercase">Or Sign up with</span>
-          <div className="flex-grow border-t border-white/10"></div>
+          <div className="grow border-t border-white/10"></div>
+          <span className="shrink mx-4 text-gray-500 text-xs uppercase">Or Sign up with</span>
+          <div className="grow border-t border-white/10"></div>
         </div>
 
         <div>
