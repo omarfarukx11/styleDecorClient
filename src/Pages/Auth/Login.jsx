@@ -34,8 +34,6 @@ const Login = () => {
         Swal.fire({
           title: "Login Success!",
           icon: "success",
-          background: "#1a1a1a",
-          color: "#ffffff",
           timer: 1000,
           showConfirmButton: false,
         });
@@ -46,8 +44,6 @@ const Login = () => {
           icon: "error",
           title: "Access Denied",
           text: "Incorrect email or password",
-          background: "#1a1a1a",
-          color: "#ffffff",
         });
       });
   };
@@ -60,7 +56,7 @@ const Login = () => {
           <div className="flex justify-center mb-4 ">
             <Logo />
           </div>
-          <p className="text-gray-400 text-sm uppercase tracking-widest mb-2">Start for free</p>
+          <p className="text-gray-400 text-sm uppercase tracking-widest mb-2">welcome back</p>
           <h2 className="text-4xl font-bold">
             Login to account<span className="text-blue-500">.</span>
           </h2>

@@ -80,6 +80,7 @@ const ServiceDetails = () => {
         icon: "error",
         title: err.message || "Booking Failed",
         text: "Something went wrong. Please try again.",
+
       });
     }
   };

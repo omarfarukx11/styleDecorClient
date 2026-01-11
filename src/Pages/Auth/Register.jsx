@@ -50,8 +50,6 @@ const Register = () => {
         Swal.fire({
           title: "Register Success!",
           icon: "success",
-          background: "#1a1a1a",
-          color: "#ffffff",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -63,8 +61,6 @@ const Register = () => {
           icon: "error",
           title: "Register Failed",
           text: error.message || "Please try again later.",
-          background: "#1a1a1a",
-          color: "#ffffff",
         });
       });
   };

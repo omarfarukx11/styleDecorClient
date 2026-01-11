@@ -44,7 +44,8 @@ const Hero = () => {
         className="absolute inset-0 z-0"
       >
         <img
-          src="https://i.ibb.co.com/PGDhs74D/home-decor-1100-x-921-wallpaper-afxadyvf33e1kh3c.jpg"
+          // src="https://i.ibb.co.com/PGDhs74D/home-decor-1100-x-921-wallpaper-afxadyvf33e1kh3c.jpg"
+           src="https://i.ibb.co.com/qLqvyzZT/istockphoto-2164617622-612x612.jpg"
           alt="Background"
           className="w-full h-full object-cover"
         />
@@ -78,9 +79,9 @@ const Hero = () => {
         {/* SUBHEADING WITH FADE IN UP */}
         <motion.p 
           variants={fadeInUp}
-          className="mt-8 text-sm md:text-xl lg:text-2xl max-w-2xl mx-auto text-gray-300 leading-relaxed font-medium"
+          className="mt-8 text-sm md:text-xl lg:text-2xl max-w-2xl mx-auto text-gray-300 leading-relaxed font-medium "
         >
-          StyleDecor provides premium decoration services for weddings,
+          StyleDecor provides premium decoration services for home,weddings,
           birthday parties, corporate events, and more.
         </motion.p>
 

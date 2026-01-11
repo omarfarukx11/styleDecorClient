@@ -1,8 +1,12 @@
 import React from 'react';
+import LogoImg from "../assets/ChatGPT Image Jan 12, 2026, 12_48_39 AM.png"
+import { Link } from 'react-router';
 const Logo = () => {
     return (
         <div>
-            <h1 className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500 inline-block lg:text-4xl xl:5xl text-2xl font-bold ">StyleDecor</h1>
+            <Link to={"/"} >
+            <img  className='w-22' src={LogoImg} alt="" />
+            </Link>
 
         </div>
     );

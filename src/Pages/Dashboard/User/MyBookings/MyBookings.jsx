@@ -17,7 +17,7 @@ const MyBookings = () => {
   const [bookingData, setBookingData] = useState(null);
   const { register, handleSubmit, watch, reset } = useForm();
 
-  // Fetching user-specific bookings
+
   const { data: book = [], refetch } = useQuery({
     queryKey: ["booking", user?.email],
     queryFn: async () => {
@@ -26,7 +26,7 @@ const MyBookings = () => {
     },
   });
 
-  // Fetching service centers for the update form dropdowns
+
   const { data: centers = [], isLoading } = useQuery({
     queryKey: ["serviceCenters"],
     queryFn: async () => {
@@ -35,7 +35,7 @@ const MyBookings = () => {
     },
   });
 
-  // Dynamic Region/District Logic
+
   const selectedRegion = watch("BookingRegion");
   const regions = [...new Set(centers.map((c) => c.region))];
   const districts = selectedRegion
@@ -55,6 +55,7 @@ const MyBookings = () => {
             icon: "success",
             title: "Booking Updated!",
             text: "Your booking has been successfully updated.",
+            timer: 2000
           });
         }
       })
@@ -110,7 +111,6 @@ const MyBookings = () => {
   const closeUpdateModal = () => updateRef.current.close();
   const handlePayModal = () => payRef.current.showModal();
 
-  // Animation variants
   const container = {
     hidden: { opacity: 0 },
     show: {

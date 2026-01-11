@@ -81,7 +81,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-primary text-base-200 shadow-sm ">
-      <div className="flex justify-between items-center max-w-[1860px] py-5 px-4 lg:px-8 xl:px-16 mx-auto ">
+      <div className="flex justify-between items-center max-w-[1860px] px-4 lg:px-8 xl:px-16 mx-auto ">
         {/* Left */}
         <div className="navbar-start flex items-center gap-2">
           {/* Mobile Dropdown */}
