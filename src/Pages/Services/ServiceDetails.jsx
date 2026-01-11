@@ -147,7 +147,6 @@ const ServiceDetails = () => {
               <span className="text-2xl font-bold ">
                 {service.rating || "N/A"}
               </span>
-              <span className="">(248 reviews)</span>
             </div>
 
             <p className="text-lg  leading-relaxed mb-10">

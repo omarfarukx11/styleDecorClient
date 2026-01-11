@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { Link } from "react-router";
 import Button from "../../../../utility/Button";
 import BigTitile from "../../../../utility/BigTitile";
+import { motion } from "framer-motion"; // Added animation import
 
 const ManageDecorators = () => {
   const axiosSecure = useAxiosSecure();
@@ -50,6 +51,20 @@ const ManageDecorators = () => {
     });
   };
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   if (isLoading) {
     return <Loader></Loader>;
   }
@@ -82,14 +97,21 @@ const ManageDecorators = () => {
             <div className="w-[140px] text-center xl:mr-6">Action</div>
           </div>
 
-          {/* BODY */}
-          <div className="space-y-5 xl:space-x-2">
+          {/* BODY WITH STAGGERED ANIMATION */}
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="space-y-5 xl:space-x-2"
+          >
             {allDecorator.length === 0 ? (
-              <Title>No Decorators Available</Title>
+              <h1 className="text-center text-2xl text-base-200 py-10">No Decorators Available</h1>
             ) : (
               allDecorator.map((d, i) => (
-                <div
+                <motion.div
                   key={d._id}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.005 }}
                   className="flex flex-col xl:flex-row xl:items-center xl:justify-between rounded-lg py-5 text-lg hover:bg-secondary hover:text-base-200 bg-base-100 text-base-200"
                 >
                   {/* SL */}
@@ -142,10 +164,10 @@ const ManageDecorators = () => {
                       Delete
                     </button>
                   </div>
-                </div>
+                </motion.div>
               ))
             )}
-          </div>
+          </motion.div>
         </div>
 
         {totalPages > 1 && (

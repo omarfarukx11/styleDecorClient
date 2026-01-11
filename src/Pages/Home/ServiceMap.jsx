@@ -4,6 +4,7 @@ import "leaflet/dist/leaflet.css";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { IoSearch } from "react-icons/io5";
+import { motion } from "framer-motion"; // Added motion import
 import Button from "../../utility/Button";
 import Title from "../../utility/Title";
 
@@ -33,40 +34,71 @@ const ServiceMap = () => {
     }
   };
 
+  // Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1, 
+      transition: { duration: 0.6, ease: "easeOut" } 
+    },
+  };
+
   return (
-    <section className="">
-      <div className="rounded-xl max-w-[1980px] lg:px-20 mx-auto ">
+    <section className="overflow-hidden">
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        className="rounded-xl max-w-[1980px] lg:px-20 mx-auto "
+      >
         <div className="text-base-200 rounded-xl flex items-center justify-center flex-col">
-          <Title>We provide services all over Bangladesh</Title>
-          <div className="md:my-10 flex justify-center sm:justify-start">
-  <form onSubmit={handleSearch} className="w-full max-w-sm"> {/* Controlled small width */}
-    <label className="flex items-center bg-accent rounded-lg shadow-sm overflow-hidden transition-all ">
-      
-      <IoSearch className="text-xl text-base-200/50 ml-3 shrink-0" />
-      <input
-        name="location"
-        placeholder="Search location..."
-        required
-        className="flex-1 bg-transparent border-none outline-none px-3 text-sm text-base-200 placeholder:text-base-200/30 w-full"
-      />
-      
-      <div className="shrink-0">
-        <Button>
-           <span className="text-xs md:text-sm">Search</span>
-        </Button>
-      </div>
-      
-    </label>
-  </form>
-</div>
+          <motion.div variants={itemVariants}>
+            <Title>We provide services all over Bangladesh</Title>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="md:my-10 flex justify-center sm:justify-start">
+            <form onSubmit={handleSearch} className="w-full max-w-sm">
+              <label className="flex items-center bg-accent rounded-lg shadow-sm overflow-hidden transition-all ">
+                <IoSearch className="text-xl text-base-200/50 ml-3 shrink-0" />
+                <input
+                  name="location"
+                  placeholder="Search location..."
+                  required
+                  className="flex-1 bg-transparent border-none outline-none px-3 text-sm text-base-200 placeholder:text-base-200/30 w-full"
+                />
+                <div className="shrink-0">
+                  <Button>
+                    <span className="text-xs md:text-sm">Search</span>
+                  </Button>
+                </div>
+              </label>
+            </form>
+          </motion.div>
         </div>
 
-        <div className="h-[800px] lg:mb-20 mb-5 mt-5 px-5">
+        {/* Map Container with Animation */}
+        <motion.div 
+          variants={{
+            hidden: { opacity: 0, scale: 0.95 },
+            visible: { opacity: 1, scale: 1, transition: { duration: 0.8, delay: 0.4 } }
+          }}
+          className="h-[800px] lg:mb-20 mb-5 mt-5 px-5"
+        >
           <MapContainer
             center={position}
             zoom={7}
             scrollWheelZoom={false}
-            className="h-[800px] z-0 relative"
+            className="h-[800px] z-0 relative rounded-2xl overflow-hidden border border-white/10"
             ref={mapRef}
           >
             <TileLayer
@@ -82,8 +114,8 @@ const ServiceMap = () => {
               </Marker>
             ))}
           </MapContainer>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

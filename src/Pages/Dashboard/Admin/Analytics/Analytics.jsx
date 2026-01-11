@@ -9,16 +9,13 @@ import {
   Tooltip,
   ResponsiveContainer,
   Cell,
-  AreaChart,
-  Area,
 } from "recharts";
 import {
-  FaMoneyBillWave,
   FaChartBar,
   FaCalendarCheck,
   FaLayerGroup,
 } from "react-icons/fa";
-import { MdOutlinePayments, MdTrendingUp } from "react-icons/md";
+import { motion } from "framer-motion"; // Added Framer Motion
 
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Loader from "../../../../Components/Loader";
@@ -26,8 +23,6 @@ import Title from "../../../../utility/Title";
 
 const AdminAnalytics = () => {
   const axiosSecure = useAxiosSecure();
-
-
 
   const { data: bookingData, isLoading: bLoading } = useQuery({
     queryKey: ["admin-all-bookings"],
@@ -40,16 +35,11 @@ const AdminAnalytics = () => {
   if (bLoading) return <Loader />;
 
   const bookingsResult = bookingData?.result || [];
+  
   const prepareHistogramData = () => {
     const categories = [
-      "Home",
-      "Wedding",
-      "Office",
-      "Seminar",
-      "Meeting",
-      "Birthday",
-      "Corporate",
-      "Anniversary",
+      "Home", "Wedding", "Office", "Seminar", 
+      "Meeting", "Birthday", "Corporate", "Anniversary",
     ];
 
     const counts = {};
@@ -69,48 +59,81 @@ const AdminAnalytics = () => {
 
   const histogramData = prepareHistogramData();
 
+  // Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
   return (
     <div className="text-base-200">
       <Title>StyleDecor Business Insights</Title>
-      <title>StyelDecor - Analytics Dashboard</title>
-      <div className="p-8 bg-primary h-full">
+      <title>StyleDecor - Analytics Dashboard</title>
+      
+      <motion.div 
+        className="p-8 bg-primary h-full"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Stats Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="stats shadow-sm bg-base-100 ">
+          <motion.div variants={itemVariants} className="stats shadow-2xl bg-base-100">
             <div className="stat">
-              <div className="stat-figure ">
+              <div className="stat-figure text-info">
                 <FaCalendarCheck size={30} />
               </div>
-              <div >Total Interest</div>
-              <div className="stat-value ">
+              <div className="stat-title text-base-200 opacity-70">Total Interest</div>
+              <motion.div 
+                initial={{ scale: 0.5 }}
+                animate={{ scale: 1 }}
+                className="stat-value"
+              >
                 {bookingData?.total || 0}
-              </div>
-              <div className="stat-desc text-info">Total Booking Recorded</div>
+              </motion.div>
+              <div className="stat-desc text-info">Total Bookings Recorded</div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="stats shadow-sm bg-base-100">
+          <motion.div variants={itemVariants} className="stats shadow-2xl bg-base-100">
             <div className="stat">
-              <div className="stat-figure ">
+              <div className="stat-figure text-info">
                 <FaLayerGroup size={30} />
               </div>
-              <div >Categories</div>
-              <div className="stat-value ">
+              <div className="stat-title text-base-200 opacity-70">Categories</div>
+              <motion.div 
+                initial={{ scale: 0.5 }}
+                animate={{ scale: 1 }}
+                className="stat-value"
+              >
                 {histogramData.length}
-              </div>
-              <div className="text-info font-bold text-xs ">
+              </motion.div>
+              <div className="text-info font-bold text-xs">
                 Diversified Services
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Charts Section */}
-        <div className="gap-8 mt-10">
-          <div className="bg-base-100 p-6 rounded-xl shadow-sm">
+        <motion.div 
+          variants={itemVariants}
+          className="gap-8 mt-10"
+        >
+          <div className="bg-base-100 p-6 rounded-xl shadow-2xl">
             <div className="flex items-center gap-2 mb-6 font-bold text-lg">
-              <FaChartBar className="text-accent" size={24} />
+              <FaChartBar className="text-info" size={24} />
               <h3>Service Demand Distribution</h3>
             </div>
+            
             <div className="h-80">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart
@@ -121,11 +144,11 @@ const AdminAnalytics = () => {
                     strokeDasharray="4 4"
                     stroke="var(--color-info)"
                     vertical={false}
-                    opacity={0.5}
+                    opacity={0.2}
                   />
                   <XAxis
                     dataKey="name"
-                    stroke="var(--color-base-200)"
+                    stroke="var(--color-info)"
                     fontSize={11}
                     tick={{ fill: "var(--color-info)" }}
                     angle={-35}
@@ -135,40 +158,37 @@ const AdminAnalytics = () => {
                     tickMargin={10}
                   />
                   <YAxis
-                    stroke="var(--color-secondary)"
+                    stroke="var(--color-info)"
                     fontSize={11}
                     tick={{ fill: "var(--color-info)" }}
                     axisLine={false}
                     tickLine={false}
                     allowDecimals={false}
                     domain={[0, "dataMax + 5"]}
-                    tickCount={6}
                   />
                   <Tooltip
-                    cursor={{ fill: "var(--color-info)", opacity: 0.2 }}
+                    cursor={{ fill: "var(--color-secondary)", opacity: 0.4 }}
                     contentStyle={{
-                      backgroundColor: "var(--color-secondary)", 
-                      border: "1px solid var(--color-primary)",
-                      borderRadius: "8px",
-                      fontSize: "14px",
-                      fontWeight: "bold",
+                      backgroundColor: "var(--color-primary)",
+                      border: "none",
+                      borderRadius: "12px",
+                      color: "var(--color-base-200)",
+                      boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.3)"
                     }}
-                    labelStyle={{ color: "var(--color-info)" }}
-                    itemStyle={{
-                      color: "var(--color-info)",
-                      paddingTop: "4px",
-                    }}
-                    formatter={(value) => [`${value}`, "Total Bookings"]}
+                    itemStyle={{ color: "var(--color-info)" }}
                   />
-                  <Bar dataKey="count" radius={[6, 6, 0, 0]} barSize={32}>
+                  <Bar 
+                    dataKey="count" 
+                    radius={[6, 6, 0, 0]} 
+                    barSize={32}
+                    animationBegin={800}
+                    animationDuration={1500}
+                  >
                     {histogramData.map((entry, index) => (
                       <Cell
                         key={`cell-${index}`}
-                        fill={
-                          index % 2 === 0
-                            ? "var(--color-base-200)"
-                            : "var(--color-base-200)"
-                        }
+                        fill="var(--color-base-200)"
+                        style={{ filter: "drop-shadow(0px 4px 4px rgba(0,0,0,0.2))" }}
                       />
                     ))}
                   </Bar>
@@ -176,8 +196,8 @@ const AdminAnalytics = () => {
               </ResponsiveContainer>
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

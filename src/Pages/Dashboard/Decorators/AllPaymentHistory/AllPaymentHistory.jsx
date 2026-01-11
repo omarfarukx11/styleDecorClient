@@ -1,12 +1,13 @@
 import React from "react";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import Swal from "sweetalert2";
 import Loader from "../../../../Components/Loader";
 import Title from "../../../../utility/Title";
+import { motion } from "framer-motion"; // Added Framer Motion
 
 const AllPaymentHistory = () => {
   const axiosSecure = useAxiosSecure();
+  
   const { data: history = [], isLoading } = useQuery({
     queryKey: ["payment-history"],
     queryFn: async () => {
@@ -15,6 +16,22 @@ const AllPaymentHistory = () => {
     },
   });
 
+  // Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05, // Items appear one after another
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   if (isLoading) {
     return <Loader></Loader>;
   }
@@ -22,8 +39,10 @@ const AllPaymentHistory = () => {
   return (
     <div className="text-base-200">
       <Title>Client Payment History</Title>
-        <title>StyelDecor - All Payment History</title>
+      <title>StyleDecor - All Payment History</title>
+      
       <div className="bg-primary p-2 md:p-8">
+        {/* Header - Desktop Only */}
         <div className="hidden xl:flex bg-secondary text-base-200 xl:justify-between rounded-md py-8 text-sm xl:text-base font-semibold mb-3 px-4">
           <div className="w-12 text-center">#</div>
           <div className="flex-[1.5] text-center">Service Name</div>
@@ -34,65 +53,76 @@ const AllPaymentHistory = () => {
           <div className="flex-2 text-center">Transaction ID</div>
         </div>
 
-        <div className="space-y-6 xl:space-y-4">
-          {
-            history.length === 0 ? (
-              <Title> No Payment History Available</Title>
-            )
-             : (history.map((b, i) => (
-            <div
-              key={b._id}
-              className="flex flex-col xl:flex-row xl:items-center xl:justify-between py-4 xl:py-8 text-sm rounded-lg p-3 xl:px-4 hover:bg-secondary bg-base-100"
-            >
-              <div className="flex justify-between xl:w-12 px-1 py-1 font-semibold  xl:border-b-0">
-                <span className="xl:hidden">#</span>
-                <span className="xl:text-center w-full">{i + 1}</span>
-              </div>
+        {/* Payment Records */}
+        <motion.div 
+          className="space-y-6 xl:space-y-4"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {history.length === 0 ? (
+            <motion.div variants={itemVariants}>
+              <Title>No Payment History Available</Title>
+            </motion.div>
+          ) : (
+            history.map((b, i) => (
+              <motion.div
+                key={b._id}
+                variants={itemVariants}
+                whileHover={{ scale: 1.005 }} // Subtle hover effect
+                className="flex flex-col xl:flex-row xl:items-center xl:justify-between py-4 xl:py-8 text-sm rounded-lg p-3 xl:px-4 hover:bg-secondary bg-base-100 transition-colors duration-200 shadow-lg"
+              >
+                {/* Index */}
+                <div className="flex justify-between xl:w-12 px-1 py-1 font-semibold xl:border-b-0">
+                  <span className="xl:hidden">#</span>
+                  <span className="xl:text-center w-full">{i + 1}</span>
+                </div>
 
-              {/* Service Name */}
-              <div className="flex justify-between xl:flex-[1.5] px-1 py-1  xl:border-b-0">
-                <span className="xl:hidden font-semibold">Service Name</span>
-                <span className="xl:text-start xl:w-full">{b.serviceName}</span>
-              </div>
+                {/* Service Name */}
+                <div className="flex justify-between xl:flex-[1.5] px-1 py-1 xl:border-b-0">
+                  <span className="xl:hidden font-semibold">Service Name</span>
+                  <span className="xl:text-start xl:w-full">{b.serviceName}</span>
+                </div>
 
-              {/* Biller Name */}
-              <div className="flex justify-between xl:flex-1 px-1 py-1  xl:border-b-0">
-                <span className="xl:hidden font-semibold">Biller</span>
-                <span className="xl:text-center xl:w-full">{b.userName}</span>
-              </div>
+                {/* Biller Name */}
+                <div className="flex justify-between xl:flex-1 px-1 py-1 xl:border-b-0">
+                  <span className="xl:hidden font-semibold">Biller</span>
+                  <span className="xl:text-center xl:w-full">{b.userName}</span>
+                </div>
 
-              {/* User Email */}
-              <div className="flex justify-between xl:flex-[1.5] px-1 py-1  xl:border-b-0">
-                <span className="xl:hidden font-semibold">Email</span>
-                <span className="xl:text-center xl:w-full truncate">
-                  {b.userEmail}
-                </span>
-              </div>
+                {/* User Email */}
+                <div className="flex justify-between xl:flex-[1.5] px-1 py-1 xl:border-b-0">
+                  <span className="xl:hidden font-semibold">Email</span>
+                  <span className="xl:text-center xl:w-full truncate px-2">
+                    {b.userEmail}
+                  </span>
+                </div>
 
-              {/* Time */}
-              <div className="flex justify-between xl:flex-[1.5] px-1 py-1  xl:border-b-0">
-                <span className="xl:hidden font-semibold">Time</span>
-                <span className="xl:text-center xl:w-full xl:text-xs">
-                  {new Date(b.paidAt).toLocaleString()}
-                </span>
-              </div>
+                {/* Time */}
+                <div className="flex justify-between xl:flex-[1.5] px-1 py-1 xl:border-b-0">
+                  <span className="xl:hidden font-semibold">Time</span>
+                  <span className="xl:text-center xl:w-full xl:text-xs">
+                    {new Date(b.paidAt).toLocaleString()}
+                  </span>
+                </div>
 
-              {/* Amount */}
-              <div className="flex justify-between xl:flex-1 px-1 py-1  xl:border-b-0 font-semibold">
-                <span className="xl:hidden font-semibold">Amount</span>
-                <span className="xl:text-center xl:w-full">৳{b.amount}</span>
-              </div>
+                {/* Amount */}
+                <div className="flex justify-between xl:flex-1 px-1 py-1 xl:border-b-0 font-bold text-green-500">
+                  <span className="xl:hidden font-semibold text-base-200">Amount</span>
+                  <span className="xl:text-center xl:w-full">৳{b.amount}</span>
+                </div>
 
-              {/* Transaction ID */}
-              <div className="flex justify-between xl:flex-2 px-1 py-1  xl:border-b-0">
-                <span className="xl:hidden font-semibold">Transaction ID</span>
-                <span className="xl:text-center xl:w-full break-all xl:break-normal font-mono text-xs">
-                  {b.transactionId}
-                </span>
-              </div>
-            </div>
-          )))          }
-        </div>
+                {/* Transaction ID */}
+                <div className="flex justify-between xl:flex-2 px-1 py-1 xl:border-b-0">
+                  <span className="xl:hidden font-semibold">Transaction ID</span>
+                  <span className="xl:text-center xl:w-full break-all xl:break-normal font-mono text-xs opacity-80">
+                    {b.transactionId}
+                  </span>
+                </div>
+              </motion.div>
+            ))
+          )}
+        </motion.div>
       </div>
     </div>
   );

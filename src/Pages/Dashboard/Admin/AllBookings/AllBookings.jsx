@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import Loader from "../../../../Components/Loader";
 import Button from "../../../../utility/Button";
 import BigTitile from "../../../../utility/BigTitile";
-
+import { motion, AnimatePresence } from "framer-motion"; // Added Framer Motion
 
 const AllBookings = () => {
   const axiosSecure = useAxiosSecure();
@@ -38,6 +38,20 @@ const AllBookings = () => {
       return res.data;
     },
   });
+
+  // Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.05 },
+    },
+  };
+
+  const rowVariants = {
+    hidden: { opacity: 0, x: -10 },
+    visible: { opacity: 1, x: 0 },
+  };
 
   const handleAssignDecorators = (decorator) => {
     const decoratorAssignInfo = {
@@ -77,225 +91,176 @@ const AllBookings = () => {
   return (
     <div className="text-base-200">
       <BigTitile>All Bookings</BigTitile>
-      <title>StyelDecor - All Bookings</title>
+      <title>StyleDecor - All Bookings</title>
       <div className="xl:p-8 p-4 bg-primary">
-        <div className="rounded-lg">
-          <table className="table w-full">
+        <div className="overflow-x-auto rounded-lg">
+          <table className="table w-full border-separate border-spacing-y-2">
             <thead className="hidden xl:table-header-group">
               <tr className="bg-secondary text-base-200 h-20 ">
-                <th>#</th>
+                <th className="rounded-l-xl">#</th>
                 <th>Client Name</th>
                 <th>Service Name</th>
                 <th>District</th>
                 <th>Date</th>
                 <th>Booking Status</th>
                 <th>Payment</th>
-                <th>Service Status</th>
+                <th className="rounded-r-xl">Service Status</th>
               </tr>
             </thead>
 
-            <tbody>
+            <motion.tbody
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
               {allBooking.length === 0 ? (
-                <tr>
+                <motion.tr variants={rowVariants}>
                   <td
                     colSpan="8"
                     className="text-center py-10 text-2xl font-bold bg-base-100 rounded-lg"
                   >
                     No Bookings Available
                   </td>
-                </tr>
+                </motion.tr>
               ) : (
                 allBooking.map((booking, i) => (
-                  <tr
+                  <motion.tr
                     key={booking._id}
-                    className="block xl:table-row hover:bg-secondary bg-base-100 border-b border-primary rounded-lg xl:rounded-none  mb-4 xl:mb-0 2xl:text-xl sm:text-2xl  xl:text-lg
-              "
+                    variants={rowVariants}
+                    className="block xl:table-row hover:bg-secondary bg-base-100 border-b border-primary rounded-lg xl:rounded-none mb-4 xl:mb-0 2xl:text-xl sm:text-2xl xl:text-lg transition-all duration-300 shadow-md"
                   >
-                    <td className="flex justify-between xl:table-cell px-4 py-2">
+                    <td className="flex justify-between xl:table-cell px-4 py-4 xl:rounded-l-xl">
                       <span className="xl:hidden font-semibold">#</span>
-                      <span className="text-center">
-                        {(page - 1) * limit + i + 1}
-                      </span>
+                      <span>{(page - 1) * limit + i + 1}</span>
                     </td>
 
-                    <td className="flex justify-between xl:table-cell px-4 py-2">
-                      <span className="xl:hidden font-semibold">
-                        Client Name
-                      </span>
+                    <td className="flex justify-between xl:table-cell px-4 py-4">
+                      <span className="xl:hidden font-semibold">Client Name</span>
                       <span>{booking.userName}</span>
                     </td>
 
-                    <td className="flex justify-between xl:table-cell px-4 py-2">
-                      <span className="xl:hidden font-semibold">
-                        Service Name
-                      </span>
+                    <td className="flex justify-between xl:table-cell px-4 py-4">
+                      <span className="xl:hidden font-semibold">Service Name</span>
                       <span>{booking.serviceName}</span>
                     </td>
 
-                    <td className="flex justify-between xl:table-cell px-4 py-2">
-                      <span className="xl:hidden font-semibold">
-                        District Name
-                      </span>
+                    <td className="flex justify-between xl:table-cell px-4 py-4">
+                      <span className="xl:hidden font-semibold">District Name</span>
                       <span>{booking.bookingDistrict}</span>
                     </td>
 
-                    <td className="flex justify-between xl:table-cell px-4 py-2">
-                      <span className="xl:hidden font-semibold">
-                        Booking Date
-                      </span>
+                    <td className="flex justify-between xl:table-cell px-4 py-4">
+                      <span className="xl:hidden font-semibold">Booking Date</span>
                       <span>{booking.bookingDate}</span>
                     </td>
 
-                    <td className="flex justify-between xl:table-cell px-4 py-2">
-                      <span className="xl:hidden font-semibold">
-                        Booking Status
-                      </span>
-                      <span
-                        className={` ${
-                          booking.bookingStatus === "confirmed"
-                            ? "text-green-500"
-                            : "text-yellow-500"
-                        }`}
-                      >
+                    <td className="flex justify-between xl:table-cell px-4 py-4">
+                      <span className="xl:hidden font-semibold">Booking Status</span>
+                      <span className={booking.bookingStatus === "confirmed" ? "text-green-500" : "text-yellow-500 font-medium"}>
                         {booking.bookingStatus}
                       </span>
                     </td>
 
-                    <td className="flex justify-between xl:table-cell px-4 py-2">
-                      <span className="xl:hidden font-semibold">
-                        Payment Status
-                      </span>
-                      <span
-                        className={`capitalize ${
-                          booking.paymentStatus === "paid"
-                            ? "text-green-500"
-                            : "text-red-700"
-                        }`}
-                      >
+                    <td className="flex justify-between xl:table-cell px-4 py-4">
+                      <span className="xl:hidden font-semibold">Payment Status</span>
+                      <span className={`capitalize font-medium ${booking.paymentStatus === "paid" ? "text-green-500" : "text-red-500"}`}>
                         {booking.paymentStatus}
                       </span>
                     </td>
 
-                    <td className="flex justify-between xl:table-cell px-4 py-3">
-                      <span className="xl:hidden font-semibold">
-                        Service Status
-                      </span>
-
-                      {booking.paymentStatus === "paid" &&
-                      !booking.decoratorEmail ? (
+                    <td className="flex justify-between xl:table-cell px-4 py-4 xl:rounded-r-xl">
+                      <span className="xl:hidden font-semibold">Service Status</span>
+                      {booking.paymentStatus === "paid" && !booking.decoratorEmail ? (
                         <button
                           onClick={() => handleModal(booking)}
-                          className="btn rounded-full btn-sm hover bg-primary text-base-200 border-none  font-bold text-xs shadow-xl transform hover:scale-105 transition-all"
+                          className="btn rounded-full btn-sm bg-primary text-base-200 border-none font-bold text-xs shadow-xl transform hover:scale-105 transition-all"
                         >
                           Find Decorator
                         </button>
                       ) : booking.decoratorEmail ? (
-                        <span className="text-info xl:py-5">
+                        <span className="text-info font-medium italic">
                           {booking.decoratorStatus}
                         </span>
                       ) : (
-                        <span className="text-red-600">Unpaid</span>
+                        <span className="text-red-600 font-bold opacity-70">Unpaid</span>
                       )}
                     </td>
-                  </tr>
+                  </motion.tr>
                 ))
               )}
-            </tbody>
+            </motion.tbody>
           </table>
         </div>
 
+        {/* Decorator Assignment Modal */}
         <dialog ref={AssignRef} className="modal">
-          <div className="modal-box w-11/12 max-w-4xl max-h-[80vh] overflow-y-auto p-6 bg-primary text-base-200 rounded-lg">
-            {decorators.length === 0 ? (
-              <h1 className="text-center text-2xl font-bold py-10 ">No Decorators Available</h1>
-            ) : (
-              <table className="table w-full rounded-lg">
-                <thead className="hidden xl:table-header-group text-lg">
-                  <tr className="bg-secondary text-base-200 ">
-                    <th>#</th>
-                    <th>Decorator</th>
-                    <th>Service</th>
-                    <th>District</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
+          <div className="modal-box w-11/12 max-w-4xl max-h-[80vh] overflow-y-auto p-0 bg-primary text-base-200 rounded-lg">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="p-6"
+            >
+              <div className="mb-6 border-b border-white/20 pb-4">
+                <h2 className="text-2xl font-bold">Assign Decorators</h2>
+                <p className="text-sm opacity-80">Showing available decorators for {selectedService?.bookingDistrict}</p>
+              </div>
 
-                <tbody>
-                  {decorators.map((d, i) => (
-                    <tr
-                      key={d._id}
-                      className="block xl:table-row hover:bg-secondary bg-base-100 rounded-lg xl:rounded-none  mb-4 xl:mb-0  shadow-2xl 2xl:text-xl sm:text-2xl xl:text-lg
-              "
-                    >
-                      <td className="flex justify-between xl:table-cell px-4 py-2">
-                        <span className="xl:hidden font-semibold">#</span>
-                        <span>{i + 1}</span>
-                      </td>
+              {decorators.length === 0 ? (
+                <div className="py-20 text-center">
+                  <h1 className="text-2xl font-bold opacity-60">No Decorators Available</h1>
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="table w-full">
+                    <thead className="text-base-200 opacity-70">
+                      <tr>
+                        <th>#</th>
+                        <th>Decorator</th>
+                        <th>Specialty</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {decorators.map((d, i) => (
+                        <tr key={d._id} className="hover:bg-secondary/50 transition-colors">
+                          <td>{i + 1}</td>
+                          <td className="font-bold">{d.name}</td>
+                          <td>{d.specialties}</td>
+                          <td>
+                            <span className="badge badge-success badge-outline text-green-400">{d.status}</span>
+                          </td>
+                          <td>
+                            <button
+                              onClick={() => handleAssignDecorators(d)}
+                              className="btn btn-xs bg-base-100 text-base-200 border-none hover:bg-secondary"
+                            >
+                              Assign
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
 
-                      {/* Decorator */}
-                      <td className="flex justify-between xl:table-cell px-4 py-2">
-                        <span className="xl:hidden font-semibold">
-                          Decorator
-                        </span>
-                        <span>{d.name}</span>
-                      </td>
-
-                      {/* Service */}
-                      <td className="flex justify-between xl:table-cell px-4 py-2">
-                        <span className="xl:hidden font-semibold">Service</span>
-                        <span>{d.specialties}</span>
-                      </td>
-
-                      {/* District */}
-                      <td className="flex justify-between xl:table-cell px-4 py-2">
-                        <span className="xl:hidden font-semibold">
-                          District
-                        </span>
-                        <span>{d.district}</span>
-                      </td>
-
-                      {/* Status */}
-                      <td className="flex justify-between xl:table-cell px-4 py-2">
-                        <span className="xl:hidden font-semibold">Status</span>
-                        <span className="px-3 py-1 text-green-400  text-sm">
-                          {d.status}
-                        </span>
-                      </td>
-
-                      {/* Action */}
-                      <td className="flex justify-between xl:table-cell px-4 py-3">
-                        <span className="xl:hidden font-semibold">Action</span>
-                        <button
-                          onClick={() => handleAssignDecorators(d)}
-                          className="btn btn-sm bg-primary text-base-200 hover:bg-base-100 hover border-none "
-                        >
-                          Assign
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            )}
-
-            {/* CLOSE BUTTON */}
-            <div className="flex justify-end pt-6 ">
-              <button
-                onClick={() => AssignRef.current.close()}
-              >
-                <Button>Close</Button>
-              </button>
-            </div>
+              <div className="flex justify-end pt-8">
+                <button onClick={() => AssignRef.current.close()}>
+                  <Button>Close</Button>
+                </button>
+              </div>
+            </motion.div>
           </div>
         </dialog>
 
+        {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex justify-center mt-12  gap-2 text-base-200">
+          <div className="flex justify-center mt-12 gap-2 text-base-200">
             <button
               disabled={page === 1}
               onClick={() => setPage((prev) => prev - 1)}
-              className="btn btn-outline btn-sm bg-secondary text-base-200  disabled:opacity-40"
+              className="btn btn-outline btn-sm bg-secondary text-base-200 disabled:opacity-40"
             >
               « Prev
             </button>
@@ -305,8 +270,8 @@ const AllBookings = () => {
                 <button
                   key={num}
                   onClick={() => setPage(num)}
-                  className={`btn btn-sm text-base-200 border-secondary  ${
-                    page === num ? "btn-secondary " : "btn-outline btn-ghost"
+                  className={`btn btn-sm text-base-200 border-secondary ${
+                    page === num ? "btn-secondary" : "btn-outline btn-ghost"
                   }`}
                 >
                   {num}
@@ -315,7 +280,7 @@ const AllBookings = () => {
             <button
               disabled={page === totalPages}
               onClick={() => setPage((prev) => prev + 1)}
-              className="btn btn-outline btn-sm  bg-secondary text-base-200 disabled:opacity-40"
+              className="btn btn-outline btn-sm bg-secondary text-base-200 disabled:opacity-40"
             >
               Next »
             </button>
@@ -325,4 +290,5 @@ const AllBookings = () => {
     </div>
   );
 };
+
 export default AllBookings;

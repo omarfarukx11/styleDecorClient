@@ -44,19 +44,43 @@ const MyProfile = () => {
     }
   };
 
+  // Animation variants for internal elements
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
+    }
+  };
+
   return (
-    <div className="min-h-[calc(100vh-120px)] flex items-center justify-center p-6 font-body bg-primary">
+    <div className="min-h-[calc(100vh-120px)] flex items-center justify-center p-6 font-body bg-primary overflow-hidden">
       <title>StyleDecor - Profile</title>
 
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          hidden: { opacity: 0, scale: 0.95, y: 30 },
+          visible: { 
+            opacity: 1, 
+            scale: 1, 
+            y: 0, 
+            transition: { 
+              duration: 0.8, 
+              staggerChildren: 0.1, 
+              delayChildren: 0.2 
+            } 
+          }
+        }}
         className="w-full max-w-2xl backdrop-blur-2xl border border-white/10 rounded-4xl overflow-hidden bg-base-100/10 shadow-2xl"
       >
         <div className="p-8 md:p-12">
           {/* PROFILE HEADER AREA */}
           <div className="flex flex-col items-center text-center">
-            <div className="relative group mb-6">
+            <motion.div variants={itemVariants} className="relative group mb-6">
               <div className="absolute -inset-1 bg-linear-to-r from-secondary to-base-200 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
               <img
                 src={
@@ -69,17 +93,17 @@ const MyProfile = () => {
               <div className="absolute bottom-2 right-2 bg-secondary p-2 rounded-full border-4 border-primary text-primary-content">
                 <FaCamera size={14} />
               </div>
-            </div>
+            </motion.div>
 
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-base-200 font-title">
+            <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-base-200 font-title">
               {user?.displayName}
-            </h2>
+            </motion.h2>
 
-            <p className="mt-2 text-base-200/60 flex items-center gap-2 text-lg">
+            <motion.p variants={itemVariants} className="mt-2 text-base-200/60 flex items-center gap-2 text-lg">
               <FaEnvelope className="text-secondary" /> {user?.email}
-            </p>
+            </motion.p>
 
-            <div className="mt-8">
+            <motion.div variants={itemVariants} className="mt-8">
               {!showForm ? (
                 <div onClick={() => setShowForm(true)}>
                   <Button className="px-8 py-3 rounded-full flex items-center">
@@ -91,17 +115,18 @@ const MyProfile = () => {
                   Updating Profile
                 </span>
               )}
-            </div>
+            </motion.div>
           </div>
 
           {/* EDIT FORM SECTION */}
           <AnimatePresence>
             {showForm && (
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                className="mt-10 pt-10 border-t border-white/5"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-10 pt-10 border-t border-white/5 overflow-hidden"
               >
                 <form onSubmit={handleUpdate} className="space-y-6">
                   <div className="space-y-2">
@@ -114,7 +139,7 @@ const MyProfile = () => {
                         type="text"
                         name="name"
                         defaultValue={user?.displayName}
-                        className="w-full  bg-base-100 border border-white/10 rounded-2xl py-4 pl-3 pr-4 text-base-200 focus:border-secondary/50 outline-none transition-all font-medium"
+                        className="w-full bg-base-100 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-base-200 focus:border-secondary/50 outline-none transition-all font-medium"
                         required
                       />
                     </div>
@@ -135,7 +160,6 @@ const MyProfile = () => {
                   </div>
 
                   <div className="flex flex-col gap-3 pt-4">
-                    {/* SUBMIT BUTTON */}
                     <Button
                       type="submit"
                       disabled={loading}
@@ -148,7 +172,6 @@ const MyProfile = () => {
                       )}
                     </Button>
 
-                    {/* CANCEL BUTTON - Fixed to prevent toast */}
                     <Button
                       type="button"
                       onClick={(e) => {

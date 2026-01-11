@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../Hooks/useAuth";
 import Loader from "../../../../Components/Loader";
 import Title from "../../../../utility/Title";
+import { motion } from "framer-motion"; // Added animation import
 
 const TodaySchedule = () => {
   const axiosSecure = useAxiosSecure();
@@ -36,13 +37,31 @@ const TodaySchedule = () => {
       b.decoratorStatus !== "decorator Assigned"
   );
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
     <div className="text-base-200">
       <Title>Today's Work Schedule</Title>
       <title>StyelDecor - Schedule</title>
       <div className="p-8">
         {incompleteBookings.length === 0 ? (
-          <div className="text-center bg-base-100 rounded-lg py-8">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center bg-base-100 rounded-lg py-8"
+          >
             <h2 className="text-5xl py-6 rounded-lg">
               No projects scheduled for today!
             </h2>
@@ -50,9 +69,14 @@ const TodaySchedule = () => {
               You currently have no tasks for today. Once a task is assigned and
               accepted, it will appear here.
             </p>
-          </div>
+          </motion.div>
         ) : (
-          <div className="space-y-6">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="space-y-6"
+          >
             {incompleteBookings.map((booking) => {
               let nextAction = "";
               if (booking.decoratorStatus === "In Progress") {
@@ -71,8 +95,9 @@ const TodaySchedule = () => {
               }
 
               return (
-                <div
+                <motion.div
                   key={booking._id}
+                  variants={itemVariants}
                   className="bg-base-100 flex flex-col lg:flex-row justify-between items-start lg:items-center p-6 md:p-10  rounded-xl shadow gap-6"
                 >
                   <div>
@@ -99,10 +124,10 @@ const TodaySchedule = () => {
                       </p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         )}
       </div>
     </div>

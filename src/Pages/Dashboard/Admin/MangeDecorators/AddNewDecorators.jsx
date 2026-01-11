@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import Button from "../../../../utility/Button";
+import { motion } from "framer-motion"; // Added animation import
 
 const AddNewDecorators = () => {
   const axiosSecure = useAxiosSecure();
@@ -52,6 +53,20 @@ const AddNewDecorators = () => {
     }
   };
 
+  // Animation Variants
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
+
   return (
     <div className="bg-primary min-h-[clac(100vh-90px)]">
       <div className="py-8 text-lg lg:text-2xl text-center bg-primary text-base-200 border-b border-white">
@@ -61,19 +76,24 @@ const AddNewDecorators = () => {
 
       <div className="xl:p-8 p-4 bg-primary">
         
-        {/* --- SMALL DEVICE: DIV CARD SYSTEM (Right-aligned Button) --- */}
-        <div className="xl:hidden space-y-4">
+        {/* --- SMALL DEVICE: DIV CARD SYSTEM --- */}
+        <motion.div 
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="xl:hidden space-y-4"
+        >
           {user.length === 0 ? (
             <div className="text-center py-10 text-xl text-base-200 font-bold bg-base-100 rounded-lg">
               No Users Available
             </div>
           ) : (
             user.map((u, i) => (
-              <div 
+              <motion.div 
                 key={u._id} 
+                variants={item}
                 className="bg-base-100 p-5 rounded-xl border border-white/10 shadow-lg flex flex-col gap-4"
               >
-                {/* Top Row: SL and Info */}
                 <div className="flex justify-between items-start">
                   <div className="bg-secondary text-base-200 w-8 h-8 flex items-center justify-center rounded-full font-bold text-sm">
                     {i + 1}
@@ -84,7 +104,6 @@ const AddNewDecorators = () => {
                   </div>
                 </div>
 
-                {/* Bottom Row: Right Aligned Button */}
                 <div className="flex justify-end pt-2 border-t border-white/5">
                   <button
                     onClick={() => handleMakeDecorator(u)}
@@ -93,12 +112,12 @@ const AddNewDecorators = () => {
                     <Button>Make Decorator</Button>
                   </button>
                 </div>
-              </div>
+              </motion.div>
             ))
           )}
-        </div>
+        </motion.div>
 
-        {/* --- LARGE DEVICE: TABLE SYSTEM (Remains Unchanged) --- */}
+        {/* --- LARGE DEVICE: TABLE SYSTEM --- */}
         <div className="hidden xl:block overflow-x-auto w-full rounded-lg">
           <table className="table w-full border-separate border-spacing-y-3">
             <thead className="bg-secondary text-base-200">
@@ -110,7 +129,11 @@ const AddNewDecorators = () => {
               </tr>
             </thead>
 
-            <tbody>
+            <motion.tbody
+              variants={container}
+              initial="hidden"
+              animate="show"
+            >
               {user.length === 0 ? (
                 <tr>
                   <td
@@ -122,8 +145,9 @@ const AddNewDecorators = () => {
                 </tr>
               ) : (
                 user.map((u, i) => (
-                  <tr
+                  <motion.tr
                     key={u._id}
+                    variants={item}
                     className="bg-base-100 text-base-200 hover:bg-secondary hover:text-base-200 text-sm transition-all duration-300 shadow-md group"
                   >
                     <td className="font-bold rounded-l-lg">{i + 1}</td>
@@ -136,10 +160,10 @@ const AddNewDecorators = () => {
                         <Button>Make Decorator</Button>
                       </button>
                     </td>
-                  </tr>
+                  </motion.tr>
                 ))
               )}
-            </tbody>
+            </motion.tbody>
           </table>
         </div>
 

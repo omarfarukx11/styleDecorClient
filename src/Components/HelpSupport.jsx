@@ -13,23 +13,30 @@ const HelpSupport = () => {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+            transition: { 
+                staggerChildren: 0.15, 
+                delayChildren: 0.2 
+            }
         }
     };
 
     const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: { y: 0, opacity: 1, transition: { duration: 0.6 } }
+        hidden: { y: 30, opacity: 0 }, // Slightly deeper slide-up
+        visible: { 
+            y: 0, 
+            opacity: 1, 
+            transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+        }
     };
 
     return (
-        <section className="bg-primary text-base-200 min-h-screen ">
+        <section className="bg-primary text-base-200 min-h-screen">
             <motion.div 
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
-                className="max-w-[1980px] mx-auto lg:px-20 px-5 w-full lg:pb-20 pb-5 "
+                viewport={{ once: true, amount: 0.1 }} // Animation starts when 10% of the section is visible
+                className="max-w-[1980px] mx-auto lg:px-20 px-5 w-full lg:pb-20 pb-5"
             >
                 {/* Header */}
                 <motion.div variants={itemVariants} className="mb-20">
@@ -41,7 +48,7 @@ const HelpSupport = () => {
                     </p>
                 </motion.div>
 
-  
+                {/* Support Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:mb-20 mb-5">
                     {[
                         { icon: <HiOutlineMail />, title: "Email Us", desc: "support@styledecor.com" },
@@ -51,8 +58,8 @@ const HelpSupport = () => {
                         <motion.div 
                             key={i}
                             variants={itemVariants}
-                            whileHover={{ scale: 1.02 }}
-                            className="bg-secondary p-12 rounded-xl transition-all cursor-pointer"
+                            whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.05)" }}
+                            className="bg-secondary p-12 rounded-xl transition-all cursor-pointer border border-white/5"
                         >
                             <div className="text-4xl mb-6 text-info">{card.icon}</div>
                             <h4 className="text-2xl font-bold mb-3">{card.title}</h4>
@@ -63,7 +70,10 @@ const HelpSupport = () => {
 
                 {/* FAQ Section */}
                 <div className="max-w-[1400px]">
-                    <motion.h3 variants={itemVariants} className="lg:text-5xl text-2xl font-black mb-5 lg:mb-8 uppercase tracking-widest text-base-200">
+                    <motion.h3 
+                        variants={itemVariants} 
+                        className="lg:text-5xl text-2xl font-black mb-5 lg:mb-8 uppercase tracking-widest text-base-200"
+                    >
                         Common Inquiries
                     </motion.h3>
                     
@@ -72,7 +82,8 @@ const HelpSupport = () => {
                             <motion.div 
                                 key={index} 
                                 variants={itemVariants}
-                                className="collapse collapse-plus bg-secondary rounded-xl"
+                                whileHover={{ x: 10 }} // Subtle shift on hover for FAQs
+                                className="collapse collapse-plus bg-secondary rounded-xl border border-white/5"
                             >
                                 <input type="checkbox" className="peer" /> 
                                 

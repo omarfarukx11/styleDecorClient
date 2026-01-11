@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { Link } from "react-router";
 import Button from "../../../../utility/Button";
 import BigTitile from "../../../../utility/BigTitile";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ManageServices = () => {
   const axiosSecure = useAxiosSecure();
@@ -14,7 +15,6 @@ const ManageServices = () => {
   const limit = 10;
   const updateRef = useRef();
 
-  
   const {
     register: registerFilter,
     watch: watchFilter,
@@ -34,7 +34,7 @@ const ManageServices = () => {
     register: registerUpdate,
     handleSubmit: handleUpdateSubmit,
     reset: resetUpdateForm,
-    formState: { errors}
+    formState: { errors },
   } = useForm();
 
   const {
@@ -64,21 +64,33 @@ const ManageServices = () => {
   const total = data.total || 0;
   const totalPages = Math.ceil(total / limit);
 
+  // Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   const handleModal = (service) => {
     setSelectedService(service);
     resetUpdateForm({
-      service_name: service.service_name || service.name,
-      cost: service.cost || service.price,
+      service_name: service.name,
+      price: service.price,
       unit: service.unit,
-      serviceCategory: service.serviceCategory || service.type,
+      serviceCategory: service.type,
       status: service.status || "Active",
       description: service.description || "",
     });
     updateRef.current.showModal();
   };
 
- 
   const handleUpdateService = (data) => {
     if (!selectedService?._id) return;
 
@@ -109,12 +121,11 @@ const ManageServices = () => {
         Swal.fire({
           icon: "error",
           title: "Update failed",
-          text: err.message || "Something went wrong. Please try again.",
+          text: err.message || "Something went wrong.",
         });
       });
   };
 
- 
   const handleServiceDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -143,22 +154,22 @@ const ManageServices = () => {
   return (
     <div className="text-base-200">
       <BigTitile>Manage Services</BigTitile>
-      <title>StyelDecor - Manage Services</title>
+      <title>StyleDecor - Manage Services</title>
       <div className="xl:p-8 p-4">
         <div className="flex justify-end items-center mb-4">
-          <Link
-            to="/dashboard/add-new-service"
-          >
+          <Link to="/dashboard/add-new-service">
             <Button>+ Add New Service</Button>
           </Link>
         </div>
         <div className="flex justify-end items-center">
           <h1 className="text-2xl my-4 font-bold">
-            {services.length} of {total} Decorators
+            {services.length} of {total} Services
           </h1>
         </div>
 
-        <form
+        <motion.form
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
           onSubmit={handleSubmitFilter(() => refetch())}
           className="mb-8 flex flex-col lg:flex-row gap-4 items-end"
         >
@@ -166,7 +177,7 @@ const ManageServices = () => {
             {...registerFilter("search")}
             type="text"
             placeholder="Search by service name..."
-            className="input input-bordered outline-none py-3 w-full  input-lg flex-1"
+            className="input input-bordered outline-none py-3 w-full input-lg flex-1"
           />
           <select
             {...registerFilter("type")}
@@ -191,12 +202,12 @@ const ManageServices = () => {
             {...registerFilter("maxPrice")}
             type="number"
             placeholder="Max Price"
-            className="input input-bordered outline-none  input-lg w-full lg:w-32"
+            className="input input-bordered outline-none input-lg w-full lg:w-32"
           />
-        </form>
+        </motion.form>
 
         <div className="overflow-x-auto rounded-lg">
-          <table className="table w-full card-table">
+          <table className="table w-full card-table border-separate border-spacing-y-2">
             <thead className="hidden xl:table-header-group">
               <tr className="bg-secondary text-base-200 h-20">
                 <th className="rounded-l-xl">Image</th>
@@ -209,25 +220,29 @@ const ManageServices = () => {
               </tr>
             </thead>
 
-            <tbody>
+            <motion.tbody
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
               {isLoading ? (
                 <tr>
                   <td colSpan="8" className="text-center py-12 text-xl ">
                     <span className="loading loading-spinner loading-lg"></span>
-                    Loading services...
                   </td>
                 </tr>
               ) : services.length === 0 ? (
                 <tr>
                   <td colSpan="8" className="text-center py-12 text-gray-500">
-                    No services found matching your criteria.
+                    No services found.
                   </td>
                 </tr>
               ) : (
                 services.map((service) => (
-                  <tr
+                  <motion.tr
                     key={service._id}
-                    className="block rounded-lg overflow-hidden xl:table-row xl:rounded-none mb-6 xl:mb-0 hover:bg-secondary bg-base-100 transition-all duration-300"
+                    variants={itemVariants}
+                    className="block rounded-lg overflow-hidden xl:table-row xl:rounded-none mb-6 xl:mb-0 hover:bg-secondary bg-base-100 transition-all duration-300 shadow-md group"
                   >
                     <td className="flex justify-between xl:table-cell p-4 xl:rounded-l-xl ">
                       <span className="xl:hidden font-semibold">Image</span>
@@ -238,7 +253,6 @@ const ManageServices = () => {
                       </div>
                     </td>
 
-                    {/* SERVICE NAME */}
                     <td className="flex justify-between xl:table-cell p-4">
                       <span className="xl:hidden font-semibold">Service</span>
                       <span className="font-semibold max-w-xs truncate">
@@ -246,7 +260,6 @@ const ManageServices = () => {
                       </span>
                     </td>
 
-                    {/* CATEGORY */}
                     <td className="flex justify-between xl:table-cell p-4">
                       <span className="xl:hidden font-semibold">Category</span>
                       <span className=" capitalize px-3 py-2">
@@ -254,23 +267,21 @@ const ManageServices = () => {
                       </span>
                     </td>
 
-                    {/* COST */}
                     <td className="flex justify-between xl:table-cell p-4">
                       <span className="xl:hidden font-semibold">Cost</span>
-                      <span className="font-bold group-hover:text-base-200 transition-colors">
+                      <span className="font-bold">
                         ৳{service.price?.toLocaleString()}
                       </span>
                     </td>
 
-                    {/* UNIT */}
-                    <td className="flex justify-between xl:table-cell  capitalize p-4">
+                    <td className="flex justify-between xl:table-cell capitalize p-4">
                       <span className="xl:hidden font-semibold">Unit</span>
                       <span>
                         {service.unit ? `per ${service.unit}` : "Fixed"}
                       </span>
                     </td>
 
-                    <td className="flex justify-between  xl:table-cell p-4">
+                    <td className="flex justify-between xl:table-cell p-4">
                       <span className="xl:hidden font-semibold">Status</span>
                       <span
                         className={`font-semibold ${
@@ -283,25 +294,25 @@ const ManageServices = () => {
                       </span>
                     </td>
 
-                    <td className="flex flex-col md:flex-row space-x-3 xl:table-cell p-4 xl:rounded-r-xl">
+                    <td className="flex flex-col md:flex-row space-x-0 md:space-x-3 xl:table-cell p-4 xl:rounded-r-xl">
                       <button
                         onClick={() => handleModal(service)}
-                        className="btn xl:py-2 2xl:btn-md xl:btn-xs flex-1 py-3 rounded-full my-4 md:my-0 font-bold 2xl:text-xl text-sm shadow-xl bg-primary text-base-200 border-none w-full lg:w-auto hover:bg-base-100"
+                        className="btn xl:btn-xs flex-1 py-3 rounded-full my-2 md:my-0 font-bold bg-primary text-base-200 border-none hover:bg-base-100"
                       >
                         Edit
                       </button>
 
                       <button
                         onClick={() => handleServiceDelete(service._id)}
-                        className="btn btn-error xl:py-2 2xl:btn-md xl:btn-xs flex-1 py-3 rounded-full font-bold 2xl:text-xl text-sm shadow-xl  hover:bg-red-500 text-base-200 border-none"
+                        className="btn btn-error xl:btn-xs flex-1 py-3 rounded-full font-bold hover:bg-red-500 text-base-200 border-none"
                       >
                         Delete
                       </button>
                     </td>
-                  </tr>
+                  </motion.tr>
                 ))
               )}
-            </tbody>
+            </motion.tbody>
           </table>
         </div>
 
@@ -322,7 +333,7 @@ const ManageServices = () => {
                   key={num}
                   onClick={() => setPage(num)}
                   className={`btn btn-sm text-base-200 border border-secondary mt-1 hover:bg-secondary ${
-                    page === num ? "btn-secondary text-base-200" : "btn-outline btn-ghost"
+                    page === num ? "btn-secondary" : "btn-outline btn-ghost"
                   }`}
                 >
                   {num}
@@ -340,134 +351,123 @@ const ManageServices = () => {
 
         {/* Update Modal */}
         <dialog ref={updateRef} className="modal">
-          <form
-            method="dialog"
-            onSubmit={handleUpdateSubmit(handleUpdateService)}
-            className="modal-box w-11/12 max-w-4xl max-h-[90vh] overflow-y-auto bg-primary"
-          >
-            <h1 className="text-center font-extrabold text-3xl py-6">
-              Update Service Details
-            </h1>
+          <div className="modal-box w-11/12 max-w-4xl max-h-[90vh] overflow-y-auto bg-primary">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+            >
+              <h1 className="text-center font-extrabold text-3xl py-6">
+                Update Service Details
+              </h1>
+              <form onSubmit={handleUpdateSubmit(handleUpdateService)}>
+                {selectedService && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 space-y-4 md:space-y-0">
+                    <div className="flex flex-col">
+                      <label className="font-semibold mb-2">Service Name</label>
+                      <input
+                        {...registerUpdate("service_name", { required: true })}
+                        type="text"
+                        className="input input-bordered bg-base-100 outline-none input-lg w-full text-base-200"
+                      />
+                      {errors.service_name && (
+                        <p className="text-red-600">Service Name Required</p>
+                      )}
+                    </div>
 
-            {selectedService && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 space-y-4 md:space-y-0">
-                <div className="flex flex-col">
-                  <label className="font-semibold mb-2">Service Name </label>
-                  <input
-                    {...registerUpdate("service_name", { required: true })}
-                    type="text"
-                    className="input input-bordered bg-base-100 outline-none input-lg w-full"
-                  />
-                  {
-                    errors.service_name?.type === "required" && (
-                      <p className="text-red-600">Service Name Required</p>
-                    )
-                  }
-                </div>
+                    <div className="flex flex-col">
+                      <label className="font-semibold mb-2">Cost</label>
+                      <input
+                        {...registerUpdate("price", {
+                          required: true,
+                          valueAsNumber: true,
+                          min: 0,
+                        })}
+                        type="number"
+                        className="input input-bordered bg-base-100 outline-none input-lg w-full text-base-200"
+                      />
+                      {errors.price && (
+                        <p className="text-red-600">Valid Cost Required</p>
+                      )}
+                    </div>
 
-                {/* Cost */}
-                <div className="flex flex-col">
-                  <label className="font-semibold mb-2">Cost </label>
-                  <input
-                    {...registerUpdate("price", {
-                      required: true,
-                      valueAsNumber: true,
-                      min: { value: 0, message: "Cost must be positive" },
-                    })}
-                    type="number"
-                    defaultValue={`${selectedService.price}`}
-                    className="input input-bordered bg-base-100 outline-none input-lg w-full"
-                  />
-                  { errors.price && (
-                    <p className="text-red-600">
-                      {errors.price.message || "Cost Required"}
-                    </p>
-                  ) }
-                </div>
+                    <div className="flex flex-col">
+                      <label className="font-semibold mb-2">Unit</label>
+                      <select
+                        {...registerUpdate("unit", { required: true })}
+                        className="select select-bordered bg-base-100 outline-none input-lg w-full text-base-200"
+                      >
+                        <option value="sqft">Per square feet</option>
+                        <option value="floor">Per floor</option>
+                        <option value="meter">Per meter</option>
+                        <option value="event">Per event</option>
+                        <option value="day">Per day</option>
+                        <option value="room">Per room</option>
+                        <option value="fixed">Fixed price</option>
+                      </select>
+                    </div>
 
-                <div className="flex flex-col">
-                  <label className="font-semibold mb-2 ">Unit </label>
-                  <select
-                    {...registerUpdate("unit", { required: true })}
-                    className="select select-bordered bg-base-100 outline-none input-lg w-full"
+                    <div className="flex flex-col">
+                      <label className="font-semibold mb-2">Category</label>
+                      <select
+                        {...registerUpdate("serviceCategory", {
+                          required: true,
+                        })}
+                        className="select select-bordered bg-base-100 text-base-200 outline-none input-lg w-full"
+                      >
+                        <option value="Home">Home Decoration</option>
+                        <option value="Wedding">Wedding</option>
+                        <option value="Office">Office</option>
+                        <option value="Seminar">Seminar/Conference</option>
+                        <option value="Meeting">Meeting Room</option>
+                        <option value="Birthday">Birthday Party</option>
+                        <option value="Corporate">Corporate Events</option>
+                        <option value="Anniversary">Anniversary</option>
+                      </select>
+                    </div>
+
+                    <div className="flex flex-col md:col-span-2">
+                      <label className="font-semibold mb-2">Status</label>
+                      <select
+                        {...registerUpdate("status")}
+                        className="select select-bordered bg-base-100 outline-none input-lg w-full text-base-200"
+                      >
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                      </select>
+                    </div>
+
+                    <div className="flex flex-col md:col-span-2">
+                      <label className="font-semibold mb-2">Description</label>
+                      <textarea
+                        {...registerUpdate("description", { required: true })}
+                        rows={4}
+                        className="textarea textarea-bordered bg-base-100 outline-none textarea-lg w-full text-base-200"
+                      />
+                      {errors.description && (
+                        <p className="text-red-600">Description Required</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex justify-between gap-4 mt-10 flex-col md:flex-row">
+                  <button type="submit" className="flex-1">
+                    <Button>Update Service</Button>
+                  </button>
+                  <button
+                    type="button"
+                    className="flex-1"
+                    onClick={() => {
+                      updateRef.current.close();
+                      setSelectedService(null);
+                    }}
                   >
-                    <option value="sqft">Per square feet</option>
-                    <option value="floor">Per floor</option>
-                    <option value="meter">Per meter</option>
-                    <option value="event">Per event</option>
-                    <option value="day">Per day</option>
-                    <option value="room">Per room</option>
-                    <option value="fixed">Fixed price</option>
-                  </select>
+                    <Button>Cancel</Button>
+                  </button>
                 </div>
-
-                {/* Category */}
-                <div className="flex flex-col">
-                  <label className="font-semibold mb-2">Category </label>
-                  <select
-                    {...registerUpdate("serviceCategory", { required: true })}
-                    defaultValue={"hello world"}
-                    className="select select-bordered bg-base-100 text-base-200 outline-none  input-lg w-full"
-                  >
-                    <option value="Home">Home Decoration</option>
-                    <option value="Wedding">Wedding</option>
-                    <option value="Office">Office</option>
-                    <option value="Seminar">Seminar/Conference</option>
-                    <option value="Meeting">Meeting Room</option>
-                    <option value="Birthday">Birthday Party</option>
-                    <option value="Corporate">Corporate Events</option>
-                    <option value="Anniversary">Anniversary</option>
-                  </select>
-                </div>
-
-                {/* Status */}
-                <div className="flex flex-col md:col-span-2 ">
-                  <label className="font-semibold mb-2">Status</label>
-                  <select
-                    {...registerUpdate("status")}
-                    className="select select-bordered bg-base-100 outline-none input-lg w-full"
-                  >
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                  </select>
-                </div>
-
-                {/* Description */}
-                <div className="flex flex-col md:col-span-2">
-                  <label className="font-semibold mb-2">Description</label>
-                  <textarea
-                    {...registerUpdate("description"  , { required: true })}
-                    rows={4}
-                    className="textarea textarea-bordered bg-base-100 outline-none  textarea-lg w-full"
-                  />
-                  {
-                    errors.description && (
-                      <p className="text-red-600">Description Required</p>
-                    )
-                  }
-                </div>
-              </div>
-            )}
-
-            <div className="flex justify-between gap-4 mt-10 flex-col md:flex-row">
-              <button
-                type="submit"
-                className="flex-1"
-              >
-                <Button>Update Service</Button>
-              </button>
-              <button
-                type="button"
-                className="flex-1"
-                onClick={() => {
-                  updateRef.current.close();
-                  setSelectedService(null);
-                }}
-              >
-                <Button>Cancel</Button>
-              </button>
-            </div>
-          </form>
+              </form>
+            </motion.div>
+          </div>
         </dialog>
       </div>
     </div>

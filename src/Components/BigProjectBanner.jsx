@@ -1,29 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { HiArrowRight } from "react-icons/hi";
 import Button from "../utility/Button";
 import { Link } from "react-router";
 
 const BigProjectBanner = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
-
   // Variant for the parent to stagger the children
   const bannerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2, // Time between each element appearing
+        staggerChildren: 0.2,
         delayChildren: 0.2,
       },
     },
   };
 
-  // Clear slide up without blur
   const slideUpVariants = {
     hidden: { y: 50, opacity: 0 },
     visible: { 
@@ -57,7 +50,8 @@ const BigProjectBanner = () => {
       <motion.div 
         variants={bannerVariants}
         initial="hidden"
-        animate={isLoaded ? "visible" : "hidden"}
+        whileInView="visible" // Triggers when scrolled into view
+        viewport={{ once: true, amount: 0.2 }} // Runs once when 20% visible
         className="max-w-[1980px] lg:px-20 px-5 mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center relative z-10"
       >
         <div className="space-y-4 lg:col-span-5 max-w-[700px]">

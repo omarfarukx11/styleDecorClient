@@ -47,6 +47,22 @@ const PaymentHistory = () => {
     }
   }, [sessionId, axiosSecure, refetch]);
 
+  // Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   if (isLoading) {
     return <MyBookingSkeleton />;
   }
@@ -68,19 +84,26 @@ const PaymentHistory = () => {
         </div>
 
         {/* BODY */}
-        <div className="space-y-4 mt-4">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="space-y-4 mt-4"
+        >
           {history.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-20">
+            <motion.div 
+              variants={itemVariants}
+              className="flex flex-col items-center justify-center py-20"
+            >
               <p className="text-2xl text-base-200/30 font-bold uppercase font-title">
                 No Transactions Found
               </p>
-            </div>
+            </motion.div>
           ) : (
             history.map((b, i) => (
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
                 key={b._id}
+                variants={itemVariants}
                 className="flex flex-col xl:flex-row xl:items-center bg-base-100 lg:py-7 text-base-200 shadow-sm p-4 xl:px-6 transition-all"
               >
                 {/* Index */}
@@ -129,7 +152,7 @@ const PaymentHistory = () => {
               </motion.div>
             ))
           )}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

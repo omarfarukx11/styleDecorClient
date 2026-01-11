@@ -7,6 +7,7 @@ import useAuth from "../../../../Hooks/useAuth";
 import Loader from "../../../../Components/Loader";
 import BigTitile from "../../../../utility/BigTitile";
 import Button from "../../../../utility/Button";
+import { motion, AnimatePresence } from "framer-motion"; // Added animation imports
 
 const MyBookings = () => {
   const axiosSecure = useAxiosSecure();
@@ -92,7 +93,7 @@ const MyBookings = () => {
     });
   };
 
-  
+
   const handlePayment = async (bookingData) => {
     const paymentInfo = {
       cost: bookingData.serviceCost,
@@ -109,6 +110,20 @@ const MyBookings = () => {
   const closeUpdateModal = () => updateRef.current.close();
   const handlePayModal = () => payRef.current.showModal();
 
+  // Animation variants
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, x: -10 },
+    show: { opacity: 1, x: 0 }
+  };
+
 
   if (isLoading) {
     return <Loader />;
@@ -117,7 +132,7 @@ const MyBookings = () => {
   return (
     <div className="text-base-200">
       <title>StyelDecor - My Booking</title>
-      
+
       {/* Header */}
       <BigTitile>My Bookings</BigTitile>
 
@@ -135,15 +150,21 @@ const MyBookings = () => {
         </div>
 
         {/* Bookings List */}
-        <div className="space-y-5 mt-5">
+        <motion.div 
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="space-y-5 mt-5"
+        >
           {book.length === 0 ? (
             <p className="md:text-4xl text-center mt-10 font-bold uppercase">
               you didn't booking yet
             </p>
           ) : (
             book.map((b, i) => (
-              <div
+              <motion.div
                 key={b._id}
+                variants={item}
                 className="flex flex-col text-xs bg-base-100 hover:bg-secondary xl:flex-row xl:items-center xl:justify-between rounded-lg p-2 2xl:text-xl xl:text-sm xl:px-4"
               >
                 {/* Index */}
@@ -233,15 +254,19 @@ const MyBookings = () => {
                     Delete
                   </button>
                 </div>
-              </div>
+              </motion.div>
             ))
           )}
-        </div>
+        </motion.div>
       </div>
 
       {/* UPDATE MODAL */}
       <dialog ref={updateRef} className="modal">
-        <div className="modal-box w-11/12 max-w-2xl bg-primary p-8 my-10 py-10 text-base-200">
+        <motion.div 
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          className="modal-box w-11/12 max-w-2xl bg-primary p-8 my-10 py-10 text-base-200"
+        >
           <h1 className="md:text-5xl text-2xl text-center font-bold mb-10">Booking Information</h1>
           <div className="bg-base-100 p-4 rounded-xl">
             <p className="text-lg">Service Name: {bookingData?.serviceName}</p>
@@ -299,19 +324,23 @@ const MyBookings = () => {
               <Button type="submit" className="btn hover:bg-base-100 flex-1 hover bg-secondary text-base-100 border-none btn-lg rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all">
                 Update Booking
               </Button>
-              <button onClick={closeUpdateModal} className="w-full">
+              <button onClick={closeUpdateModal} className="w-full" type="button">
               <Button type="button"  className="btn hover:bg-base-100 flex-1 hover bg-secondary text-base-100 border-none btn-lg rounded-full font-bold text-xl shadow-xl hover:shadow-primary/50 transform hover:scale-105 transition-all" onClick={() => updateRef.current.close()}>
                 Cancel
               </Button>
               </button>
             </div>
           </form>
-        </div>
+        </motion.div>
       </dialog>
 
       {/* PAYMENT MODAL */}
       <dialog ref={payRef} className="modal">
-        <div className="modal-box w-11/12 max-w-2xl bg-primary text-base-200 p-8">
+        <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          className="modal-box w-11/12 max-w-2xl bg-primary text-base-200 p-8"
+        >
           <h1 className="text-center font-extrabold text-3xl py-5">
             Complete payment for {bookingData?.userName}
           </h1>
@@ -340,7 +369,7 @@ const MyBookings = () => {
               <Button>Cancel</Button>
             </button>
           </div>
-        </div>
+        </motion.div>
       </dialog>
     </div>
   );

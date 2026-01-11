@@ -17,37 +17,65 @@ const TopDecorators = () => {
     },
   });
 
+  // Animation Variants for the entrance
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.1, 
+        delayChildren: 0.1 
+      },
+    },
+  };
+
+  const slideUpVariants = {
+    hidden: { y: 40, opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1, 
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+    },
+  };
+
   if (isLoading) return <DecoratorSkeleton />;
 
   return (
     <section className="bg-secondary lg:pb-20 pb-5 overflow-hidden">
-      <div className="xl:px-20 px-5 max-w-[1980px] mx-auto">
-        <div className="text-center px-4 text-base-200 rounded-2xl mb-10">
+      {/* Container triggered by scroll */}
+      <motion.div 
+        key={isLoading ? "loading" : "loaded"}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        className="xl:px-20 px-5 max-w-[1980px] mx-auto"
+      >
+        <motion.div variants={slideUpVariants} className="text-center px-4 text-base-200 rounded-2xl mb-10">
           <BigTitile>Top Decorators</BigTitile>
           <p className="max-w-3xl mx-auto text-[10px] md:text-xs opacity-80 leading-relaxed">
             Discover our top decorators who bring creativity, expertise, and
             precision to every event. Handpicked for their unique skills and proven track record.
           </p>
-        </div>
+        </motion.div>
 
         {/* Grid layout */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6 items-stretch">
           {decorators.map((d) => (
-            /* 1. CONTAINER FOR BORDER */
-            <div 
+            <motion.div 
               key={d._id} 
+              variants={slideUpVariants} // Entrance animation for each card
               className="relative p-[1.5px] overflow-hidden rounded-xl h-full flex items-stretch"
             >
-              {/* 2. THE SLOW & SMOOTH RUNNING BORDER */}
+              {/* THE SLOW & SMOOTH RUNNING BORDER (Constant Animation) */}
               <motion.div
                 animate={{ rotate: 360 }}
-                // Duration set to 8s for a much smoother, slower crawl
                 transition={{ duration: 32, repeat: Infinity, ease: "linear" }}
                 style={{ originX: "50%", originY: "50%" }}
                 className="absolute w-[250%] h-[250%] top-[-75%] left-[-75%] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_180deg,#3ABFF8_360deg)] opacity-60"
               />
 
-              {/* 3. CARD INNER CONTENT */}
+              {/* CARD INNER CONTENT */}
               <div className="relative z-10 flex flex-col w-full rounded-xl overflow-hidden bg-primary border border-white/5 shadow-sm">
                 
                 {/* Image Section */}
@@ -91,10 +119,10 @@ const TopDecorators = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
