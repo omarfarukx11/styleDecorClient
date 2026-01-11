@@ -92,9 +92,6 @@ const MyProfile = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute bottom-2 right-2 bg-base-200 p-2 rounded-full text-secondary ">
-              <FaCamera size={16} />
-            </div>
           </div>
 
           <div className="mt-8">
