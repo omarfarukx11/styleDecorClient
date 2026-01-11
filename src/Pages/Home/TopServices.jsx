@@ -94,7 +94,7 @@ const TopServices = () => {
 
               {/* Content Area */}
               <div className="p-4 md:p-5 flex flex-col grow">
-                <h2 className="text-sm md:text-base font-bold text-gray-400 group-hover:text-base-200 transition-colors duration-300 line-clamp-1">
+                <h2 className="text-sm md:text-base font-bold text-base-200/50 group-hover:text-base-200/70 transition-colors duration-300 line-clamp-1">
                   {item.name}
                 </h2>
 

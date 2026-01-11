@@ -147,7 +147,7 @@ const AllServices = () => {
 
                     {/* Content Section */}
                     <div className="p-4 md:p-5 flex flex-col grow">
-                      <h3 className="text-sm md:text-base font-bold text-gray-400 group-hover:text-base-200 transition-colors duration-300 line-clamp-1">
+                      <h3 className="text-sm md:text-base font-bold text-base-200/50  group-hover:text-base-200/70 transition-colors duration-300 line-clamp-1">
                         {service.name}
                       </h3>
                       <p className="mt-1 text-[10px] text-gray-500 font-medium uppercase tracking-widest">
