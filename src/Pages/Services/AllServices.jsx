@@ -7,6 +7,7 @@ import { Link } from "react-router";
 import { FaStar } from "react-icons/fa";
 import Button from "../../utility/Button";
 import AllServicesSkeleton from "../../Skelenton/AllServicesSkeleton";
+import Title from "../../utility/Title";
 
 const AllServices = () => {
   const axiosSecure = useAxiosSecure();
@@ -49,33 +50,30 @@ const AllServices = () => {
 
   return (
     <section className="">
-      <div className="min-h-[calc(100vh-90px)] lg:p-20 p-4 max-w-[1980px] mx-auto">
+      <div className="min-h-[calc(100vh-90px)] xl:px-20 lg:px-8 p-5 max-w-[1860px] mx-auto">
         <title>StyleDecor - Services</title>
         <div className="mx-auto">
-          {/* Header Section */}
-          <div className="text-center md:my-10 md:py-16 py-8 px-6 rounded-xl text-base-200">
-            <h2 className="text-2xl md:text-5xl lg:text-6xl font-extrabold md:mb-6 mb-2">
-              Our Decoration Packages
-            </h2>
+          <div className="text-center px-5 rounded-xl text-base-200">
+            <Title>Our Decoration Packages</Title>
             <p className="max-w-4xl mx-auto text-sm md:text-base lg:text-lg leading-relaxed">
               Explore our range of flexible and innovative services designed to
               meet your unique needs. From expert consultation to hands-on execution.
             </p>
           </div>
 
-          {/* Filter Form */}
-          <form className="my-12 bg-primary rounded-3xl p-8 border border-gray-300">
+
+          <form className="my-5 bg-primary rounded-lg p-5 border border-gray-300">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <input
                 {...register("search")}
                 type="text"
                 placeholder="Search by package name..."
-                className="w-full px-6 py-4 text-lg border text-base-200 outline-none border-gray-300 rounded-2xl"
+                className="w-full px-6 py-4 text-lg border text-base-200 outline-none border-gray-300 rounded-xl"
               />
 
               <select
                 {...register("type")}
-                className="w-full px-6 py-4 text-lg border text-base-200 bg-primary outline-none border-gray-300 rounded-2xl"
+                className="w-full px-6 py-4 text-lg border text-base-200 bg-primary outline-none border-gray-300 rounded-xl"
               >
                 <option value="All">All Service Types</option>
                 <option value="Home">Home</option>
@@ -92,14 +90,14 @@ const AllServices = () => {
                   {...register("minPrice")}
                   type="number"
                   placeholder="Min Price"
-                  className="w-full px-6 py-4 text-lg border text-base-200 outline-none border-gray-300 rounded-2xl"
+                  className="w-full px-6 py-4 text-lg border text-base-200 outline-none border-gray-300 rounded-xl"
                 />
                 <span className="text-gray-500 text-xl">—</span>
                 <input
                   {...register("maxPrice")}
                   type="number"
                   placeholder="Max Price"
-                  className="w-full px-6 py-4 text-lg border text-base-200 outline-none border-gray-300 rounded-2xl"
+                  className="w-full px-6 py-4 text-lg border text-base-200 outline-none border-gray-300 rounded-xl"
                 />
               </div>
             </div>
@@ -116,7 +114,7 @@ const AllServices = () => {
           {isLoading ? (
             <AllServicesSkeleton></AllServicesSkeleton>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6 items-stretch">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 items-stretch">
               {services.length === 0 ? (
                 <div className="col-span-full text-center py-20">
                   <p className="text-2xl text-gray-500">No packages found.</p>
@@ -126,9 +124,9 @@ const AllServices = () => {
                   <motion.div
                     key={service._id}
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }} // Changed animate to whileInView
-                    viewport={{ once: true, amount: 0.1 }} // Added viewport trigger
-                    transition={{ duration: 0.4, delay: (index % 5) * 0.05 }} // Modulo ensures stagger resets per row
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ duration: 0.4, delay: (index % 5) * 0.05 }} 
                     className="group flex flex-col h-full relative rounded-xl hover:shadow-sm overflow-hidden transition-all duration-500  bg-secondary shadow-sm"
                   >
                     {/* Image Section */}

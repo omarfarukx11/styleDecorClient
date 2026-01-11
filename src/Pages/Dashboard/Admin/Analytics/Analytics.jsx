@@ -86,7 +86,7 @@ const AdminAnalytics = () => {
       >
         {/* Stats Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <motion.div variants={itemVariants} className="stats shadow-2xl bg-base-100">
+          <motion.div variants={itemVariants} className="stats  bg-base-100">
             <div className="stat">
               <div className="stat-figure text-info">
                 <FaCalendarCheck size={30} />
@@ -103,7 +103,7 @@ const AdminAnalytics = () => {
             </div>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="stats shadow-2xl bg-base-100">
+          <motion.div variants={itemVariants} className="stats  bg-base-100">
             <div className="stat">
               <div className="stat-figure text-info">
                 <FaLayerGroup size={30} />
@@ -128,7 +128,7 @@ const AdminAnalytics = () => {
           variants={itemVariants}
           className="gap-8 mt-10"
         >
-          <div className="bg-base-100 p-6 rounded-xl shadow-2xl">
+          <div className="bg-base-100 p-6 rounded-xl ">
             <div className="flex items-center gap-2 mb-6 font-bold text-lg">
               <FaChartBar className="text-info" size={24} />
               <h3>Service Demand Distribution</h3>

@@ -56,16 +56,14 @@ const RateUs = () => {
     <div className="min-h-screen bg-primary text-base-200">
       <title>StyleDecor - Rate Us</title>
 
-      <div className="max-w-[1980px] mx-auto px-10 lg:px-32 py-20">
+      <div className="max-w-[1860px] mx-auto px-5 lg:px-8 xl:px-20 py-20">
         <div className="grid lg:grid-cols-12 gap-16 items-start">
-          
-          {/* LEFT SIDE: HEADER & USER IDENTITY (5 Columns) */}
           <div className="lg:col-span-5 space-y-12">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
             >
-              <h1 className="text-6xl lg:text-8xl font-black text-base-200 leading-[0.9] mb-8 uppercase tracking-tighter">
+              <h1 className="text-6xl xl:text-8xl font-black text-base-200 leading-[0.9] mb-8 uppercase tracking-tighter">
                 Your <br /> 
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500 inline-block">Review.</span>
               </h1>
@@ -91,18 +89,14 @@ const RateUs = () => {
               </div>
             </motion.div>
           </div>
-
-          {/* RIGHT SIDE: THE SUBMISSION PANEL (7 Columns) */}
           <div className="lg:col-span-7">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-secondary border border-white/10 rounded-xl p-10 md:p-20"
+              className="bg-secondary border border-white/10 rounded-xl lg:p-5 p-3"
             >
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
-                
-                {/* RATING SECTION */}
-                <div className="space-y-6">
+                <div className="space-y-6 space-x-3">
                   <label className="text-xs uppercase tracking-[0.3em] text-base-200/50 font-black">Experience Rating</label>
                   <div className="rating rating-lg gap-4">
                     {[1, 2, 3, 4, 5].map((num) => (
@@ -111,7 +105,7 @@ const RateUs = () => {
                         type="radio"
                         {...register("rating")}
                         value={num}
-                        className="mask mask-star-2 bg-orange-400 w-12 h-12 hover:scale-125 transition-transform cursor-pointer"
+                        className="mask mask-star-2 bg-orange-400 w-5 h-5 lg:w-10 lg:h-10 hover:scale-125 transition-transform cursor-pointer"
                         defaultChecked={num === 5}
                       />
                     ))}
@@ -130,14 +124,12 @@ const RateUs = () => {
                     })}
                     rows={8}
                     placeholder="Describe the quality of our decoration and service..."
-                    className="textarea w-full bg-base-100 text-base-200 text-xl placeholder:text-base-200/20 transition-all rounded-xl p-8 outline-none"
+                    className="textarea w-full bg-primary text-base-200 text-xl placeholder:text-base-200/20 transition-all rounded-xl p-8 outline-none"
                   />
                   {errors.feedback && (
                     <p className="text-error text-sm font-bold mt-2">{errors.feedback.message}</p>
                   )}
                 </div>
-
-                {/* SUBMIT BUTTON */}
                 <motion.div 
                   whileHover={{ scale: 1.02 }} 
                   whileTap={{ scale: 0.98 }}

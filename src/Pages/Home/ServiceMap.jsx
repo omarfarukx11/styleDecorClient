@@ -59,7 +59,7 @@ const ServiceMap = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="rounded-xl max-w-[1980px] lg:px-20 mx-auto "
+        className="rounded-xl max-w-[1860px] xl:px-20 lg:px-8 mx-auto "
       >
         <div className="text-base-200 rounded-xl flex items-center justify-center flex-col">
           <motion.div variants={itemVariants}>
@@ -92,7 +92,7 @@ const ServiceMap = () => {
             hidden: { opacity: 0, scale: 0.95 },
             visible: { opacity: 1, scale: 1, transition: { duration: 0.8, delay: 0.4 } }
           }}
-          className="h-[800px] lg:mb-20 mb-5 mt-5 px-5"
+          className="h-[800px] lg:mb-20 mb-5 mt-5 "
         >
           <MapContainer
             center={position}

@@ -89,7 +89,7 @@ const Revenue = () => {
               key={idx}
               variants={cardVariants}
               whileHover={{ y: -5 }} // Floating effect on hover
-              className="stats shadow-2xl bg-base-100 w-full overflow-hidden"
+              className="stats  bg-base-100 w-full overflow-hidden"
             >
               <div className="stat px-4 py-5">
                 <div className="stat-figure text-base-200">{stat.icon}</div>
@@ -115,7 +115,7 @@ const Revenue = () => {
         {/* Table Section */}
         <motion.div 
           variants={cardVariants}
-          className="mt-8 bg-base-100 text-base-200 rounded-xl shadow-2xl overflow-hidden"
+          className="mt-8 bg-base-100 text-base-200 rounded-xl  overflow-hidden"
         >
           <div className="p-4 flex items-center gap-2 font-bold text-lg border-b border-neutral/10">
             <MdOutlinePayments className="text-success" /> Recent Revenue

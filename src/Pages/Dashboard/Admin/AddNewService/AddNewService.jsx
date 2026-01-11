@@ -82,7 +82,7 @@ const AddNewService = () => {
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="text-center lg:p-8 p-4 font-bold text-2xl bg-primary border-b border-white uppercase"
+        className="text-center lg:p-8 p-5 font-bold text-2xl bg-primary border-b border-white uppercase"
       >
         <p>Create New Service</p>
       </motion.div>
@@ -93,7 +93,7 @@ const AddNewService = () => {
           variants={formVariants}
           initial="hidden"
           animate="visible"
-          className="w-11/12 max-w-2xl bg-primary p-8 shadow-2xl border border-white rounded-xl"
+          className="w-11/12 max-w-2xl bg-primary lg:p-8 p-3 shadow-sm border border-white rounded-xl"
         >
           <form onSubmit={handleSubmit(handleAddService)} className="space-y-4">
             

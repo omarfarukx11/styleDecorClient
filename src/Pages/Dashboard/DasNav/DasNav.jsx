@@ -34,10 +34,7 @@ const DasNav = ({role}) => {
   }).then(async (result) => {
     if (result.isConfirmed) {
       try {
-        // 1. Start moving to Home first
         navigate("/", { replace: true }); 
-        
-        // 2. Then trigger the logout
         await logOut();
         
         Swal.fire({
@@ -55,7 +52,7 @@ const DasNav = ({role}) => {
 
 
   return (
-    <nav className="bg-primary text-black max-w-[1980px] mx-auto border-b border-gray-200">
+    <nav className="bg-primary text-black max-w-[1860px] mx-auto border-b border-gray-200">
       <div className="flex justify-end items-center py-5 px-4 lg:px-8  ">
         
         <div className="navbar-end flex items-center gap-5">

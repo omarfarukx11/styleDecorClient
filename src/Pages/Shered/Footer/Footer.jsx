@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#050505] text-white pt-10 pb-12 border-t border-white/5 w-full">
-      <div className="max-w-[1980px] mx-auto px-10 md:px-20">
+      <div className="max-w-[1860px] mx-auto px-10 md:px-20">
         
         {/* TOP SECTION: Logo as a standalone corner element */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-8">
@@ -27,7 +27,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <h2 className="text-xl font-black mb-8 uppercase tracking-[0.2em] text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500 inline-block">Vision</h2>
             <p className="text-lg leading-relaxed text-white/40 italic">
-              "We don't just decorate spaces; we curate memories through high-fidelity design."
+              We don't just decorate spaces; we curate memories through high-fidelity design.
             </p>
           </div>
 

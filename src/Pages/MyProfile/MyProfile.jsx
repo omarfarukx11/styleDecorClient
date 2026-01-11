@@ -75,7 +75,7 @@ const MyProfile = () => {
             } 
           }
         }}
-        className="w-full max-w-2xl backdrop-blur-2xl border border-white/10 rounded-4xl overflow-hidden bg-base-100/10 shadow-2xl"
+        className="w-full max-w-2xl backdrop-blur-2xl border bg-base border-white/10 rounded-4xl overflow-hidden bg-base-100/30 shadow-2xl"
       >
         <div className="p-8 md:p-12">
           {/* PROFILE HEADER AREA */}

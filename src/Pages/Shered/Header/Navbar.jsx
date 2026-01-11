@@ -81,7 +81,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-primary text-base-200 border-b border-gray-400 ">
-      <div className="flex justify-between items-center max-w-[1980px] py-5 px-4 lg:px-8 xl:px-16 mx-auto ">
+      <div className="flex justify-between items-center max-w-[1860px] py-5 px-4 lg:px-8 xl:px-16 mx-auto ">
         {/* Left */}
         <div className="navbar-start flex items-center gap-2">
           {/* Mobile Dropdown */}
@@ -98,7 +98,7 @@ const Navbar = () => {
             </ul>
           </div>
 
-          {/* Logo */}
+
           <Link to="/" className="text-2xl font-bold">
             <Logo />
           </Link>
@@ -140,7 +140,7 @@ const Navbar = () => {
               <ul className="menu menu-sm dropdown-content h-[100px] pt-6 space-y-2 rounded-lg bg-primary text-base-200 z-50 mt-3 w-52 p-2 shadow">
                 <li>
                   <Link
-                    className="hover:bg-base-100 "
+                    className="hover:bg-info hover:text-primary "
                     to="/dashboard/profile"
                   >
                     Profile
@@ -148,7 +148,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <button
-                    className="hover:bg-base-100 w-full text-left"
+                    className="hover:bg-info  hover:text-primary w-full text-left"
                     onClick={handleLogout}
                   >
                     Logout

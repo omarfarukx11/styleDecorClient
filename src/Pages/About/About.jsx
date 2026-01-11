@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import Button from "../../utility/Button";
 
 const About = () => {
-  // Parent variants to handle the staggered sequence
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -18,7 +17,6 @@ const About = () => {
     },
   };
 
-  // Common slide-up effect for sections
   const itemVariants = {
     hidden: { y: 40, opacity: 0 },
     visible: {
@@ -36,10 +34,9 @@ const About = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
-        className="max-w-7xl mx-auto"
+        className="max-w-[1860px] xl:px-20 lg:px-5 px-5 mx-auto"
       >
 
-        {/* --- Header Section --- */}
         <motion.div variants={itemVariants} className="text-center mb-20">
           <Title>About StyleDecor</Title>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto mt-4">
@@ -50,7 +47,7 @@ const About = () => {
         {/* --- Story Section with Laser Border --- */}
         <motion.div 
           variants={itemVariants} 
-          className="grid md:grid-cols-2 gap-12 items-center mb-32 bg-secondary rounded-3xl border border-white/5 relative overflow-hidden shadow-2xl"
+          className="grid md:grid-cols-2 gap-12 items-center mb-32 bg-secondary rounded-xl relative overflow-hidden "
         >
           <div className="relative overflow-hidden rounded-xl group h-full min-h-[300px]">
             <motion.div
@@ -104,7 +101,6 @@ const About = () => {
           </div>
         </div>
 
-        {/* --- Animated Stats Cards --- */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-32">
           {[
             { icon: <FaUsers className="text-purple-400" />, val: "500+", label: "Happy Clients" },
@@ -115,15 +111,11 @@ const About = () => {
             <motion.div 
                 key={i} 
                 variants={itemVariants}
-                className="relative p-[1.5px] overflow-hidden rounded-3xl group"
+                className="relative p-[1.5px] overflow-hidden rounded-xl group"
             >
-               {/* Slow subtle laser border for stats */}
-               <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                  className="absolute w-[200%] h-[200%] top-[-50%] left-[-50%] bg-[conic-gradient(from_0deg,transparent_0%,transparent_80%,#3ABFF8_100%)] opacity-30"
-                />
-              <div className="relative z-10 bg-secondary rounded-3xl p-8 text-center h-full border border-white/5 shadow-xl">
+
+
+              <div className="relative z-10 bg-secondary rounded-xl p-8 text-center h-full">
                 <div className="text-4xl mx-auto mb-4">{stat.icon}</div>
                 <h3 className="text-3xl font-black text-base-200">{stat.val}</h3>
                 <p className="text-[10px] text-gray-500 uppercase tracking-widest mt-1 font-bold">{stat.label}</p>

@@ -70,7 +70,7 @@ const AllPaymentHistory = () => {
                 key={b._id}
                 variants={itemVariants}
                 whileHover={{ scale: 1.005 }} // Subtle hover effect
-                className="flex flex-col xl:flex-row xl:items-center xl:justify-between py-4 xl:py-8 text-sm rounded-lg p-3 xl:px-4 hover:bg-secondary bg-base-100 transition-colors duration-200 shadow-lg"
+                className="flex flex-col xl:flex-row xl:items-center xl:justify-between py-4 xl:py-8 text-sm rounded-lg p-3 xl:px-4 hover:bg-secondary bg-base-100 transition-colors duration-200 "
               >
                 {/* Index */}
                 <div className="flex justify-between xl:w-12 px-1 py-1 font-semibold xl:border-b-0">

@@ -58,18 +58,14 @@ const FeatureBanner = () => {
   ];
 
   return (
-    <section className="bg-secondary text-base-200 py-24 px-6 lg:px-20 overflow-hidden">
-      {/* initial="hidden" sets the starting state.
-          whileInView="visible" triggers animation when scrolled into view.
-          viewport={{ once: true, amount: 0.2 }} ensures it only happens once 
-          and triggers when 20% of the section is visible.
-      */}
+    <section className="bg-secondary text-base-200 overflow-hidden">
+
       <motion.div 
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="max-w-[1980px] mx-auto"
+        className="max-w-[1860px] mx-auto py-20 px-5 xl:px-20 lg:px-8 "
       >
         
         {/* TOP HEADER SECTION */}
@@ -83,7 +79,7 @@ const FeatureBanner = () => {
           
           <motion.h2 
             variants={slideUpVariants}
-            className="text-4xl md:text-6xl font-black leading-tight"
+            className="text-4xl xl:text-6xl font-black leading-tight"
           >
             Craft Your Dream Event with Ease <br /> 
             Professional Decorator Tools
@@ -128,7 +124,7 @@ const FeatureBanner = () => {
             variants={imageSlideInVariants}
             className="lg:col-span-7 relative"
           >
-            <div className="bg-white p-4 rounded-xl border border-white/10 shadow-2xl">
+            <div>
               <img 
                 src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop" 
                 alt="Decor Dashboard" 

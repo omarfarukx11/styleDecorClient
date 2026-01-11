@@ -127,7 +127,7 @@ const AllBookings = () => {
                   <motion.tr
                     key={booking._id}
                     variants={rowVariants}
-                    className="block xl:table-row hover:bg-secondary bg-base-100 border-b border-primary rounded-lg xl:rounded-none mb-4 xl:mb-0 2xl:text-xl sm:text-2xl xl:text-lg transition-all duration-300 shadow-md"
+                    className="block xl:table-row hover:bg-secondary bg-base-100 border-b border-primary rounded-lg  mb-4 xl:mb-0 2xl:text-xl sm:text-2xl xl:text-lg md:text-sm md:-space-y-5 transition-all duration-300 "
                   >
                     <td className="flex justify-between xl:table-cell px-4 py-4 xl:rounded-l-xl">
                       <span className="xl:hidden font-semibold">#</span>

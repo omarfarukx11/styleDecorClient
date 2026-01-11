@@ -92,7 +92,7 @@ const AddNewDecorators = () => {
               <motion.div 
                 key={u._id} 
                 variants={item}
-                className="bg-base-100 p-5 rounded-xl border border-white/10 shadow-lg flex flex-col gap-4"
+                className="bg-base-100 p-5 rounded-xl border border-white/10  flex flex-col gap-4"
               >
                 <div className="flex justify-between items-start">
                   <div className="bg-secondary text-base-200 w-8 h-8 flex items-center justify-center rounded-full font-bold text-sm">

@@ -49,7 +49,7 @@ const TopDecorators = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
-        className="xl:px-20 px-5 max-w-[1980px] mx-auto"
+        className="xl:px-20 lg:px-8 px-5 max-w-[1860px] mx-auto"
       >
         <motion.div variants={slideUpVariants} className="text-center px-4 text-base-200 rounded-2xl mb-10">
           <BigTitile>Top Decorators</BigTitile>
@@ -60,14 +60,14 @@ const TopDecorators = () => {
         </motion.div>
 
         {/* Grid layout */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6 items-stretch">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 items-stretch">
           {decorators.map((d) => (
             <motion.div 
               key={d._id} 
-              variants={slideUpVariants} // Entrance animation for each card
+              variants={slideUpVariants} 
               className="relative p-[1.5px] overflow-hidden rounded-xl h-full flex items-stretch"
             >
-              {/* THE SLOW & SMOOTH RUNNING BORDER (Constant Animation) */}
+
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 32, repeat: Infinity, ease: "linear" }}
@@ -75,10 +75,10 @@ const TopDecorators = () => {
                 className="absolute w-[250%] h-[250%] top-[-75%] left-[-75%] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_180deg,#3ABFF8_360deg)] opacity-60"
               />
 
-              {/* CARD INNER CONTENT */}
-              <div className="relative z-10 flex flex-col w-full rounded-xl overflow-hidden bg-primary border border-white/5 shadow-sm">
+
+              <div className="relative z-10 flex flex-col w-full rounded-xl overflow-hidden bg-primary shadow-sm">
                 
-                {/* Image Section */}
+
                 <div className="relative h-40 md:h-48 overflow-hidden shrink-0">
                   <img
                     src={d.image}
@@ -95,7 +95,7 @@ const TopDecorators = () => {
 
                 {/* Content Section */}
                 <div className="p-4 md:p-5 flex flex-col grow">
-                  <h3 className="text-sm md:text-base font-bold text-gray-200 line-clamp-1">
+                  <h3 className="text-sm md:text-base font-bold text-base-200 line-clamp-1">
                     {d.name}
                   </h3>
 
@@ -113,7 +113,7 @@ const TopDecorators = () => {
                     <p className="text-[11px] text-gray-400 leading-tight line-clamp-2">
                       {d.specialties}
                     </p>
-                    <p className="text-[11px] text-gray-500 italic line-clamp-3 border-l border-gray-100/20 pl-2">
+                    <p className="text-[11px] text-gray-500 italic line-clamp-3 border-l border-gray-100/20">
                       {d.description}
                     </p>
                   </div>

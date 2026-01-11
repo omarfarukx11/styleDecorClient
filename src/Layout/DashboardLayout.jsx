@@ -148,7 +148,7 @@ const DashboardLayout = () => {
       </div>
 
       <div className="">
-        <div className="flex min-h-screen max-w-[1980px] mx-auto ">
+        <div className="flex min-h-screen max-w-[1860px] mx-auto ">
           <title>StyelDecor - Dashbord</title>
 
           <div className="absolute top-5 left-4 z-50 xl:hidden">

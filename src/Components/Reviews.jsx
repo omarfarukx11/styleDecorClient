@@ -43,7 +43,7 @@ const Reviews = () => {
     }
 
     return (
-        <section className="bg-primary text-base-200 max-w-[1980px] mx-auto lg:px-20 px-5 lg:pb-20 pb-5 ">
+        <section className="bg-primary text-base-200 lg:pb-20 pb-5 ">
            
             <div className='text-center'><BigTitile>What Our Clients Say</BigTitile> </div>
 

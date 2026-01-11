@@ -54,7 +54,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen text-base-200 pb-10 px-5 overflow-hidden">
+    <div className="min-h-screen text-base-200 pb-10 lg:px-8 px-5 overflow-hidden">
       <title>StyleDecor - Contact Us</title>
       <motion.div 
         variants={containerVariants}
@@ -75,11 +75,7 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12">
-
-          {/* Contact Info Section - Slips in from Left */}
           <div className="space-y-5">
-            
-            {/* Phone Card */}
             <motion.div 
               variants={leftSlide}
               whileHover={{ scale: 1.02 }}
@@ -139,7 +135,7 @@ const Contact = () => {
           {/* Contact Form Section - Slips in from Right */}
           <motion.div 
             variants={rightSlide}
-            className="bg-white/10 backdrop-blur-lg rounded-3xl p-10 shadow-sm border border-white/20"
+            className="bg-white/10 backdrop-blur-lg rounded-xl p-5 shadow "
           >
             <h2 className="text-4xl font-bold mb-8">Send Message</h2>
             <form onSubmit={handleSubmit} className="space-y-6">

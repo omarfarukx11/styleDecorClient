@@ -242,7 +242,7 @@ const ManageServices = () => {
                   <motion.tr
                     key={service._id}
                     variants={itemVariants}
-                    className="block rounded-lg overflow-hidden xl:table-row xl:rounded-none mb-6 xl:mb-0 hover:bg-secondary bg-base-100 transition-all duration-300 shadow-md group"
+                    className="block rounded-lg overflow-hidden xl:table-row xl:rounded-none mb-6 xl:mb-0 md:text-md md:-space-y-5 hover:bg-secondary bg-base-100 transition-all duration-300 shadow-md group"
                   >
                     <td className="flex justify-between xl:table-cell p-4 xl:rounded-l-xl ">
                       <span className="xl:hidden font-semibold">Image</span>
@@ -262,7 +262,7 @@ const ManageServices = () => {
 
                     <td className="flex justify-between xl:table-cell p-4">
                       <span className="xl:hidden font-semibold">Category</span>
-                      <span className=" capitalize px-3 py-2">
+                      <span className="capitalize lg:px-3 lg:py-2">
                         {service.type}
                       </span>
                     </td>

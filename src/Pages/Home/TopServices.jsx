@@ -46,17 +46,14 @@ const TopServices = () => {
 
   return (
     <section className="bg-primary">
-      {/* initial="hidden": Start at 0 opacity and 40px down.
-          whileInView="visible": Only play when scrolled into view.
-          viewport={{ once: true, amount: 0.1 }}: Trigger when 10% of the section is visible.
-      */}
+
       <motion.div 
         key={isLoading ? "loading" : "loaded"}
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
-        className="xl:px-16 px-5 max-w-[1980px] mx-auto"
+        className="xl:px-20 lg:px-8 px-5 max-w-[1860px] mx-auto"
       >
         <motion.div variants={slideUpVariants} className="text-center text-base-200 rounded-xl pb-10">
           <BigTitile>Our Decoration Packages</BigTitile>
@@ -66,7 +63,7 @@ const TopServices = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6 items-stretch">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 items-stretch">
           {service.map((item) => (
             <motion.div
               key={item._id}

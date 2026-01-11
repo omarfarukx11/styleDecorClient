@@ -14,7 +14,7 @@ const BigTitile = ({children}) => {
                     type: "spring", 
                     stiffness: 100 
                 }}
-                className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500 inline-block lg:pt-20 pt-5 lg:pb-5 pb-1 text-2xl lg:text-5xl"
+                className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500 inline-block 2xl:pt-10 md:mt-10 pt-5 lg:pb-5 pb-1 text-2xl md:text-4xl lg:text-5xl"
             >
                 {children}
             </motion.h1>

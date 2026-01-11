@@ -50,19 +50,19 @@ const BigProjectBanner = () => {
       <motion.div 
         variants={bannerVariants}
         initial="hidden"
-        whileInView="visible" // Triggers when scrolled into view
-        viewport={{ once: true, amount: 0.2 }} // Runs once when 20% visible
-        className="max-w-[1980px] lg:px-20 px-5 mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center relative z-10"
+        whileInView="visible" 
+        viewport={{ once: true, amount: 0.2 }} 
+        className="max-w-[1860px] xl:px-20 lg:px-8 px-5 mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center relative z-10"
       >
         <div className="space-y-4 lg:col-span-5 max-w-[700px]">
           <motion.h1 
             variants={slideUpVariants} 
-            className="text-3xl lg:text-7xl font-black text-base-200 leading-[1.05]"
+            className="text-3xl lg:text-5xl xl:text-7xl font-black text-base-200 leading-[1.05]"
           >
             Transforming <br />
             <motion.span 
               variants={textClipVariants} 
-              className="text-transparent inline-block w-full bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500 text-3xl lg:text-7xl"
+              className="text-transparent inline-block w-full bg-clip-text bg-linear-to-r pb-3 from-cyan-400 to-blue-500 text-3xl lg:text-5xl xl:text-7xl"
             >
               Living Spaces.
             </motion.span>
@@ -70,7 +70,7 @@ const BigProjectBanner = () => {
 
           <motion.p 
             variants={slideUpVariants} 
-            className="text-xl lg:text-2xl text-base-200/50 max-w-[500px]"
+            className="text-xl xl:text-2xl text-base-200/50 max-w-[500px]"
           >
             StyleDecor is a high-performance ecosystem designed to bridge the gap between 
             professional decorators and dream homes.
@@ -90,7 +90,7 @@ const BigProjectBanner = () => {
           variants={imageSlideInVariants}
           className="lg:col-span-7 relative flex justify-center lg:justify-end"
         >
-          <div className="relative w-full max-w-[900px] aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl group">
+          <div className="relative w-full max-w-[900px] aspect-video rounded-xl overflow-hidden group">
             <img 
               src="https://i.ibb.co.com/7dMnxxy8/spacejoy-Rq-O6kwm4t-ZY-unsplash.jpg" 
               alt="Spacejoy Wide" 
