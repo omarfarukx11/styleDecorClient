@@ -1,5 +1,6 @@
 # 🏠 StyleDecor - Interior Design Platform
-<img width="890" height="826" alt="Screenshot 2025-12-31 122915" src="https://github.com/user-attachments/assets/51242638-f8dd-4779-bfd5-a02d17e73c09" />
+<img width="1900" height="944" alt="Screenshot 2026-01-12 190704" src="https://github.com/user-attachments/assets/b615dc5c-ecf1-41bf-becd-61e44eec0ac4" />
+
 
 
 
